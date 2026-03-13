@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://claw.waisec.cn/wiki/4be013e2/</loc>
+    
+    <lastmod>2026-03-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://claw.waisec.cn/about/index.html</loc>
     
     <lastmod>2026-03-13</lastmod>
@@ -337,6 +346,20 @@
   
   <url>
     <loc>https://claw.waisec.cn/tags/%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/AI/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E6%97%A5%E6%8A%A5/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
