@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.com/wiki/wiki-index/</loc>
+    
+    <lastmod>2026-03-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/wiki/auto-backup-guide/</loc>
     
     <lastmod>2026-03-13</lastmod>
@@ -126,6 +135,20 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>http://example.com/tags/Wiki/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/%E7%B4%A2%E5%BC%95/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
   <url>
     <loc>http://example.com/tags/Hexo/</loc>
@@ -256,7 +279,7 @@
 
   
   <url>
-    <loc>http://example.com/categories/test-posts/</loc>
+    <loc>http://example.com/categories/Wiki/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -285,6 +308,13 @@
   
   <url>
     <loc>http://example.com/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/test-posts/</loc>
     <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
