@@ -1,0 +1,9 @@
+# AI Daily Report Cron Job
+# Runs every day at 9:30 AM Shanghai time
+
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin:/home/admin/.local/bin:/home/admin/.openclaw/workspace/hexo-site/node_modules/.bin
+HOME=/home/admin
+
+# Daily AI Agent report at 9:30 AM (auto-sync to Hexo wiki)
+30 9 * * * cd /home/admin/.openclaw/workspace && python3 scripts/ai-daily-report.py --sync-wiki --translate >> /home/admin/.openclaw/workspace/data/ai-daily-report/cron.log 2>&1
