@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>John Doe</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <id>http://example.com/</id>
+  <link href="http://example.com/" rel="alternate"/>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, John Doe</rights>
+  <title>Hexo</title>
+  <updated>2026-03-13T18:19:00.174Z</updated>
+  <entry>
+    <author>
+      <name>John Doe</name>
+    </author>
+    <category term="入门指南" scheme="http://example.com/categories/%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"/>
+    <category term="Hexo" scheme="http://example.com/tags/Hexo/"/>
+    <category term="Quinoa" scheme="http://example.com/tags/Quinoa/"/>
+    <content>
+      <![CDATA[<h1 id="🎉-欢迎使用-Quinoa-主题"><a href="#🎉-欢迎使用-Quinoa-主题" class="headerlink" title="🎉 欢迎使用 Quinoa 主题"></a>🎉 欢迎使用 Quinoa 主题</h1><p>这是一个基于 Hexo 的现代化知识管理主题。</p><h2 id="✨-主要特性"><a href="#✨-主要特性" class="headerlink" title="✨ 主要特性"></a>✨ 主要特性</h2><ul><li><strong>双模式路由</strong> - SPA 无刷新导航 + 独立页面分享</li><li><strong>层级分类</strong> - 侧边栏多级分类树</li><li><strong>全文搜索</strong> - 闪电般的客户端搜索</li><li><strong>响应式设计</strong> - 完美适配桌面、平板、手机</li><li><strong>AI 就绪</strong> - Markdown 原生，适合 AI 生成内容</li></ul><h2 id="🚀-快速开始"><a href="#🚀-快速开始" class="headerlink" title="🚀 快速开始"></a>🚀 快速开始</h2><h3 id="访问全站模式"><a href="#访问全站模式" class="headerlink" title="访问全站模式"></a>访问全站模式</h3><p>添加 <code>?fullpage=1</code> 参数访问完整 Wiki 体验：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:4000/?fullpage=1</span><br></pre></td></tr></table></figure></p><h3 id="访问单篇文章"><a href="#访问单篇文章" class="headerlink" title="访问单篇文章"></a>访问单篇文章</h3><p>直接访问文章链接即可：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:4000/wiki/f3763a72/</span><br></pre></td></tr></table></figure></p><h2 id="📝-写作指南"><a href="#📝-写作指南" class="headerlink" title="📝 写作指南"></a>📝 写作指南</h2><ol><li>创建新文章：<code>hexo new &quot;文章标题&quot;</code></li><li>指定分类：在 front-matter 中添加 <code>categories:</code></li><li>生成静态文件：<code>hexo generate</code></li><li>本地预览：<code>hexo server</code></li></ol><h2 id="🔧-下一步"><a href="#🔧-下一步" class="headerlink" title="🔧 下一步"></a>🔧 下一步</h2><ul><li>编辑 <code>themes/Quinoa/_config.yml</code> 自定义主题</li><li>编辑 <code>_config.yml</code> 配置站点信息</li><li>开始写作你的知识文章！</li></ul><hr><p><strong>祝你使用愉快！</strong> 📚</p>]]>
+    </content>
+    <id>http://example.com/wiki/f3763a72/</id>
+    <link href="http://example.com/wiki/f3763a72/"/>
+    <published>2026-03-13T18:17:22.000Z</published>
+    <summary>
+      <![CDATA[<h1 id="🎉-欢迎使用-Quinoa-主题"><a href="#🎉-欢迎使用-Quinoa-主题" class="headerlink" title="🎉 欢迎使用 Quinoa 主题"></a>🎉 欢迎使用 Quinoa 主题</h1><p>这是一个基于 Hex]]>
+    </summary>
+    <title>欢迎使用 Quinoa 主题</title>
+    <updated>2026-03-13T18:19:00.174Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>John Doe</name>
+    </author>
+    <category term="test-posts" scheme="http://example.com/categories/test-posts/"/>
+    <content>
+      <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]>
+    </content>
+    <id>http://example.com/wiki/4a17b156/</id>
+    <link href="http://example.com/wiki/4a17b156/"/>
+    <published>2026-03-13T18:14:53.394Z</published>
+    <summary>
+      <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for]]>
+    </summary>
+    <title>Hello World</title>
+    <updated>2026-03-13T18:14:53.394Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>John Doe</name>
+    </author>
+    <content>
+      <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]>
+    </content>
+    <id>http://example.com/wiki/4a17b156/</id>
+    <link href="http://example.com/wiki/4a17b156/"/>
+    <published>2026-03-13T18:14:32.170Z</published>
+    <summary>
+      <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for]]>
+    </summary>
+    <title>Hello World</title>
+    <updated>2026-03-13T18:14:53.394Z</updated>
+  </entry>
+</feed>
