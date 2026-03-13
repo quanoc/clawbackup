@@ -1,0 +1,287 @@
+{
+  "6be446228e3f81f1": {
+    "title": "How to think about agent frameworks",
+    "url": "https://blog.langchain.com/how-to-think-about-agent-frameworks/",
+    "first_seen": "2026-03-06"
+  },
+  "e896c28e7fb32ff7": {
+    "title": "Reimagining Research Papers As Interactive and Reliable AI Agents",
+    "url": "https://arxiv.org/abs/2509.06917",
+    "first_seen": "2026-03-06"
+  },
+  "1d39d2d3e5fcf596": {
+    "title": "Multi-Agent Collaboration Mechanisms: A Survey of LLMs",
+    "url": "https://arxiv.org/abs/2501.06322",
+    "first_seen": "2026-03-13"
+  },
+  "02976b4623f37171": {
+    "title": "Effective context engineering for AI agents",
+    "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+    "first_seen": "2026-03-06"
+  },
+  "db045e6234547f7f": {
+    "title": "Building Effective AI Agents",
+    "url": "https://www.anthropic.com/research/building-effective-agents",
+    "first_seen": "2026-03-13"
+  },
+  "ae333b508db6e643": {
+    "title": "Workflows and agents",
+    "url": "https://docs.langchain.com/oss/python/langgraph/workflows-agents",
+    "first_seen": "2026-03-06"
+  },
+  "c287a33e6c4e51c7": {
+    "title": "LangChain: Observe, Evaluate, and Deploy Reliable AI Agents",
+    "url": "https://www.langchain.com/",
+    "first_seen": "2026-03-13"
+  },
+  "141dfa058417cd24": {
+    "title": "A Comprehensive Review of AI Agents: Transforming Possibilities in ...",
+    "url": "https://arxiv.org/abs/2508.11957",
+    "first_seen": "2026-03-06"
+  },
+  "872047c071de1297": {
+    "title": "Home \\\\ Anthropic",
+    "url": "https://www.anthropic.com/",
+    "first_seen": "2026-03-13"
+  },
+  "512f45d269a89a6f": {
+    "title": "Effective harnesses for long-running agents",
+    "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+    "first_seen": "2026-03-06"
+  },
+  "346c459acf9fe15e": {
+    "title": "Anthropic raises $30 billion in Series G funding at $380 billion post ...",
+    "url": "https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation",
+    "first_seen": "2026-03-08"
+  },
+  "f49cee2d4b52400c": {
+    "title": "Newsroom \\ Anthropic",
+    "url": "https://www.anthropic.com/news",
+    "first_seen": "2026-03-12"
+  },
+  "8bdf8a42e4994e61": {
+    "title": "Choose a design pattern for your agentic AI system | Cloud Architecture Center | Google Cloud Documentation",
+    "url": "https://docs.cloud.google.com/architecture/choose-design-pattern-agentic-ai-system",
+    "first_seen": "2026-03-13"
+  },
+  "06f6e0c6e06c16b6": {
+    "title": "Workflows and agents - Docs by LangChain",
+    "url": "https://docs.langchain.com/oss/python/langgraph/workflows-agents",
+    "first_seen": "2026-03-13"
+  },
+  "3a671b19e4ea7cb2": {
+    "title": "Careers \\ Anthropic",
+    "url": "https://www.anthropic.com/careers",
+    "first_seen": "2026-03-06"
+  },
+  "7473a501bf14a3ab": {
+    "title": "AI Learning Resources & Guides from Anthropic",
+    "url": "https://www.anthropic.com/learn",
+    "first_seen": "2026-03-12"
+  },
+  "c13912502c7b825f": {
+    "title": "Best Practices for AI Agent Implementations: Enterprise Guide 2026",
+    "url": "https://onereach.ai/blog/best-practices-for-ai-agent-implementations/",
+    "first_seen": "2026-03-06"
+  },
+  "ed19676ca6e67f38": {
+    "title": "NAMM Show 2026: Harrison Audio to Preview Harrison's LiveTrax 3, …",
+    "url": "https://harrisonaudio.com/explore/media/namm-show-2026-harrison-audio-to-preview-harrisons-livetrax-3",
+    "first_seen": "2026-03-12"
+  },
+  "5ab5ecb515981fcf": {
+    "title": "AI tool generates high-quality images faster than state-of-the-art ...",
+    "url": "https://news.mit.edu/2025/ai-tool-generates-high-quality-images-faster-0321",
+    "first_seen": "2026-03-11"
+  },
+  "2931e0d1dedca07b": {
+    "title": "AI Assist - Stack Overflow",
+    "url": "https://stackoverflow.com/ai-assist",
+    "first_seen": "2026-03-10"
+  },
+  "5f349625997488eb": {
+    "title": "Helping AI agents search to get the best results out of ... - MIT News",
+    "url": "https://news.mit.edu/2026/helping-ai-agents-search-to-get-best-results-from-llms-0205",
+    "first_seen": "2026-03-06"
+  },
+  "fe41399509f7319f": {
+    "title": "大语言模型 (Large Language Models，LLM)如何颠覆未来：深入解析 …",
+    "url": "https://cloud.tencent.com/developer/article/2631039",
+    "first_seen": "2026-03-06"
+  },
+  "993f35c7a4875678": {
+    "title": "一文搞清楚大语言模型（LLM）到底是什么？看这一篇就够了！_llm是 …",
+    "url": "https://blog.csdn.net/l01011_/article/details/149738323",
+    "first_seen": "2026-03-09"
+  },
+  "fdd3a32c2490ed41": {
+    "title": "Choose a design pattern for your agentic AI system | Cloud Architecture ...",
+    "url": "https://docs.cloud.google.com/architecture/choose-design-pattern-agentic-ai-system",
+    "first_seen": "2026-03-06"
+  },
+  "a2a282a624d2b5de": {
+    "title": "Research \\ Anthropic",
+    "url": "https://www.anthropic.com/research",
+    "first_seen": "2026-03-12"
+  },
+  "d67cf8fdd5ba6ae0": {
+    "title": "What is a Large Language Model (LLM) - GeeksforGeeks",
+    "url": "https://www.geeksforgeeks.org/artificial-intelligence/large-language-model-llm/",
+    "first_seen": "2026-03-12"
+  },
+  "cbb6cf24fc132fec": {
+    "title": "Company \\ Anthropic",
+    "url": "https://www.anthropic.com/company",
+    "first_seen": "2026-03-12"
+  },
+  "c636a6ffc9721df3": {
+    "title": "AI Agent Architecture: Frameworks, Patterns & Best Practices",
+    "url": "https://www.leanware.co/insights/ai-agent-architecture",
+    "first_seen": "2026-03-06"
+  },
+  "eca8aab560fd984f": {
+    "title": "Explained: Generative AI’s environmental impact - MIT News",
+    "url": "https://news.mit.edu/2025/explained-generative-ai-environmental-impact-0117",
+    "first_seen": "2026-03-06"
+  },
+  "28ad1824d13271cb": {
+    "title": "Large language model - Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Large_language_model",
+    "first_seen": "2026-03-13"
+  },
+  "65b0cbcba2cb10a5": {
+    "title": "30 Most Beautiful Buildings in Los Angeles for Iconic Architecture",
+    "url": "https://www.timeout.com/los-angeles/attractions/the-30-most-beautiful-buildings-in-los-angeles",
+    "first_seen": "2026-03-06"
+  },
+  "9404ff17e623b384": {
+    "title": "Building Effective AI Agents",
+    "url": "https://www.anthropic.com/engineering/building-effective-agents?ref=aiappvn.com",
+    "first_seen": "2026-03-06"
+  },
+  "6e2215466c5f9c51": {
+    "title": "Agentic AI patterns and workflows on AWS - AWS Prescriptive Guidance",
+    "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/agentic-ai-patterns/introduction.html",
+    "first_seen": "2026-03-10"
+  },
+  "7808c80cb5332a0d": {
+    "title": "AI/ML Engineer, Deployed @ Brain Co.",
+    "url": "https://jobs.ashbyhq.com/brainco/c5de5f45-ee53-48f0-86cf-2dfefa694ebb",
+    "first_seen": "2026-03-06"
+  },
+  "d3984c6e7218321f": {
+    "title": "LangChain 中文教程 | LangChain 中文文档",
+    "url": "https://langchain-doc.cn/",
+    "first_seen": "2026-03-09"
+  },
+  "ec086b9c4e9c1a4c": {
+    "title": "OpenAI",
+    "url": "https://openai.com/",
+    "first_seen": "2026-03-13"
+  },
+  "3fb367d7b6e83c2c": {
+    "title": "Google Gemini",
+    "url": "https://gemini.google.com/",
+    "first_seen": "2026-03-13"
+  },
+  "c49797d880a18acc": {
+    "title": "Top Agent Frameworks: LangChain vs LlamaIndex vs AutoGen vs CrewAI",
+    "url": "https://www.techaheadcorp.com/blog/top-agent-frameworks/",
+    "first_seen": "2026-03-07"
+  },
+  "9c5c4ba3d90f9aca": {
+    "title": "Introduction to LangChain - GeeksforGeeks",
+    "url": "https://www.geeksforgeeks.org/artificial-intelligence/introduction-to-langchain/",
+    "first_seen": "2026-03-13"
+  },
+  "c66d9ae2421cfca7": {
+    "title": "Google Maps",
+    "url": "https://maps.google.com/",
+    "first_seen": "2026-03-10"
+  },
+  "203430970ca06425": {
+    "title": "AI system learns from many types of scientific information and runs ...",
+    "url": "https://news.mit.edu/2025/ai-system-learns-many-types-scientific-information-and-runs-experiments-discovering-new-materials-0925",
+    "first_seen": "2026-03-09"
+  },
+  "a477bb1210fce50e": {
+    "title": "GitHub - langchain-ai/langchain: The agent engineering platform",
+    "url": "https://github.com/langchain-ai/langchain",
+    "first_seen": "2026-03-09"
+  },
+  "4a325dd897aee684": {
+    "title": "LangChain 是什么？为什么现在必须学？（小白也能看懂）-CSDN博客",
+    "url": "https://blog.csdn.net/qq_58414613/article/details/158422861",
+    "first_seen": "2026-03-09"
+  },
+  "0b42f883a0e6e276": {
+    "title": "Harrison Audio",
+    "url": "https://harrisonaudio.com/",
+    "first_seen": "2026-03-09"
+  },
+  "9e2eb5b608094b12": {
+    "title": "Anthropic",
+    "url": "https://www.anthropic.com/research/building-effective-agents",
+    "first_seen": "2026-03-10"
+  },
+  "21f1ecdfcf85dece": {
+    "title": "10 Best Open-Source LLM Models (2025 Updated): Llama 4, Qwen 3 …",
+    "url": "https://huggingface.co/blog/daya-shankar/open-source-llms",
+    "first_seen": "2026-03-10"
+  },
+  "7e59fe4ac959a67e": {
+    "title": "Study: AI chatbots provide less-accurate information to vulnerable ...",
+    "url": "https://news.mit.edu/2026/study-ai-chatbots-provide-less-accurate-information-vulnerable-users-0219",
+    "first_seen": "2026-03-10"
+  },
+  "34a921dea827648f": {
+    "title": "LLM News Today (March 2026) – Open Source LLM Updates & AI …",
+    "url": "https://llm-stats.com/ai-news",
+    "first_seen": "2026-03-10"
+  },
+  "c3f018e6e3cb0ab6": {
+    "title": "What is a large language model (LLM)? - TechTarget",
+    "url": "https://www.techtarget.com/whatis/definition/large-language-model-LLM",
+    "first_seen": "2026-03-10"
+  },
+  "bd006555a0114b6d": {
+    "title": "LangChain 101: What It Is, Why It Matters, and How to Start",
+    "url": "https://rockybhatia.substack.com/p/langchain-101-what-it-is-why-it-matters",
+    "first_seen": "2026-03-11"
+  },
+  "ef121033699f7782": {
+    "title": "Choose a design pattern for your agentic AI system",
+    "url": "https://docs.cloud.google.com/architecture/choose-design-pattern-agentic-ai-system",
+    "first_seen": "2026-03-12"
+  },
+  "b735dd180711c7b8": {
+    "title": "AI Agent Orchestration Patterns - Azure Architecture Center",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns",
+    "first_seen": "2026-03-13"
+  },
+  "4d0ec4d4a3605320": {
+    "title": "Multi-Agent Systems & AI Orchestration Guide 2026 | Codebridge",
+    "url": "https://www.codebridge.tech/articles/mastering-multi-agent-orchestration-coordination-is-the-new-scale-frontier",
+    "first_seen": "2026-03-13"
+  },
+  "eadc5beb2b557076": {
+    "title": "Multi-Agent Coordination | Springer Nature Link",
+    "url": "https://link.springer.com/chapter/10.1007/978-3-031-90026-6_3",
+    "first_seen": "2026-03-13"
+  },
+  "bea13065996235d8": {
+    "title": "Best LLM Leaderboard 2026 | AI Model Rankings, Benchmarks & Pricing",
+    "url": "https://onyx.app/llm-leaderboard",
+    "first_seen": "2026-03-13"
+  },
+  "933dfcf52e8c7040": {
+    "title": "What Is an LLM Degree and Why Should You Consider One?",
+    "url": "https://onlinelaw.hofstra.edu/blog/what-is-an-llm-degree",
+    "first_seen": "2026-03-13"
+  },
+  "74a89a5185b04e9d": {
+    "title": "City of Santa Clarita - Online Portal - Accela",
+    "url": "https://aca-prod.accela.com/santaclarita/default.aspx",
+    "first_seen": "2026-03-13"
+  }
+}
