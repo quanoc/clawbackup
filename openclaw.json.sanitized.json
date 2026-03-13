@@ -1,22 +1,17 @@
 {
   "_meta_info": "这是脱敏后的配置文件，敏感信息已替换为占位符",
-  "_sanitized_at": "2026-03-13T22:30:00+08:00",
+  "_sanitized_at": "AUTO_GENERATED",
   "_sensitive_fields_removed": [
-    "models.providers.dashscope-coding.apiKey - 真实 API Key 已隐藏",
+    "models.providers.*.apiKey - 真实 API Key 已隐藏",
     "gateway.auth.token - 网关认证 Token 已隐藏",
-    "channels.dingtalk.clientId - 钉钉 Client ID 已隐藏",
-    "channels.dingtalk.clientSecret - 钉钉 Client Secret 已隐藏",
-    "gateway.controlUi.allowedOrigins - 公网 IP 已隐藏"
+    "channels.*.clientId - Client ID 已隐藏",
+    "channels.*.clientSecret - Client Secret 已隐藏",
+    "gateway.controlUi.allowedOrigins - 公网 IP 已隐藏",
+    "plugins.installs.*.sourcePath/installPath - 本地路径已隐藏"
   ],
   "meta": {
-    "lastTouchedVersion": "2026.2.26",
-    "lastTouchedAt": "2026-03-05T18:02:27.095Z"
-  },
-  "wizard": {
-    "lastRunAt": "2026-02-27T10:09:10.517Z",
-    "lastRunVersion": "2026.2.26",
-    "lastRunCommand": "onboard",
-    "lastRunMode": "local"
+    "lastTouchedVersion": "AUTO",
+    "lastTouchedAt": "AUTO"
   },
   "browser": {
     "executablePath": "/usr/bin/google-chrome",
@@ -59,5 +54,9 @@
       "dmPolicy": "open",
       "groupPolicy": "open"
     }
+  },
+  "plugins": {
+    "enabled": true,
+    "allow": ["dingtalk", "qqbot", "dashscope-cfg", "wecom"]
   }
 }
