@@ -1,0 +1,170 @@
+diff --git a/layout/base/base.ejs b/layout/base/base.ejs
+index 45102ae..e7e8a0d 100644
+--- a/layout/base/base.ejs
++++ b/layout/base/base.ejs
+@@ -23,7 +23,7 @@
+     </div>
+     <div id="music-player-container">
+         <iframe id="music-player" title="网易云音乐"
+-            data-src="https://music.163.com/outchain/player?type=0&id=12850293495&auto=1&height=120">
++            data-src="https://music.163.com/outchain/player?type=0&id=17829322559&auto=1&height=120">
+         </iframe>
+     </div>
+     <div id="toTop" class="fa fa-angle-up"></div>
+diff --git a/layout/widget/recent_posts.ejs b/layout/widget/recent_posts.ejs
+index 6b25641..d7429a2 100644
+--- a/layout/widget/recent_posts.ejs
++++ b/layout/widget/recent_posts.ejs
+@@ -2,27 +2,26 @@
+     <div class="widget-wrap">
+         <h3 class="widget-title"><span><%= __('widget.recents') %></span></h3>
+         <div class="widget">
+-            <ul id="recent-post" class="<%= (theme.customize.thumbnail?'':'no-thumbnail') %>">
++            <ul id="recent-post" class="no-thumbnail">
+                 <% site.posts.sort('date', -1).limit(3).each(function(post) { %>
+                     <li>
+-                        <% if(theme.customize.thumbnail == true) { %>
+-                        <div class="item-thumbnail">
+-                            <%- partial('common/thumbnail.ejs', {post: post}) %>
+-                        </div>
+-                        <% } %>
+                         <div class="item-inner">
+-                            <!-- 如果title是数字开头，则去掉数字 -->
+                             <% let title = post.title; %>
+                             <% if (title && /^\d+\./.test(title)) { %>
+                                 <% title = title.replace(/^\d+\./, ''); %>
+-                            <% } else { %>
+-                                <% title= post.title %>
+                             <% } %>
+-                            <p class="item-title"><a href="<%- url_for((post.link?post.link:post.path)) %>" class="title"
+-                                onclick="onclickRoute(event, '<%- url_for((post.link?post.link:post.path)) %>')"><%= title %></a></p>
+-                            <p>
+-                                <span class="item-category"><%- list_categories(post.categories, {show_count: false, depth:1, class: 'article-category', style: 'none', separator: '<i class="fa fa-angle-right"></i>'}) %></span>
+-                                <span class="item-date"><time datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= date(post.date) %></time></span>
++                            <p class="item-title">
++                                <a href="<%- url_for((post.link?post.link:post.path)) %>" class="title">
++                                    <%= title %>
++                                </a>
++                            </p>
++                            <p class="item-meta">
++                                <span class="item-category">
++                                    <%- list_categories(post.categories, {show_count: false, depth:1, class: 'article-category', style: 'none', separator: '<i class="fa fa-angle-right"></i>'}) %>
++                                </span>
++                                <span class="item-date">
++                                    <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'MM-DD') %></time>
++                                </span>
+                             </p>
+                         </div>
+                     </li>
+@@ -30,4 +29,4 @@
+             </ul>
+         </div>
+     </div>
+-<% } %>
+\ No newline at end of file
++<% } %>
+diff --git a/source/css/_partial/sidebar.styl b/source/css/_partial/sidebar.styl
+index fd343a8..acd2d11 100644
+--- a/source/css/_partial/sidebar.styl
++++ b/source/css/_partial/sidebar.styl
+@@ -181,55 +181,52 @@
+         padding: 10px 0 10px 94px
+     &.no-thumbnail
+         li
+-            padding: 5px 0px
+-    li
+-        .item-thumbnail
+-            opacity: 1
+-            float: left
+-            margin-left: -94px
+-            transition: all 0.2s ease
+-            .thumbnail
+-                width: 80px
+-                height: 80px
+-                display: block
+-                position: relative
+-                overflow: hidden
+-                span
+-                    width: 100%
+-                    height: 100%
+-                    display: block
+-                .thumbnail-image
+-                    position: absolute
+-                    background-size: cover
+-                    background-position: center
+-                .thumbnail-none
+-                    background-image: url(thumbnail-default-small)
+-                    background-size: 100% 100%
+-        .item-inner
+-            a
+-            .item-category
+-                font-size: 13px
+-                a
+-                    color: #333
+-                    &:hover
++            padding: 8px 0
++            border-bottom: 1px solid #f0f0f0
++            &:last-child
++                border-bottom: none
++            &:hover
++                background-color: #f9f9f9
++                transition: background-color 0.2s ease
++        li
++            .item-inner
++                padding-left: 5px
++                .item-title
++                    font-size: 14px
++                    line-height: 1.4
++                    margin-bottom: 4px
++                    a
+                         color: color-sidebar-text-dark
+-                    font-size: 10px
+-                a, .fa
+-                    margin-right: 5px
+-            .item-title
+-                font-size: 15px
+-                a
+-                    color: color-sidebar-text-dark
+-                    transition: all 0.2s ease
+-            .item-date
+-                color: #aaa
+-                font-size: 10px
+-                text-transform: uppercase
+-        &:hover
+-            .item-thumbnail
+-                opacity: 0.8
+-            .item-title a
+-                color: color-link
++                        transition: all 0.2s ease
++                        display: block
++                        overflow: hidden
++                        text-overflow: ellipsis
++                        white-space: nowrap
++                        &:hover
++                            color: color-link
++                            transform: translateX(3px)
++                .item-meta
++                    display: flex
++                    justify-content: space-between
++                    align-items: center
++                    font-size: 12px
++                    color: #999
++                    .item-category
++                        a
++                            color: #999
++                            &:hover
++                                color: color-link
++                            font-size: 11px
++                            background-color: #f5f5f5
++                            padding: 2px 6px
++                            border-radius: 3px
++                            transition: all 0.2s ease
++                            &:hover
++                                background-color: #e8f4ff
++                    .item-date
++                        color: #bbb
++                        font-size: 11px
++                        font-style: italic
+                 
+ #categories
+     text-shadow: 0 1px 0 #FFFFFF
