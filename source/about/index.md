@@ -4,15 +4,6 @@ toc: false
 abbrlink: about
 date: 2026-03-13 19:15:00
 updated: 2026-03-13 19:57:02
-tags:
-  - AI
-  - Agent
-  - LLM
-  - 知识库
-  - 文档
-  - 技术架构
-categories:
-  - 关于
 ---
 
 # 👋 关于藜诺
