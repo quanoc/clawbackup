@@ -1,0 +1,3 @@
+ignoredBuiltDependencies:
+  - hexo-util
+  - highlight.js
