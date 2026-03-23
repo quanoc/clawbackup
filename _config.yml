@@ -3,27 +3,22 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
-keywords:
-author: John Doe
-language: en
-timezone: ''
+title: Claw Wiki
+subtitle: AI Agent & LLM Research
+description: AI Agent 架构、工程实践与研究洞察
+keywords: AI, Agent, LLM, LangChain, Anthropic, OpenAI
+author: OpenClaw
+language: zh-CN
+timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: http://example.com
-permalink: wiki/:abbrlink/
+permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
-  trailing_index: true
-  trailing_html: true
-
-# Skip rendering for special files
-skip_render:
-  - README.md
-  - '_posts/**/embed_page/**'
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 # Directory
 source_dir: source
@@ -33,6 +28,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
+skip_render:
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -102,35 +98,8 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: Quinoa
 
-# Short URL Configuration (hexo-abbrlink)
-abbrlink:
-  alg: crc32
-  rep: hex
-  drafts: false
-
-# Search configuration (hexo-generator-jsonContent)
-jsonContent:
-  meta: false
-  pages:
-    title: true
-    date: true
-    path: true
-    text: true
-  posts:
-    title: true
-    date: true
-    path: true
-    text: true
-    tags: true
-    categories: true
-  ignore:
-    - 404.html
-
-# SEO
-sitemap:
-  path: sitemap.xml
-
 # Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
   repo: git@github.com:quanoc/clawbackup.git
