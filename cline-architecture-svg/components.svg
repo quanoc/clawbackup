@@ -1,0 +1,200 @@
+<svg width="1000" height="750" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="comp1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5a67d8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="comp2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a90e2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#357abd;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="comp3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ed8936;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dd6b20;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="comp4Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#38a169;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2f855a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="comp5Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#718096;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a5568;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="comp6Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e53e3e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c53030;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="subGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#edf2f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow3" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000000" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="1000" height="750" fill="#f8f9fa"/>
+  
+  <!-- 标题 -->
+  <text x="500" y="45" text-anchor="middle" font-size="26" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">Cline 组件详细架构</text>
+  <text x="500" y="75" text-anchor="middle" font-size="13" fill="#718096" font-family="system-ui, -apple-system, sans-serif">各核心组件内部结构与子模块</text>
+  
+  <!-- 组件 1: 用户界面层 (左上) -->
+  <g transform="translate(30, 100)">
+    <rect width="300" height="200" rx="12" fill="white" stroke="#667eea" stroke-width="2" filter="url(#shadow3)"/>
+    <rect width="300" height="40" rx="12" fill="url(#comp1Grad)"/>
+    <rect width="300" height="40" rx="12" fill="none" stroke="#667eea" stroke-width="2"/>
+    <text x="150" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="system-ui, -apple-system, sans-serif">用户界面层</text>
+    
+    <!-- 子模块 -->
+    <rect x="15" y="55" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="77" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">聊天面板</text>
+    <text x="77" y="95" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">消息历史 / 输入框</text>
+    
+    <rect x="160" y="55" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="222" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">命令面板</text>
+    <text x="222" y="95" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">快捷命令 / 菜单</text>
+    
+    <rect x="15" y="125" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="77" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">状态栏</text>
+    <text x="77" y="165" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">任务进度 / Token</text>
+    
+    <rect x="160" y="125" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="222" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">配置界面</text>
+    <text x="222" y="165" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">设置 / API Key</text>
+  </g>
+  
+  <!-- 组件 2: API 层 (右上) -->
+  <g transform="translate(370, 100)">
+    <rect width="300" height="200" rx="12" fill="white" stroke="#4a90e2" stroke-width="2" filter="url(#shadow3)"/>
+    <rect width="300" height="40" rx="12" fill="url(#comp2Grad)"/>
+    <rect width="300" height="40" rx="12" fill="none" stroke="#4a90e2" stroke-width="2"/>
+    <text x="150" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="system-ui, -apple-system, sans-serif">API 层</text>
+    
+    <rect x="15" y="55" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="77" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">请求路由</text>
+    <text x="77" y="95" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">URL 匹配 / 分发</text>
+    
+    <rect x="160" y="55" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="222" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">认证中间件</text>
+    <text x="222" y="95" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">JWT / Session</text>
+    
+    <rect x="15" y="125" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="77" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">速率限制</text>
+    <text x="77" y="165" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">限流 / 配额</text>
+    
+    <rect x="160" y="125" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="222" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">错误处理</text>
+    <text x="222" y="165" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">异常捕获 / 日志</text>
+  </g>
+  
+  <!-- 组件 3: AI 模型层 (左中) -->
+  <g transform="translate(30, 330)">
+    <rect width="300" height="200" rx="12" fill="white" stroke="#ed8936" stroke-width="2" filter="url(#shadow3)"/>
+    <rect width="300" height="40" rx="12" fill="url(#comp3Grad)"/>
+    <rect width="300" height="40" rx="12" fill="none" stroke="#ed8936" stroke-width="2"/>
+    <text x="150" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="system-ui, -apple-system, sans-serif">AI 模型层</text>
+    
+    <rect x="15" y="55" width="270" height="45" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="150" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">模型适配器</text>
+    <text x="150" y="90" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">Claude API | GPT API | 本地模型</text>
+    
+    <rect x="15" y="115" width="125" height="65" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="77" y="135" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">提示工程</text>
+    <text x="77" y="152" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">系统提示词</text>
+    <text x="77" y="167" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">上下文管理</text>
+    <text x="77" y="180" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">Few-shot 示例</text>
+    
+    <rect x="160" y="115" width="125" height="65" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="222" y="135" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">响应解析</text>
+    <text x="222" y="152" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">JSON 提取</text>
+    <text x="222" y="167" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">代码块解析</text>
+    <text x="222" y="180" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">流式处理</text>
+  </g>
+  
+  <!-- 组件 4: 文件系统 (右中) -->
+  <g transform="translate(370, 330)">
+    <rect width="300" height="200" rx="12" fill="white" stroke="#38a169" stroke-width="2" filter="url(#shadow3)"/>
+    <rect width="300" height="40" rx="12" fill="url(#comp4Grad)"/>
+    <rect width="300" height="40" rx="12" fill="none" stroke="#38a169" stroke-width="2"/>
+    <text x="150" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="system-ui, -apple-system, sans-serif">文件系统</text>
+    
+    <rect x="15" y="55" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="77" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">文件读取</text>
+    <text x="77" y="95" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">编码检测 / 流式</text>
+    
+    <rect x="160" y="55" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="222" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">文件写入</text>
+    <text x="222" y="95" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">原子操作 / 备份</text>
+    
+    <rect x="15" y="125" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="77" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">目录遍历</text>
+    <text x="77" y="165" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">忽略规则 / 深度</text>
+    
+    <rect x="160" y="125" width="125" height="55" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="222" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">代码搜索</text>
+    <text x="222" y="165" text-anchor="middle" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">正则 / 符号查找</text>
+  </g>
+  
+  <!-- 组件 5: 终端执行 (左下) -->
+  <g transform="translate(30, 560)">
+    <rect width="460" height="160" rx="12" fill="white" stroke="#718096" stroke-width="2" filter="url(#shadow3)"/>
+    <rect width="460" height="40" rx="12" fill="url(#comp5Grad)"/>
+    <rect width="460" height="40" rx="12" fill="none" stroke="#718096" stroke-width="2"/>
+    <text x="230" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="system-ui, -apple-system, sans-serif">终端执行层</text>
+    
+    <rect x="15" y="55" width="130" height="85" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="80" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">Shell 执行器</text>
+    <text x="80" y="95" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">bash / zsh / sh</text>
+    <text x="80" y="110" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">工作目录设置</text>
+    <text x="80" y="125" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">环境变量</text>
+    <text x="80" y="140" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">超时控制</text>
+    
+    <rect x="165" y="55" width="130" height="85" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="230" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">进程管理</text>
+    <text x="230" y="95" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">PID 跟踪</text>
+    <text x="230" y="110" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">信号处理</text>
+    <text x="230" y="125" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">子进程树</text>
+    <text x="230" y="140" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">资源限制</text>
+    
+    <rect x="315" y="55" width="130" height="85" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="380" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">输出捕获</text>
+    <text x="380" y="95" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">stdout / stderr</text>
+    <text x="380" y="110" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">流式输出</text>
+    <text x="380" y="125" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">输出截断</text>
+    <text x="380" y="140" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">退出码处理</text>
+  </g>
+  
+  <!-- 组件 6: 安全沙箱 (右下) -->
+  <g transform="translate(530, 560)">
+    <rect width="440" height="160" rx="12" fill="white" stroke="#e53e3e" stroke-width="2" filter="url(#shadow3)"/>
+    <rect width="440" height="40" rx="12" fill="url(#comp6Grad)"/>
+    <rect width="440" height="40" rx="12" fill="none" stroke="#e53e3e" stroke-width="2"/>
+    <text x="220" y="26" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="system-ui, -apple-system, sans-serif">安全沙箱层</text>
+    
+    <rect x="15" y="55" width="125" height="85" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="77" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">权限控制</text>
+    <text x="77" y="95" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">允许列表</text>
+    <text x="77" y="110" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">危险命令拦截</text>
+    <text x="77" y="125" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">路径限制</text>
+    <text x="77" y="140" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">用户确认</text>
+    
+    <rect x="155" y="55" width="125" height="85" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="217" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">操作审计</text>
+    <text x="217" y="95" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">完整日志</text>
+    <text x="217" y="110" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">时间戳记录</text>
+    <text x="217" y="125" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">操作溯源</text>
+    <text x="217" y="140" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">可导出报告</text>
+    
+    <rect x="295" y="55" width="130" height="85" rx="6" fill="url(#subGrad)" stroke="#cbd5e0" stroke-width="1"/>
+    <text x="360" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">敏感保护</text>
+    <text x="360" y="95" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">密钥检测</text>
+    <text x="360" y="110" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">隐私文件保护</text>
+    <text x="360" y="125" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">网络访问控制</text>
+    <text x="360" y="140" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">资源使用监控</text>
+  </g>
+  
+  <!-- 连接说明 -->
+  <text x="500" y="740" text-anchor="middle" font-size="11" fill="#718096" font-family="system-ui, -apple-system, sans-serif">各组件通过内部 API 和事件总线进行通信，安全层贯穿所有操作</text>
+</svg>

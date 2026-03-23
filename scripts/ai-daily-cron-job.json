@@ -1,0 +1,20 @@
+{
+  "action": "add",
+  "job": {
+    "name": "AI 每日深度报告推送",
+    "schedule": {
+      "kind": "cron",
+      "expr": "30 9 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "sessionTarget": "isolated",
+    "wakeMode": "now",
+    "payload": {
+      "kind": "agentTurn",
+      "message": "你是一个专业的 AI 助手。请执行以下任务：\n\n1. 运行命令：cd /home/admin/.openclaw/workspace && python3 scripts/ai-daily-report.py\n2. 获取最新生成的报告文件（在 ~/.openclaw/workspace/data/ai-daily-report/reports/ 目录下）\n3. 读取报告内容，提取前 1200 字符作为预览\n4. 按照以下格式发送消息到 DingTalk 群：\n\n🧠 **AI Agent 深度日报** - {日期}\n\n{报告预览}\n\n...\n\n📄 **完整报告已保存到磁盘**\n位置：`{报告文件路径}`\n\n**快速查看**:\n```bash\ncat {报告文件路径}\n```\n\n**历史报告**: `~/.openclaw/workspace/data/ai-daily-report/reports/`\n\n---\n*自动推送 · 高质量 Agent 架构与工程实践 · 已去重*\n\n5. 如果报告生成失败或没有新内容，发送简短说明",
+      "deliver": true,
+      "channel": "dingtalk",
+      "to": "group:cidpoGkHTsHp0LWVbjGYxKjxQ=="
+    }
+  }
+}

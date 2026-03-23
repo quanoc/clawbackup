@@ -1,0 +1,212 @@
+<svg width="1000" height="700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e53e3e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c53030;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="warningGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ed8936;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dd6b20;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="safeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#38a169;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2f855a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="infoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a90e2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#357abd;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow4" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+    
+    <!-- 盾牌图标 -->
+    <g id="shieldIcon">
+      <path d="M16 4 L24 8 L24 16 Q24 26 16 30 Q8 26 8 16 L8 8 Z" fill="white" opacity="0.95"/>
+      <path d="M16 14 L16 20 M13 17 L19 17" stroke="#e53e3e" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    
+    <!-- 锁图标 -->
+    <g id="lockIcon">
+      <rect x="10" y="14" width="12" height="10" rx="2" fill="white" opacity="0.95"/>
+      <path d="M12 14 L12 10 A4 4 0 0 1 20 10 L20 14" stroke="white" stroke-width="2.5" fill="none" opacity="0.95"/>
+      <circle cx="16" cy="19" r="1.5" fill="#e53e3e"/>
+    </g>
+    
+    <!-- 警告图标 -->
+    <g id="warnIcon">
+      <path d="M16 4 L26 22 L6 22 Z" fill="white" opacity="0.95"/>
+      <line x1="16" y1="12" x2="16" y2="18" stroke="#ed8936" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="16" cy="20" r="1.5" fill="#ed8936"/>
+    </g>
+    
+    <!-- 检查图标 -->
+    <g id="checkIcon">
+      <circle cx="16" cy="16" r="12" fill="white" opacity="0.95"/>
+      <path d="M11 16 L15 20 L21 12" stroke="#38a169" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="1000" height="700" fill="#f8f9fa"/>
+  
+  <!-- 标题 -->
+  <text x="500" y="45" text-anchor="middle" font-size="26" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">Cline 安全架构</text>
+  <text x="500" y="75" text-anchor="middle" font-size="13" fill="#718096" font-family="system-ui, -apple-system, sans-serif">多层防护体系与风险控制机制</text>
+  
+  <!-- 中央安全核心 -->
+  <g transform="translate(420, 120)" filter="url(#shadow4)">
+    <circle cx="80" cy="80" r="70" fill="url(#shieldGrad)" opacity="0.15"/>
+    <circle cx="80" cy="80" r="55" fill="url(#shieldGrad)" opacity="0.3"/>
+    <circle cx="80" cy="80" r="40" fill="url(#shieldGrad)"/>
+    <use href="#shieldIcon" x="64" y="60"/>
+    <text x="80" y="135" text-anchor="middle" font-size="14" font-weight="bold" fill="#c53030" font-family="system-ui, -apple-system, sans-serif">安全核心</text>
+  </g>
+  
+  <!-- 第一层：边界防护 (顶部) -->
+  <g transform="translate(100, 100)">
+    <rect width="260" height="100" rx="10" fill="white" stroke="#e53e3e" stroke-width="2" filter="url(#shadow4)"/>
+    <use href="#lockIcon" x="20" y="30"/>
+    <text x="130" y="45" text-anchor="middle" font-size="15" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">边界防护层</text>
+    <text x="130" y="70" text-anchor="middle" font-size="11" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">API Key 管理 | 身份认证 | 访问令牌</text>
+    <text x="130" y="90" text-anchor="middle" font-size="11" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">加密传输 | 会话管理</text>
+  </g>
+  
+  <!-- 第二层：输入验证 (左侧) -->
+  <g transform="translate(50, 280)">
+    <rect width="240" height="140" rx="10" fill="white" stroke="#ed8936" stroke-width="2" filter="url(#shadow4)"/>
+    <use href="#warnIcon" x="20" y="20"/>
+    <text x="120" y="55" text-anchor="middle" font-size="15" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">输入验证层</text>
+    
+    <rect x="20" y="70" width="200" height="25" rx="4" fill="#fff5f0" stroke="#ed8936" stroke-width="1"/>
+    <text x="120" y="87" text-anchor="middle" font-size="10" fill="#c05621" font-family="system-ui, -apple-system, sans-serif">• 提示词注入检测</text>
+    
+    <rect x="20" y="100" width="200" height="25" rx="4" fill="#fff5f0" stroke="#ed8936" stroke-width="1"/>
+    <text x="120" y="117" text-anchor="middle" font-size="10" fill="#c05621" font-family="system-ui, -apple-system, sans-serif">• 命令注入防护</text>
+  </g>
+  
+  <!-- 第三层：权限控制 (右侧) -->
+  <g transform="translate(710, 280)">
+    <rect width="240" height="140" rx="10" fill="white" stroke="#4a90e2" stroke-width="2" filter="url(#shadow4)"/>
+    <use href="#checkIcon" x="20" y="20"/>
+    <text x="120" y="55" text-anchor="middle" font-size="15" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">权限控制层</text>
+    
+    <rect x="20" y="70" width="200" height="25" rx="4" fill="#ebf8ff" stroke="#4a90e2" stroke-width="1"/>
+    <text x="120" y="87" text-anchor="middle" font-size="10" fill="#2c5282" font-family="system-ui, -apple-system, sans-serif">• 文件访问白名单</text>
+    
+    <rect x="20" y="100" width="200" height="25" rx="4" fill="#ebf8ff" stroke="#4a90e2" stroke-width="1"/>
+    <text x="120" y="117" text-anchor="middle" font-size="10" fill="#2c5282" font-family="system-ui, -apple-system, sans-serif">• 危险命令拦截</text>
+  </g>
+  
+  <!-- 第四层：执行沙箱 (底部左侧) -->
+  <g transform="translate(100, 480)">
+    <rect width="380" height="180" rx="10" fill="white" stroke="#718096" stroke-width="2" filter="url(#shadow4)"/>
+    <rect width="380" height="35" rx="10" fill="#718096"/>
+    <rect width="380" height="35" rx="10" fill="none" stroke="#718096" stroke-width="2"/>
+    <text x="190" y="23" text-anchor="middle" font-size="14" font-weight="bold" fill="white" font-family="system-ui, -apple-system, sans-serif">执行沙箱层</text>
+    
+    <g transform="translate(20, 50)">
+      <rect width="155" height="50" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1"/>
+      <text x="77" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">进程隔离</text>
+      <text x="77" y="42" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">独立工作目录 / 资源限制</text>
+    </g>
+    
+    <g transform="translate(200, 50)">
+      <rect width="160" height="50" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1"/>
+      <text x="80" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">超时控制</text>
+      <text x="80" y="42" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">命令超时 / 无限循环保护</text>
+    </g>
+    
+    <g transform="translate(20, 115)">
+      <rect width="155" height="50" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1"/>
+      <text x="77" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">输出过滤</text>
+      <text x="77" y="42" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">敏感信息脱敏 / 长度限制</text>
+    </g>
+    
+    <g transform="translate(200, 115)">
+      <rect width="160" height="50" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1"/>
+      <text x="80" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">环境变量净化</text>
+      <text x="80" y="42" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">移除敏感变量 / 最小权限</text>
+    </g>
+  </g>
+  
+  <!-- 第五层：审计日志 (底部右侧) -->
+  <g transform="translate(530, 480)">
+    <rect width="380" height="180" rx="10" fill="white" stroke="#38a169" stroke-width="2" filter="url(#shadow4)"/>
+    <rect width="380" height="35" rx="10" fill="#38a169"/>
+    <rect width="380" height="35" rx="10" fill="none" stroke="#38a169" stroke-width="2"/>
+    <text x="190" y="23" text-anchor="middle" font-size="14" font-weight="bold" fill="white" font-family="system-ui, -apple-system, sans-serif">审计日志层</text>
+    
+    <g transform="translate(20, 50)">
+      <rect width="155" height="50" rx="6" fill="#f0fff4" stroke="#38a169" stroke-width="1"/>
+      <text x="77" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">完整操作日志</text>
+      <text x="77" y="42" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">所有文件/命令操作记录</text>
+    </g>
+    
+    <g transform="translate(200, 50)">
+      <rect width="160" height="50" rx="6" fill="#f0fff4" stroke="#38a169" stroke-width="1"/>
+      <text x="80" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">时间戳追踪</text>
+      <text x="80" y="42" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">精确到毫秒的操作时间</text>
+    </g>
+    
+    <g transform="translate(20, 115)">
+      <rect width="155" height="50" rx="6" fill="#f0fff4" stroke="#38a169" stroke-width="1"/>
+      <text x="77" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">可追溯性</text>
+      <text x="77" y="42" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">完整操作链 / 上下文保存</text>
+    </g>
+    
+    <g transform="translate(200, 115)">
+      <rect width="160" height="50" rx="6" fill="#f0fff4" stroke="#38a169" stroke-width="1"/>
+      <text x="80" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">日志导出</text>
+      <text x="80" y="42" text-anchor="middle" font-size="9" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">JSON/CSV 格式 / 外部存储</text>
+    </g>
+  </g>
+  
+  <!-- 连接线 -->
+  <defs>
+    <marker id="arrowSec" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e53e3e"/>
+    </marker>
+  </defs>
+  
+  <!-- 边界防护 -> 安全核心 -->
+  <path d="M230 200 Q350 200 420 180" stroke="#e53e3e" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowSec)"/>
+  
+  <!-- 输入验证 -> 安全核心 -->
+  <path d="M290 350 Q350 350 420 220" stroke="#ed8936" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowSec)"/>
+  
+  <!-- 权限控制 -> 安全核心 -->
+  <path d="M710 350 Q580 350 500 220" stroke="#4a90e2" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowSec)"/>
+  
+  <!-- 执行沙箱 -> 安全核心 -->
+  <path d="M290 480 Q350 400 420 250" stroke="#718096" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowSec)"/>
+  
+  <!-- 审计日志 -> 安全核心 -->
+  <path d="M710 480 Q580 400 500 250" stroke="#38a169" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowSec)"/>
+  
+  <!-- 底部说明框 -->
+  <rect x="50" y="670" width="900" height="20" rx="4" fill="#fff5f5" stroke="#feb2b2" stroke-width="1"/>
+  <text x="500" y="684" text-anchor="middle" font-size="11" fill="#c53030" font-family="system-ui, -apple-system, sans-serif">⚠️ 安全提示：所有敏感操作都需要用户明确确认，系统默认采用最小权限原则</text>
+  
+  <!-- 右侧风险等级图例 -->
+  <g transform="translate(850, 100)">
+    <rect width="120" height="100" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="60" y="25" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748" font-family="system-ui, -apple-system, sans-serif">风险等级</text>
+    
+    <rect x="15" y="35" width="20" height="15" rx="3" fill="#e53e3e"/>
+    <text x="45" y="47" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">高危拦截</text>
+    
+    <rect x="15" y="55" width="20" height="15" rx="3" fill="#ed8936"/>
+    <text x="45" y="67" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">需要确认</text>
+    
+    <rect x="15" y="75" width="20" height="15" rx="3" fill="#38a169"/>
+    <text x="45" y="87" font-size="10" fill="#4a5568" font-family="system-ui, -apple-system, sans-serif">安全允许</text>
+  </g>
+</svg>
