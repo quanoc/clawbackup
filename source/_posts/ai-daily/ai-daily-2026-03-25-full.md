@@ -1,0 +1,104 @@
+---
+title: AI Agent 深度日报 2026-03-25
+tags:
+  - AI
+  - Agent
+  - LLM
+  - 日报
+categories:
+  - AI 日报
+abbrlink: 23345
+date: 2026-03-25 09:30:00
+updated: 2026-03-25 19:12:35
+---
+
+# 🧠 AI Agent & LLM 深度日报
+
+**日期**: 2026-03-25
+**生成时间**: 2026-03-25 19:12:35
+
+---
+
+## 🏗️ 架构设计 (8)
+
+🔥 **Choose a design pattern for your agentic AI system | Cloud Architecture Center | Google Cloud Documentation**
+> This document provides guidance to help you choose a design pattern for your agentic AI system. Agent design patterns are common architectural approaches to build agentic applications. An agent design pattern offers a distinct framework for organizing a system's components, integrating the model, and orchestrating a single agent or multiple agents to accomplish a workflow. AI agents are ...
+
+**来源**: docs.cloud.google.com · **质量评分**: 8/10 · **引擎**: duckduckgo · [查看](https://docs.cloud.google.com/architecture/choose-design-pattern-agentic-ai-system)
+
+🔥 **Workflows and agents - Docs by LangChain**
+> LLMs and augmentations · Prompt chaining · Parallelization · Routing · Orchestrator-worker · Creating workers in LangGraph · Evaluator-optimizer · Agents · Get started · Copy page · Copy page · This guide reviews common workflow and agent patterns.
+
+**来源**: docs.langchain.com · **质量评分**: 8/10 · **引擎**: brave · [查看](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
+
+🔥 **Building Effective AI Agents**
+> This work draws upon our experiences building agents at Anthropic and the valuable insights shared by our customers, for which we're deeply grateful. Our work with customers has revealed two particularly promising applications for AI agents that demonstrate the practical value of the patterns ...
+
+**来源**: www.anthropic.com · **质量评分**: 8/10 · **引擎**: brave · [查看](https://www.anthropic.com/research/building-effective-agents)
+
+🔥 **LangChain: Observe, Evaluate, and Deploy Reliable AI Agents**
+> LangChain provides the engineering platform and open source frameworks developers use to build, test, and deploy reliable AI agents.
+
+**来源**: www.langchain.com · **质量评分**: 8/10 · **引擎**: bing · [查看](https://www.langchain.com/)
+
+🔥 **LangChain: Open Source AI Agent Framework | Build Agents Faster**
+> LangChain is an open source framework with a pre-built agent architecture and integrations for any model or tool, so you can build agents that adapt as fast as the ecosystem evolves.
+
+**来源**: www.langchain.com · **质量评分**: 8/10 · **引擎**: bing · [查看](https://www.langchain.com/langchain)
+
+🔥 **Home \ Anthropic**
+> Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.
+
+**来源**: www.anthropic.com · **质量评分**: 8/10 · **引擎**: bing · [查看](https://www.anthropic.com/)
+
+🔥 **Newsroom \ Anthropic**
+> Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.
+
+**来源**: www.anthropic.com · **质量评分**: 8/10 · **引擎**: bing · [查看](https://www.anthropic.com/news)
+
+🔥 **Research \ Anthropic**
+> Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.
+
+**来源**: www.anthropic.com · **质量评分**: 8/10 · **引擎**: bing · [查看](https://www.anthropic.com/research)
+
+---
+
+## 📊 生产实践 (2)
+
+🔥 **Home - Docs by LangChain**
+> LangChain is the platform for agent engineering. AI teams at Replit, Clay, Rippling, Cloudflare, Workday, and more trust LangChain’s products to engineer reliable agents.
+
+**来源**: docs.langchain.com · **质量评分**: 8/10 · **引擎**: bing · [查看](https://docs.langchain.com/)
+
+🔥 **AI Learning Resources & Guides from Anthropic**
+> Access comprehensive guides, tutorials, and best practices for working with Claude. Learn how to craft effective prompts and maximize AI interactions in your workflow.
+
+**来源**: www.anthropic.com · **质量评分**: 8/10 · **引擎**: bing · [查看](https://www.anthropic.com/learn)
+
+---
+
+## 📰 公司动态 (2)
+
+🔥 **Claude Opus 4.6 \ Anthropic**
+> Anthropic already had the best coding model in the world and Opus 4.6 continues that trajectory. In our internal Auggie bench eval, this is the first time we've consistently seen the model’s …
+
+**来源**: www.anthropic.com · **质量评分**: 8/10 · **引擎**: bing · [查看](https://www.anthropic.com/claude/opus)
+
+🔥 **Anthropic raises $30 billion in Series G funding at $380 billion post ...**
+> We have raised $30 billion in Series G funding led by GIC and Coatue, valuing Anthropic at $380 billion post-money. The round was co-led by D. E. Shaw Ventures, Dragoneer, Founders …
+
+**来源**: www.anthropic.com · **质量评分**: 8/10 · **引擎**: bing · [查看](https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation)
+
+---
+
+## 📊 本期概览与统计
+
+- **搜索查询数**: 17
+- **本期精选**: 12 条
+- **累计保存**: 4 期
+- **评分维度**: 核心价值 (40) + 内容深度 (30) + 实用性 (20) + 时效性 (10) + 来源权重 (10)
+
+---
+
+*本报告由 AI Daily Report Generator 自动生成*
+*聚焦高质量 Agent 架构、工程实践与研究洞察*
