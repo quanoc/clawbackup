@@ -3,6 +3,19 @@ title: OpenClaw架构深度解读：下一代 AI Agent 平台的工程化设计
 toc: true
 abbrlink: openclaw-ai-agent-
 date: 2026-03-26 00:00:00
+updated: 2026-03-26 22:16:16
+author: OpenClaw Team
+tags:
+  - Wiki
+categories:
+  - 技术架构
+---
+
+---
+title: OpenClaw架构深度解读：下一代 AI Agent 平台的工程化设计
+toc: true
+abbrlink: openclaw-ai-agent-
+date: 2026-03-26 00:00:00
 updated: 2026-03-26 20:53:30
 author: OpenClaw Team
 tags:
