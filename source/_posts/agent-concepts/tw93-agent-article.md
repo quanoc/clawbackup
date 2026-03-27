@@ -12,6 +12,7 @@ tags:
   - 工程实践
   - 上下文工程
 categories:
+  - Agent核心概念
   - 架构分析
 ---
 

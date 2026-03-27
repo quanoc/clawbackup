@@ -7,6 +7,7 @@ tags:
   - Hexo
   - Quinoa
 categories:
+  - 其他指南
   - 入门指南
 ---
 
@@ -39,7 +40,8 @@ http://localhost:4000/wiki/f3763a72/
 ## 📝 写作指南
 
 1. 创建新文章：`hexo new "文章标题"`
-2. 指定分类：在 front-matter 中添加 `categories:`
+2. 指定分类：在 front-matter 中添加 `categories:
+  - 其他指南
 3. 生成静态文件：`hexo generate`
 4. 本地预览：`hexo server`
 

@@ -9,6 +9,7 @@ tags:
   - AI Agent
   - 部署指南
 categories:
+  - Agent工程实践
   - 环境配置
 ---
 

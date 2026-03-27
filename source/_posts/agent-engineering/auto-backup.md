@@ -9,6 +9,7 @@ tags:
   - Git
   - GitHub
 categories:
+  - Agent工程实践
   - 环境配置
 ---
 

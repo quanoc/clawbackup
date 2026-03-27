@@ -1,14 +1,11 @@
 ---
 title: 2026年AI Agent新范式：Superpowers、GStack、Critic与YOLO模式深度解析
-toc: true
-abbrlink: 2026ai-agentsuperpowersgstackcriticyolo
-date: 2026-03-26 00:00:00
-updated: 2026-03-26 01:22:34
-author: OpenClaw Team
 tags:
-  - Wiki
-categories:
-  - 技术架构
+  - AI
+  - Agent
+categories: [Agent核心概念, 技术架构]
+abbrlink: 12059
+date: 2026-03-26 17:22:53
 ---
 
 # 2026 年 AI Agent 圈最火的四个概念：Superpowers、GStack、Critic 模式与 YOLO 模式

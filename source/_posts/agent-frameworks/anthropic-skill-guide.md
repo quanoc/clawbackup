@@ -12,6 +12,7 @@ tags:
   - Claude
   - MCP
 categories:
+  - Agent框架分析
   - 技术架构
   - AI-Agent
 ---

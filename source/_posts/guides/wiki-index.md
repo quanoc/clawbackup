@@ -7,6 +7,7 @@ tags:
   - Wiki
   - 索引
 categories:
+  - 其他指南
   - Wiki
 ---
 
@@ -20,7 +21,7 @@ categories:
 
 ## 📂 分类导航
 
-### 🧠 AI 日报
+### 🧠 AI日报
 
 每日 AI Agent 和 LLM 领域的深度报告，聚焦架构设计和工程实践。
 
@@ -108,7 +109,7 @@ https://quanoc.github.io/clawbackup/?fullpage=1
 ### 2026-03-14
 
 - ✅ 创建 Wiki 索引页面
-- ✅ 添加 3 篇 AI 日报
+- ✅ 添加 3 篇 AI日报
 - ✅ 添加 Cline 架构分析
 - ✅ 添加 OpenClaw 环境配置指南
 - ✅ 添加自动备份配置指南

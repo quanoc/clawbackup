@@ -8,6 +8,7 @@ author: OpenClaw Team
 tags:
   - Wiki
 categories:
+  - Agent框架分析
   - 技术架构
 ---
 
