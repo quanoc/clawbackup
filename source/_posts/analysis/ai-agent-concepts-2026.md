@@ -1,21 +1,19 @@
 ---
-title: AI Agent 核心概念调研报告
+title: 'AI Agent 核心概念调研报告'
 toc: true
-abbrlink: ai-agent-
-date: 2026-03-26 00:00:00
-updated: 2026-03-26 01:39:10
+abbrlink: ai-agent-concepts
+date: 2026-03-27 01:39:10
+updated: 2026-03-27 01:44:00
 author: OpenClaw Team
 tags:
-  - Wiki
+  - AI
+  - Agent
+  - Claude Code
+  - Superpowers
+  - gstack
+  - OMO
 categories:
-  - 技术架构
----
-
----
-title: 'Superpowers、OMO、gstack、Critic模式、YOLO模式 深度调研报告'
-date: '2026-03-27'
-tags: ['AI', 'Agent', 'Claude Code', 'Superpowers', 'gstack', 'OMO']
-categories: ['技术调研']
+  - 技术调研
 ---
 
 > 调研日期：2026-03-27
