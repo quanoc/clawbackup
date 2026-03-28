@@ -14,7 +14,7 @@ categories:
 # 🧠 AI Agent & LLM 深度日报
 
 **日期**：2026-03-28
-**生成时间**: 2026-03-28 09:47:14
+**生成时间**: 2026-03-28 09:52:52
 
 ---
 
@@ -50,15 +50,15 @@ categories:
 
 **来源**：www.anthropic.com · **质量评分**：8/10 · **引擎**：bing · [查看](https://www.anthropic.com/research/labor-market-impacts)
 
-✨ **什么是大型语言模型 (LLM) - GeeksforGeeks**
-> 大型语言模型 (LLM) 是基于深度神经网络构建的先进人工智能系统，旨在处理、理解和生成类人文本。法学硕士学习模式、语法和……
-
-**来源**：www.geeksforgeeks.org · **评分质量**：7/10 · **引擎**：bing · [查看](https://www.geeksforgeeks.org/artificial-intelligence/large-language-model-llm/)
-
 ✨ **OpenAI**
 > 我们相信我们的研究最终将带来通用人工智能，一个可以解决人类水平问题的系统。构建安全、有益的 AGI 是我们的使命。
 
 **来源**：openai.com · **质量评分**：7/10 · **引擎**：bing · [查看](https://openai.com/)
+
+✨ **什么是大型语言模型 (LLM) - GeeksforGeeks**
+> 大型语言模型 (LLM) 是基于深度神经网络构建的先进人工智能系统，旨在处理、理解和生成类人文本。法学硕士学习模式、语法和……
+
+**来源**：www.geeksforgeeks.org · **评分质量**：7/10 · **引擎**：bing · [查看](https://www.geeksforgeeks.org/artificial-intelligence/large-language-model-llm/)
 
 ---
 
@@ -78,15 +78,15 @@ categories:
 
 **来源**：www.anthropic.com · **质量评分**：8/10 · **引擎**：bing · [查看](https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation)
 
-✨ **使用 Google AI 的大型语言模型 (LLM) |谷歌云**
-> 大型语言模型 (LLM) 是大型深度神经网络，由数十 GB 数据训练而成，可用于许多任务。
-
-**来源**：cloud.google.com · **质量评分**：7/10 · **引擎**：bing · [查看](https://cloud.google.com/ai/llms)
-
 ✨ **什么是人工智能（AI）？ |谷歌云**
 > 人工智能 (AI) 是一组技术，使计算机能够以过去需要人类智能的方式学习、推理和执行各种高级任务，例如……
 
 **来源**：cloud.google.com · **质量评分**：7/10 · **引擎**：bing · [查看](https://cloud.google.com/learn/what-is-artificial-intelligence)
+
+✨ **使用 Google AI 的大型语言模型 (LLM) |谷歌云**
+> 大型语言模型 (LLM) 是大型深度神经网络，由数十 GB 数据训练而成，可用于许多任务。
+
+**来源**：cloud.google.com · **质量评分**：7/10 · **引擎**：bing · [查看](https://cloud.google.com/ai/llms)
 
 ---
 
@@ -94,7 +94,7 @@ categories:
 
 - **搜索查询数**：17
 - **本期精选**：12 条
-- **累计保存**: 10 期
+- **累计保存**: 11 期
 - **评分维度**：核心价值（40）+内容深度（30）+实用性（20）+时效性（10）+来源权重（10）
 
 ---
