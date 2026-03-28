@@ -110,16 +110,10 @@ class WikiPublisher {
       await execAsync(`cd ${this.projectPath} && git checkout ${CONFIG.branch}`, { timeout: 30000 });
       await this.log(`已切换到 ${CONFIG.branch} 分支`);
 
-      // Pull 最新代码
+      // Pull 最新代码 - 使用系统默认 SSH 配置
       await this.log('拉取最新代码...');
-      const sshConfigPath = path.join(this.projectPath, 'ssh_config');
-      const env = {
-        ...process.env,
-        GIT_SSH_COMMAND: `ssh -F ${sshConfigPath} -o StrictHostKeyChecking=no`
-      };
       await execAsync(`cd ${this.projectPath} && git pull origin ${CONFIG.branch}`, {
-        timeout: 30000,
-        env
+        timeout: 30000
       });
       await this.log('已拉取最新代码');
       return true;
@@ -341,26 +335,11 @@ ${content}`;
       process.env.PNPM_HOME = pnpmHome;
       process.env.PATH = `${pnpmHome}:${process.env.PATH}`;
 
-      // 使用项目目录下的 SSH 密钥配置
-      const sshConfigPath = path.join(this.projectPath, 'ssh_config');
-
-      // 检查 ssh_config 是否存在
-      try {
-        await fs.access(sshConfigPath);
-        await this.log(`使用项目 SSH 配置: ${sshConfigPath}`);
-      } catch {
-        await this.log('警告: 未找到项目 ssh_config，将使用默认 SSH 配置', 'warn');
-      }
-
-      // 通过 GIT_SSH_COMMAND 指定 SSH 配置
-      const env = {
-        ...process.env,
-        GIT_SSH_COMMAND: `ssh -F ${sshConfigPath} -o StrictHostKeyChecking=no`
-      };
+      // 使用系统默认 SSH 配置，不指定 GIT_SSH_COMMAND
+      await this.log('使用系统默认 SSH 配置进行部署');
 
       const { stdout, stderr } = await execAsync(`cd ${this.projectPath} && hexo d`, {
-        timeout: 120000,
-        env
+        timeout: 120000
       });
 
       await this.log('Hexo部署完成');
