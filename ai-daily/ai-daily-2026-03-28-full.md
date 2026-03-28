@@ -14,11 +14,11 @@ categories:
 # 🧠 AI Agent & LLM 深度日报
 
 **日期**：2026-03-28
-**生成时间**: 2026-03-28 09:41:22
+**生成时间**: 2026-03-28 09:47:14
 
 ---
 
-## 🏗️架构设计（9）
+## 🏗️架构设计 (8)
 
 🔥 **LangChain 101：它是什么、为什么重要以及如何开始**
 > LangChain是一个开源框架，帮助开发者将法学硕士连接到现实世界。它为这些模型提供了记忆、数据访问以及使用工具的能力——将它们从……
@@ -55,15 +55,10 @@ categories:
 
 **来源**：www.geeksforgeeks.org · **评分质量**：7/10 · **引擎**：bing · [查看](https://www.geeksforgeeks.org/artificial-intelligence/large-language-model-llm/)
 
-✨ **浪链简介 - GeeksforGeeks**
-> LangChain 是一个开源框架，旨在简化使用大型语言模型 (LLM) 的应用程序的创建。它提供了一个用于与其他工具集成的标准接口......
+✨ **OpenAI**
+> 我们相信我们的研究最终将带来通用人工智能，一个可以解决人类水平问题的系统。构建安全、有益的 AGI 是我们的使命。
 
-**来源**：www.geeksforgeeks.org · **评分质量**：7/10 · **引擎**：bing · [查看](https://www.geeksforgeeks.org/artificial-intelligence/introduction-to-langchain/)
-
-✨ **公司\人类**
-> Anthropic 是一家人工智能安全和研究公司，致力于构建可靠、可解释和可操纵的人工智能系统。
-
-**来源**：www.anthropic.com · **质量评分**：7/10 · **引擎**：bing · [查看](https://www.anthropic.com/company)
+**来源**：openai.com · **质量评分**：7/10 · **引擎**：bing · [查看](https://openai.com/)
 
 ---
 
@@ -76,7 +71,7 @@ categories:
 
 ---
 
-## 📰 公司动态 (2)
+## 📰 公司动态 (3)
 
 🔥 **Anthropic 在 G 轮融资中筹集了 300 亿美元，融资额为 3800 亿美元......**
 > 我们在 GIC 和 Coatue 领投的 G 轮融资中筹集了 300 亿美元，融资后对 Anthropic 的估值为 3800 亿美元。此轮融资由 D.E.Shaw Ventures、Dragoneer、Founders 等共同领投。
@@ -88,13 +83,18 @@ categories:
 
 **来源**：cloud.google.com · **质量评分**：7/10 · **引擎**：bing · [查看](https://cloud.google.com/ai/llms)
 
+✨ **什么是人工智能（AI）？ |谷歌云**
+> 人工智能 (AI) 是一组技术，使计算机能够以过去需要人类智能的方式学习、推理和执行各种高级任务，例如……
+
+**来源**：cloud.google.com · **质量评分**：7/10 · **引擎**：bing · [查看](https://cloud.google.com/learn/what-is-artificial-intelligence)
+
 ---
 
 ## 📊 本期概览与统计
 
 - **搜索查询数**：17
 - **本期精选**：12 条
-- **累计保存**: 9 期
+- **累计保存**: 10 期
 - **评分维度**：核心价值（40）+内容深度（30）+实用性（20）+时效性（10）+来源权重（10）
 
 ---
