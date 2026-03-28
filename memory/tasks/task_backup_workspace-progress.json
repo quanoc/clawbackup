@@ -1,0 +1,8 @@
+{
+  "progress": 85,
+  "message": "远程有更新，正在拉取并合并",
+  "timestamp": "2026-03-28T10:36:45+08:00",
+  "step": 6,
+  "stepName": "git pull 拉取远程更新",
+  "stepTotal": 7
+}
