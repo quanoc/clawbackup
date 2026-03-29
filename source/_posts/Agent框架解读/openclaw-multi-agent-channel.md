@@ -14,10 +14,9 @@ tags:
   - ACP
   - 协作机制
 categories:
-  - Agent 框架
 ---
 
-> **源码路径**: `/Users/zhangquanquan/WorkBuddy/20260327195403/openclaw`  
+> **源码路径**: `~/WorkBuddy/20260327195403/openclaw`  
 > **版本**: latest（2026年初）  
 > **关键文件**: `src/agents/acp-spawn.ts`、`src/agents/subagent-control.ts`、`src/agents/subagent-announce.ts`、`src/config/types.agents.ts`、`src/channels/plugins/binding-types.ts`
 

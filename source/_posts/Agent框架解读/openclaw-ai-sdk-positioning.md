@@ -38,7 +38,7 @@ OpenClaw 使用的 AI SDK 是 **`@mariozechner/pi-coding-agent`**（版本 0.63.
 
 ## 二、SDK 在项目中的定位
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" style="background:#1a1a2e">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" style="background:#1a1a2e" width="80%">
   <defs>
     <linearGradient id="openclawGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" style="stop-color:#16213e"/>
@@ -59,7 +59,6 @@ OpenClaw 使用的 AI SDK 是 **`@mariozechner/pi-coding-agent`**（版本 0.63.
       <polygon points="0 0, 10 0, 5 7" fill="#fff"/>
     </marker>
   </defs>
-
   <!-- Title -->
   <text x="450" y="30" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">OpenClaw AI SDK 架构定位图</text>
 

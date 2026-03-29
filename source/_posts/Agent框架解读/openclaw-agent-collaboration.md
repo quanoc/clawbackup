@@ -1,5 +1,5 @@
 ---
-title: OpenClaw Agent 协作全景：spawn、send、ACP、subagent 与 Ping-Pong 的关系与限制
+title: OpenClaw Agent 协作全景解析
 toc: true
 abbrlink: openclaw-agent-collaboration
 date: 2026-03-29 04:44:00
@@ -14,10 +14,11 @@ tags:
   - A2A
   - Ping-Pong
 categories:
-  - Agent 框架
 ---
 
-> **源码路径**: `/Users/zhangquanquan/WorkBuddy/20260327195403/openclaw`
+# Agent 协作解析：spawn、send、ACP、subagent 与 Ping-Pong 的关系与限制
+
+> **源码路径**: `~/WorkBuddy/20260327195403/openclaw`
 > **关键文件**: `src/agents/acp-spawn.ts`、`src/agents/tools/sessions-send-tool.ts`、`src/agents/tools/sessions-send-tool.a2a.ts`、`src/agents/tools/sessions-send-helpers.ts`、`src/agents/tools/sessions-spawn-tool.ts`、`src/agents/tools/sessions-helpers.ts`、`src/acp/policy.ts`、`src/plugins/config-state.ts`
 
 <!-- more -->
@@ -35,12 +36,38 @@ categories:
 
 本文从 OpenClaw 源码出发，用一张架构图把这些概念的关系讲清楚，然后逐一深入定义、对比、分析限制，最后给出实践决策建议。
 
+{% tips:question %}
+先给出最佳实践！
+可以利用拆分多步骤 spawn 子agent + Ping-Pong 协商 机制 让子agent 分步骤 汇报，以防止走偏 而无感知。
+- 拆分 spawn + Ping-Pong 是最佳"防走偏 + 汇报"方案
+
+注意⚠️：每次 spawn（run 模式）是一个全新 Session，子agent 没有上一步的记忆。
+可以用 mode: "session" 保持 Session（微信上用 subagent + session + thread: false）
+
+注意⚠️⚠️⚠️⚠️⚠️：mode="session" 必须搭配 thread=true 【上一条是错的， 大模型真离谱！！！】
+所以只能是 mode="run" 的spawn  + Ping-Pong 协商， 实现子Agent的进度上报，以实现可控、防止走偏无感知。
+
+
+```
+spawn({ mode: "session", task: "设计 Schema" })  → 创建常驻 Session
+send({ message: "根据刚才的 Schema 写代码" })     → 有上下文
+send({ message: "补充单元测试" })                 → 有完整上下文
+```
+
+{% endtips%}
+
 ## 二、架构全景图
+{% tips:warning %}
+了解协作机制是为了让我们更好懂OpenClaw，更好的调教OpenClaw
+1. 人到Agent、Agent之间协作 通常涉及有两个核心阶段：创建 Session（spawn）、Session 间通信（send/A2A）
+2. 创建 Session（spawn）支持两种方式：subagent、ACP
+3. sessions_spawn 有两种模式：mode: "run"、mode: "session"
+4. Thread 是把一个子 Session 绑定到一个聊天线程的机制。适用于每个 Agent 独立 Thread，用户直接对话。
+{% endtips%}
 
-<details>
-<summary>点击展开 SVG 架构图</summary>
+<!-- <details>
+<summary>点击展开 SVG 架构图</summary> -->
 
-```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="'SF Pro Display', -apple-system, 'Segoe UI', sans-serif">
   <defs>
     <marker id="arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-reverse">
@@ -69,30 +96,40 @@ categories:
       <stop offset="100%" stop-color="#f1f5f9"/>
     </linearGradient>
   </defs>
+
+  <!-- Background -->
   <rect width="1200" height="900" rx="12" fill="url(#bgGrad)"/>
+  <!-- Title -->
   <text x="600" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">OpenClaw Agent 协作架构</text>
   <text x="600" y="58" text-anchor="middle" font-size="12" fill="#94a3b8">spawn / send / A2A / Ping-Pong / Thread Binding 关系全景</text>
 
-  <!-- LEFT: sessions_spawn -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- LEFT SECTION: sessions_spawn            -->
+  <!-- ═══════════════════════════════════════ -->
   <rect x="30" y="80" width="520" height="780" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)"/>
   <rect x="30" y="80" width="520" height="40" rx="10" fill="#3b82f6"/>
   <rect x="30" y="110" width="520" height="10" fill="#3b82f6"/>
   <text x="290" y="106" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">sessions_spawn — 创建子 Session</text>
 
+  <!-- Agent A box -->
   <rect x="55" y="140" width="140" height="56" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
   <text x="125" y="163" text-anchor="middle" font-size="13" font-weight="600" fill="#1e40af">Agent A</text>
   <text x="125" y="181" text-anchor="middle" font-size="10" fill="#3b82f6">(发起方 / Requester)</text>
 
+  <!-- Arrow from A to spawn -->
   <line x1="195" y1="168" x2="280" y2="168" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow-blue)"/>
   <text x="237" y="162" text-anchor="middle" font-size="9" fill="#3b82f6" font-weight="600">调用</text>
 
+  <!-- Spawn decision diamond -->
   <polygon points="370,140 440,168 370,196 300,168" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
   <text x="370" y="165" text-anchor="middle" font-size="10" font-weight="600" fill="#92400e">runtime</text>
   <text x="370" y="178" text-anchor="middle" font-size="9" fill="#b45309">= ?</text>
 
+  <!-- ═══ LEFT BRANCH: subagent ═══ -->
   <line x1="300" y1="168" x2="170" y2="230" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)"/>
   <text x="218" y="196" text-anchor="middle" font-size="11" font-weight="600" fill="#10b981">subagent</text>
 
+  <!-- Subagent box -->
   <rect x="60" y="230" width="210" height="100" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" filter="url(#shadow)"/>
   <text x="165" y="253" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">subagent (embedded)</text>
   <line x1="75" y1="262" x2="255" y2="262" stroke="#d1fae5" stroke-width="1"/>
@@ -101,9 +138,11 @@ categories:
   <text x="80" y="312" font-size="10.5" fill="#374151">• 支持 attachments / model 覆盖</text>
   <text x="80" y="328" font-size="10.5" fill="#374151">• 轻量级，无独立进程</text>
 
+  <!-- ═══ RIGHT BRANCH: ACP ═══ -->
   <line x1="440" y1="168" x2="365" y2="230" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow-purple)"/>
   <text x="418" y="196" text-anchor="middle" font-size="11" font-weight="600" fill="#8b5cf6">ACP</text>
 
+  <!-- ACP box -->
   <rect x="280" y="230" width="250" height="100" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow)"/>
   <text x="405" y="253" text-anchor="middle" font-size="13" font-weight="700" fill="#5b21b6">ACP (独立进程)</text>
   <line x1="295" y1="262" x2="515" y2="262" stroke="#ede9fe" stroke-width="1"/>
@@ -112,149 +151,206 @@ categories:
   <text x="295" y="312" font-size="10.5" fill="#374151">• 支持 resume / stream</text>
   <text x="295" y="328" font-size="10.5" fill="#374151">• 需要 acpx 插件</text>
 
+  <!-- ═══════════════════════════════════════ -->
+  <!-- MODE SECTION: run vs session            -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- Subagent mode branching -->
+  <line x1="120" y1="330" x2="100" y2="370" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="200" y1="330" x2="220" y2="370" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ACP mode branching -->
+  <line x1="360" y1="330" x2="340" y2="370" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="450" y1="330" x2="470" y2="370" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- MODE label -->
   <text x="290" y="370" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">mode 参数</text>
 
+  <!-- Subagent: run -->
   <rect x="45" y="385" width="115" height="65" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
   <text x="102" y="405" text-anchor="middle" font-size="11" font-weight="600" fill="#166534">mode: "run"</text>
   <text x="102" y="421" text-anchor="middle" font-size="9" fill="#4b5563">一次性</text>
   <text x="102" y="435" text-anchor="middle" font-size="9" fill="#4b5563">处理完即退出</text>
 
+  <!-- Subagent: session -->
   <rect x="170" y="385" width="115" height="65" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
   <text x="227" y="405" text-anchor="middle" font-size="11" font-weight="600" fill="#166534">mode: "session"</text>
   <text x="227" y="421" text-anchor="middle" font-size="9" fill="#4b5563">常驻</text>
   <text x="227" y="435" text-anchor="middle" font-size="9" fill="#4b5563">进程保持运行</text>
 
+  <!-- ACP: run -->
   <rect x="285" y="385" width="115" height="65" rx="6" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
   <text x="342" y="405" text-anchor="middle" font-size="11" font-weight="600" fill="#5b21b6">mode: "run"</text>
   <text x="342" y="421" text-anchor="middle" font-size="9" fill="#4b5563">一次性</text>
   <text x="342" y="435" text-anchor="middle" font-size="9" fill="#4b5563">处理完进程退出</text>
 
+  <!-- ACP: session -->
   <rect x="410" y="385" width="115" height="65" rx="6" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
   <text x="467" y="405" text-anchor="middle" font-size="11" font-weight="600" fill="#5b21b6">mode: "session"</text>
   <text x="467" y="421" text-anchor="middle" font-size="9" fill="#4b5563">常驻</text>
   <text x="467" y="435" text-anchor="middle" font-size="9" fill="#4b5563">进程常驻运行</text>
 
-  <!-- Thread Binding matrix -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- THREAD BINDING SECTION                  -->
+  <!-- ═══════════════════════════════════════ -->
   <rect x="30" y="470" width="520" height="200" rx="8" fill="#fffbeb" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="6,3"/>
   <text x="55" y="492" font-size="13" font-weight="700" fill="#92400e">Thread Binding 限制矩阵</text>
 
+  <!-- Table header -->
   <rect x="45" y="505" width="195" height="26" rx="4" fill="#f59e0b"/>
   <text x="142" y="522" text-anchor="middle" font-size="10" font-weight="600" fill="#ffffff">subagent</text>
   <rect x="250" y="505" width="195" height="26" rx="4" fill="#f59e0b"/>
   <text x="347" y="522" text-anchor="middle" font-size="10" font-weight="600" fill="#ffffff">ACP</text>
-
+  <!-- Column sub-headers -->
   <text x="100" y="548" text-anchor="middle" font-size="9" fill="#92400e" font-weight="600">thread=false</text>
   <text x="185" y="548" text-anchor="middle" font-size="9" fill="#92400e" font-weight="600">thread=true</text>
   <text x="305" y="548" text-anchor="middle" font-size="9" fill="#92400e" font-weight="600">thread=false</text>
   <text x="390" y="548" text-anchor="middle" font-size="9" fill="#92400e" font-weight="600">thread=true</text>
 
+  <!-- Row: mode=run -->
   <rect x="45" y="556" width="400" height="28" rx="0" fill="#fff7ed"/>
   <text x="55" y="575" font-size="10" fill="#374151" font-weight="500">mode: "run"</text>
+  <!-- subagent run + no thread -->
   <rect x="65" y="558" width="60" height="24" rx="4" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
-  <text x="95" y="574" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">可用</text>
+  <text x="95" y="574" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">✓ 可用</text>
+  <!-- subagent run + thread -->
   <rect x="150" y="558" width="60" height="24" rx="4" fill="#fef9c3" stroke="#fde047" stroke-width="1"/>
-  <text x="180" y="574" text-anchor="middle" font-size="8" font-weight="600" fill="#854d0e">需支持</text>
+  <text x="180" y="574" text-anchor="middle" font-size="8" font-weight="600" fill="#854d0e">✓ 需支持</text>
+  <!-- acp run + no thread -->
   <rect x="270" y="558" width="60" height="24" rx="4" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
-  <text x="300" y="574" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">可用</text>
+  <text x="300" y="574" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">✓ 可用</text>
+  <!-- acp run + thread -->
   <rect x="355" y="558" width="60" height="24" rx="4" fill="#fef9c3" stroke="#fde047" stroke-width="1"/>
-  <text x="385" y="574" text-anchor="middle" font-size="8" font-weight="600" fill="#854d0e">需支持</text>
+  <text x="385" y="574" text-anchor="middle" font-size="8" font-weight="600" fill="#854d0e">✓ 需支持</text>
 
+  <!-- Row: mode=session -->
   <rect x="45" y="588" width="400" height="28" rx="0" fill="#fffbeb"/>
   <text x="55" y="607" font-size="10" fill="#374151" font-weight="500">mode: "session"</text>
+  <!-- subagent session + no thread -->
   <rect x="65" y="590" width="60" height="24" rx="4" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
-  <text x="95" y="606" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">可用</text>
+  <text x="95" y="606" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">✓ 可用</text>
+  <!-- subagent session + thread -->
   <rect x="150" y="590" width="60" height="24" rx="4" fill="#fef9c3" stroke="#fde047" stroke-width="1"/>
-  <text x="180" y="606" text-anchor="middle" font-size="8" font-weight="600" fill="#854d0e">需支持</text>
+  <text x="180" y="606" text-anchor="middle" font-size="8" font-weight="600" fill="#854d0e">✓ 需支持</text>
+  <!-- acp session + no thread -->
   <rect x="270" y="590" width="60" height="24" rx="4" fill="#fecaca" stroke="#f87171" stroke-width="1"/>
-  <text x="300" y="606" text-anchor="middle" font-size="9" font-weight="700" fill="#991b1b">禁止</text>
+  <text x="300" y="606" text-anchor="middle" font-size="9" font-weight="700" fill="#991b1b">✗ 禁止</text>
+  <!-- acp session + thread -->
   <rect x="355" y="590" width="60" height="24" rx="4" fill="#fef9c3" stroke="#fde047" stroke-width="1"/>
-  <text x="385" y="606" text-anchor="middle" font-size="8" font-weight="600" fill="#854d0e">必须</text>
-
+  <text x="385" y="606" text-anchor="middle" font-size="8" font-weight="600" fill="#854d0e">✓ 必须</text>
+  <!-- Thread note -->
   <text x="55" y="640" font-size="10" fill="#92400e" font-weight="600">Thread Binding 支持的 Channel:</text>
-  <text x="55" y="656" font-size="9.5" fill="#374151">Discord / Telegram / Feishu / Matrix</text>
-  <text x="55" y="672" font-size="9.5" fill="#ef4444" font-weight="600">微信 (openclaw-weixin) 不支持 Thread Binding</text>
+  <text x="55" y="656" font-size="9.5" fill="#374151">Discord ✓ · Telegram ✓ · Feishu ✓ · Matrix ✓</text>
+  <text x="55" y="672" font-size="9.5" fill="#ef4444" font-weight="600">微信 (openclaw-weixin) ✗ — 不支持 Thread Binding</text>
 
+  <!-- Thread definition -->
   <rect x="45" y="682" width="480" height="28" rx="4" fill="#fefce8" stroke="#fde047" stroke-width="1"/>
-  <text x="285" y="700" text-anchor="middle" font-size="9.5" fill="#713f12">Thread: 把子 Session 绑定到聊天线程，子 Agent 回复直接投递到该 Thread</text>
+  <text x="285" y="700" text-anchor="middle" font-size="9.5" fill="#713f12">Thread: 把子 Session 绑定到聊天线程，子 Agent 回复直接投递到该 Thread，而非发起方 Channel</text>
 
-  <!-- RIGHT: sessions_send -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- RIGHT SECTION: sessions_send / A2A      -->
+  <!-- ═══════════════════════════════════════ -->
   <rect x="570" y="80" width="600" height="380" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)"/>
   <rect x="570" y="80" width="600" height="40" rx="10" fill="#10b981"/>
   <rect x="570" y="110" width="600" height="10" fill="#10b981"/>
   <text x="870" y="106" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">sessions_send (A2A) — 向已有 Session 发消息</text>
 
+  <!-- Prerequisite note -->
   <rect x="590" y="130" width="560" height="30" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
   <text x="870" y="149" text-anchor="middle" font-size="10" fill="#991b1b" font-weight="600">前提: 目标 Session 必须已存在（通过 sessions_spawn 或 bindings 路由创建）</text>
 
+  <!-- Agent A (right side) -->
   <rect x="600" y="175" width="130" height="50" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
   <text x="665" y="197" text-anchor="middle" font-size="12" font-weight="600" fill="#1e40af">Agent A</text>
   <text x="665" y="212" text-anchor="middle" font-size="9" fill="#3b82f6">sessions_send()</text>
 
+  <!-- Arrow A → B -->
   <line x1="730" y1="200" x2="830" y2="200" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)"/>
   <text x="780" y="193" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">message</text>
 
+  <!-- Agent B Session -->
   <rect x="835" y="170" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
   <text x="910" y="193" text-anchor="middle" font-size="12" font-weight="600" fill="#065f46">Agent B Session</text>
   <text x="910" y="210" text-anchor="middle" font-size="9" fill="#4b5563">(已存在，不管怎么创建的)</text>
   <text x="910" y="224" text-anchor="middle" font-size="8" fill="#94a3b8">subagent / ACP / bindings 均可</text>
-
+  <!-- Round 1 -->
   <text x="910" y="255" text-anchor="middle" font-size="10" font-weight="700" fill="#374151">Round 1: B 处理消息，返回回复</text>
 
+  <!-- Ping-Pong section -->
   <rect x="600" y="268" width="540" height="110" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="6,3"/>
   <text x="620" y="288" font-size="12" font-weight="700" fill="#5b21b6">Ping-Pong 自动协商（后台异步，最多 5 轮）</text>
 
+  <!-- Turn 1 -->
   <rect x="615" y="298" width="245" height="36" rx="5" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
   <text x="630" y="313" font-size="9.5" fill="#5b21b6" font-weight="600">Turn 1:</text>
-  <text x="680" y="313" font-size="9.5" fill="#374151">A 收到 B 的回复，判断是否补充</text>
+  <text x="680" y="313" font-size="9.5" fill="#374151">A 收到 B 的回复 → 判断是否需要补充</text>
   <text x="680" y="327" font-size="8.5" fill="#94a3b8">回复 "REPLY_SKIP" 可提前终止</text>
 
+  <!-- Turn 2 -->
   <rect x="615" y="340" width="245" height="30" rx="5" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
   <text x="630" y="358" font-size="9.5" fill="#5b21b6" font-weight="600">Turn 2:</text>
-  <text x="680" y="358" font-size="9.5" fill="#374151">B 收到 A 的补充，继续处理...</text>
-
+  <text x="680" y="358" font-size="9.5" fill="#374151">B 收到 A 的补充 → 继续处理...</text>
+  <!-- More turns -->
   <text x="880" y="320" text-anchor="middle" font-size="20" fill="#8b5cf6">. . .</text>
   <text x="880" y="340" text-anchor="middle" font-size="9" fill="#8b5cf6">最多 5 轮</text>
 
+  <!-- Termination -->
   <rect x="950" y="298" width="175" height="72" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
   <text x="1037" y="315" text-anchor="middle" font-size="9.5" font-weight="600" fill="#991b1b">终止条件:</text>
   <text x="960" y="332" font-size="9" fill="#374151">• 某方回复 REPLY_SKIP</text>
   <text x="960" y="347" font-size="9" fill="#374151">• 达到 maxPingPongTurns</text>
-  <text x="960" y="362" font-size="9" fill="#374151">• session.agentToAgent</text>
+  <text x="960" y="362" font-size="9" fill="#374151">• 配置: session.agentToAgent.maxPingPongTurns</text>
 
-  <!-- RIGHT BOTTOM: Announce -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- RIGHT BOTTOM: Announce                  -->
+  <!-- ═══════════════════════════════════════ -->
   <rect x="570" y="470" width="600" height="200" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)"/>
   <rect x="570" y="470" width="600" height="36" rx="10" fill="#f59e0b"/>
   <rect x="570" y="496" width="600" height="10" fill="#f59e0b"/>
   <text x="870" y="494" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Announce — 最终结果投递</text>
 
+  <!-- Announce flow -->
   <rect x="600" y="520" width="180" height="50" rx="6" fill="#fef3c7" stroke="#fbbf24" stroke-width="1"/>
   <text x="690" y="542" text-anchor="middle" font-size="10" font-weight="600" fill="#92400e">最终结果</text>
   <text x="690" y="558" text-anchor="middle" font-size="9" fill="#92400e">(Ping-Pong 最后一轮的回复)</text>
 
   <line x1="780" y1="545" x2="840" y2="545" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow-amber)"/>
 
+  <!-- Decision: bound or not -->
   <polygon points="910,515 980,545 910,575 840,545" fill="#fef9c3" stroke="#fde047" stroke-width="1.5"/>
   <text x="910" y="541" text-anchor="middle" font-size="9" font-weight="600" fill="#854d0e">Thread</text>
   <text x="910" y="553" text-anchor="middle" font-size="8" fill="#854d0e">绑定?</text>
 
+  <!-- No thread →发起方 Channel -->
   <line x1="910" y1="575" x2="810" y2="620" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-red)"/>
   <text x="840" y="594" font-size="9" fill="#ef4444" font-weight="500">否</text>
   <rect x="710" y="620" width="200" height="35" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
   <text x="810" y="641" text-anchor="middle" font-size="10" fill="#991b1b" font-weight="600">投递到发起方 Channel</text>
 
+  <!-- Yes thread → Thread -->
   <line x1="980" y1="545" x2="1030" y2="620" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-green)"/>
   <text x="1015" y="584" font-size="9" fill="#10b981" font-weight="500">是</text>
   <rect x="980" y="620" width="170" height="35" rx="5" fill="#ecfdf5" stroke="#86efac" stroke-width="1"/>
   <text x="1065" y="641" text-anchor="middle" font-size="10" fill="#166534" font-weight="600">投递到绑定的 Thread</text>
 
-  <!-- BOTTOM: lifecycle -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- BOTTOM: Full lifecycle flow              -->
+  <!-- ═══════════════════════════════════════ -->
   <rect x="30" y="790" width="1140" height="60" rx="8" fill="#0f172a"/>
   <text x="600" y="813" text-anchor="middle" font-size="12" font-weight="600" fill="#f8fafc">完整生命周期</text>
-  <text x="600" y="835" text-anchor="middle" font-size="11" fill="#94a3b8">sessions_spawn (创建 Session) → sessions_send (发消息) → Ping-Pong (自动协商) → Announce (投递给用户)</text>
+  <text x="600" y="835" text-anchor="middle" font-size="11" fill="#94a3b8">
+    <tspan fill="#3b82f6" font-weight="700">① sessions_spawn</tspan>
+    <tspan fill="#64748b"> (创建 Session) → </tspan>
+    <tspan fill="#10b981" font-weight="700">② sessions_send</tspan>
+    <tspan fill="#64748b"> (发消息) → </tspan>
+    <tspan fill="#8b5cf6" font-weight="700">③ Ping-Pong</tspan>
+    <tspan fill="#64748b"> (自动协商) → </tspan>
+    <tspan fill="#f59e0b" font-weight="700">④ Announce</tspan>
+    <tspan fill="#64748b"> (投递给用户)</tspan>
+  </text>
 </svg>
-```
 
-</details>
+
+
+<!-- </details> -->
 
 这张图展示了一个核心认知：OpenClaw 的 Agent 协作分为三个独立阶段——**创建 Session**（spawn）、**Session 间通信**（send/A2A）、**通信后协商**（Ping-Pong）——它们各自解决不同的问题，彼此正交，可以自由组合。
 
@@ -348,7 +444,7 @@ Thread Binding 是一种将子 Session 绑定到特定聊天线程（如 Discord
 |------|--------|------|
 | subagent + run + thread=false | 可用 | 所有 Channel |
 | subagent + run + thread=true | 需 Channel 支持 | Discord/Telegram/飞书/Matrix |
-| subagent + session + thread=false | 可用 | 所有 Channel |
+| **subagent + session + thread=false** | **禁止** | **源码硬约束，直接报错** |
 | subagent + session + thread=true | 需 Channel 支持 | Discord/Telegram/飞书/Matrix |
 | ACP + run + thread=false | 可用 | 所有 Channel（需 acpx） |
 | ACP + run + thread=true | 需 Channel 支持 | Discord/Telegram/飞书/Matrix |
