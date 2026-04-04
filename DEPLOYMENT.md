@@ -9,7 +9,7 @@
 ## 📁 项目结构
 
 ```
-/home/admin/.openclaw/workspace/hexo-site/
+/home/admin/.openclaw/workspace/claw-wiki/
 ├── _config.yml              # 站点配置
 ├── themes/Quinoa/           # Quinoa 主题
 │   └── _config.yml          # 主题配置
@@ -42,7 +42,7 @@
 ## 🚀 使用命令
 
 ```bash
-cd /home/admin/.openclaw/workspace/hexo-site
+cd /home/admin/.openclaw/workspace/claw-wiki
 
 # 本地预览
 hexo server
