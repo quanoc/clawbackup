@@ -1,0 +1,559 @@
+
+
+
+    <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Agent的Critic机制 | Claw Wiki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+    <meta name="keywords" content="Agent,AI,技术架构,Critic,Agent核心概念" />
+
+    <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agent的Critic机制">
+<meta property="og:url" content="https://claw.waisec.cn/wiki/agent-critic-mechanism/index.html">
+<meta property="og:site_name" content="Claw Wiki">
+<meta property="og:description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-25T16:59:00.000Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Agent核心概念">
+<meta property="article:tag" content="Critic">
+<meta property="article:tag" content="技术架构">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Claw Wiki" type="application/atom+xml">
+</head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Agent的Critic机制",
+    "url": "https://claw.waisec.cn/wiki/agent-critic-mechanism/",
+    "datePublished": "2026-03-25T16:00:00.000Z",
+    "dateModified": "2026-03-25T16:59:00.000Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Claw Wiki",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://claw.waisec.cn/logo.png"
+        }
+    },
+    "image": "https://claw.waisec.cn/logo.png",
+    "keywords": "Agent,AI,技术架构,Critic,Agent核心概念"
+    
+}
+</script>
+
+<article id="post-Agent核心概念/agentcritic" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article" >
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">文章目录<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%AE%9A%E4%B9%89"><span class="toc-text">一、一句话定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B8%E5%BF%83%E4%BD%9C%E7%94%A8%EF%BC%883-%E4%BB%B6%E4%BA%8B%EF%BC%89"><span class="toc-text">二、核心作用（3 件事）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%85%B8%E5%9E%8B%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%EF%BC%88%E6%9E%81%E7%AE%80%E7%89%88%EF%BC%89"><span class="toc-text">三、典型工作流程（极简版）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%92%8C%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%EF%BC%88RL%EF%BC%89%E9%87%8C%E7%9A%84-Critic-%E6%98%AF%E4%B8%80%E5%9B%9E%E4%BA%8B%E5%90%97%EF%BC%9F"><span class="toc-text">四、和强化学习（RL）里的 Critic 是一回事吗？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%9E%E9%99%85%E4%BE%8B%E5%AD%90%EF%BC%88%E6%9C%80%E5%AE%B9%E6%98%93%E6%87%82%EF%BC%89"><span class="toc-text">五、实际例子（最容易懂）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%EF%BC%9A%E8%AE%A9-Agent-%E5%86%99%E4%BB%A3%E7%A0%81"><span class="toc-text">场景：让 Agent 写代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%EF%BC%9ARAG-%E9%97%AE%E7%AD%94"><span class="toc-text">场景：RAG 问答</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81Critic-%E6%9C%BA%E5%88%B6%E7%9A%84%E5%B8%B8%E8%A7%81%E5%BD%A2%E6%80%81"><span class="toc-text">六、Critic 机制的常见形态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E7%8E%B0%E5%9C%A8%E9%83%BD%E5%9C%A8%E7%94%A8-Critic%EF%BC%9F"><span class="toc-text">七、为什么现在都在用 Critic？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93%EF%BC%88%E8%83%8C%E4%B8%8B%E6%9D%A5%E5%B0%B1%E8%83%BD%E9%9D%A2%E8%AF%95%EF%BC%89"><span class="toc-text">八、一句话总结（背下来就能面试）</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" rel="tag">Agent核心概念</a>, <a class="tag-link-link" href="/tags/Critic/" rel="tag">Critic</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/" rel="tag">技术架构</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-25T16:00:00.000Z" itemprop="datePublished">2026-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Agent,AI,技术架构,Critic,Agent核心概念">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/agent-critic-mechanism/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Agent的Critic机制
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>我用<strong>最直白、不绕弯</strong>的方式给你讲清楚：<strong>Agent 的 Critic（评论家/评判器）机制</strong>到底是什么、干什么、怎么用。</p>
+<h1 id="一、一句话定义"><a href="#一、一句话定义" class="headerlink" title="一、一句话定义"></a>一、一句话定义</h1><p><strong>Critic 机制 = 给 Agent 打分 + 挑错 + 提改进建议的”AI裁判”</strong><br>它不直接执行任务，<strong>只负责评判 Agent 做得好不好</strong>，并把结果反馈给 Agent，让它<strong>自我修正、越做越准</strong>。</p>
+<h1 id="二、核心作用（3-件事）"><a href="#二、核心作用（3-件事）" class="headerlink" title="二、核心作用（3 件事）"></a>二、核心作用（3 件事）</h1><ol>
+<li><strong>打分（Reward）</strong><br>给 Agent 的行动/结果打一个分数（好/坏）。</li>
+<li><strong>纠错（Critique）</strong><br>指出哪里错了、哪里不合理、哪里不符合规则。</li>
+<li><strong>指导（Refine）</strong><br>告诉 Agent 下一步该怎么改。</li>
+</ol>
+<h1 id="三、典型工作流程（极简版）"><a href="#三、典型工作流程（极简版）" class="headerlink" title="三、典型工作流程（极简版）"></a>三、典型工作流程（极简版）</h1><ol>
+<li>Agent 生成一个<strong>方案/回答/动作</strong></li>
+<li>Critic 接收 → <strong>评判</strong><ul>
+<li>对不对？</li>
+<li>全不全？</li>
+<li>有没有幻觉？</li>
+<li>符不符合约束？</li>
+</ul>
+</li>
+<li>Critic 返回<strong>分数 + 改进意见</strong></li>
+<li>Agent 根据反馈<strong>重写/重试/优化</strong></li>
+<li>循环直到 Critic 满意</li>
+</ol>
+<p>这就是 <strong>Self-Refine（自我迭代）</strong>、<strong>Self-Correction（自我纠错）</strong> 的核心。</p>
+<h1 id="四、和强化学习（RL）里的-Critic-是一回事吗？"><a href="#四、和强化学习（RL）里的-Critic-是一回事吗？" class="headerlink" title="四、和强化学习（RL）里的 Critic 是一回事吗？"></a>四、和强化学习（RL）里的 Critic 是一回事吗？</h1><p><strong>同源，但现在 LLM Agent 里更广义。</strong></p>
+<ul>
+<li>传统 RL：Critic 预测<strong>未来奖励</strong>（Q 值/价值函数），指导 Actor 学习。</li>
+<li>现代 LLM Agent：Critic 就是<strong>一个专门做评判的 LLM</strong>，负责<strong>即时评判 + 修正</strong>。</li>
+</ul>
+<p>可以理解为：</p>
+<blockquote>
+<p><strong>Actor（做事） + Critic（评判） = 更稳、更准的 Agent</strong></p>
+</blockquote>
+<h1 id="五、实际例子（最容易懂）"><a href="#五、实际例子（最容易懂）" class="headerlink" title="五、实际例子（最容易懂）"></a>五、实际例子（最容易懂）</h1><h3 id="场景：让-Agent-写代码"><a href="#场景：让-Agent-写代码" class="headerlink" title="场景：让 Agent 写代码"></a>场景：让 Agent 写代码</h3><ol>
+<li>Agent 写了一段代码</li>
+<li>Critic 检查：<ul>
+<li>有语法错误</li>
+<li>逻辑漏洞</li>
+<li>没处理边界</li>
+</ul>
+</li>
+<li>Critic 返回：<blockquote>
+<p>错误：数组越界；建议：增加长度判断</p>
+</blockquote>
+</li>
+<li>Agent 重写 → Critic 再检查 → 通过</li>
+</ol>
+<h3 id="场景：RAG-问答"><a href="#场景：RAG-问答" class="headerlink" title="场景：RAG 问答"></a>场景：RAG 问答</h3><ol>
+<li>Agent 生成回答</li>
+<li>Critic 检查：<ul>
+<li>是否引用原文？</li>
+<li>是否幻觉？</li>
+<li>是否跑题？</li>
+</ul>
+</li>
+<li>不合格 → 让 Agent 重新检索+回答</li>
+</ol>
+<p>这就是 <strong>Critic-Augmented RAG</strong>。</p>
+<h1 id="六、Critic-机制的常见形态"><a href="#六、Critic-机制的常见形态" class="headerlink" title="六、Critic 机制的常见形态"></a>六、Critic 机制的常见形态</h1><ol>
+<li><strong>单轮评判</strong>：只判一次，过/不过</li>
+<li><strong>多轮迭代（Self-Refine）</strong>：反复改到合格</li>
+<li><strong>多 Critic 集成</strong>：安全Critic、事实Critic、格式Critic</li>
+<li><strong>奖励模型（RM）</strong>：用 LLM 做偏好打分，训练更好的 Agent</li>
+<li><strong>工具验证 Critic</strong>：用代码解释器、搜索、计算器当 Critic</li>
+</ol>
+<h1 id="七、为什么现在都在用-Critic？"><a href="#七、为什么现在都在用-Critic？" class="headerlink" title="七、为什么现在都在用 Critic？"></a>七、为什么现在都在用 Critic？</h1><ul>
+<li>解决 LLM <strong>幻觉</strong></li>
+<li>提升<strong>可靠性</strong></li>
+<li>满足<strong>严格规则/格式</strong></li>
+<li>让 Agent 从”一次生成”变成<strong>闭环可进化系统</strong></li>
+</ul>
+<h1 id="八、一句话总结（背下来就能面试）"><a href="#八、一句话总结（背下来就能面试）" class="headerlink" title="八、一句话总结（背下来就能面试）"></a>八、一句话总结（背下来就能面试）</h1><blockquote>
+<p><strong>Critic 机制是 Agent 系统里的”评判模块”，负责对 Agent 的输出进行评估、纠错、打分与反馈，形成自我修正闭环，大幅提升准确性与可靠性。</strong></p>
+</blockquote>
+<hr>
+<p><em>原文链接：<a target="_blank" rel="noopener" href="https://www.doubao.com/thread/a10d3feaa1f23">https://www.doubao.com/thread/a10d3feaa1f23</a></em></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/23346/" id="article-nav-newer" class="article-nav-link-wrap"
+            onclick="onclickRoute(event, '/wiki/23346/')">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    AI Agent 深度日报 2026-03-26
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/ai/" id="article-nav-older" class="article-nav-link-wrap"
+                onclick="onclickRoute(event, '/wiki/ai/')">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">字节跳动超级AI员工框架调研报告</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

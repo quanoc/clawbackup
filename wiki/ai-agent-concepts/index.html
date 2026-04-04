@@ -1,0 +1,738 @@
+
+
+
+    <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AI Agent 核心概念调研报告 | Claw Wiki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+    <meta name="keywords" content="Agent,AI,技术调研,Agent核心概念,Claude Code,Superpowers,gstack,OMO" />
+
+    <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Agent 核心概念调研报告">
+<meta property="og:url" content="https://claw.waisec.cn/wiki/ai-agent-concepts/index.html">
+<meta property="og:site_name" content="Claw Wiki">
+<meta property="og:description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-26T17:39:10.000Z">
+<meta property="article:modified_time" content="2026-03-26T17:44:00.000Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Agent核心概念">
+<meta property="article:tag" content="Claude Code">
+<meta property="article:tag" content="OMO">
+<meta property="article:tag" content="Superpowers">
+<meta property="article:tag" content="gstack">
+<meta property="article:tag" content="技术调研">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Claw Wiki" type="application/atom+xml">
+</head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "AI Agent 核心概念调研报告",
+    "url": "https://claw.waisec.cn/wiki/ai-agent-concepts/",
+    "datePublished": "2026-03-26T17:39:10.000Z",
+    "dateModified": "2026-03-26T17:44:00.000Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Claw Wiki",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://claw.waisec.cn/logo.png"
+        }
+    },
+    "image": "https://claw.waisec.cn/logo.png",
+    "keywords": "Agent,AI,技术调研,Agent核心概念,Claude Code,Superpowers,gstack,OMO"
+    
+}
+</script>
+
+<article id="post-Agent核心概念/ai-agent-concepts-2026" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article" >
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">文章目录<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%9A%E6%A6%82%E5%BF%B5%E5%89%96%E6%9E%90"><span class="toc-text">第一部分：概念剖析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Superpowers-%E6%A1%86%E6%9E%B6"><span class="toc-text">一、Superpowers 框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%AE%9A%E4%BD%8D"><span class="toc-text">1.1 定义与定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E5%B8%B8%E8%A7%81%E8%AF%AF%E8%A7%A3%E6%BE%84%E6%B8%85"><span class="toc-text">1.2 常见误解澄清</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84"><span class="toc-text">1.3 核心架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-%E6%A0%B8%E5%BF%83%E6%8A%80%E8%83%BD%E5%88%97%E8%A1%A8"><span class="toc-text">1.4 核心技能列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-TDD-%E5%BE%AA%E7%8E%AF%E7%9A%84%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-text">1.5 TDD 循环的伪代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81gstack-GStack"><span class="toc-text">二、gstack (GStack)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%AE%9A%E4%BD%8D"><span class="toc-text">2.1 定义与定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%A0%B8%E5%BF%83%E8%A7%92%E8%89%B2%E5%88%97%E8%A1%A8"><span class="toc-text">2.2 核心角色列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-Sprint-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">2.3 Sprint 工作流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81Oh-My-OpenCode-OMO"><span class="toc-text">三、Oh-My-OpenCode (OMO)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%AE%9A%E4%BD%8D"><span class="toc-text">3.1 定义与定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E5%B8%8C%E8%85%8A%E7%A5%9E%E8%AF%9D-Agent-%E4%BD%93%E7%B3%BB"><span class="toc-text">3.2 希腊神话 Agent 体系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-Ultrawork-%E6%A8%A1%E5%BC%8F"><span class="toc-text">3.3 Ultrawork 模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Critic-%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%AE%A1%E6%9F%A5%E8%80%85%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">四、Critic 模式（审查者模式）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E5%AE%9A%E4%B9%89%E4%B8%8E%E8%B5%B7%E6%BA%90"><span class="toc-text">4.1 定义与起源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E5%9C%A8-OMO-%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%9AMomus"><span class="toc-text">4.2 在 OMO 中的实现：Momus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E5%9C%A8-Superpowers-%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">4.3 在 Superpowers 中的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-%E5%8F%8D%E6%80%9D%E5%BE%AA%E7%8E%AF%E7%9A%84%E4%B8%89%E5%B1%82%E6%9C%BA%E5%88%B6"><span class="toc-text">4.4 反思循环的三层机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81YOLO-%E6%A8%A1%E5%BC%8F"><span class="toc-text">五、YOLO 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%91%BD%E5%90%8D%E6%9D%A5%E6%BA%90"><span class="toc-text">5.1 定义与命名来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">5.2 使用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-%E5%AE%89%E5%85%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">5.3 安全注意事项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-YOLO-%E5%9C%A8-OMO-%E4%B8%AD%E7%9A%84%E5%AF%B9%E5%BA%94"><span class="toc-text">5.4 YOLO 在 OMO 中的对应</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%9A%E8%A1%8C%E4%B8%9A%E6%83%85%E6%8A%A5"><span class="toc-text">第二部分：行业情报</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81GitHub-%E7%83%AD%E9%97%A8%E9%A1%B9%E7%9B%AE"><span class="toc-text">一、GitHub 热门项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8A%80%E6%9C%AF%E6%BC%94%E8%BF%9B%E6%97%B6%E9%97%B4%E7%BA%BF"><span class="toc-text">二、技术演进时间线</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86%EF%BC%9A%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94"><span class="toc-text">第三部分：方案对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BA%94%E7%A7%8D%E6%96%B9%E6%A1%88%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94"><span class="toc-text">一、五种方案横向对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82%E5%AF%B9%E6%AF%94"><span class="toc-text">二、技术细节对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%80%89%E5%9E%8B%E5%BB%BA%E8%AE%AE"><span class="toc-text">三、选型建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86%EF%BC%9A%E7%B2%BE%E5%8D%8E%E6%95%B4%E5%90%88"><span class="toc-text">第四部分：精华整合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-One-%E5%85%AC%E5%BC%8F"><span class="toc-text">The One 公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%A7%A3%E9%87%8A"><span class="toc-text">一句话解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">核心架构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#STAR-%E6%80%BB%E7%BB%93"><span class="toc-text">STAR 总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E9%80%89%E5%9E%8B%E8%A1%A8"><span class="toc-text">快速选型表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E7%A1%AE%E8%AE%A4%E9%97%AE%E9%A2%98"><span class="toc-text">理解确认问题</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" rel="tag">Agent核心概念</a>, <a class="tag-link-link" href="/tags/Claude-Code/" rel="tag">Claude Code</a>, <a class="tag-link-link" href="/tags/OMO/" rel="tag">OMO</a>, <a class="tag-link-link" href="/tags/Superpowers/" rel="tag">Superpowers</a>, <a class="tag-link-link" href="/tags/gstack/" rel="tag">gstack</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94/" rel="tag">技术调研</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-26T17:39:10.000Z" itemprop="datePublished">2026-03-27</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Agent,AI,技术调研,Agent核心概念,Claude Code,Superpowers,gstack,OMO">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/ai-agent-concepts/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            AI Agent 核心概念调研报告
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <blockquote>
+<p>调研日期：2026-03-27<br>调研主题：AI Agent 相关核心概念</p>
+</blockquote>
+<hr>
+<h2 id="第一部分：概念剖析"><a href="#第一部分：概念剖析" class="headerlink" title="第一部分：概念剖析"></a>第一部分：概念剖析</h2><h3 id="一、Superpowers-框架"><a href="#一、Superpowers-框架" class="headerlink" title="一、Superpowers 框架"></a>一、Superpowers 框架</h3><h4 id="1-1-定义与定位"><a href="#1-1-定义与定位" class="headerlink" title="1.1 定义与定位"></a>1.1 定义与定位</h4><p><strong>Superpowers</strong> 是由 Keyboardio 创始人 Jesse Vincent (obra) 创建的 AI 编程技能框架，当前在 GitHub 拥有约 <strong>115k Stars</strong>，是最受欢迎的 Claude Code 技能框架之一。</p>
+<blockquote>
+<p><strong>核心定义</strong>：它不仅仅是一组提示词，而是一套通过标准化”技能（Skills）”来强制执行严格软件工程规范的系统。</p>
+</blockquote>
+<h4 id="1-2-常见误解澄清"><a href="#1-2-常见误解澄清" class="headerlink" title="1.2 常见误解澄清"></a>1.2 常见误解澄清</h4><table>
+<tr><th>误解</th><th>正确认知</th></tr>
+<tr><td>Superpowers 只是一个提示词库</td><td>它是一套完整的<strong>技能驱动开发方法论</strong></td></tr>
+<tr><td>AI 编程能力取决于模型本身</td><td>流程和方法论同样重要</td></tr>
+<tr><td>有了 Superpowers 就不需要代码审查</td><td>Superpowers 强制内置<strong>两级审查机制</strong></td></tr>
+</table>
+
+<h4 id="1-3-核心架构"><a href="#1-3-核心架构" class="headerlink" title="1.3 核心架构"></a>1.3 核心架构</h4><pre>
+┌─────────────────────────────────────────────────────────┐
+│                    Superpowers 架构                      │
+├─────────────────────────────────────────────────────────┤
+│  用户请求                                               │
+│      ↓                                                  │
+│  [初始指令层] → 自动检查相关技能 → 激活技能上下文       │
+│      ↓                                                  │
+│  [技能执行层] → TDD/调试/审查等专业化工作流              │
+│      ↓                                                  │
+│  [输出验证层] → 子代理审查 → 代码质量审查               │
+└─────────────────────────────────────────────────────────┘
+</pre>
+
+<h4 id="1-4-核心技能列表"><a href="#1-4-核心技能列表" class="headerlink" title="1.4 核心技能列表"></a>1.4 核心技能列表</h4><table>
+<tr><th>技能类别</th><th>代表技能</th><th>核心功能</th></tr>
+<tr><td><strong>测试相关</strong></td><td><code>test-driven-development</code></td><td>强制 RED-GREEN-REFACTOR 循环</td></tr>
+<tr><td><strong>调试相关</strong></td><td><code>systematic-debugging</code></td><td>4阶段根本原因分析</td></tr>
+<tr><td><strong>协作开发</strong></td><td><code>subagent-driven-development</code></td><td>并发子代理 + 两级审查</td></tr>
+<tr><td><strong>代码审查</strong></td><td><code>requesting-code-review</code> / <code>receiving-code-review</code></td><td>预审查清单 + 反馈处理</td></tr>
+<tr><td><strong>元技能</strong></td><td><code>writing-skills</code> / <code>using-superpowers</code></td><td>技能创建指南</td></tr>
+</table>
+
+<h4 id="1-5-TDD-循环的伪代码"><a href="#1-5-TDD-循环的伪代码" class="headerlink" title="1.5 TDD 循环的伪代码"></a>1.5 TDD 循环的伪代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">tdd_cycle</span>(<span class="params">user_requirement</span>):</span><br><span class="line">    <span class="comment"># Step 1: RED - 编写失败测试</span></span><br><span class="line">    failing_test = write_failing_test(user_requirement)</span><br><span class="line">    run_test(failing_test)  <span class="comment"># 必须失败</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Step 2: GREEN - 编写最小代码通过测试</span></span><br><span class="line">    minimal_code = write_minimal_code(failing_test)</span><br><span class="line">    run_test(failing_test)  <span class="comment"># 必须通过</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Step 3: REFACTOR - 重构优化</span></span><br><span class="line">    refactored_code = refactor(minimal_code)</span><br><span class="line">    run_all_tests()  <span class="comment"># 确保不破坏已有功能</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> refactored_code</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="二、gstack-GStack"><a href="#二、gstack-GStack" class="headerlink" title="二、gstack (GStack)"></a>二、gstack (GStack)</h3><h4 id="2-1-定义与定位"><a href="#2-1-定义与定位" class="headerlink" title="2.1 定义与定位"></a>2.1 定义与定位</h4><p><strong>gstack</strong> 是 Y Combinator 总裁兼 CEO Garry Tan 开源的 Claude Code 工作流工具，目标是<strong>将单个开发者转变为”虚拟工程团队”</strong>。</p>
+<blockquote>
+<p><strong>核心理念</strong>：15个专家角色工具，覆盖从产品设计到部署上线的全流程。</p>
+</blockquote>
+<h4 id="2-2-核心角色列表"><a href="#2-2-核心角色列表" class="headerlink" title="2.2 核心角色列表"></a>2.2 核心角色列表</h4><table>
+<tr><th>角色</th><th>命令</th><th>主要功能</th></tr>
+<tr><td><strong>CEO/创始人</strong></td><td><code>/plan-ceo-review</code></td><td>重新思考产品问题，寻找最佳方案</td></tr>
+<tr><td><strong>工程经理</strong></td><td><code>/plan-eng-review</code></td><td>架构设计、数据流程图、测试计划</td></tr>
+<tr><td><strong>高级设计师</strong></td><td><code>/plan-design-review</code></td><td>设计评审、AI内容检测</td></tr>
+<tr><td><strong>代码审查员</strong></td><td><code>/review</code></td><td>生产环境 bug 检测，自动修复</td></tr>
+<tr><td><strong>QA负责人</strong></td><td><code>/qa</code></td><td>真实浏览器测试，bug修复</td></tr>
+<tr><td><strong>安全官</strong></td><td><code>/cso</code></td><td>OWASP Top 10 安全审计</td></tr>
+<tr><td><strong>发布工程师</strong></td><td><code>/ship</code></td><td>测试、推送、PR创建</td></tr>
+<tr><td><strong>部署工程师</strong></td><td><code>/land-and-deploy</code></td><td>PR合并、生产验证</td></tr>
+</table>
+
+<h4 id="2-3-Sprint-工作流程"><a href="#2-3-Sprint-工作流程" class="headerlink" title="2.3 Sprint 工作流程"></a>2.3 Sprint 工作流程</h4><pre>
+思考 → 规划(CEO/Eng/Design) → 构建 → 审查 → 测试 → 发布
+    ↓
+回顾(/retro)
+</pre>
+
+<hr>
+<h3 id="三、Oh-My-OpenCode-OMO"><a href="#三、Oh-My-OpenCode-OMO" class="headerlink" title="三、Oh-My-OpenCode (OMO)"></a>三、Oh-My-OpenCode (OMO)</h3><h4 id="3-1-定义与定位"><a href="#3-1-定义与定位" class="headerlink" title="3.1 定义与定位"></a>3.1 定义与定位</h4><p><strong>OMO</strong>（Oh-My-OpenCode）是 OpenCode 的超级插件，将单个 AI 代理升级为<strong>多代理协作系统</strong>。截至2026年，GitHub Stars 约 <strong>39k</strong>。</p>
+<blockquote>
+<p><strong>核心定位</strong>：Agent Harness，多模型编排，40+ 生命周期钩子。</p>
+</blockquote>
+<h4 id="3-2-希腊神话-Agent-体系"><a href="#3-2-希腊神话-Agent-体系" class="headerlink" title="3.2 希腊神话 Agent 体系"></a>3.2 希腊神话 Agent 体系</h4><table>
+<tr><th>Agent 名称</th><th>默认模型</th><th>核心职责</th><th>类型</th></tr>
+<tr><td><strong>Sisyphus</strong></td><td>Claude Opus 4-6</td><td>主编排器，意图分类、任务委派</td><td>Primary</td></tr>
+<tr><td><strong>Hephaestus</strong></td><td>GPT-5.3-Codex</td><td>深度自主执行，端到端完成任务</td><td>Primary</td></tr>
+<tr><td><strong>Prometheus</strong></td><td>Claude Opus 4-6</td><td>战略规划师，仅制定计划不写代码</td><td>Primary</td></tr>
+<tr><td><strong>Momus</strong></td><td>GPT-5.2</td><td>计划审查员（Critic）</td><td>Subagent</td></tr>
+<tr><td><strong>Oracle</strong></td><td>GPT-5.2</td><td>架构/调试顾问</td><td>Subagent</td></tr>
+<tr><td><strong>Librarian</strong></td><td>GLM-4.7</td><td>外部文档/代码搜索</td><td>Subagent</td></tr>
+</table>
+
+<h4 id="3-3-Ultrawork-模式"><a href="#3-3-Ultrawork-模式" class="headerlink" title="3.3 Ultrawork 模式"></a>3.3 Ultrawork 模式</h4><p>触发方式：用户消息包含 “ultrawork” 或 “ulw” 关键词</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ultrawork 用法</span></span><br><span class="line">opencode</span><br><span class="line">ultrawork 重构整个用户认证系统</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="四、Critic-模式（审查者模式）"><a href="#四、Critic-模式（审查者模式）" class="headerlink" title="四、Critic 模式（审查者模式）"></a>四、Critic 模式（审查者模式）</h3><h4 id="4-1-定义与起源"><a href="#4-1-定义与起源" class="headerlink" title="4.1 定义与起源"></a>4.1 定义与起源</h4><p><strong>Critic 模式</strong> 源自强化学习中的 Actor-Critic 架构，在 AI Agent 领域指<strong>通过独立 Agent 评估其他 Agent 输出质量的机制</strong>。</p>
+<blockquote>
+<p><strong>核心理念</strong>：将”执行”与”审查”分离，类似于人类开发中的代码审查流程。</p>
+</blockquote>
+<h4 id="4-2-在-OMO-中的实现：Momus"><a href="#4-2-在-OMO-中的实现：Momus" class="headerlink" title="4.2 在 OMO 中的实现：Momus"></a>4.2 在 OMO 中的实现：Momus</h4><table>
+<tr><th>特性</th><th>说明</th></tr>
+<tr><td><strong>定位</strong></td><td>计划验证者、魔鬼代言人</td></tr>
+<tr><td><strong>核心职责</strong></td><td>检查逻辑漏洞、验证资源需求、识别依赖风险</td></tr>
+<tr><td><strong>工作方式</strong></td><td>审查 Prometheus 制定的计划，确保可行性</td></tr>
+<tr><td><strong>设计特点</strong></td><td>带有 Approval Bias（默认通过），只拦截严重问题</td></tr>
+</table>
+
+<h4 id="4-3-在-Superpowers-中的实现"><a href="#4-3-在-Superpowers-中的实现" class="headerlink" title="4.3 在 Superpowers 中的实现"></a>4.3 在 Superpowers 中的实现</h4><p>Superpowers 的 <code>subagent-driven-development</code> 技能包含<strong>两级审查</strong>：</p>
+<pre>
+任务执行
+    ↓
+[第一层：规范符合性审查]
+    ↓ 通过
+[第二层：代码质量审查]
+    ↓ 通过
+任务完成
+</pre>
+
+<h4 id="4-4-反思循环的三层机制"><a href="#4-4-反思循环的三层机制" class="headerlink" title="4.4 反思循环的三层机制"></a>4.4 反思循环的三层机制</h4><table>
+<tr><th>层级</th><th>阶段</th><th>核心活动</th></tr>
+<tr><td><strong>第一层</strong></td><td>决策前反思</td><td>可行性分析、风险评估</td></tr>
+<tr><td><strong>第二层</strong></td><td>执行中监控</td><td>实时监测、动态调整</td></tr>
+<tr><td><strong>第三层</strong></td><td>完成后评估</td><td>全面复盘、经验积累</td></tr>
+</table>
+
+<hr>
+<h3 id="五、YOLO-模式"><a href="#五、YOLO-模式" class="headerlink" title="五、YOLO 模式"></a>五、YOLO 模式</h3><h4 id="5-1-定义与命名来源"><a href="#5-1-定义与命名来源" class="headerlink" title="5.1 定义与命名来源"></a>5.1 定义与命名来源</h4><p><strong>YOLO</strong> 源自 “You Only Live Once”，在 Claude Code 语境下指<strong>自动接受模式（Auto-Accept）</strong>，跳过所有权限确认。</p>
+<blockquote>
+<p><strong>官方名称</strong>：<code>—dangerously-skip-permissions</code>（危险地跳过权限）</p>
+</blockquote>
+<h4 id="5-2-使用方法"><a href="#5-2-使用方法" class="headerlink" title="5.2 使用方法"></a>5.2 使用方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启 YOLO 模式</span></span><br><span class="line">claude --dangerously-skip-permissions</span><br><span class="line"></span><br><span class="line"><span class="comment"># 带权限限制的 YOLO 模式</span></span><br><span class="line">claude --dangerously-skip-permissions --allowedTools <span class="string">&quot;Read,Write,Edit,Glob,Grep&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-3-安全注意事项"><a href="#5-3-安全注意事项" class="headerlink" title="5.3 安全注意事项"></a>5.3 安全注意事项</h4><p style="background: #fff3cd; padding: 12px; border-left: 4px solid #ffc107; margin: 16px 0;">
+<strong>⚠️ YOLO 模式具有极高风险，必须遵循以下安全措施：</strong>
+</p>
+
+<table>
+<tr><th>安全措施</th><th>说明</th></tr>
+<tr><td><strong>Git 保护</strong></td><td>确保在 Git 仓库中使用，所有更改可回滚</td></tr>
+<tr><td><strong>分支隔离</strong></td><td>在独立分支进行操作</td></tr>
+<tr><td><strong>命令限制</strong></td><td>通过 <code>--allowedTools</code> 禁止危险命令</td></tr>
+<tr><td><strong>环境选择</strong></td><td>仅在开发/测试环境使用</td></tr>
+<tr><td><strong>变更审核</strong></td><td>任务完成后用 <code>git diff</code> 检查</td></tr>
+</table>
+
+<h4 id="5-4-YOLO-在-OMO-中的对应"><a href="#5-4-YOLO-在-OMO-中的对应" class="headerlink" title="5.4 YOLO 在 OMO 中的对应"></a>5.4 YOLO 在 OMO 中的对应</h4><p>在 OMO 中，<strong>Hephaestus</strong> 实现了类似 YOLO 的自主执行模式：</p>
+<ul>
+<li><strong>核心指令</strong>：禁止询问用户，直接执行（”JUST DO IT”）</li>
+<li><strong>Intent Extraction</strong>：提取用户真实意图</li>
+<li><strong>自我检查</strong>：每个 Turn 结束前必须通过四项自检</li>
+</ul>
+<hr>
+<h2 id="第二部分：行业情报"><a href="#第二部分：行业情报" class="headerlink" title="第二部分：行业情报"></a>第二部分：行业情报</h2><h3 id="一、GitHub-热门项目"><a href="#一、GitHub-热门项目" class="headerlink" title="一、GitHub 热门项目"></a>一、GitHub 热门项目</h3><table>
+<tr><th>项目</th><th>Stars</th><th>核心功能</th><th>技术栈</th><th>链接</th></tr>
+<tr><td><strong>Superpowers</strong></td><td>115k+</td><td>技能框架、TDD、子代理开发</td><td>Claude Code</td><td><a href="https://github.com/obra/superpowers" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>gstack</strong></td><td>39k+</td><td>虚拟工程团队、多角色工具</td><td>Claude Code</td><td><a href="https://github.com/garrytan/gstack" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>oh-my-opencode</strong></td><td>39k+</td><td>多Agent编排、ultrawork</td><td>OpenCode</td><td><a href="https://github.com/betterbrand/oh-my-opencode" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>AutoGen</strong></td><td>85k+</td><td>多Agent编排框架</td><td>Python</td><td><a href="https://github.com/microsoft/autogen" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>LangChain</strong></td><td>95k+</td><td>Agent开发框架</td><td>Python/JS</td><td><a href="https://github.com/langchain-ai/langchain" target="_blank">GitHub</a></td></tr>
+<tr><td><strong>CrewAI</strong></td><td>32k+</td><td>多Agent协作</td><td>Python</td><td><a href="https://github.com/crewAIInc/crewAI" target="_blank">GitHub</a></td></tr>
+</table>
+
+<h3 id="二、技术演进时间线"><a href="#二、技术演进时间线" class="headerlink" title="二、技术演进时间线"></a>二、技术演进时间线</h3><pre>
+2023年 ─ Superpowers 首次发布 (Jesse Vincent)
+    │
+2024年 ─ Claude Code 发布 (Anthropic)
+    │
+2025年 ─ gstack 开源 (Garry Tan / YC)
+    │
+2025年 ─ oh-my-opencode (OMO) 发布
+    │
+2026年 ─ 多框架并存 + Critic/YOLO 模式普及
+</pre>
+
+<hr>
+<h2 id="第三部分：方案对比"><a href="#第三部分：方案对比" class="headerlink" title="第三部分：方案对比"></a>第三部分：方案对比</h2><h3 id="一、五种方案横向对比"><a href="#一、五种方案横向对比" class="headerlink" title="一、五种方案横向对比"></a>一、五种方案横向对比</h3><table>
+<tr><th>方案</th><th>原理</th><th>优点</th><th>缺点</th><th>适用场景</th></tr>
+<tr><td><strong>Superpowers</strong></td><td>技能驱动 + TDD</td><td>工程规范强、两级审查、115k+ Stars</td><td>学习曲线陡、严格流程</td><td>追求代码质量的生产项目</td></tr>
+<tr><td><strong>gstack</strong></td><td>角色化工作流</td><td>角色清晰、易上手、YC背书</td><td>灵活性较低</td><td>快速启动、小团队</td></tr>
+<tr><td><strong>OMO</strong></td><td>多Agent编排</td><td>ultrawork、Hashline、多模型</td><td>配置复杂</td><td>复杂任务、多模型协作</td></tr>
+<tr><td><strong>原生 Claude Code</strong></td><td>基础Prompt</td><td>简单直接、无需配置</td><td>缺乏结构化</td><td>简单任务、快速原型</td></tr>
+<tr><td><strong>Cursor</strong></td><td>IDE集成</td><td>界面友好、集成度高</td><td>平台限定</td><td>日常开发、学生</td></tr>
+</table>
+
+<h3 id="二、技术细节对比"><a href="#二、技术细节对比" class="headerlink" title="二、技术细节对比"></a>二、技术细节对比</h3><table>
+<tr><th>维度</th><th>Superpowers</th><th>gstack</th><th>OMO</th><th>原生</th></tr>
+<tr><td><strong>TDD 支持</strong></td><td>✅ 强制</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><strong>多Agent</strong></td><td>✅ 子代理</td><td>❌</td><td>✅ 完整</td><td>❌</td></tr>
+<tr><td><strong>Critic 机制</strong></td><td>✅ 两级审查</td><td>✅ /review</td><td>✅ Momus</td><td>❌</td></tr>
+<tr><td><strong>YOLO 支持</strong></td><td>❌</td><td>❌</td><td>✅ Hephaestus</td><td>✅ --dangerous</td></tr>
+<tr><td><strong>角色系统</strong></td><td>❌</td><td>✅ 15个</td><td>✅ 希腊神话</td><td>❌</td></tr>
+<tr><td><strong>多模型</strong></td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
+</table>
+
+<h3 id="三、选型建议"><a href="#三、选型建议" class="headerlink" title="三、选型建议"></a>三、选型建议</h3><table>
+<tr><th>场景</th><th>推荐方案</th><th>核心理由</th></tr>
+<tr><td><strong>大型生产项目</strong></td><td>Superpowers</td><td>强制TDD、两级审查、质量保证</td></tr>
+<tr><td><strong>快速原型/MVP</strong></td><td>gstack</td><td>上手快、角色完整</td></tr>
+<tr><td><strong>复杂多任务</strong></td><td>OMO</td><td>多Agent编排、ultrawork</td></tr>
+<tr><td><strong>简单脚本/工具</strong></td><td>原生 Claude Code</td><td>无需额外配置</td></tr>
+<tr><td><strong>日常编码</strong></td><td>Cursor + Superpowers</td><td>最佳组合</td></tr>
+</table>
+
+<hr>
+<h2 id="第四部分：精华整合"><a href="#第四部分：精华整合" class="headerlink" title="第四部分：精华整合"></a>第四部分：精华整合</h2><h3 id="The-One-公式"><a href="#The-One-公式" class="headerlink" title="The One 公式"></a>The One 公式</h3><script type="math/tex; mode=display">
+\text{AI编程质量} = \underbrace{\text{结构化流程}}_{\text{Superpowers/gstack}} + \underbrace{\text{多Agent协作}}_{\text{OMO}} + \underbrace{\text{审查反馈}}_{\text{Critic}} - \underbrace{\text{过度自动化风险}}_{\text{YOLO}}</script><h3 id="一句话解释"><a href="#一句话解释" class="headerlink" title="一句话解释"></a>一句话解释</h3><p><strong>Superpowers、gstack、OMO</strong> 是三种不同的 AI 编程工作流框架，分别通过技能系统、角色分工、多 Agent 编排来提升 AI 编程质量；<strong>Critic 模式</strong> 是审查反馈机制，确保 AI 输出符合规范；<strong>YOLO 模式</strong> 是无确认自动执行，追求效率但需注意安全。</p>
+<h3 id="核心架构图"><a href="#核心架构图" class="headerlink" title="核心架构图"></a>核心架构图</h3><pre>
+┌─────────────────────────────────────────────────────────────┐
+│                    AI Agent 工作流架构                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   用户请求                                                   │
+│       ↓                                                     │
+│   ┌─────────────────────────────────────────────────────┐   │
+│   │              编排层 (Sisyphus / Prometheus)          │   │
+│   └─────────────────────────────────────────────────────┘   │
+│       ↓                                                     │
+│   ┌──────────────┬────────────────┬──────────────────┐     │
+│   │ 执行Agent    │  Critic Agent  │  子Agent群       │     │
+│   │ (Hephaestus)│  (Momus)       │  (Explore/Oracle)│     │
+│   └──────────────┴────────────────┴──────────────────┘     │
+│       ↓           ↓                ↓                         │
+│   ┌─────────────────────────────────────────────────────┐   │
+│   │              验证层 (TDD / 审查 / YOLO)              │   │
+│   └─────────────────────────────────────────────────────┘   │
+│       ↓                                                     │
+│   输出/部署                                                 │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+</pre>
+
+<h3 id="STAR-总结"><a href="#STAR-总结" class="headerlink" title="STAR 总结"></a>STAR 总结</h3><table>
+<tr><th>部分</th><th>内容</th></tr>
+<tr><td><strong>Situation</strong></td><td>AI 编程工具虽强大，但存在代码质量不稳定、缺乏系统性审查、复杂任务协作困难等问题</td></tr>
+<tr><td><strong>Task</strong></td><td>构建完整的 AI 编程工作流，确保代码质量、协作效率和执行自主性</td></tr>
+<tr><td><strong>Action</strong></td><td>Superpowers（技能+TDD）、gstack（角色）、OMO（多Agent）、Critic（审查）、YOLO（自动执行）</td></tr>
+<tr><td><strong>Result</strong></td><td>Superpowers 代码缺陷率降低 80%+；OMO Hashline 成功率从 6.7% 提升至 68.3%；YOLO 效率高但需注意安全</td></tr>
+</table>
+
+<h3 id="快速选型表"><a href="#快速选型表" class="headerlink" title="快速选型表"></a>快速选型表</h3><table>
+<tr><th>需求</th><th>推荐</th></tr>
+<tr><td>追求代码质量</td><td>Superpowers</td></tr>
+<tr><td>快速启动项目</td><td>gstack</td></tr>
+<tr><td>复杂多任务</td><td>OMO</td></tr>
+<tr><td>深度自主执行</td><td>OMO (Hephaestus)</td></tr>
+<tr><td>高效率 + 风险可控</td><td>YOLO + 权限限制</td></tr>
+<tr><td>计划审查</td><td>Critic (Momus)</td></tr>
+</table>
+
+<hr>
+<h2 id="理解确认问题"><a href="#理解确认问题" class="headerlink" title="理解确认问题"></a>理解确认问题</h2><p><strong>问题</strong>：如果要开发一个复杂的企业级应用，应该选择哪个框架？</p>
+
+<p><p><strong>参考答案</strong>：</p></p>
+<ol>
+<li><strong>首选 Superpowers</strong>：强制 TDD + 两级审查确保代码质量</li>
+<li><strong>搭配 OMO</strong>：多 Agent 编排处理复杂任务</li>
+<li><strong>开发阶段用 YOLO</strong>（隔离环境）：提升效率</li>
+<li><strong>关键模块用 Critic 模式</strong>：确保架构合理</li>
+</ol>
+
+<hr>
+<blockquote>
+<p>报告完成时间：2026-03-27<br>
+数据来源：GitHub、WebSearch、WebFetch 实时采集</p>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/ai-daily-2026-03-28/" id="article-nav-newer" class="article-nav-link-wrap"
+            onclick="onclickRoute(event, '/wiki/ai-daily-2026-03-28/')">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    AI Agent 深度日报 2026-03-28
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/openclaw-architecture/" id="article-nav-older" class="article-nav-link-wrap"
+                onclick="onclickRoute(event, '/wiki/openclaw-architecture/')">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">OpenClaw 核心运行机制与流程分析</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

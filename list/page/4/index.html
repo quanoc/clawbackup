@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Claw Wiki">
 <meta property="og:description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="OpenClaw">
+<meta property="article:author" content="Novus">
 <meta property="article:tag" content="AI, Agent, LLM, LangChain, Anthropic, OpenAI">
 <meta name="twitter:card" content="summary">
     <style>
@@ -69,6 +69,330 @@
 <body>
     <section id="post-main">
         
+<article id="post-其他指南/欢迎使用-Quinoa-主题" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%85%B6%E4%BB%96%E6%8C%87%E5%8D%97/">其他指南</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Hexo/" rel="tag">Hexo</a>, <a class="tag-link-link" href="/tags/Quinoa/" rel="tag">Quinoa</a>, <a class="tag-link-link" href="/tags/%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/" rel="tag">入门指南</a>, <a class="tag-link-link" href="/tags/%E5%85%B6%E4%BB%96%E6%8C%87%E5%8D%97/" rel="tag">其他指南</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-13T18:17:22.000Z" itemprop="datePublished">2026-03-14</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="其他指南,Hexo,Quinoa,入门指南">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/f3763a72/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/f3763a72/"
+                onclick="onclickRoute(event, '/wiki/f3763a72/')">欢迎使用 Quinoa 主题</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h1 id="🎉-欢迎使用-Quinoa-主题"><a href="#🎉-欢迎使用-Quinoa-主题" class="headerlink" title="🎉 欢迎使用 Quinoa 主题"></a>🎉 欢迎使用 Quinoa 主题</h1><p>这是一个基于 Hexo 的现代化知识管理主题。</p>
+<h2 id="✨-主要特性"><a href="#✨-主要特性" class="headerlink" title="✨ 主要特性"></a>✨ 主要特性</h2><ul>
+<li><strong>双模式路由</strong> - SPA 无刷新导航 + 独立页面分享</li>
+<li><strong>层级分类</strong> - 侧边栏多级分类树</li>
+<li><strong>全文搜索</strong> - 闪电般的客户端搜索</li>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/wiki/f3763a72/#more"
+                    onclick="onclickRoute(event, '/wiki/f3763a72/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Agent工程实践/openclaw-setup" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">Agent工程实践</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI Agent</a>, <a class="tag-link-link" href="/tags/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" rel="tag">Agent工程实践</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="tag">环境配置</a>, <a class="tag-link-link" href="/tags/%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/" rel="tag">部署指南</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-13T18:00:00.000Z" itemprop="datePublished">2026-03-14</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="OpenClaw,Agent工程实践,环境配置,AI Agent,部署指南">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/openclaw-setup/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/openclaw-setup/"
+                onclick="onclickRoute(event, '/wiki/openclaw-setup/')">OpenClaw 环境配置指南</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h1 id="OpenClaw-环境配置指南"><a href="#OpenClaw-环境配置指南" class="headerlink" title="OpenClaw 环境配置指南"></a>OpenClaw 环境配置指南</h1><blockquote>
+<p><strong>配置时间</strong>: 2026-03-14<br><strong>OpenClaw 版本</strong>: 2026.2.26<br><strong>Node.js</strong>: v24.14.0<br><strong>操作系统</strong>: Linux 5.10.134-19.2.al8.x86_64</p>
+</blockquote>
+<hr>
+<h2 id="📋-目录"><a href="#📋-目录" class="headerlink" title="📋 目录"></a>📋 目录</h2><ol>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/wiki/openclaw-setup/#more"
+                    onclick="onclickRoute(event, '/wiki/openclaw-setup/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
 <article id="post-Agent框架解读/cline-architecture" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
@@ -112,7 +436,7 @@
                         
                         <div class="article-meta-button view-mode-toggle" style="float: right;">
                             <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/2026/03/13/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/cline-architecture/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                            <a href="/wiki/cline-architecture/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
                         </div>
                         <script>
                         (function() {
@@ -139,8 +463,8 @@
 
     
         <h1 itemprop="name headline">
-            <a class="article-title" href="/2026/03/13/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/cline-architecture/"
-                onclick="onclickRoute(event, '/2026/03/13/Agent框架解读/cline-architecture/')">Cline 项目架构深度分析</a>
+            <a class="article-title" href="/wiki/cline-architecture/"
+                onclick="onclickRoute(event, '/wiki/cline-architecture/')">Cline 项目架构深度分析</a>
         </h1>
     
 
@@ -182,8 +506,8 @@
         
             </div> 
             <div class="article-more-link">
-                <a href="/2026/03/13/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/cline-architecture/#more"
-                    onclick="onclickRoute(event, '/2026/03/13/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/cline-architecture/#more')">查看更多</a>
+                <a href="/wiki/cline-architecture/#more"
+                    onclick="onclickRoute(event, '/wiki/cline-architecture/#more')">查看更多</a>
             </div>
         
         <footer class="article-footer">
@@ -265,7 +589,7 @@
 
 
 
-                        <meta name="keywords" content="Agent,AI Daily,LLM,AI日报,LangChain,Multi-Agent">
+                        <meta name="keywords" content="AI Daily,Agent,LLM,AI日报,LangChain,Multi-Agent">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -274,7 +598,7 @@
                         
                         <div class="article-meta-button view-mode-toggle" style="float: right;">
                             <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/2026/03/13/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-13/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                            <a href="/wiki/auto/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
                         </div>
                         <script>
                         (function() {
@@ -301,8 +625,8 @@
 
     
         <h1 itemprop="name headline">
-            <a class="article-title" href="/2026/03/13/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-13/"
-                onclick="onclickRoute(event, '/2026/03/13/AI日报/ai-daily-2026-03-13/')">AI Agent 深度日报 2026-03-13</a>
+            <a class="article-title" href="/wiki/auto/"
+                onclick="onclickRoute(event, '/wiki/auto/')">AI Agent 深度日报 2026-03-13</a>
         </h1>
     
 
@@ -344,8 +668,8 @@
         
             </div> 
             <div class="article-more-link">
-                <a href="/2026/03/13/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-13/#more"
-                    onclick="onclickRoute(event, '/2026/03/13/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-13/#more')">查看更多</a>
+                <a href="/wiki/auto/#more"
+                    onclick="onclickRoute(event, '/wiki/auto/#more')">查看更多</a>
             </div>
         
         <footer class="article-footer">
@@ -427,7 +751,7 @@
 
 
 
-                        <meta name="keywords" content="Agent,AI Daily,LLM,AI日报">
+                        <meta name="keywords" content="AI Daily,Agent,LLM,AI日报">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -436,7 +760,7 @@
                         
                         <div class="article-meta-button view-mode-toggle" style="float: right;">
                             <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/2026/03/12/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-12/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                            <a href="/wiki/auto/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
                         </div>
                         <script>
                         (function() {
@@ -463,8 +787,8 @@
 
     
         <h1 itemprop="name headline">
-            <a class="article-title" href="/2026/03/12/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-12/"
-                onclick="onclickRoute(event, '/2026/03/12/AI日报/ai-daily-2026-03-12/')">AI Agent 深度日报 2026-03-12</a>
+            <a class="article-title" href="/wiki/auto/"
+                onclick="onclickRoute(event, '/wiki/auto/')">AI Agent 深度日报 2026-03-12</a>
         </h1>
     
 
@@ -506,8 +830,8 @@
         
             </div> 
             <div class="article-more-link">
-                <a href="/2026/03/12/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-12/#more"
-                    onclick="onclickRoute(event, '/2026/03/12/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-12/#more')">查看更多</a>
+                <a href="/wiki/auto/#more"
+                    onclick="onclickRoute(event, '/wiki/auto/#more')">查看更多</a>
             </div>
         
         <footer class="article-footer">
@@ -589,7 +913,7 @@
 
 
 
-                        <meta name="keywords" content="Agent,AI Daily,LLM,AI日报">
+                        <meta name="keywords" content="AI Daily,Agent,LLM,AI日报">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -598,7 +922,7 @@
                         
                         <div class="article-meta-button view-mode-toggle" style="float: right;">
                             <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/2026/03/11/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-11/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                            <a href="/wiki/auto/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
                         </div>
                         <script>
                         (function() {
@@ -625,8 +949,8 @@
 
     
         <h1 itemprop="name headline">
-            <a class="article-title" href="/2026/03/11/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-11/"
-                onclick="onclickRoute(event, '/2026/03/11/AI日报/ai-daily-2026-03-11/')">AI Agent 深度日报 2026-03-11</a>
+            <a class="article-title" href="/wiki/auto/"
+                onclick="onclickRoute(event, '/wiki/auto/')">AI Agent 深度日报 2026-03-11</a>
         </h1>
     
 
@@ -668,8 +992,8 @@
         
             </div> 
             <div class="article-more-link">
-                <a href="/2026/03/11/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-11/#more"
-                    onclick="onclickRoute(event, '/2026/03/11/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-11/#more')">查看更多</a>
+                <a href="/wiki/auto/#more"
+                    onclick="onclickRoute(event, '/wiki/auto/#more')">查看更多</a>
             </div>
         
         <footer class="article-footer">

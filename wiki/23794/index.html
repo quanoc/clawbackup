@@ -1,0 +1,613 @@
+
+
+
+    <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>OpenClaw 核心问题汇总 | Claw Wiki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+    <meta name="keywords" content="openclaw,agent,团队协作,问题汇总,技术问题" />
+
+    <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenClaw 核心问题汇总">
+<meta property="og:url" content="https://claw.waisec.cn/wiki/23794/index.html">
+<meta property="og:site_name" content="Claw Wiki">
+<meta property="og:description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-28T14:20:00.000Z">
+<meta property="article:modified_time" content="2026-04-04T15:34:20.619Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="agent">
+<meta property="article:tag" content="openclaw">
+<meta property="article:tag" content="团队协作">
+<meta property="article:tag" content="技术问题">
+<meta property="article:tag" content="问题汇总">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Claw Wiki" type="application/atom+xml">
+</head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "OpenClaw 核心问题汇总",
+    "url": "https://claw.waisec.cn/wiki/23794/",
+    "datePublished": "2026-03-28T14:20:00.000Z",
+    "dateModified": "2026-04-04T15:34:20.619Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Claw Wiki",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://claw.waisec.cn/logo.png"
+        }
+    },
+    "image": "https://claw.waisec.cn/logo.png",
+    "keywords": "openclaw,agent,团队协作,问题汇总,技术问题"
+    
+}
+</script>
+
+<article id="post-其他指南/openclaw-core-issues-summary" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%85%B6%E4%BB%96%E6%8C%87%E5%8D%97/">其他指南</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/agent/" rel="tag">agent</a>, <a class="tag-link-link" href="/tags/openclaw/" rel="tag">openclaw</a>, <a class="tag-link-link" href="/tags/%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C/" rel="tag">团队协作</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98/" rel="tag">技术问题</a>, <a class="tag-link-link" href="/tags/%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" rel="tag">问题汇总</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-28T14:20:00.000Z" itemprop="datePublished">2026-03-28</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="openclaw,agent,团队协作,问题汇总,技术问题">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/23794/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            OpenClaw 核心问题汇总
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="OpenClaw-核心问题汇总"><a href="#OpenClaw-核心问题汇总" class="headerlink" title="OpenClaw 核心问题汇总"></a>OpenClaw 核心问题汇总</h1><blockquote>
+<p>整理时间：2026-03-28<br>整理人：藜诺<br>来源：历史任务执行记录与博客文档</p>
+</blockquote>
+<hr>
+<h2 id="📋-目录"><a href="#📋-目录" class="headerlink" title="📋 目录"></a>📋 目录</h2><ol>
+<li><a href="#1-agent-间通信问题">Agent 间通信问题</a></li>
+<li><a href="#2-消息路由机制问题">消息路由机制问题</a></li>
+<li><a href="#3-持久化-agent-session-问题">持久化 Agent Session 问题</a></li>
+<li><a href="#4-子-agent-任务管理问题">子 Agent 任务管理问题</a></li>
+<li><a href="#5-claude-code-环境配置问题">Claude Code 环境配置问题</a></li>
+<li><a href="#6-待办事项清单">待办事项清单</a></li>
+</ol>
+<hr>
+<h2 id="1-Agent-间通信问题"><a href="#1-Agent-间通信问题" class="headerlink" title="1. Agent 间通信问题"></a>1. Agent 间通信问题</h2><h3 id="1-1-跨-Agent-消息发送失败"><a href="#1-1-跨-Agent-消息发送失败" class="headerlink" title="1.1 跨 Agent 消息发送失败"></a>1.1 跨 Agent 消息发送失败</h3><p><strong>问题描述</strong><br>藜诺（主 Agent）无法直接给码哥（持久化 Agent）发送消息，报错：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Session send visibility is restricted. </span><br><span class="line">Set tools.sessions.visibility=all to allow cross-agent access.</span><br></pre></td></tr></table></figure></p>
+<p><strong>根本原因</strong>  </p>
+<ul>
+<li>默认配置 <code>tools.sessions.visibility: &quot;tree&quot;</code>，只允许访问当前 session 及其子 session</li>
+<li>码哥是独立 Agent，不是藜诺派生的子 Agent</li>
+<li>跨 Agent 通信需要同时满足两个条件：<ol>
+<li><code>visibility: &quot;all&quot;</code> </li>
+<li><code>agentToAgent.enabled: true</code></li>
+</ol>
+</li>
+</ul>
+<p><strong>解决方案</strong><br>修改 <code>~/.openclaw/openclaw.json</code> 配置文件：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;sessions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;visibility&quot;</span><span class="punctuation">:</span> <span class="string">&quot;all&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;agentToAgent&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><br>修改后需重启 gateway 生效。</p>
+<hr>
+<h2 id="2-消息路由机制问题"><a href="#2-消息路由机制问题" class="headerlink" title="2. 消息路由机制问题"></a>2. 消息路由机制问题</h2><h3 id="2-1-微信-Channel-不支持-提及路由"><a href="#2-1-微信-Channel-不支持-提及路由" class="headerlink" title="2.1 微信 Channel 不支持 @提及路由"></a>2.1 微信 Channel 不支持 @提及路由</h3><p><strong>问题描述</strong><br>希望通过 <code>@码哥</code> 的方式将消息路由给码哥，而不是默认路由到藜诺。</p>
+<p><strong>调研结论</strong><br>通过查看 <code>~/.openclaw/extensions/openclaw-weixin/</code> 源码发现：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>路由方式</th>
+<th>支持情况</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@提及路由</td>
+<td>❌ 不支持</td>
+<td>微信插件无相关逻辑</td>
+</tr>
+<tr>
+<td>命令前缀路由</td>
+<td>✅ 支持</td>
+<td><code>/echo</code>、<code>/toggle-debug</code> 等 <code>/</code> 开头命令</td>
+</tr>
+<tr>
+<td>自动路由</td>
+<td>❓ 未确认</td>
+<td>依赖 OpenClaw 核心 SDK</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>关键发现</strong>  </p>
+<ul>
+<li>路由逻辑在 <code>channelRuntime.routing.resolveAgentRoute()</code> 中实现</li>
+<li>具体规则在 OpenClaw 核心，不在微信插件内</li>
+<li>可能支持 <code>/mage xxx</code> 命令触发码哥</li>
+</ul>
+<p><strong>待验证</strong>  </p>
+<ul>
+<li>[ ] 测试 <code>/mage</code> 命令是否能路由到码哥</li>
+<li>[ ] 查看 OpenClaw 核心源码确认路由规则</li>
+</ul>
+<hr>
+<h2 id="3-持久化-Agent-Session-问题"><a href="#3-持久化-Agent-Session-问题" class="headerlink" title="3. 持久化 Agent Session 问题"></a>3. 持久化 Agent Session 问题</h2><h3 id="3-1-无法启动持久化-Session"><a href="#3-1-无法启动持久化-Session" class="headerlink" title="3.1 无法启动持久化 Session"></a>3.1 无法启动持久化 Session</h3><p><strong>问题描述</strong><br>启动码哥的持久化 session 时失败，报错：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">thread=true is unavailable because no channel plugin </span><br><span class="line">registered subagent_spawning hooks.</span><br></pre></td></tr></table></figure></p>
+<p><strong>根本原因</strong>  </p>
+<ul>
+<li><code>mode: &quot;session&quot;</code> 需要 <code>thread=true</code> 才能保持长期绑定</li>
+<li>微信 channel 不支持 <code>thread</code> 模式</li>
+<li>只有支持 thread 的 channel（如 Discord）才能启动持久化 session</li>
+</ul>
+<p><strong>解决方案</strong>  </p>
+<p><strong>方案 A：独立 Channel（推荐）</strong></p>
+<ul>
+<li>给码哥配置独立的 QQ 或微信账号</li>
+<li>码哥有自己的消息入口，session 长期存在</li>
+<li>优点：完全独立，不受主 Agent 影响</li>
+<li>缺点：需要额外配置一个微信号/QQ号</li>
+</ul>
+<p><strong>方案 B：按需启动（当前使用）</strong></p>
+<ul>
+<li>派任务时启动子 Agent，任务完结束</li>
+<li>每次任务都是新的 session</li>
+<li>优点：简单，无需额外账号</li>
+<li>缺点：无法保持长期上下文</li>
+</ul>
+<p><strong>技术细节</strong><br>根据 OpenClaw 源码分析：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>run 模式</th>
+<th>session 模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>设计目标</td>
+<td>一次性任务执行</td>
+<td>持久化线程内协作</td>
+</tr>
+<tr>
+<td>thread 绑定</td>
+<td>不需要</td>
+<td>必须 (thread=true)</td>
+</tr>
+<tr>
+<td>生命周期</td>
+<td>短暂 (默认 60 分钟归档)</td>
+<td>持久 (无归档时间)</td>
+</tr>
+<tr>
+<td>清理策略</td>
+<td>可配置</td>
+<td>固定 keep</td>
+</tr>
+<tr>
+<td>后续交互</td>
+<td>❌ 不支持</td>
+<td>✅ 支持 follow-up</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>独立任务、批处理</td>
+<td>持续对话、复杂工作流</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="4-子-Agent-任务管理问题"><a href="#4-子-Agent-任务管理问题" class="headerlink" title="4. 子 Agent 任务管理问题"></a>4. 子 Agent 任务管理问题</h2><h3 id="4-1-任务执行超时-卡住"><a href="#4-1-任务执行超时-卡住" class="headerlink" title="4.1 任务执行超时/卡住"></a>4.1 任务执行超时/卡住</h3><p><strong>问题现象</strong>  </p>
+<ul>
+<li>任务设计太宽泛，子 Agent 卡住 20 分钟无结果</li>
+<li>进度文件更新不及时，无法监督</li>
+<li>任务频繁失败或超时</li>
+</ul>
+<p><strong>根本原因</strong>  </p>
+<ol>
+<li>任务范围过大，子 Agent 无从下手</li>
+<li>没有强制进度更新机制</li>
+<li>缺少超时监控和处理</li>
+</ol>
+<p><strong>解决方案</strong>  </p>
+<ol>
+<li><strong>任务要具体</strong> — 明确指定 “查本地文件 X，找不到再上网搜”</li>
+<li><strong>强制进度更新</strong> — 要求 “每 2 分钟必须写进度文件”</li>
+<li><strong>先本地后远程</strong> — 优先查本地文档，减少网络搜索时间</li>
+<li><strong>设置超时阈值</strong> — 超过 5 分钟没进度就 kill 重启</li>
+</ol>
+<p><strong>AGENTS.md 规范要求</strong>  </p>
+<ul>
+<li>每执行一个工具调用，立即写进度文件</li>
+<li>双文件写入：<ul>
+<li>JSON 状态文件（<code>{TASK_ID}-progress.json</code>）→ 覆盖写入</li>
+<li>日志文件（<code>{TASK_ID}.log</code>）→ 追加写入</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-子-Agent-派生问题"><a href="#4-2-子-Agent-派生问题" class="headerlink" title="4.2 子 Agent 派生问题"></a>4.2 子 Agent 派生问题</h3><p><strong>问题</strong><br>藜诺作为秘书，不应该自己执行任务，但有时候子 Agent 执行不完整。</p>
+<p><strong>正确流程</strong>  </p>
+<ol>
+<li>用户确认任务计划</li>
+<li>藜诺生成 taskId，创建任务文件</li>
+<li>派子 Agent（注入 PARENT_SESSION_KEY、TASK_FILE_PATH、TASK_ID）</li>
+<li>子 Agent 完成后，藜诺检查任务完整性</li>
+<li>如有遗漏，继续派子 Agent 执行</li>
+<li><strong>绝不自己接手执行</strong></li>
+</ol>
+<hr>
+<h2 id="5-Claude-Code-环境配置问题"><a href="#5-Claude-Code-环境配置问题" class="headerlink" title="5. Claude Code 环境配置问题"></a>5. Claude Code 环境配置问题</h2><h3 id="5-1-缺少-Anthropic-API-Key"><a href="#5-1-缺少-Anthropic-API-Key" class="headerlink" title="5.1 缺少 Anthropic API Key"></a>5.1 缺少 Anthropic API Key</h3><p><strong>安装状态</strong><br>| 组件 | 状态 | 版本 |<br>|——-|———|———|<br>| Claude Code CLI | ✅ 已安装 | v2.1.86 |<br>| everything-claude-code | ✅ 已配置 | 28 agents, 60 commands, 125 skills |</p>
+<p><strong>待解决问题</strong>  </p>
+<ul>
+<li>[ ] 配置 Anthropic API key 才能正常使用 Claude Code</li>
+</ul>
+<p><strong>配置方法</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式1：环境变量</span></span><br><span class="line"><span class="built_in">export</span> ANTHROPIC_API_KEY=<span class="string">&quot;your-api-key&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式2：Claude Code 配置</span></span><br><span class="line">claude config <span class="built_in">set</span> apiKey <span class="string">&quot;your-api-key&quot;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="5-2-Everything-Claude-Code-项目调研"><a href="#5-2-Everything-Claude-Code-项目调研" class="headerlink" title="5.2 Everything Claude Code 项目调研"></a>5.2 Everything Claude Code 项目调研</h3><p><strong>项目信息</strong>  </p>
+<ul>
+<li><strong>项目</strong>: Everything Claude Code (ECC)</li>
+<li><strong>作者</strong>: affaan-m (Anthropic Hackathon Winner)</li>
+<li><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/affaan-m/everything-claude-code">https://github.com/affaan-m/everything-claude-code</a></li>
+<li><strong>Stars</strong>: 112k+ | <strong>Forks</strong>: 14.7k+</li>
+</ul>
+<p><strong>核心组件</strong>  </p>
+<ul>
+<li>28 个专业 Agents</li>
+<li>125+ 个 Skills</li>
+<li>60 个 Commands</li>
+<li>Hooks 系统</li>
+<li>跨平台支持（Claude Code、Cursor、Codex、OpenCode）</li>
+</ul>
+<p><strong>文章已发布</strong>  </p>
+<ul>
+<li><code>/root/.openclaw/workspace/dev-projects/clawbackup/source/_posts/everything-claude-code.md</code></li>
+</ul>
+<hr>
+<h2 id="6-待办事项清单"><a href="#6-待办事项清单" class="headerlink" title="6. 待办事项清单"></a>6. 待办事项清单</h2><h3 id="高优先级"><a href="#高优先级" class="headerlink" title="高优先级"></a>高优先级</h3><ul>
+<li>[ ] 给码哥配置独立 QQ channel（解决持久化 Agent 问题）</li>
+<li>[ ] 配置 Anthropic API key（启用 Claude Code）</li>
+<li>[ ] 修改 <code>openclaw.json</code> 启用 Agent 间通信</li>
+<li>[ ] 测试命令前缀路由（<code>/mage</code>）</li>
+</ul>
+<h3 id="中优先级"><a href="#中优先级" class="headerlink" title="中优先级"></a>中优先级</h3><ul>
+<li>[ ] 制定子 Agent 任务设计规范</li>
+<li>[ ] 建立任务超时监控机制</li>
+<li>[ ] 查看 OpenClaw 核心源码确认路由规则</li>
+</ul>
+<h3 id="已完成"><a href="#已完成" class="headerlink" title="已完成"></a>已完成</h3><ul>
+<li>[x] 调研 Everything Claude Code 项目</li>
+<li>[x] 调研 AI Coding 测试和 Review 方案</li>
+<li>[x] 记录 Agent 团队协作问题</li>
+<li>[x] 整理核心问题汇总文档</li>
+</ul>
+<hr>
+<h2 id="关键配置总结"><a href="#关键配置总结" class="headerlink" title="关键配置总结"></a>关键配置总结</h2><h3 id="Agent-间通信配置"><a href="#Agent-间通信配置" class="headerlink" title="Agent 间通信配置"></a>Agent 间通信配置</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;tools&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;sessions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;visibility&quot;</span><span class="punctuation">:</span> <span class="string">&quot;all&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;agentToAgent&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Git-全局配置"><a href="#Git-全局配置" class="headerlink" title="Git 全局配置"></a>Git 全局配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;quanoc&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;waisec@sina.com&quot;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><em>文档生成时间: 2026-03-28 22:20</em><br><em>关联文档: openclaw-agent-team-issues.md, ai-coding-test-review-survey.md, everything-claude-code.md</em></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/openclaw-agent-collaboration/" id="article-nav-newer" class="article-nav-link-wrap"
+            onclick="onclickRoute(event, '/wiki/openclaw-agent-collaboration/')">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    OpenClaw Agent 协作全景解析
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/openclaw-multi-agent-channel/" id="article-nav-older" class="article-nav-link-wrap"
+                onclick="onclickRoute(event, '/wiki/openclaw-multi-agent-channel/')">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">OpenClaw 多 Agent 持久化交互与 Channel-Agent 协作机制深度解读</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

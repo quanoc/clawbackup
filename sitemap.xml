@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/14/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/auto-backup/</loc>
+    <loc>https://claw.waisec.cn/wiki/f3763a72/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/28/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/everything-claude-code/</loc>
+    <loc>https://claw.waisec.cn/wiki/8082/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/14/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/openclaw-setup/</loc>
+    <loc>https://claw.waisec.cn/wiki/23793/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/28/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/ai-coding-test-review-survey/</loc>
+    <loc>https://claw.waisec.cn/wiki/23794/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/28/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-subagent-mode-analysis/</loc>
+    <loc>https://claw.waisec.cn/wiki/wiki-index/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/28/%E5%85%B6%E4%BB%96%E6%8C%87%E5%8D%97/openclaw-agent-team-issues/</loc>
+    <loc>https://claw.waisec.cn/wiki/cline-architecture/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/28/%E5%85%B6%E4%BB%96%E6%8C%87%E5%8D%97/openclaw-core-issues-summary/</loc>
+    <loc>https://claw.waisec.cn/wiki/auto-backup-guide/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/14/%E5%85%B6%E4%BB%96%E6%8C%87%E5%8D%97/wiki-index/</loc>
+    <loc>https://claw.waisec.cn/wiki/34742/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -74,7 +74,25 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/14/%E5%85%B6%E4%BB%96%E6%8C%87%E5%8D%97/%E6%AC%A2%E8%BF%8E%E4%BD%BF%E7%94%A8-Quinoa-%E4%B8%BB%E9%A2%98/</loc>
+    <loc>https://claw.waisec.cn/wiki/12059/</loc>
+    
+    <lastmod>2026-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/wiki/openclaw-setup/</loc>
+    
+    <lastmod>2026-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/wiki/42854/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -92,15 +110,6 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/categories/index.html</loc>
-    
-    <lastmod>2026-04-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://claw.waisec.cn/tags/index.html</loc>
     
     <lastmod>2026-04-04</lastmod>
@@ -110,7 +119,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/11/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-11/</loc>
+    <loc>https://claw.waisec.cn/categories/index.html</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -119,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/12/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-12/</loc>
+    <loc>https://claw.waisec.cn/wiki/auto/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -128,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/13/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-13/</loc>
+    <loc>https://claw.waisec.cn/wiki/auto/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -137,7 +146,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/04/04/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-15/</loc>
+    <loc>https://claw.waisec.cn/wiki/auto/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -146,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/04/04/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-23/</loc>
+    <loc>https://claw.waisec.cn/wiki/ai-daily--03-15/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -155,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/28/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-28-v2/</loc>
+    <loc>https://claw.waisec.cn/wiki/ai-daily--03-23/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -164,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/28/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-28/</loc>
+    <loc>https://claw.waisec.cn/wiki/ai-daily-2026-03-28-v2/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -173,7 +182,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo/</loc>
+    <loc>https://claw.waisec.cn/wiki/ai-daily-2026-03-28/</loc>
     
     <lastmod>2026-04-04</lastmod>
     
@@ -182,16 +191,25 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/13/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/cline-architecture/</loc>
+    <loc>https://claw.waisec.cn/wiki/openclaw-agent-collaboration/</loc>
     
-    <lastmod>2026-04-04</lastmod>
+    <lastmod>2026-03-28</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-ai-sdk-positioning/</loc>
+    <loc>https://claw.waisec.cn/wiki/openclaw-multi-agent-channel/</loc>
+    
+    <lastmod>2026-03-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/wiki/openclaw-ai-sdk-positioning/</loc>
     
     <lastmod>2026-03-27</lastmod>
     
@@ -200,7 +218,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-architecture/</loc>
+    <loc>https://claw.waisec.cn/wiki/openclaw-architecture/</loc>
     
     <lastmod>2026-03-27</lastmod>
     
@@ -209,7 +227,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/27/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai-agent-concepts-2026/</loc>
+    <loc>https://claw.waisec.cn/wiki/ai-agent-concepts/</loc>
     
     <lastmod>2026-03-26</lastmod>
     
@@ -218,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai-agent-memory-/</loc>
+    <loc>https://claw.waisec.cn/wiki/ai-agent-memory-/</loc>
     
     <lastmod>2026-03-26</lastmod>
     
@@ -227,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/26/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-/</loc>
+    <loc>https://claw.waisec.cn/wiki/openclaw-/</loc>
     
     <lastmod>2026-03-26</lastmod>
     
@@ -236,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/26/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-ai-agent-/</loc>
+    <loc>https://claw.waisec.cn/wiki/openclaw-ai-agent-/</loc>
     
     <lastmod>2026-03-26</lastmod>
     
@@ -245,7 +263,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai/</loc>
+    <loc>https://claw.waisec.cn/wiki/ai/</loc>
     
     <lastmod>2026-03-26</lastmod>
     
@@ -254,7 +272,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/26/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-26/</loc>
+    <loc>https://claw.waisec.cn/wiki/23346/</loc>
     
     <lastmod>2026-03-26</lastmod>
     
@@ -263,7 +281,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/26/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/aws-agentic-ai-patterns/</loc>
+    <loc>https://claw.waisec.cn/wiki/aws-agentic-ai-patterns/</loc>
     
     <lastmod>2026-03-26</lastmod>
     
@@ -272,7 +290,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/26/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/anthropic-/</loc>
+    <loc>https://claw.waisec.cn/wiki/anthropic-/</loc>
     
     <lastmod>2026-03-26</lastmod>
     
@@ -281,7 +299,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/%E6%9C%AA%E6%9D%A5%E4%BA%BA%E6%9C%BA%E5%8D%8F%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F-%E4%BB%8E%E5%88%86%E5%B7%A5%E5%88%B0%E6%84%8F%E5%9B%BE%E9%A9%B1%E5%8A%A8/</loc>
+    <loc>https://claw.waisec.cn/wiki/future-human-ai-collaboration/</loc>
     
     <lastmod>2026-03-25</lastmod>
     
@@ -290,7 +308,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/agentcritic/</loc>
+    <loc>https://claw.waisec.cn/wiki/agent-critic-mechanism/</loc>
     
     <lastmod>2026-03-25</lastmod>
     
@@ -299,7 +317,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/25/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-25/</loc>
+    <loc>https://claw.waisec.cn/wiki/23345/</loc>
     
     <lastmod>2026-03-25</lastmod>
     
@@ -308,7 +326,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/24/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/anthropic-skill-guide/</loc>
+    <loc>https://claw.waisec.cn/wiki/anthropic-skill-guide/</loc>
     
     <lastmod>2026-03-23</lastmod>
     
@@ -317,7 +335,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/23/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/mlops-automation-monitoring/</loc>
+    <loc>https://claw.waisec.cn/wiki/mlops-automation-monitoring/</loc>
     
     <lastmod>2026-03-23</lastmod>
     
@@ -326,7 +344,7 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/2026/03/21/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/tw93-agent-article/</loc>
+    <loc>https://claw.waisec.cn/wiki/tw93-agent-article/</loc>
     
     <lastmod>2026-03-23</lastmod>
     
@@ -351,6 +369,97 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/AI-Daily/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/Agent/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/LLM/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/AI%E6%97%A5%E6%8A%A5/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/LangChain/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/Multi-Agent/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/AI/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E6%97%A5%E6%8A%A5/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/Coding/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E5%B7%A5%E5%85%B7%E8%B0%83%E7%A0%94/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
   <url>
     <loc>https://claw.waisec.cn/tags/OpenClaw/</loc>
@@ -437,48 +546,6 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/tags/AI/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/Claude/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/Agent/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/%E4%BB%A3%E7%A0%81%E5%8A%A9%E6%89%8B/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://claw.waisec.cn/tags/MLOps/</loc>
     <lastmod>2026-04-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -521,77 +588,28 @@
   </url>
   
   <url>
+    <loc>https://claw.waisec.cn/tags/Claude/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E4%BB%A3%E7%A0%81%E5%8A%A9%E6%89%8B/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://claw.waisec.cn/tags/%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/AI-Daily/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/LLM/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/AI%E6%97%A5%E6%8A%A5/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/Coding/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/%E5%B7%A5%E5%85%B7%E8%B0%83%E7%A0%94/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/LangChain/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/Multi-Agent/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/%E6%97%A5%E6%8A%A5/</loc>
     <lastmod>2026-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -606,6 +624,13 @@
   
   <url>
     <loc>https://claw.waisec.cn/tags/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/Wiki/</loc>
     <lastmod>2026-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -640,27 +665,6 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/tags/Wiki/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://claw.waisec.cn/tags/%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://claw.waisec.cn/tags/%E6%9C%AA%E6%9D%A5%E5%B7%A5%E4%BD%9C/</loc>
     <lastmod>2026-04-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -683,6 +687,20 @@
   
   <url>
     <loc>https://claw.waisec.cn/tags/%E6%B7%B1%E5%BA%A6%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B/</loc>
     <lastmod>2026-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -738,6 +756,55 @@
   </url>
   
   <url>
+    <loc>https://claw.waisec.cn/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E5%A4%9A-Agent/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/ACP/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/A2A/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/Ping-Pong/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/tags/Agent-%E6%A1%86%E6%9E%B6/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://claw.waisec.cn/tags/AI-SDK/</loc>
     <lastmod>2026-04-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -752,14 +819,14 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/</loc>
+    <loc>https://claw.waisec.cn/tags/Channel/</loc>
     <lastmod>2026-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/tags/Agent-%E6%A1%86%E6%9E%B6/</loc>
+    <loc>https://claw.waisec.cn/tags/%E5%8D%8F%E4%BD%9C%E6%9C%BA%E5%88%B6/</loc>
     <lastmod>2026-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -815,13 +882,6 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/tags/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://claw.waisec.cn/tags/%E7%B4%A2%E5%BC%95/</loc>
     <lastmod>2026-04-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -866,13 +926,6 @@
   </url>
   
   <url>
-    <loc>https://claw.waisec.cn/categories/AI%E6%97%A5%E6%8A%A5/</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://claw.waisec.cn/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</loc>
     <lastmod>2026-04-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -888,6 +941,13 @@
   
   <url>
     <loc>https://claw.waisec.cn/categories/%E5%85%B6%E4%BB%96%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://claw.waisec.cn/categories/AI%E6%97%A5%E6%8A%A5/</loc>
     <lastmod>2026-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
