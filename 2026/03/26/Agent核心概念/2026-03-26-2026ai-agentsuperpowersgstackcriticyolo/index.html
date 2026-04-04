@@ -1,0 +1,703 @@
+
+
+
+    <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>2026年AI Agent新范式：Superpowers、GStack、Critic与YOLO模式深度解析 | Claw Wiki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+    <meta name="keywords" content="AI,Agent" />
+
+    <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026年AI Agent新范式：Superpowers、GStack、Critic与YOLO模式深度解析">
+<meta property="og:url" content="https://claw.waisec.cn/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo/index.html">
+<meta property="og:site_name" content="Claw Wiki">
+<meta property="og:description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-26T09:22:53.000Z">
+<meta property="article:modified_time" content="2026-04-04T15:20:50.724Z">
+<meta property="article:author" content="OpenClaw">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Agent">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Claw Wiki" type="application/atom+xml">
+</head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2026年AI Agent新范式：Superpowers、GStack、Critic与YOLO模式深度解析",
+    "url": "https://claw.waisec.cn/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo/",
+    "datePublished": "2026-03-26T09:22:53.000Z",
+    "dateModified": "2026-04-04T15:20:50.724Z",
+    "author": {
+        "@type": "Person",
+        "name": "OpenClaw"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Claw Wiki",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://claw.waisec.cn/logo.png"
+        }
+    },
+    "image": "https://claw.waisec.cn/logo.png",
+    "keywords": "AI,Agent"
+    
+}
+</script>
+
+<article id="post-Agent核心概念/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-26T09:22:53.000Z" itemprop="datePublished">2026-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="AI,Agent">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            2026年AI Agent新范式：Superpowers、GStack、Critic与YOLO模式深度解析
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="2026-年-AI-Agent-圈最火的四个概念：Superpowers、GStack、Critic-模式与-YOLO-模式"><a href="#2026-年-AI-Agent-圈最火的四个概念：Superpowers、GStack、Critic-模式与-YOLO-模式" class="headerlink" title="2026 年 AI Agent 圈最火的四个概念：Superpowers、GStack、Critic 模式与 YOLO 模式"></a>2026 年 AI Agent 圈最火的四个概念：Superpowers、GStack、Critic 模式与 YOLO 模式</h1><blockquote>
+<p>如果你最近刷到这些词却一头雾水，这篇文章帮你一次搞清楚。</p>
+</blockquote>
+<hr>
+<h2 id="前言：为什么这些概念突然火了？"><a href="#前言：为什么这些概念突然火了？" class="headerlink" title="前言：为什么这些概念突然火了？"></a>前言：为什么这些概念突然火了？</h2><p>2025 年底到 2026 年初，AI 编程助手完成了一次质的跳跃——从”帮你写代码”进化成”替你干活”。Cursor、Claude Code、Codex 这些工具相继支持真正的 <strong>Agent 模式</strong>：AI 不再只是补全代码，而是能自主分析需求、制定计划、拆解任务、执行命令、自我纠错，像一个独立运转的开发者。</p>
+<p>这一波进化带来了新的问题：<strong>怎么驯服这头野兽？</strong> 一个能自主运行的 Agent，如果没有工程纪律约束，它会写出低质量代码、跑飞需求、甚至删掉你的文件。</p>
+<p>于是，社区里出现了一批”驯化方法论”——<strong>Superpowers</strong>、<strong>GStack</strong> 是工程化的约束框架，<strong>Critic 模式</strong>是自我纠错机制，<strong>YOLO 模式</strong>是放开限制的全自动选项。它们代表着 Agent 应用的两个极端方向：一个更结构化，一个更自由。</p>
+<hr>
+<h2 id="一、Superpowers：给-Agent-装上”职业素养”"><a href="#一、Superpowers：给-Agent-装上”职业素养”" class="headerlink" title="一、Superpowers：给 Agent 装上”职业素养”"></a>一、Superpowers：给 Agent 装上”职业素养”</h2><h3 id="它是什么？"><a href="#它是什么？" class="headerlink" title="它是什么？"></a>它是什么？</h3><p><strong>Superpowers</strong> 是 Jesse Vincent（Prime Radiant 团队）开发的开源框架，GitHub 已突破 8 万 star。核心理念是：</p>
+<blockquote>
+<p>不是让 AI 直接写代码，而是先让它像高级工程师一样思考——理解需求、制定计划、拆分任务，再逐步执行。</p>
+</blockquote>
+<p>本质上，它是一套<strong>可组合的”技能”（Skills）集合</strong>，每个技能对应软件开发工作流中的一个环节，被注入到 Claude Code 或 Codex 的上下文中，强制 AI 在特定步骤按规范行事。</p>
+<h3 id="核心技能列表"><a href="#核心技能列表" class="headerlink" title="核心技能列表"></a>核心技能列表</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>技能名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>brainstorming</code></td>
+<td>苏格拉底式需求澄清，输出分块设计文档</td>
+</tr>
+<tr>
+<td><code>writing-plans</code></td>
+<td>将任务拆成 2–5 分钟的细粒度步骤</td>
+</tr>
+<tr>
+<td><code>executing-plans</code></td>
+<td>分批执行，设置人工检查点</td>
+</tr>
+<tr>
+<td><code>test-driven-development</code></td>
+<td>强制红-绿-重构循环，禁止没有测试的代码</td>
+</tr>
+<tr>
+<td><code>systematic-debugging</code></td>
+<td>4 阶段根因分析（假设→验证→追踪→修复）</td>
+</tr>
+<tr>
+<td><code>subagent-driven-development</code></td>
+<td>每个任务派发给独立子 Agent，两阶段评审</td>
+</tr>
+<tr>
+<td><code>requesting-code-review</code></td>
+<td>提交前自查清单，按严重程度报告问题</td>
+</tr>
+<tr>
+<td><code>using-git-worktrees</code></td>
+<td>每个功能建立独立分支和工作区</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="核心机制：Subagent-Driven-Development"><a href="#核心机制：Subagent-Driven-Development" class="headerlink" title="核心机制：Subagent-Driven-Development"></a>核心机制：Subagent-Driven-Development</h3><p>这是整个框架最精髓的部分。当主 Agent 确认好实现计划后，每个小任务会分配给一个<strong>全新的子 Agent</strong> 来执行，然后经历强制的<strong>两阶段评审</strong>：</p>
+<p><strong>第一阶段：规范合规性评审</strong></p>
+<ul>
+<li>代码是否严格遵循了之前确认的设计计划？</li>
+<li>文件路径、技术栈、测试用例是否与约定一致？</li>
+<li>功能行为是否与预期匹配？</li>
+</ul>
+<p><strong>第二阶段：代码质量评审</strong></p>
+<ul>
+<li>是否有潜在的逻辑错误、边界情况处理不当？</li>
+<li>是否有重复代码、可读性问题？</li>
+<li>是否有安全漏洞或性能隐患？</li>
+</ul>
+<p>这种机制的价值在于<strong>责任分离</strong>：子 Agent 专注”实现”，主 Agent 专注”协调与监督”，大幅降低低级错误溜进代码库的概率。</p>
+<h3 id="它解决了什么问题？"><a href="#它解决了什么问题？" class="headerlink" title="它解决了什么问题？"></a>它解决了什么问题？</h3><p>传统 AI 编程助手的痛点是”会飞”——给一个复杂需求，AI 可能直接开始写代码，写到一半发现方向不对，又绕回来，最终产出一堆混乱的东西。Superpowers 强制 AI 在动手之前先把需求想清楚、计划写明白，把人类工程师几十年积累的软件工程方法论——TDD、DRY、YAGNI、代码审查——固化成 AI 的行为约束。</p>
+<hr>
+<h2 id="二、GStack：Y-Combinator-CEO-亲手打造的虚拟开发团队"><a href="#二、GStack：Y-Combinator-CEO-亲手打造的虚拟开发团队" class="headerlink" title="二、GStack：Y Combinator CEO 亲手打造的虚拟开发团队"></a>二、GStack：Y Combinator CEO 亲手打造的虚拟开发团队</h2><h3 id="它是什么？-1"><a href="#它是什么？-1" class="headerlink" title="它是什么？"></a>它是什么？</h3><p><strong>GStack</strong>（G 来自创始人 Garry Tan 的名字首字母）是 Y Combinator 现任 CEO <strong>Garry Tan</strong> 开发并开源的 Claude Code 技能包，官网地址 gstacks.org，当前版本 v0.4.1，MIT 协议。</p>
+<p>它的核心理念比 Superpowers 更直接：</p>
+<blockquote>
+<p><strong>把单个 AI 助手变成一支虚拟软件开发团队</strong>，不同阶段调用不同”认知模式”，让 AI 扮演专家角色而非通用助手。</p>
+</blockquote>
+<h3 id="九大角色技能"><a href="#九大角色技能" class="headerlink" title="九大角色技能"></a>九大角色技能</h3><p>GStack 提供 9 个通过斜杠命令调用的专家角色：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>角色</th>
+<th>核心问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/plan-ceo-review</code></td>
+<td>创始人 / CEO</td>
+<td>“这是用户真正需要的吗？”</td>
+</tr>
+<tr>
+<td><code>/plan-eng-review</code></td>
+<td>工程经理</td>
+<td>“技术架构、数据流和边缘情况是否想清楚了？”</td>
+</tr>
+<tr>
+<td><code>/review</code></td>
+<td>偏执的高级工程师</td>
+<td>“哪里会在生产环境炸掉？”</td>
+</tr>
+<tr>
+<td><code>/ship</code></td>
+<td>发布工程师</td>
+<td>自动同步分支、运行测试、创建 PR</td>
+</tr>
+<tr>
+<td><code>/browse</code></td>
+<td>QA 工程师</td>
+<td>启动无头浏览器，点击、截图、检查控制台</td>
+</tr>
+<tr>
+<td><code>/qa</code></td>
+<td>QA 主管 + 修复工程师</td>
+<td>系统化测试 + 自动修复 + 健康评分</td>
+</tr>
+<tr>
+<td><code>/qa-only</code></td>
+<td>QA 报告员</td>
+<td>只出 Bug 报告，不修改代码</td>
+</tr>
+<tr>
+<td><code>/setup-browser-cookies</code></td>
+<td>会话管理器</td>
+<td>从本地浏览器导入 Cookie，测试登录态页面</td>
+</tr>
+<tr>
+<td><code>/retro</code></td>
+<td>工程经理</td>
+<td>分析提交历史，出复盘报告</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="它和-Superpowers-有什么区别？"><a href="#它和-Superpowers-有什么区别？" class="headerlink" title="它和 Superpowers 有什么区别？"></a>它和 Superpowers 有什么区别？</h3><p>两者有相似的设计思想（通过技能/角色让 AI 更专业），但侧重不同：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Superpowers</th>
+<th>GStack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核心诉求</strong></td>
+<td>工程纪律：TDD、代码审查、子 Agent</td>
+<td>角色分工：不同阶段切换不同专家视角</td>
+</tr>
+<tr>
+<td><strong>适用阶段</strong></td>
+<td>贯穿整个开发流程</td>
+<td>从产品规划到发布的完整生命周期</td>
+</tr>
+<tr>
+<td><strong>独特能力</strong></td>
+<td>子 Agent 并行执行</td>
+<td>内置浏览器视觉 QA（真正有”眼睛”）</td>
+</tr>
+<tr>
+<td><strong>创始人背景</strong></td>
+<td>工程师社区</td>
+<td>YC CEO，偏产品视角</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>GStack 最亮眼的功能是 <code>/browse</code> 和 <code>/qa</code>——它们让 AI 不只是看代码，而是真的能”打开浏览器”、登录应用、点击页面、截图验证，弥补了纯代码审查看不到前端视觉效果的盲区。</p>
+<hr>
+<h2 id="三、Critic-模式：给-Agent-装上”自检系统”"><a href="#三、Critic-模式：给-Agent-装上”自检系统”" class="headerlink" title="三、Critic 模式：给 Agent 装上”自检系统”"></a>三、Critic 模式：给 Agent 装上”自检系统”</h2><h3 id="它是什么？-2"><a href="#它是什么？-2" class="headerlink" title="它是什么？"></a>它是什么？</h3><p><strong>Critic 模式</strong>（又称 Reflection / 反思模式）是 AI Agent 设计中的一种经典架构模式，核心思想是：</p>
+<blockquote>
+<p>AI 不应该一次性输出结果就结束，而应该对自己的输出进行批判性评估，发现问题后修正，再评估，形成闭环。</p>
+</blockquote>
+<p>这来源于人类工程师的日常工作方式——写完代码后 review 一遍，发现问题再改，而不是写完就提交。</p>
+<h3 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h3><p>Critic 模式通常由两个角色构成一个循环：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用户任务</span><br><span class="line">    ↓</span><br><span class="line">【生产者 Agent】生成初始结果（代码/文档/计划）</span><br><span class="line">    ↓</span><br><span class="line">【评审者 Agent（Critic）】批判性评估</span><br><span class="line">    ├── 发现问题 → 生成修改建议 → 返回生产者重做</span><br><span class="line">    └── 通过评审 → 输出最终结果</span><br></pre></td></tr></table></figure>
+<p><strong>生产者 Agent 的设计原则：</strong></p>
+<ul>
+<li>专注”完成”，高效产出</li>
+<li>使用较低 temperature（如 0.1），保持稳定输出</li>
+<li>按评审反馈修改，不争辩</li>
+</ul>
+<p><strong>评审者 Agent（Critic）的设计原则：</strong></p>
+<ul>
+<li>专注”挑错”，预设怀疑态度</li>
+<li>提供明确的评审清单（功能完整性、性能、安全、可读性）</li>
+<li>发现无问题时输出固定终止信号（如 <code>CODE_IS_PERFECT</code>），防止无限循环</li>
+</ul>
+<h3 id="为什么需要终止机制？"><a href="#为什么需要终止机制？" class="headerlink" title="为什么需要终止机制？"></a>为什么需要终止机制？</h3><p>一个没有终止条件的 Critic 循环会变成无限循环——评审者总能找到可以改进的地方。实践中通常设置：</p>
+<ul>
+<li><strong>最大迭代次数</strong>（如 3 轮）</li>
+<li><strong>质量阈值</strong>（评审分数达到 90 分即停止）</li>
+<li><strong>终止关键词</strong>（生产者检测到 <code>CODE_IS_PERFECT</code> 即输出结果）</li>
+</ul>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>收益</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码生成</td>
+<td>发现逻辑错误、安全漏洞、未覆盖的边界情况</td>
+</tr>
+<tr>
+<td>长文档写作</td>
+<td>校对事实、逻辑连贯性、表达优化</td>
+</tr>
+<tr>
+<td>复杂推理</td>
+<td>验证推导链条，避免幻觉式结论</td>
+</tr>
+<tr>
+<td>计划制定</td>
+<td>找到遗漏的风险和依赖关系</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="与-Superpowers-GStack-的关系"><a href="#与-Superpowers-GStack-的关系" class="headerlink" title="与 Superpowers / GStack 的关系"></a>与 Superpowers / GStack 的关系</h3><p>Superpowers 里的 <code>subagent-driven-development</code> 两阶段评审、GStack 里的 <code>/review</code> 角色，本质上都是 Critic 模式的工程化落地。区别在于 Critic 模式是通用设计理念，而后两者是在具体 Claude Code / Agent 工作流中的实现。</p>
+<hr>
+<h2 id="四、YOLO-模式：把-Agent-的缰绳彻底松开"><a href="#四、YOLO-模式：把-Agent-的缰绳彻底松开" class="headerlink" title="四、YOLO 模式：把 Agent 的缰绳彻底松开"></a>四、YOLO 模式：把 Agent 的缰绳彻底松开</h2><h3 id="它是什么？-3"><a href="#它是什么？-3" class="headerlink" title="它是什么？"></a>它是什么？</h3><p><strong>YOLO 模式</strong>（YOLO = You Only Live Once，即”活在当下”）是 Cursor IDE 中 Agent 模式的一项增强功能，正式名称为 <strong>Auto-Run</strong>。</p>
+<p>它的逻辑非常简单：</p>
+<blockquote>
+<p>普通 Agent 模式每次要执行终端命令都要等你点”确认”。YOLO 模式把这个确认步骤去掉——Agent 自己决定要跑什么命令，自己执行，你只管最终结果。</p>
+</blockquote>
+<p>开启 YOLO 后，当你给 Agent 一个任务，它会一气呵成地完成：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">接收任务 → 安装依赖 → 创建文件 → 启动服务 → 检测错误 → 自动修复 → 运行测试</span><br></pre></td></tr></table></figure><br>全程无需人工介入，效率提升 5–10 倍（对简单任务尤其明显）。</p>
+<h3 id="如何开启"><a href="#如何开启" class="headerlink" title="如何开启"></a>如何开启</h3><ol>
+<li><code>Cmd+Shift+J</code> 打开 Cursor 设置</li>
+<li><code>Features &gt; Agent &gt; Enable YOLO Mode</code></li>
+<li>（新版可能显示为 <code>Auto-Run</code>）</li>
+</ol>
+<h3 id="关键配置"><a href="#关键配置" class="headerlink" title="关键配置"></a>关键配置</h3><p>YOLO 模式不是”完全放开”，而是通过精确配置控制 AI 的权限边界：</p>
+<p><strong>允许列表（Command Allowlist）</strong>：明确可以自动执行的命令<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm test, npm run build, git add, git commit,</span><br><span class="line">eslint, prettier, python -m pytest, ...</span><br></pre></td></tr></table></figure></p>
+<p><strong>拒绝列表（Command Denylist）</strong>：永远不允许自动执行<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf, sudo, git push --force,</span><br><span class="line">DROP TABLE, kubectl delete, ...</span><br></pre></td></tr></table></figure></p>
+<p><strong>YOLO Prompt</strong>：用自然语言描述允许边界<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">允许所有测试、构建和开发服务器命令。</span><br><span class="line">允许 git add 和 git commit，但禁止 git push。</span><br><span class="line">禁止删除任何文件。</span><br></pre></td></tr></table></figure></p>
+<h3 id="安全风险"><a href="#安全风险" class="headerlink" title="安全风险"></a>安全风险</h3><p>YOLO 模式被安全公司 Backslash Security 专门出报告警告过。核心风险：</p>
+<ol>
+<li><strong>危险命令执行</strong>：拒绝列表不够全面时，AI 可能执行 <code>rm -rf</code> 导致文件丢失</li>
+<li><strong>级联失败</strong>：一个命令的错误结果被后续命令放大，最终造成严重问题</li>
+<li><strong>敏感信息泄露</strong>：AI 可能在终端输出中意外打印 API 密钥等环境变量</li>
+<li><strong>提示注入攻击</strong>：恶意内容被读入上下文，诱导 AI 执行有害命令</li>
+</ol>
+<p><strong>最佳实践：</strong></p>
+<ul>
+<li>生产环境或有敏感数据的项目不要开 YOLO</li>
+<li>允许列表从空开始，按需添加，而非从全开始限制</li>
+<li>始终开启文件删除保护（Delete File Protection）</li>
+<li>高频 <code>git commit</code>，出事了可以快速回退</li>
+</ul>
+<h3 id="谁适合用-YOLO-模式？"><a href="#谁适合用-YOLO-模式？" class="headerlink" title="谁适合用 YOLO 模式？"></a>谁适合用 YOLO 模式？</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>个人项目原型开发</td>
+<td>✅ 非常适合，大幅提速</td>
+</tr>
+<tr>
+<td>团队协作项目</td>
+<td>⚠️ 禁止 push，只允许本地操作</td>
+</tr>
+<tr>
+<td>有测试套件的项目</td>
+<td>✅ 配合自动测试效果极佳</td>
+</tr>
+<tr>
+<td>生产环境</td>
+<td>❌ 不建议开启</td>
+</tr>
+<tr>
+<td>含敏感数据的库</td>
+<td>❌ 不建议开启</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="五、这四个概念的关系图谱"><a href="#五、这四个概念的关系图谱" class="headerlink" title="五、这四个概念的关系图谱"></a>五、这四个概念的关系图谱</h2><p>这四个概念并不是独立的——它们共同构成了”Agent 工程化”这个议题的不同切面：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">AI Agent 能力提升</span><br><span class="line">        │</span><br><span class="line">        ├─ 【如何约束】── Superpowers（工程化流程约束）</span><br><span class="line">        │                └── 子 Agent + TDD + 代码审查</span><br><span class="line">        │</span><br><span class="line">        ├─ 【如何协同】── GStack（角色分工）</span><br><span class="line">        │                └── CEO / 工程师 / QA 等角色切换</span><br><span class="line">        │</span><br><span class="line">        ├─ 【如何自纠】── Critic 模式（自我反思）</span><br><span class="line">        │                └── 生成 → 评审 → 修正 闭环</span><br><span class="line">        │</span><br><span class="line">        └─ 【如何提速】── YOLO 模式（去掉人工确认）</span><br><span class="line">                         └── Auto-Run + 权限边界配置</span><br></pre></td></tr></table></figure>
+<p><strong>它们的使用逻辑是</strong>：</p>
+<ul>
+<li>想要 AI 产出高质量代码 → <strong>Superpowers</strong> 或 <strong>GStack</strong> 给它加上工程纪律</li>
+<li>想要 AI 自我发现并修复错误 → 在提示词或框架中嵌入 <strong>Critic 模式</strong></li>
+<li>想要 AI 自动跑完整个流程不打断 → 在安全边界内开启 <strong>YOLO 模式</strong></li>
+</ul>
+<p>实际工程中，这几个概念往往同时使用：开 YOLO 让 AI 自动跑命令，用 Critic 机制让它自我检查代码，用 Superpowers/GStack 的技能约束它的开发流程。</p>
+<hr>
+<h2 id="六、趋势判断"><a href="#六、趋势判断" class="headerlink" title="六、趋势判断"></a>六、趋势判断</h2><p>这几个概念集中爆发，背后是 AI 编程工具正在经历一次范式迁移：</p>
+<p><strong>从”辅助写代码” → “自主完成任务”</strong></p>
+<p>当 Agent 能自主运行时，随之而来的工程问题——质量保障、风险控制、流程标准化——催生了这些方法论。这和人类工程师发展史惊人相似：当代码规模增大，人们发明了 Code Review、TDD、CI/CD。现在，这些实践正在被固化成 Agent 的行为约束。</p>
+<p>可以预见，未来 12 个月内：</p>
+<ul>
+<li><strong>技能/提示词框架</strong>（Superpowers、GStack 类）会越来越标准化，甚至成为 AI IDE 的内置功能</li>
+<li><strong>Critic 模式</strong>会被集成进更多框架，成为 Agent 的默认行为而非可选项</li>
+<li><strong>YOLO 类自动运行</strong>会在安全机制成熟后逐步普及，但同时对 AI 安全的要求也会更高</li>
+</ul>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这四个概念的本质，是在回答同一个问题：<strong>当 AI 可以自主行动，我们如何保证它走在正确的轨道上？</strong></p>
+<p>Superpowers 和 GStack 说：给它装上工程师的职业素养。<br>Critic 模式说：让它学会自我反思。<br>YOLO 模式说：在安全边界内，放开它。</p>
+<p>没有哪个答案是唯一正确的——这取决于你的任务、风险偏好和信任程度。但理解这些概念，能让你在使用 AI 编程助手时更清楚自己在做什么选择，而不是稀里糊涂地”vibe coding”。</p>
+<hr>
+<p><em>参考资料：GitHub obra/superpowers · gstacks.org · cursor-ide.com · 掘金技术社区 · 51CTO</em></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-architecture/" id="article-nav-newer" class="article-nav-link-wrap"
+            onclick="onclickRoute(event, '/2026/03/27/Agent框架解读/openclaw-architecture/')">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    OpenClaw 核心运行机制与流程分析
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2026/03/26/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/aws-agentic-ai-patterns/" id="article-nav-older" class="article-nav-link-wrap"
+                onclick="onclickRoute(event, '/2026/03/26/Agent工程实践/aws-agentic-ai-patterns/')">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">AWS 事件驱动的代理 AI 模式与工作流深度解析</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

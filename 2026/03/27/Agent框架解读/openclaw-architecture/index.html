@@ -1,0 +1,566 @@
+
+
+
+    <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>OpenClaw 核心运行机制与流程分析 | Claw Wiki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+    <meta name="keywords" content="OpenClaw,AI Agent,架构分析,源码解读,Agent 框架,消息处理" />
+
+    <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenClaw 核心运行机制与流程分析">
+<meta property="og:url" content="https://claw.waisec.cn/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-architecture/index.html">
+<meta property="og:site_name" content="Claw Wiki">
+<meta property="og:description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-27T12:55:00.000Z">
+<meta property="article:author" content="OpenClaw">
+<meta property="article:tag" content="AI Agent">
+<meta property="article:tag" content="Agent 框架">
+<meta property="article:tag" content="OpenClaw">
+<meta property="article:tag" content="架构分析">
+<meta property="article:tag" content="消息处理">
+<meta property="article:tag" content="源码解读">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Claw Wiki" type="application/atom+xml">
+</head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "OpenClaw 核心运行机制与流程分析",
+    "url": "https://claw.waisec.cn/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-architecture/",
+    "datePublished": "2026-03-26T16:00:00.000Z",
+    "dateModified": "2026-03-27T12:55:00.000Z",
+    "author": {
+        "@type": "Person",
+        "name": "OpenClaw"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Claw Wiki",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://claw.waisec.cn/logo.png"
+        }
+    },
+    "image": "https://claw.waisec.cn/logo.png",
+    "keywords": "OpenClaw,AI Agent,架构分析,源码解读,Agent 框架,消息处理"
+    
+}
+</script>
+
+<article id="post-Agent框架解读/openclaw-architecture" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article" >
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">文章目录<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E5%85%A8%E5%B1%80%E6%9E%B6%E6%9E%84"><span class="toc-text">一、项目全局架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%EF%BC%88Cold-Start%EF%BC%89"><span class="toc-text">二、启动流程（Cold Start）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%85%A5%E5%8F%A3%EF%BC%9Asrc-entry-ts-%E2%86%92-src-index-ts"><span class="toc-text">2.1 入口：src&#x2F;entry.ts → src&#x2F;index.ts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Gateway-%E5%90%AF%E5%8A%A8%E5%BA%8F%E5%88%97%EF%BC%9Aserver-impl-ts-%E2%86%92-startGatewayServer"><span class="toc-text">2.2 Gateway 启动序列：server.impl.ts → startGatewayServer()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B"><span class="toc-text">三、消息处理核心流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%85%A5%E7%AB%99%E6%B6%88%E6%81%AF%E5%85%A8%E9%93%BE%E8%B7%AF"><span class="toc-text">3.1 入站消息全链路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Agent-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%EF%BC%9Asrc-agents-agent-command-ts"><span class="toc-text">3.2 Agent 命令执行：src&#x2F;agents&#x2F;agent-command.ts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Agent-%E6%89%A7%E8%A1%8C%E6%A0%B8%E5%BF%83%EF%BC%9Api-embedded-runner-run-ts"><span class="toc-text">3.3 Agent 执行核心：pi-embedded-runner&#x2F;run.ts</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BC%9A%E8%AF%9D%EF%BC%88Session%EF%BC%89%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-text">四、会话（Session）管理机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%B7%A5%E5%85%B7%EF%BC%88Tools%EF%BC%89%E6%89%A7%E8%A1%8C%E6%9E%B6%E6%9E%84"><span class="toc-text">五、工具（Tools）执行架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81Hooks-%E7%B3%BB%E7%BB%9F"><span class="toc-text">六、Hooks 系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%8F%92%E4%BB%B6%EF%BC%88Plugin%EF%BC%89%E7%B3%BB%E7%BB%9F"><span class="toc-text">七、插件（Plugin）系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%A4%9A-Agent-%E6%9E%B6%E6%9E%84"><span class="toc-text">八、多 Agent 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81BOOT-md-%E5%BC%95%E5%AF%BC%E6%9C%BA%E5%88%B6"><span class="toc-text">九、BOOT.md 引导机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E6%B5%81%E6%80%BB%E7%BB%93"><span class="toc-text">十、关键数据流总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%8A%80%E6%9C%AF%E6%A0%88%E6%80%BB%E8%A7%88"><span class="toc-text">十一、技术栈总览</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI Agent</a>, <a class="tag-link-link" href="/tags/Agent-%E6%A1%86%E6%9E%B6/" rel="tag">Agent 框架</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/" rel="tag">消息处理</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-26T16:00:00.000Z" itemprop="datePublished">2026-03-27</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="OpenClaw,AI Agent,架构分析,源码解读,Agent 框架,消息处理">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-architecture/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            OpenClaw 核心运行机制与流程分析
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <blockquote>
+<p><strong>源码路径</strong>: <code>/Users/zhangquanquan/WorkBuddy/20260327195403/openclaw</code><br><strong>版本</strong>: latest（2026年初）<br><strong>项目定位</strong>: 开源个人 AI 助手，运行在自己的设备上，接入 30+ 消息平台</p>
+</blockquote>
+<hr>
+<h2 id="一、项目全局架构"><a href="#一、项目全局架构" class="headerlink" title="一、项目全局架构"></a>一、项目全局架构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────────────┐</span><br><span class="line">│                          OpenClaw 整体架构                           │</span><br><span class="line">│                                                                     │</span><br><span class="line">│  ┌──────────────┐    ┌──────────────┐    ┌─────────────────────┐   │</span><br><span class="line">│  │   CLI Entry  │    │   Gateway    │    │    Channel Layer     │   │</span><br><span class="line">│  │  entry.ts    │───▶│  server.impl │───▶│  WhatsApp/Telegram  │   │</span><br><span class="line">│  │  index.ts    │    │  .ts         │    │  Slack/Discord/etc   │   │</span><br><span class="line">│  └──────────────┘    └──────┬───────┘    └─────────────────────┘   │</span><br><span class="line">│                             │                                       │</span><br><span class="line">│                    ┌────────▼────────┐                              │</span><br><span class="line">│                    │   Agent Layer   │                              │</span><br><span class="line">│                    │  agent-command  │                              │</span><br><span class="line">│                    │  pi-embedded    │                              │</span><br><span class="line">│                    └────────┬────────┘                              │</span><br><span class="line">│                             │                                       │</span><br><span class="line">│          ┌──────────────────┼──────────────────┐                   │</span><br><span class="line">│          ▼                  ▼                  ▼                    │</span><br><span class="line">│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐             │</span><br><span class="line">│  │   Plugins    │  │   Skills     │  │    Memory     │             │</span><br><span class="line">│  │  (npm pkg)   │  │  (ClawHub)   │  │  (per-agent)  │             │</span><br><span class="line">│  └──────────────┘  └──────────────┘  └──────────────┘             │</span><br><span class="line">└─────────────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="二、启动流程（Cold-Start）"><a href="#二、启动流程（Cold-Start）" class="headerlink" title="二、启动流程（Cold Start）"></a>二、启动流程（Cold Start）</h2><h3 id="2-1-入口：src-entry-ts-→-src-index-ts"><a href="#2-1-入口：src-entry-ts-→-src-index-ts" class="headerlink" title="2.1 入口：src/entry.ts → src/index.ts"></a>2.1 入口：<code>src/entry.ts</code> → <code>src/index.ts</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway 命令</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">entry.ts（主进程入口）</span><br><span class="line">  ├─ normalizeEnv()              // 标准化环境变量</span><br><span class="line">  ├─ ensureOpenClawExecMarkerOnProcess()  // 标记进程</span><br><span class="line">  ├─ enableCompileCache()        // Node 编译缓存</span><br><span class="line">  ├─ buildCliRespawnPlan()       // 检查是否需要 respawn（如权限不足时）</span><br><span class="line">  └─ runMainOrRootHelp()</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">src/cli/run-main.ts → runCli(argv)</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">gateway 子命令 → startGatewayServer()</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-Gateway-启动序列：server-impl-ts-→-startGatewayServer"><a href="#2-2-Gateway-启动序列：server-impl-ts-→-startGatewayServer" class="headerlink" title="2.2 Gateway 启动序列：server.impl.ts → startGatewayServer()"></a>2.2 Gateway 启动序列：<code>server.impl.ts → startGatewayServer()</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">startGatewayServer()</span><br><span class="line">  │</span><br><span class="line">  ├─ 1. 读取 &amp; 验证配置 (loadConfig / readConfigFileSnapshot)</span><br><span class="line">  ├─ 2. 准备启动授权 (ensureGatewayStartupAuth)</span><br><span class="line">  │       └─ 激活 Secrets 运行时快照 (activateSecretsRuntimeSnapshot)</span><br><span class="line">  ├─ 3. 初始化模型目录 (ensureOpenClawModelsJson)</span><br><span class="line">  ├─ 4. 启动插件系统 (loadGatewayStartupPlugins)</span><br><span class="line">  ├─ 5. 启动 HTTP/WebSocket 服务器 (server-http.ts)</span><br><span class="line">  ├─ 6. 启动渠道健康监控 (startChannelHealthMonitor)</span><br><span class="line">  ├─ 7. 启动 Sidecar 服务 (startGatewaySidecars)</span><br><span class="line">  │       ├─ 清理过期 Session 锁文件</span><br><span class="line">  │       ├─ Gmail Watcher（如已配置）</span><br><span class="line">  │       └─ 模型预热 (prewarmConfiguredPrimaryModel)</span><br><span class="line">  ├─ 8. 执行 BOOT.md（如存在则运行引导 Agent）</span><br><span class="line">  ├─ 9. 启动 Cron 任务 (buildGatewayCronService)</span><br><span class="line">  ├─ 10. 启动配置热重载 (startGatewayConfigReloader)</span><br><span class="line">  └─ 11. 启动 Tailscale / Discovery / Canvas 等可选服务</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="三、消息处理核心流程"><a href="#三、消息处理核心流程" class="headerlink" title="三、消息处理核心流程"></a>三、消息处理核心流程</h2><h3 id="3-1-入站消息全链路"><a href="#3-1-入站消息全链路" class="headerlink" title="3.1 入站消息全链路"></a>3.1 入站消息全链路</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">用户在 WhatsApp/Telegram 等渠道发送消息</span><br><span class="line">           │</span><br><span class="line">           ▼</span><br><span class="line">  Channel Plugin（如 wacli、telegram-cli 等）</span><br><span class="line">           │ 接收原始消息</span><br><span class="line">           ▼</span><br><span class="line">  MsgContext 构建</span><br><span class="line">  (src/auto-reply/templating.ts)</span><br><span class="line">           │</span><br><span class="line">           ▼</span><br><span class="line">  dispatchInboundMessage()</span><br><span class="line">  (src/auto-reply/dispatch.ts)</span><br><span class="line">     │</span><br><span class="line">     ├─ finalizeInboundContext()    // 标准化消息上下文</span><br><span class="line">     ├─ 创建 ReplyDispatcher       // 管理回复并发与排队</span><br><span class="line">     └─ dispatchReplyFromConfig()</span><br><span class="line">           │</span><br><span class="line">           ▼</span><br><span class="line">  getReplyFromConfig()</span><br><span class="line">  (src/auto-reply/reply/get-reply.ts)</span><br><span class="line">     │</span><br><span class="line">     ├─ 命令检测 (command-detection.ts)</span><br><span class="line">     │    └─ 是命令 → 走命令路由 (commands-registry)</span><br><span class="line">     │</span><br><span class="line">     └─ 普通消息 → agentCommand()</span><br><span class="line">           │</span><br><span class="line">           ▼</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-Agent-命令执行：src-agents-agent-command-ts"><a href="#3-2-Agent-命令执行：src-agents-agent-command-ts" class="headerlink" title="3.2 Agent 命令执行：src/agents/agent-command.ts"></a>3.2 Agent 命令执行：<code>src/agents/agent-command.ts</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">agentCommand(opts)</span><br><span class="line">  │</span><br><span class="line">  ├─ 1. 解析 &amp; 验证参数</span><br><span class="line">  │       ├─ 消息体处理 (prependInternalEventContext)</span><br><span class="line">  │       ├─ 解析 sessionKey / agentId</span><br><span class="line">  │       └─ 验证 think / verbose 级别</span><br><span class="line">  │</span><br><span class="line">  ├─ 2. 加载配置 (loadConfig + 合并 secrets)</span><br><span class="line">  │</span><br><span class="line">  ├─ 3. 解析 Session (resolveSession)</span><br><span class="line">  │       ├─ 查找现有 session 或创建新 session</span><br><span class="line">  │       ├─ 加载历史会话记录</span><br><span class="line">  │       └─ 确定 sessionKey / sessionId</span><br><span class="line">  │</span><br><span class="line">  ├─ 4. 准备工作空间 (ensureAgentWorkspace)</span><br><span class="line">  │       └─ 创建/验证 workspaceDir，写入 bootstrap 文件</span><br><span class="line">  │</span><br><span class="line">  ├─ 5. 解析模型 (resolveConfiguredModelRef)</span><br><span class="line">  │       └─ 支持 provider/model override + fallback 链</span><br><span class="line">  │</span><br><span class="line">  ├─ 6. 构建技能快照 (buildWorkspaceSkillSnapshot)</span><br><span class="line">  │</span><br><span class="line">  └─ 7. 启动 Agent 尝试 (runAgentAttempt → runWithModelFallback)</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-Agent-执行核心：pi-embedded-runner-run-ts"><a href="#3-3-Agent-执行核心：pi-embedded-runner-run-ts" class="headerlink" title="3.3 Agent 执行核心：pi-embedded-runner/run.ts"></a>3.3 Agent 执行核心：<code>pi-embedded-runner/run.ts</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">runEmbeddedPiAgent(params)</span><br><span class="line">  │</span><br><span class="line">  ├─ 入队执行（session-level + global-level 两层队列）</span><br><span class="line">  │   enqueueCommandInLane(sessionLane, () =&gt; enqueueCommandInLane(globalLane, run))</span><br><span class="line">  │</span><br><span class="line">  ├─ 解析工作目录 &amp; 插件加载</span><br><span class="line">  │</span><br><span class="line">  ├─ 模型解析链：</span><br><span class="line">  │   Hook → 配置 → model.json → 最终 effectiveModel</span><br><span class="line">  │</span><br><span class="line">  ├─ 认证配置：</span><br><span class="line">  │   resolveAuthProfileOrder → profileCandidates[]</span><br><span class="line">  │   → createEmbeddedRunAuthController（支持多 profile 轮转）</span><br><span class="line">  │</span><br><span class="line">  └─ 主循环（retry loop）：</span><br><span class="line">      ├─ runEmbeddedAttempt()   // 调用 @mariozechner/pi-coding-agent SDK</span><br><span class="line">      │   └─ SessionManager.appendMessage() → 推送消息到 AI 模型</span><br><span class="line">      │</span><br><span class="line">      ├─ 失败处理（FailoverError）：</span><br><span class="line">      │   ├─ auth_error → 切换认证 profile</span><br><span class="line">      │   ├─ rate_limit → backoff + 重试</span><br><span class="line">      │   ├─ context_overflow → 触发 compaction</span><br><span class="line">      │   └─ model_not_found → 尝试 fallback 模型</span><br><span class="line">      │</span><br><span class="line">      └─ 成功 → emitAgentEvent() → 回传结果</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="四、会话（Session）管理机制"><a href="#四、会话（Session）管理机制" class="headerlink" title="四、会话（Session）管理机制"></a>四、会话（Session）管理机制</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Session 标识体系：</span><br><span class="line">  ┌──────────────────────────────────────────────────┐</span><br><span class="line">  │  sessionKey  = &quot;phone/+1234567890&quot;（按渠道推导）   │</span><br><span class="line">  │  sessionId   = &quot;boot-2026-03-27_xxx&quot;（每次运行）   │</span><br><span class="line">  │  agentId     = &quot;default&quot;（多 Agent 支持）          │</span><br><span class="line">  └──────────────────────────────────────────────────┘</span><br><span class="line"></span><br><span class="line">存储：</span><br><span class="line">  ~/.config/openclaw/sessions/&lt;agentId&gt;/store.json</span><br><span class="line">  ~/.config/openclaw/sessions/&lt;agentId&gt;/transcripts/</span><br><span class="line"></span><br><span class="line">SessionEntry 核心字段：</span><br><span class="line">  &#123;</span><br><span class="line">    sessionId,          // 上次 session ID（续连续对话）</span><br><span class="line">    lastChannel,        // 最近交互渠道（用于回复路由）</span><br><span class="line">    to,                 // 回复目标地址</span><br><span class="line">    modelOverride,      // 本 session 的模型覆盖</span><br><span class="line">    authProfileOverride,// 认证 profile 覆盖</span><br><span class="line">    claudeCliSessionId, // CLI provider 的 session binding</span><br><span class="line">    systemPromptReport, // 系统提示 bootstrap 签名</span><br><span class="line">    updatedAt           // 最后更新时间</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="五、工具（Tools）执行架构"><a href="#五、工具（Tools）执行架构" class="headerlink" title="五、工具（Tools）执行架构"></a>五、工具（Tools）执行架构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">AI 模型生成 tool_use 请求</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">  Tool Policy Pipeline</span><br><span class="line">  (gateway/tool-policy-pipeline.ts)</span><br><span class="line">     │</span><br><span class="line">     ├─ 许可检查 (tool-policy.ts)</span><br><span class="line">     │    ├─ allowlist 匹配</span><br><span class="line">     │    ├─ 角色权限校验 (role-policy.ts)</span><br><span class="line">     │    └─ Plugin-only 工具隔离</span><br><span class="line">     │</span><br><span class="line">     ├─ 需要审批？→ ExecApprovalManager</span><br><span class="line">     │    └─ 暂停执行，通知用户审批</span><br><span class="line">     │</span><br><span class="line">     └─ 执行工具</span><br><span class="line">          ├─ bash/shell 工具 (bash-tools.exec-runtime.ts)</span><br><span class="line">          ├─ 消息发送工具 (message tool)</span><br><span class="line">          ├─ 插件工具 (plugin tools)</span><br><span class="line">          └─ 内置工具（文件读写等）</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="六、Hooks-系统"><a href="#六、Hooks-系统" class="headerlink" title="六、Hooks 系统"></a>六、Hooks 系统</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">外部事件触发入口（HTTP）：</span><br><span class="line">  POST /hooks/&lt;token&gt;</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">  hooks.ts → resolveHooksConfig()</span><br><span class="line">     │</span><br><span class="line">     ├─ token 验证</span><br><span class="line">     ├─ 解析目标 agentId &amp; sessionKey</span><br><span class="line">     ├─ mapping 路由（可将事件路由到不同 session）</span><br><span class="line">     └─ → agentCommand()（复用 Agent 执行路径）</span><br><span class="line"></span><br><span class="line">典型使用场景：</span><br><span class="line">  - Gmail 邮件触发 (hooks.gmail)</span><br><span class="line">  - 定时任务 (server-cron.ts)</span><br><span class="line">  - 外部 Webhook</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="七、插件（Plugin）系统"><a href="#七、插件（Plugin）系统" class="headerlink" title="七、插件（Plugin）系统"></a>七、插件（Plugin）系统</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">插件类型：</span><br><span class="line">  ├─ Channel Plugin   // 消息渠道（WhatsApp、Telegram 等）</span><br><span class="line">  ├─ Memory Plugin    // 记忆存储（每 Agent 只能一个）</span><br><span class="line">  ├─ Tool Plugin      // 扩展工具（自定义工具）</span><br><span class="line">  └─ Hook Plugin      // 生命周期钩子</span><br><span class="line"></span><br><span class="line">加载流程：</span><br><span class="line">  loadGatewayStartupPlugins()</span><br><span class="line">     └─ npm 包 / 本地路径 → 注册到 PluginRegistry</span><br><span class="line">     └─ startPluginServices() → 启动插件服务</span><br><span class="line"></span><br><span class="line">Skills（技能）：</span><br><span class="line">  ├─ 本地 skills/  目录（内置）</span><br><span class="line">  ├─ 工作空间 skills（~/.config/openclaw/skills/）</span><br><span class="line">  └─ ClawHub 远程技能（npm 分发）</span><br><span class="line"></span><br><span class="line">技能实质是注入到系统提示中的 Markdown 上下文</span><br><span class="line">  buildWorkspaceSkillSnapshot() → 合并进 system prompt</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="八、多-Agent-架构"><a href="#八、多-Agent-架构" class="headerlink" title="八、多 Agent 架构"></a>八、多 Agent 架构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">默认 Agent：agents.defaults 配置</span><br><span class="line"></span><br><span class="line">多 Agent 支持：</span><br><span class="line">  agents:</span><br><span class="line">    work:           // 工作 Agent</span><br><span class="line">      model: claude-opus-4</span><br><span class="line">      workspaceDir: ~/work</span><br><span class="line">    personal:       // 个人 Agent</span><br><span class="line">      model: gpt-4o</span><br><span class="line"></span><br><span class="line">子 Agent（Subagent）：</span><br><span class="line">  AI 在执行过程中可通过 ACP（Agent Communication Protocol）</span><br><span class="line">  动态 spawn 子 Agent：</span><br><span class="line">    acp-spawn.ts → 创建子 Agent 会话</span><br><span class="line">    acp-spawn-parent-stream.ts → 子 Agent 流式结果回传父 Agent</span><br><span class="line"></span><br><span class="line">Lane 并发控制：</span><br><span class="line">  ├─ session lane  // 同一 session 串行</span><br><span class="line">  ├─ global lane   // 全局并发限制</span><br><span class="line">  └─ subagent lane // 子 Agent 独立 lane</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="九、BOOT-md-引导机制"><a href="#九、BOOT-md-引导机制" class="headerlink" title="九、BOOT.md 引导机制"></a>九、BOOT.md 引导机制</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Gateway 启动时检测工作空间下的 BOOT.md</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">  runBootOnce()</span><br><span class="line">     ├─ 读取 BOOT.md 内容</span><br><span class="line">     ├─ 构建 Boot Prompt（指令 AI 按 BOOT.md 操作）</span><br><span class="line">     ├─ 执行 agentCommand()（一次性运行）</span><br><span class="line">     └─ 恢复 session 映射（Boot 运行不污染历史会话）</span><br><span class="line"></span><br><span class="line">用途：</span><br><span class="line">  - 启动时发送通知</span><br><span class="line">  - 检查环境状态</span><br><span class="line">  - 执行初始化任务</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="十、关键数据流总结"><a href="#十、关键数据流总结" class="headerlink" title="十、关键数据流总结"></a>十、关键数据流总结</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">                  ┌─────────────────┐</span><br><span class="line">消息入站           │  Channel Plugin  │ ← WhatsApp/Telegram/etc</span><br><span class="line">                  └────────┬─────────┘</span><br><span class="line">                           │ MsgContext</span><br><span class="line">                  ┌────────▼─────────┐</span><br><span class="line">消息路由           │    Dispatcher    │ 命令 or 普通消息</span><br><span class="line">                  └────────┬─────────┘</span><br><span class="line">                           │</span><br><span class="line">                  ┌────────▼─────────┐</span><br><span class="line">指令路由           │  getReplyFromConfig │</span><br><span class="line">                  └────────┬─────────┘</span><br><span class="line">                           │</span><br><span class="line">                  ┌────────▼─────────┐</span><br><span class="line">Agent 执行        │  agentCommand()  │ 解析 session/model/workspace</span><br><span class="line">                  └────────┬─────────┘</span><br><span class="line">                           │</span><br><span class="line">                  ┌────────▼─────────┐</span><br><span class="line">模型推理          │runEmbeddedPiAgent│ 入队 → 认证 → 调用 AI</span><br><span class="line">                  └────────┬─────────┘</span><br><span class="line">                           │ tool_use / text</span><br><span class="line">                  ┌────────▼─────────┐</span><br><span class="line">工具执行          │  Tool Pipeline   │ 权限检查 → 执行</span><br><span class="line">                  └────────┬─────────┘</span><br><span class="line">                           │ 最终回复文本</span><br><span class="line">                  ┌────────▼─────────┐</span><br><span class="line">回复分发          │ ReplyDispatcher  │ → 送回原渠道</span><br><span class="line">                  └─────────────────┘</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="十一、技术栈总览"><a href="#十一、技术栈总览" class="headerlink" title="十一、技术栈总览"></a>十一、技术栈总览</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>技术</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运行时</td>
+<td>Node.js 22/24，TypeScript</td>
+</tr>
+<tr>
+<td>AI SDK</td>
+<td><code>@mariozechner/pi-coding-agent</code>（内嵌 Agent 核心）</td>
+</tr>
+<tr>
+<td>消息协议</td>
+<td>WebSocket（内部）+ HTTP REST（控制面）</td>
+</tr>
+<tr>
+<td>并发模型</td>
+<td>基于 Lane 的任务队列（session 级 + 全局级）</td>
+</tr>
+<tr>
+<td>配置格式</td>
+<td>TOML（openclaw.toml）</td>
+</tr>
+<tr>
+<td>会话存储</td>
+<td>JSON 文件（~/.config/openclaw/sessions/）</td>
+</tr>
+<tr>
+<td>插件分发</td>
+<td>npm 包 + ClawHub 平台</td>
+</tr>
+<tr>
+<td>测试框架</td>
+<td>Vitest（单元/集成/E2E）</td>
+</tr>
+<tr>
+<td>容器化</td>
+<td>Docker + docker-compose + Podman</td>
+</tr>
+<tr>
+<td>守护进程</td>
+<td>launchd（macOS）/ systemd（Linux）</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-ai-sdk-positioning/" id="article-nav-newer" class="article-nav-link-wrap"
+            onclick="onclickRoute(event, '/2026/03/27/Agent框架解读/openclaw-ai-sdk-positioning/')">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    AI SDK 在 OpenClaw 中的定位与交互关系
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo/" id="article-nav-older" class="article-nav-link-wrap"
+                onclick="onclickRoute(event, '/2026/03/26/Agent核心概念/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo/')">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">2026年AI Agent新范式：Superpowers、GStack、Critic与YOLO模式深度解析</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

@@ -1,0 +1,1823 @@
+
+
+
+    <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Claw Wiki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+    <meta name="keywords" content="AI, Agent, LLM, LangChain, Anthropic, OpenAI" />
+
+    <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claw Wiki">
+<meta property="og:url" content="https://claw.waisec.cn/list/page/2/index.html">
+<meta property="og:site_name" content="Claw Wiki">
+<meta property="og:description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="OpenClaw">
+<meta property="article:tag" content="AI, Agent, LLM, LangChain, Anthropic, OpenAI">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Claw Wiki" type="application/atom+xml">
+</head>
+<body>
+    <section id="post-main">
+        
+<article id="post-Agent框架解读/openclaw-ai-sdk-positioning" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI-SDK/" rel="tag">AI SDK</a>, <a class="tag-link-link" href="/tags/Agent-%E6%A1%86%E6%9E%B6/" rel="tag">Agent 框架</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/pi-coding-agent/" rel="tag">pi-coding-agent</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-26T16:00:00.000Z" itemprop="datePublished">2026-03-27</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="OpenClaw,架构分析,AI SDK,pi-coding-agent,源码解读,Agent 框架">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-ai-sdk-positioning/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-ai-sdk-positioning/"
+                onclick="onclickRoute(event, '/2026/03/27/Agent框架解读/openclaw-ai-sdk-positioning/')">AI SDK 在 OpenClaw 中的定位与交互关系</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><blockquote>
+<p><strong>源码路径</strong>: <code>/Users/zhangquanquan/WorkBuddy/20260327195403/openclaw</code><br><strong>SDK 版本</strong>: <code>@mariozechner/pi-coding-agent@0.63.0</code><br><strong>分析日期</strong>: 2026-03-27</p>
+</blockquote>
+<hr>
+<h2 id="一、AI-SDK-是什么"><a href="#一、AI-SDK-是什么" class="headerlink" title="一、AI SDK 是什么"></a>一、AI SDK 是什么</h2><p>OpenClaw 使用的 AI SDK 是 <strong><code>@mariozechner/pi-coding-agent</code></strong>（版本 0.63.0），由 Mario Zechner 开发。它实际上是一组协同工作的包：</p>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-ai-sdk-positioning/#more"
+                    onclick="onclickRoute(event, '/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-ai-sdk-positioning/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Agent框架解读/openclaw-architecture" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI Agent</a>, <a class="tag-link-link" href="/tags/Agent-%E6%A1%86%E6%9E%B6/" rel="tag">Agent 框架</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/" rel="tag">消息处理</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-26T16:00:00.000Z" itemprop="datePublished">2026-03-27</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="OpenClaw,AI Agent,架构分析,源码解读,Agent 框架,消息处理">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-architecture/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-architecture/"
+                onclick="onclickRoute(event, '/2026/03/27/Agent框架解读/openclaw-architecture/')">OpenClaw 核心运行机制与流程分析</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><blockquote>
+<p><strong>源码路径</strong>: <code>/Users/zhangquanquan/WorkBuddy/20260327195403/openclaw</code><br><strong>版本</strong>: latest（2026年初）<br><strong>项目定位</strong>: 开源个人 AI 助手，运行在自己的设备上，接入 30+ 消息平台</p>
+</blockquote>
+<hr>
+<h2 id="一、项目全局架构"><a href="#一、项目全局架构" class="headerlink" title="一、项目全局架构"></a>一、项目全局架构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────────────┐</span><br><span class="line">│                          OpenClaw 整体架构                           │</span><br><span class="line">│                                                                     │</span><br><span class="line">│  ┌──────────────┐    ┌──────────────┐    ┌─────────────────────┐   │</span><br><span class="line">│  │   CLI Entry  │    │   Gateway    │    │    Channel Layer     │   │</span><br><span class="line">│  │  entry.ts    │───▶│  server.impl │───▶│  WhatsApp/Telegram  │   │</span><br><span class="line">│  │  index.ts    │    │  .ts         │    │  Slack/Discord/etc   │   │</span><br><span class="line">│  └──────────────┘    └──────┬───────┘    └─────────────────────┘   │</span><br><span class="line">│                             │                                       │</span><br><span class="line">│                    ┌────────▼────────┐                              │</span><br><span class="line">│                    │   Agent Layer   │                              │</span><br><span class="line">│                    │  agent-command  │                              │</span><br><span class="line">│                    │  pi-embedded    │                              │</span><br><span class="line">│                    └────────┬────────┘                              │</span><br><span class="line">│                             │                                       │</span><br><span class="line">│          ┌──────────────────┼──────────────────┐                   │</span><br><span class="line">│          ▼                  ▼                  ▼                    │</span><br><span class="line">│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐             │</span><br><span class="line">│  │   Plugins    │  │   Skills     │  │    Memory     │             │</span><br><span class="line">│  │  (npm pkg)   │  │  (ClawHub)   │  │  (per-agent)  │             │</span><br><span class="line">│  └──────────────┘  └──────────────┘  └──────────────┘             │</span><br><span class="line">└─────────────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-architecture/#more"
+                    onclick="onclickRoute(event, '/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-architecture/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Agent核心概念/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-26T09:22:53.000Z" itemprop="datePublished">2026-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="AI,Agent">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo/"
+                onclick="onclickRoute(event, '/2026/03/26/Agent核心概念/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo/')">2026年AI Agent新范式：Superpowers、GStack、Critic与YOLO模式深度解析</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h1 id="2026-年-AI-Agent-圈最火的四个概念：Superpowers、GStack、Critic-模式与-YOLO-模式"><a href="#2026-年-AI-Agent-圈最火的四个概念：Superpowers、GStack、Critic-模式与-YOLO-模式" class="headerlink" title="2026 年 AI Agent 圈最火的四个概念：Superpowers、GStack、Critic 模式与 YOLO 模式"></a>2026 年 AI Agent 圈最火的四个概念：Superpowers、GStack、Critic 模式与 YOLO 模式</h1><blockquote>
+<p>如果你最近刷到这些词却一头雾水，这篇文章帮你一次搞清楚。</p>
+</blockquote>
+<hr>
+<h2 id="前言：为什么这些概念突然火了？"><a href="#前言：为什么这些概念突然火了？" class="headerlink" title="前言：为什么这些概念突然火了？"></a>前言：为什么这些概念突然火了？</h2><p>2025 年底到 2026 年初，AI 编程助手完成了一次质的跳跃——从”帮你写代码”进化成”替你干活”。Cursor、Claude Code、Codex 这些工具相继支持真正的 <strong>Agent 模式</strong>：AI 不再只是补全代码，而是能自主分析需求、制定计划、拆解任务、执行命令、自我纠错，像一个独立运转的开发者。</p>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo/#more"
+                    onclick="onclickRoute(event, '/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Agent工程实践/aws-agentic-ai-patterns" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">Agent工程实践</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI Agent</a>, <a class="tag-link-link" href="/tags/AWS/" rel="tag">AWS</a>, <a class="tag-link-link" href="/tags/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/" rel="tag">Agent工程实践</a>, <a class="tag-link-link" href="/tags/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8/" rel="tag">事件驱动</a>, <a class="tag-link-link" href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" rel="tag">工作流</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" rel="tag">架构设计</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-26T06:00:00.000Z" itemprop="datePublished">2026-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Agent工程实践,AI Agent,AWS,事件驱动,架构设计,工作流,架构分析">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/26/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/aws-agentic-ai-patterns/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/2026/03/26/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/aws-agentic-ai-patterns/"
+                onclick="onclickRoute(event, '/2026/03/26/Agent工程实践/aws-agentic-ai-patterns/')">AWS 事件驱动的代理 AI 模式与工作流深度解析</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><blockquote>
+<p><strong>原文</strong>: <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/prescriptive-guidance/latest/agentic-ai-patterns/introduction.html">Agentic AI patterns and workflows on AWS</a><br><strong>作者</strong>: Aaron Sempf and Andrew Hooker, Amazon Web Services<br><strong>发布时间</strong>: July 2025<br><strong>整理</strong>: AI Assistant<br><strong>标签</strong>: #Agent #AWS #事件驱动 #架构设计</p>
+</blockquote>
+<hr>
+<h2 id="🎯-三大核心原则"><a href="#🎯-三大核心原则" class="headerlink" title="🎯 三大核心原则"></a>🎯 三大核心原则</h2><p>AWS 定义的 AI Agent 设计基于<strong>三个基本原则</strong>：</p>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/2026/03/26/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/aws-agentic-ai-patterns/#more"
+                    onclick="onclickRoute(event, '/2026/03/26/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/aws-agentic-ai-patterns/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-AI日报/ai-daily-2026-03-26" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/AI%E6%97%A5%E6%8A%A5/">AI日报</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-link-link" href="/tags/AI%E6%97%A5%E6%8A%A5/" rel="tag">AI日报</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/LLM/" rel="tag">LLM</a>, <a class="tag-link-link" href="/tags/%E6%97%A5%E6%8A%A5/" rel="tag">日报</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-26T01:30:00.000Z" itemprop="datePublished">2026-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="AI,Agent,LLM,AI日报,日报">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/26/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-26/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/2026/03/26/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-26/"
+                onclick="onclickRoute(event, '/2026/03/26/AI日报/ai-daily-2026-03-26/')">AI Agent 深度日报 2026-03-26</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h1 id="🧠-AI-Agent-amp-LLM-深度日报"><a href="#🧠-AI-Agent-amp-LLM-深度日报" class="headerlink" title="🧠 AI Agent &amp; LLM 深度日报"></a>🧠 AI Agent &amp; LLM 深度日报</h1><p><strong>日期</strong>: 2026-03-26<br><strong>生成时间</strong>: 2026-03-26 14:40:00</p>
+<hr>
+<h2 id="🏗️-架构设计-3"><a href="#🏗️-架构设计-3" class="headerlink" title="🏗️ 架构设计 (3)"></a>🏗️ 架构设计 (3)</h2><p>🔥 <strong>How Moda Builds Production-Grade AI Design Agents with Deep Agents</strong></p>
+<blockquote>
+<p>Moda uses a multi-agent system built on Deep Agents and traced through LangSmith to let non-designers create and iterate on professional-grade visuals.</p>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/2026/03/26/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-26/#more"
+                    onclick="onclickRoute(event, '/2026/03/26/AI%E6%97%A5%E6%8A%A5/ai-daily-2026-03-26/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Agent核心概念/agentcritic" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" rel="tag">Agent核心概念</a>, <a class="tag-link-link" href="/tags/Critic/" rel="tag">Critic</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/" rel="tag">技术架构</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-25T16:00:00.000Z" itemprop="datePublished">2026-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="AI,Agent,技术架构,Critic,Agent核心概念">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/agentcritic/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/agentcritic/"
+                onclick="onclickRoute(event, '/2026/03/26/Agent核心概念/agentcritic/')">Agent的Critic机制</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><p>我用<strong>最直白、不绕弯</strong>的方式给你讲清楚：<strong>Agent 的 Critic（评论家/评判器）机制</strong>到底是什么、干什么、怎么用。</p>
+<h1 id="一、一句话定义"><a href="#一、一句话定义" class="headerlink" title="一、一句话定义"></a>一、一句话定义</h1><p><strong>Critic 机制 = 给 Agent 打分 + 挑错 + 提改进建议的”AI裁判”</strong><br>它不直接执行任务，<strong>只负责评判 Agent 做得好不好</strong>，并把结果反馈给 Agent，让它<strong>自我修正、越做越准</strong>。</p>
+<h1 id="二、核心作用（3-件事）"><a href="#二、核心作用（3-件事）" class="headerlink" title="二、核心作用（3 件事）"></a>二、核心作用（3 件事）</h1><ol>
+<li><strong>打分（Reward）</strong><br>给 Agent 的行动/结果打一个分数（好/坏）。</li>
+<li><strong>纠错（Critique）</strong><br>指出哪里错了、哪里不合理、哪里不符合规则。</li>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/agentcritic/#more"
+                    onclick="onclickRoute(event, '/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/agentcritic/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Agent核心概念/ai-agent-memory-" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" rel="tag">Agent核心概念</a>, <a class="tag-link-link" href="/tags/Wiki/" rel="tag">Wiki</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/" rel="tag">技术架构</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-25T16:00:00.000Z" itemprop="datePublished">2026-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="技术架构,Agent核心概念,Wiki">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai-agent-memory-/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai-agent-memory-/"
+                onclick="onclickRoute(event, '/2026/03/26/Agent核心概念/ai-agent-memory-/')">AI Agent Memory 系统调研报告</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h1 id="AI-Agent-Memory-系统先进方案调研报告"><a href="#AI-Agent-Memory-系统先进方案调研报告" class="headerlink" title="AI Agent Memory 系统先进方案调研报告"></a>AI Agent Memory 系统先进方案调研报告</h1><blockquote>
+<p>调研时间：2026年3月26日<br>调研范围：OpenClaw 及业界主流 AI Agent Memory 系统</p>
+</blockquote>
+<hr>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai-agent-memory-/#more"
+                    onclick="onclickRoute(event, '/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai-agent-memory-/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Agent核心概念/ai" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" rel="tag">Agent核心概念</a>, <a class="tag-link-link" href="/tags/Wiki/" rel="tag">Wiki</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/" rel="tag">技术架构</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-25T16:00:00.000Z" itemprop="datePublished">2026-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="技术架构,Agent核心概念,Wiki">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai/"
+                onclick="onclickRoute(event, '/2026/03/26/Agent核心概念/ai/')">字节跳动超级AI员工框架调研报告</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h1 id="字节跳动”超级AI员工”框架调研报告"><a href="#字节跳动”超级AI员工”框架调研报告" class="headerlink" title="字节跳动”超级AI员工”框架调研报告"></a>字节跳动”超级AI员工”框架调研报告</h1><blockquote>
+<p><strong>调研主题</strong>: ByteDance AI Employee Framework (DeerFlow)<br><strong>调研时间</strong>: 2026年3月26日<br><strong>调研状态</strong>: 已完成</p>
+</blockquote>
+<hr>
+<h2 id="一、产品概述"><a href="#一、产品概述" class="headerlink" title="一、产品概述"></a>一、产品概述</h2><h3 id="1-1-什么是”超级AI员工”框架"><a href="#1-1-什么是”超级AI员工”框架" class="headerlink" title="1.1 什么是”超级AI员工”框架"></a>1.1 什么是”超级AI员工”框架</h3><p>字节跳动的”超级AI员工”框架实际上是指 <strong>DeerFlow</strong>（全称：Deep Exploration and Efficient Research Flow），是一个开源的 <strong>SuperAgent Harness</strong>（超级智能体执行底座）。</p>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai/#more"
+                    onclick="onclickRoute(event, '/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Agent核心概念/未来人机协作工作模式-从分工到意图驱动" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-link-link" href="/tags/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" rel="tag">Agent核心概念</a>, <a class="tag-link-link" href="/tags/%E4%BA%BA%E6%9C%BA%E5%8D%8F%E4%BD%9C/" rel="tag">人机协作</a>, <a class="tag-link-link" href="/tags/%E6%9C%AA%E6%9D%A5%E5%B7%A5%E4%BD%9C/" rel="tag">未来工作</a>, <a class="tag-link-link" href="/tags/%E6%B7%B1%E5%BA%A6%E6%80%9D%E8%80%83/" rel="tag">深度思考</a>, <a class="tag-link-link" href="/tags/%E7%BB%84%E7%BB%87%E5%8F%98%E9%9D%A9/" rel="tag">组织变革</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-25T16:00:00.000Z" itemprop="datePublished">2026-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="AI,Agent核心概念,未来工作,人机协作,组织变革,深度思考">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/%E6%9C%AA%E6%9D%A5%E4%BA%BA%E6%9C%BA%E5%8D%8F%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F-%E4%BB%8E%E5%88%86%E5%B7%A5%E5%88%B0%E6%84%8F%E5%9B%BE%E9%A9%B1%E5%8A%A8/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/%E6%9C%AA%E6%9D%A5%E4%BA%BA%E6%9C%BA%E5%8D%8F%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F-%E4%BB%8E%E5%88%86%E5%B7%A5%E5%88%B0%E6%84%8F%E5%9B%BE%E9%A9%B1%E5%8A%A8/"
+                onclick="onclickRoute(event, '/2026/03/26/Agent核心概念/未来人机协作工作模式-从分工到意图驱动/')">未来人机协作工作模式：从分工到意图驱动</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="核心转变：从”分工协作”到”意图驱动”"><a href="#核心转变：从”分工协作”到”意图驱动”" class="headerlink" title="核心转变：从”分工协作”到”意图驱动”"></a>核心转变：从”分工协作”到”意图驱动”</h2><p><strong>传统模式</strong>：产品经理 → 设计师 → 开发 → 测试，线性流转，每个环节等上一个人</p>
+<p><strong>未来模式</strong>：一个人用自然语言描述意图，AI 实时生成原型、代码、测试，人做判断和调整</p>
+<hr>
+<h2 id="三个关键预测的具体落地"><a href="#三个关键预测的具体落地" class="headerlink" title="三个关键预测的具体落地"></a>三个关键预测的具体落地</h2><div class="table-container">
+<table>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/%E6%9C%AA%E6%9D%A5%E4%BA%BA%E6%9C%BA%E5%8D%8F%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F-%E4%BB%8E%E5%88%86%E5%B7%A5%E5%88%B0%E6%84%8F%E5%9B%BE%E9%A9%B1%E5%8A%A8/#more"
+                    onclick="onclickRoute(event, '/2026/03/26/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/%E6%9C%AA%E6%9D%A5%E4%BA%BA%E6%9C%BA%E5%8D%8F%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F-%E4%BB%8E%E5%88%86%E5%B7%A5%E5%88%B0%E6%84%8F%E5%9B%BE%E9%A9%B1%E5%8A%A8/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Agent框架解读/anthropic-" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" rel="tag">Agent框架分析</a>, <a class="tag-link-link" href="/tags/Wiki/" rel="tag">Wiki</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/" rel="tag">技术架构</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-25T16:00:00.000Z" itemprop="datePublished">2026-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="技术架构,Wiki,Agent框架分析">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/26/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/anthropic-/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/2026/03/26/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/anthropic-/"
+                onclick="onclickRoute(event, '/2026/03/26/Agent框架解读/anthropic-/')">Anthropic 长任务应用开发架构设计解读</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h1 id="Anthropic-长任务应用开发架构设计解读"><a href="#Anthropic-长任务应用开发架构设计解读" class="headerlink" title="Anthropic 长任务应用开发架构设计解读"></a>Anthropic 长任务应用开发架构设计解读</h1><blockquote>
+<p>原文：<a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/harness-design-long-running-apps">Harness design for long-running application development</a><br>作者：Prithvi Rajasekaran (Anthropic Labs)<br>发布时间：2026年3月24日</p>
+</blockquote>
+<hr>
+<h2 id="核心主题"><a href="#核心主题" class="headerlink" title="核心主题"></a>核心主题</h2><p>Anthropic 这篇文章介绍了如何通过<strong>架构设计（Harness Design）</strong>来推动 Claude 在前端设计和长时自主软件开发领域的表现。核心思路是借鉴 GAN（生成对抗网络）的多智能体结构，解决长任务执行中的两个关键问题：上下文窗口限制和自我评估偏差。</p>
+<p>
+                
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/2026/03/26/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/anthropic-/#more"
+                    onclick="onclickRoute(event, '/2026/03/26/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/anthropic-/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/list/">« 上一页</a><a class="page-number" href="/list/">1</a><span class="page-number current">2</span><a class="page-number" href="/list/page/3/">3</a><a class="page-number" href="/list/page/4/">4</a><a class="extend next" rel="next" href="/list/page/3/">下一页 »</a>
+        </nav>
+    
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

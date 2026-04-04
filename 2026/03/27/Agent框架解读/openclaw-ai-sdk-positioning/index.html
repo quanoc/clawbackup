@@ -1,0 +1,815 @@
+
+
+
+    <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AI SDK 在 OpenClaw 中的定位与交互关系 | Claw Wiki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+    <meta name="keywords" content="OpenClaw,架构分析,AI SDK,pi-coding-agent,源码解读,Agent 框架" />
+
+    <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI SDK 在 OpenClaw 中的定位与交互关系">
+<meta property="og:url" content="https://claw.waisec.cn/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-ai-sdk-positioning/index.html">
+<meta property="og:site_name" content="Claw Wiki">
+<meta property="og:description" content="AI Agent 架构、工程实践与研究洞察">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-27T13:45:00.000Z">
+<meta property="article:author" content="OpenClaw">
+<meta property="article:tag" content="AI SDK">
+<meta property="article:tag" content="Agent 框架">
+<meta property="article:tag" content="OpenClaw">
+<meta property="article:tag" content="pi-coding-agent">
+<meta property="article:tag" content="架构分析">
+<meta property="article:tag" content="源码解读">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Claw Wiki" type="application/atom+xml">
+</head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "AI SDK 在 OpenClaw 中的定位与交互关系",
+    "url": "https://claw.waisec.cn/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-ai-sdk-positioning/",
+    "datePublished": "2026-03-26T16:00:00.000Z",
+    "dateModified": "2026-03-27T13:45:00.000Z",
+    "author": {
+        "@type": "Person",
+        "name": "OpenClaw"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Claw Wiki",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://claw.waisec.cn/logo.png"
+        }
+    },
+    "image": "https://claw.waisec.cn/logo.png",
+    "keywords": "OpenClaw,架构分析,AI SDK,pi-coding-agent,源码解读,Agent 框架"
+    
+}
+</script>
+
+<article id="post-Agent框架解读/openclaw-ai-sdk-positioning" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article" >
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">文章目录<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81AI-SDK-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">一、AI SDK 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81SDK-%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%AE%9A%E4%BD%8D"><span class="toc-text">二、SDK 在项目中的定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81SDK-%E4%B8%8E-OpenClaw-%E5%90%84%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BA%A4%E4%BA%92%E5%85%B3%E7%B3%BB"><span class="toc-text">三、SDK 与 OpenClaw 各模块的交互关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Agent-%E6%89%A7%E8%A1%8C%E5%B1%82-src-agents-pi-embedded-runner"><span class="toc-text">1. Agent 执行层 (src&#x2F;agents&#x2F;pi-embedded-runner&#x2F;)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B7%A5%E5%85%B7%E7%B3%BB%E7%BB%9F-src-agents-pi-tools-ts"><span class="toc-text">2. 工具系统 (src&#x2F;agents&#x2F;pi-tools.ts)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Session-%E7%AE%A1%E7%90%86-src-agents-pi-embedded-runner-session-manager-init-ts"><span class="toc-text">3. Session 管理 (src&#x2F;agents&#x2F;pi-embedded-runner&#x2F;session-manager-init.ts)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Channel-%E6%8F%92%E4%BB%B6%E5%B1%82-src-channels-plugins"><span class="toc-text">4. Channel 插件层 (src&#x2F;channels&#x2F;plugins&#x2F;)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%B6%88%E6%81%AF%E8%B0%83%E5%BA%A6%E5%B1%82-src-auto-reply"><span class="toc-text">5. 消息调度层 (src&#x2F;auto-reply&#x2F;)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%8B%86%E5%88%86%E6%88%90%E7%8B%AC%E7%AB%8B%E7%9A%84-SDK"><span class="toc-text">四、为什么要拆分成独立的 SDK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81OpenClaw-%E5%AF%B9-SDK-%E7%9A%84%E6%89%A9%E5%B1%95"><span class="toc-text">五、OpenClaw 对 SDK 的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">六、总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI-SDK/" rel="tag">AI SDK</a>, <a class="tag-link-link" href="/tags/Agent-%E6%A1%86%E6%9E%B6/" rel="tag">Agent 框架</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/pi-coding-agent/" rel="tag">pi-coding-agent</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-26T16:00:00.000Z" itemprop="datePublished">2026-03-27</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="OpenClaw,架构分析,AI SDK,pi-coding-agent,源码解读,Agent 框架">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-ai-sdk-positioning/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            AI SDK 在 OpenClaw 中的定位与交互关系
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <blockquote>
+<p><strong>源码路径</strong>: <code>/Users/zhangquanquan/WorkBuddy/20260327195403/openclaw</code><br><strong>SDK 版本</strong>: <code>@mariozechner/pi-coding-agent@0.63.0</code><br><strong>分析日期</strong>: 2026-03-27</p>
+</blockquote>
+<hr>
+<h2 id="一、AI-SDK-是什么"><a href="#一、AI-SDK-是什么" class="headerlink" title="一、AI SDK 是什么"></a>一、AI SDK 是什么</h2><p>OpenClaw 使用的 AI SDK 是 <strong><code>@mariozechner/pi-coding-agent</code></strong>（版本 0.63.0），由 Mario Zechner 开发。它实际上是一组协同工作的包：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@mariozechner/pi-coding-agent</code></td>
+<td>核心 Agent 运行时，提供 <code>createAgentSession</code>、<code>SessionManager</code> 等</td>
+</tr>
+<tr>
+<td><code>@mariozechner/pi-ai</code></td>
+<td>AI 模型交互层，提供 <code>streamSimple</code> 等流式调用 API</td>
+</tr>
+<tr>
+<td><code>@mariozechner/pi-agent-core</code></td>
+<td>核心类型定义，如 <code>AgentMessage</code>、<code>AgentTool</code>、<code>AgentToolResult</code></td>
+</tr>
+<tr>
+<td><code>@mariozechner/pi-tui</code></td>
+<td>终端 UI 组件（用于本地调试）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>重要说明</strong>：这不是第三方 SDK，而是由 OpenClaw 核心开发者维护的<strong>底层引擎库</strong>，与 OpenClaw 是同一生态下的分层设计。</p>
+<hr>
+<h2 id="二、SDK-在项目中的定位"><a href="#二、SDK-在项目中的定位" class="headerlink" title="二、SDK 在项目中的定位"></a>二、SDK 在项目中的定位</h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" style="background:#1a1a2e">
+  <defs>
+    <linearGradient id="openclawGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#16213e"/>
+      <stop offset="100%" style="stop-color:#0f3460"/>
+    </linearGradient>
+    <linearGradient id="sdkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e94560"/>
+      <stop offset="100%" style="stop-color:#c23a51"/>
+    </linearGradient>
+    <linearGradient id="providerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#533483"/>
+      <stop offset="100%" style="stop-color:#3d2661"/>
+    </linearGradient>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fff"/>
+    </marker>
+    <marker id="arrowheadDown" markerWidth="10" markerHeight="7" refX="5" refY="7" orient="auto">
+      <polygon points="0 0, 10 0, 5 7" fill="#fff"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">OpenClaw AI SDK 架构定位图</text>
+
+  <!-- ========== Layer 1: User & Channels ========== -->
+  <rect x="50" y="50" width="800" height="80" rx="8" fill="#2d2d44" stroke="#4a4a6a" stroke-width="2"/>
+  <text x="450" y="75" text-anchor="middle" fill="#aaa" font-size="12" font-family="system-ui, -apple-system, sans-serif">用户接入层</text>
+
+  <!-- Channel icons -->
+  <rect x="80" y="85" width="100" height="35" rx="5" fill="#25d366"/>
+  <text x="130" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">WhatsApp</text>
+
+  <rect x="200" y="85" width="100" height="35" rx="5" fill="#0088cc"/>
+  <text x="250" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Telegram</text>
+
+  <rect x="320" y="85" width="100" height="35" rx="5" fill="#4a154b"/>
+  <text x="370" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Slack</text>
+
+  <rect x="440" y="85" width="100" height="35" rx="5" fill="#5865f2"/>
+  <text x="490" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Discord</text>
+
+  <rect x="560" y="85" width="100" height="35" rx="5" fill="#0084ff"/>
+  <text x="610" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Messenger</text>
+
+  <rect x="680" y="85" width="100" height="35" rx="5" fill="#ea4335"/>
+  <text x="730" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Gmail</text>
+
+  <!-- Arrow down -->
+  <line x1="450" y1="130" x2="450" y2="150" stroke="#fff" stroke-width="2" marker-end="url(#arrowheadDown)"/>
+
+  <!-- ========== Layer 2: OpenClaw Gateway ========== -->
+  <rect x="50" y="150" width="800" height="200" rx="8" fill="url(#openclawGrad)" stroke="#4a90d9" stroke-width="3"/>
+  <text x="450" y="175" text-anchor="middle" fill="#4a90d9" font-size="14" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">OpenClaw 网关层（应用层）</text>
+
+  <!-- OpenClaw modules -->
+  <rect x="70" y="190" width="140" height="140" rx="5" fill="#1a1a2e" stroke="#4a90d9" stroke-width="1"/>
+  <text x="140" y="215" text-anchor="middle" fill="#4a90d9" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">消息调度</text>
+  <text x="140" y="240" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Dispatcher</text>
+  <text x="140" y="255" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">ReplyDispatcher</text>
+  <text x="140" y="270" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">MsgContext</text>
+  <text x="140" y="285" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Channel Plugins</text>
+  <text x="140" y="300" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">并发控制 (Lane)</text>
+
+  <rect x="230" y="190" width="140" height="140" rx="5" fill="#1a1a2e" stroke="#4a90d9" stroke-width="1"/>
+  <text x="300" y="215" text-anchor="middle" fill="#4a90d9" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Session 管理</text>
+  <text x="300" y="240" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">SessionManager</text>
+  <text x="300" y="255" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">多 Agent 隔离</text>
+  <text x="300" y="270" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">会话持久化</text>
+  <text x="300" y="285" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">历史修剪</text>
+  <text x="300" y="300" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">子 Agent (ACP)</text>
+
+  <rect x="390" y="190" width="140" height="140" rx="5" fill="#1a1a2e" stroke="#4a90d9" stroke-width="1"/>
+  <text x="460" y="215" text-anchor="middle" fill="#4a90d9" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">工具策略</text>
+  <text x="460" y="240" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Tool Policy Pipeline</text>
+  <text x="460" y="255" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">权限检查</text>
+  <text x="460" y="270" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">审批流程</text>
+  <text x="460" y="285" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">沙箱隔离</text>
+  <text x="460" y="300" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">工具白名单</text>
+
+  <rect x="550" y="190" width="140" height="140" rx="5" fill="#1a1a2e" stroke="#4a90d9" stroke-width="1"/>
+  <text x="620" y="215" text-anchor="middle" fill="#4a90d9" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">模型管理</text>
+  <text x="620" y="240" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Model Failover</text>
+  <text x="620" y="255" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Auth Profile 轮转</text>
+  <text x="620" y="270" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Rate Limit 处理</text>
+  <text x="620" y="285" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Context Overflow</text>
+  <text x="620" y="300" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Compaction</text>
+
+  <rect x="710" y="190" width="120" height="140" rx="5" fill="#1a1a2e" stroke="#4a90d9" stroke-width="1"/>
+  <text x="770" y="215" text-anchor="middle" fill="#4a90d9" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">扩展生态</text>
+  <text x="770" y="240" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Skills (ClawHub)</text>
+  <text x="770" y="255" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Plugins (npm)</text>
+  <text x="770" y="270" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Hooks</text>
+  <text x="770" y="285" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">BOOT.md</text>
+  <text x="770" y="300" text-anchor="middle" fill="#aaa" font-size="9" font-family="system-ui, -apple-system, sans-serif">Cron 任务</text>
+
+  <!-- Arrow down -->
+  <line x1="450" y1="350" x2="450" y2="370" stroke="#fff" stroke-width="2" marker-end="url(#arrowheadDown)"/>
+
+  <!-- ========== Layer 3: AI SDK Core ========== -->
+  <rect x="150" y="370" width="600" height="150" rx="8" fill="url(#sdkGrad)" stroke="#ff6b6b" stroke-width="3"/>
+  <text x="450" y="395" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">AI SDK 层 (@mariozechner/pi-coding-agent)</text>
+  <text x="450" y="412" text-anchor="middle" fill="#ffcccc" font-size="10" font-family="system-ui, -apple-system, sans-serif">OpenClaw 的 AI 引擎内核</text>
+
+  <!-- SDK modules -->
+  <rect x="170" y="425" width="120" height="80" rx="5" fill="#8b2635" stroke="#fff" stroke-width="1"/>
+  <text x="230" y="448" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">pi-coding-agent</text>
+  <text x="230" y="468" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">createAgentSession</text>
+  <text x="230" y="482" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">SessionManager</text>
+  <text x="230" y="496" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">工具循环</text>
+
+  <rect x="310" y="425" width="120" height="80" rx="5" fill="#8b2635" stroke="#fff" stroke-width="1"/>
+  <text x="370" y="448" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">pi-ai</text>
+  <text x="370" y="468" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">streamSimple</text>
+  <text x="370" y="482" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">模型调用抽象</text>
+  <text x="370" y="496" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">流式响应</text>
+
+  <rect x="450" y="425" width="120" height="80" rx="5" fill="#8b2635" stroke="#fff" stroke-width="1"/>
+  <text x="510" y="448" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">pi-agent-core</text>
+  <text x="510" y="468" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">AgentMessage</text>
+  <text x="510" y="482" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">AgentTool</text>
+  <text x="510" y="496" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">AgentToolResult</text>
+
+  <rect x="590" y="425" width="140" height="80" rx="5" fill="#8b2635" stroke="#fff" stroke-width="1"/>
+  <text x="660" y="448" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">SDK 核心职责</text>
+  <text x="660" y="468" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">LLM 通信抽象</text>
+  <text x="660" y="482" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">Tool Use Loop</text>
+  <text x="660" y="496" text-anchor="middle" fill="#ffcccc" font-size="8" font-family="system-ui, -apple-system, sans-serif">上下文管理</text>
+
+  <!-- Arrow down -->
+  <line x1="450" y1="520" x2="450" y2="540" stroke="#fff" stroke-width="2" marker-end="url(#arrowheadDown)"/>
+
+  <!-- ========== Layer 4: Model Providers ========== -->
+  <rect x="50" y="540" width="800" height="140" rx="8" fill="url(#providerGrad)" stroke="#9b59b6" stroke-width="3"/>
+  <text x="450" y="565" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">模型 Provider 层</text>
+
+  <!-- Providers -->
+  <rect x="80" y="580" width="130" height="85" rx="5" fill="#3d2661" stroke="#9b59b6" stroke-width="1"/>
+  <text x="145" y="605" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Anthropic</text>
+  <text x="145" y="625" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">Claude 3/4</text>
+  <text x="145" y="642" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">Claude Code</text>
+  <text x="145" y="657" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">Vertex AI</text>
+
+  <rect x="230" y="580" width="130" height="85" rx="5" fill="#3d2661" stroke="#9b59b6" stroke-width="1"/>
+  <text x="295" y="605" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">OpenAI</text>
+  <text x="295" y="625" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">GPT-4o</text>
+  <text x="295" y="642" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">Codex</text>
+  <text x="295" y="657" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">o1/o3</text>
+
+  <rect x="380" y="580" width="130" height="85" rx="5" fill="#3d2661" stroke="#9b59b6" stroke-width="1"/>
+  <text x="445" y="605" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Google</text>
+  <text x="445" y="625" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">Gemini 2.0</text>
+  <text x="445" y="642" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">Gemini 1.5</text>
+  <text x="445" y="657" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">Vertex AI</text>
+
+  <rect x="530" y="580" width="130" height="85" rx="5" fill="#3d2661" stroke="#9b59b6" stroke-width="1"/>
+  <text x="595" y="605" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">OpenRouter</text>
+  <text x="595" y="625" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">统一 API</text>
+  <text x="595" y="642" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">多模型路由</text>
+  <text x="595" y="657" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">...</text>
+
+  <rect x="680" y="580" width="150" height="85" rx="5" fill="#3d2661" stroke="#9b59b6" stroke-width="1"/>
+  <text x="755" y="605" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">其他兼容服务</text>
+  <text x="755" y="625" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">Ollama (本地)</text>
+  <text x="755" y="642" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">vLLM / TGI</text>
+  <text x="755" y="657" text-anchor="middle" fill="#d4a5d4" font-size="9" font-family="system-ui, -apple-system, sans-serif">自托管模型</text>
+
+  <!-- Side annotations -->
+  <rect x="860" y="150" width="30" height="200" rx="3" fill="#4a90d9" opacity="0.3"/>
+  <text x="875" y="250" text-anchor="middle" fill="#4a90d9" font-size="10" font-weight="bold" font-family="system-ui, -apple-system, sans-serif" transform="rotate(90, 875, 250)">OpenClaw 封装扩展</text>
+
+  <rect x="860" y="370" width="30" height="150" rx="3" fill="#e94560" opacity="0.3"/>
+  <text x="875" y="445" text-anchor="middle" fill="#e94560" font-size="10" font-weight="bold" font-family="system-ui, -apple-system, sans-serif" transform="rotate(90, 875, 445)">AI SDK 核心引擎</text>
+
+  <!-- Legend -->
+  <rect x="50" y="655" width="800" height="35" rx="5" fill="#2d2d44"/>
+  <text x="70" y="677" fill="#aaa" font-size="10" font-family="system-ui, -apple-system, sans-serif">图例说明：</text>
+  <rect x="140" y="662" width="15" height="15" fill="#4a90d9"/>
+  <text x="160" y="677" fill="#aaa" font-size="10" font-family="system-ui, -apple-system, sans-serif">OpenClaw 自研</text>
+  <rect x="240" y="662" width="15" height="15" fill="#e94560"/>
+  <text x="260" y="677" fill="#aaa" font-size="10" font-family="system-ui, -apple-system, sans-serif">底层引擎 SDK</text>
+  <rect x="340" y="662" width="15" height="15" fill="#9b59b6"/>
+  <text x="360" y="677" fill="#aaa" font-size="10" font-family="system-ui, -apple-system, sans-serif">模型服务</text>
+  <text x="500" y="677" fill="#888" font-size="9" font-family="system-ui, -apple-system, sans-serif">箭头方向表示数据流向：用户消息 → 渠道 → OpenClaw → SDK → 模型 → 返回</text>
+</svg>
+
+<p><strong>架构分层说明</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│                    OpenClaw 项目整体                          │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  上层应用 (OpenClaw Gateway)                                  │</span><br><span class="line">│  ├── 多渠道接入 (WhatsApp/Telegram/Slack/...)                │</span><br><span class="line">│  ├── 消息调度与路由                                           │</span><br><span class="line">│  ├── Session 管理与持久化                                     │</span><br><span class="line">│  ├── 工具策略与权限控制                                       │</span><br><span class="line">│  ├── 多 Agent 编排 (ACP 协议)                                 │</span><br><span class="line">│  └── 插件/技能生态系统                                        │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  底层引擎 (pi-coding-agent SDK)                               │</span><br><span class="line">│  ├── Agent 生命周期管理                                       │</span><br><span class="line">│  ├── LLM 通信抽象层                                           │</span><br><span class="line">│  ├── Tool Use Loop 实现                                       │</span><br><span class="line">│  └── 消息历史与上下文管理                                      │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br><span class="line">              │</span><br><span class="line">              ▼</span><br><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│  外部模型服务 (Anthropic/OpenAI/Google/...)                   │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="三、SDK-与-OpenClaw-各模块的交互关系"><a href="#三、SDK-与-OpenClaw-各模块的交互关系" class="headerlink" title="三、SDK 与 OpenClaw 各模块的交互关系"></a>三、SDK 与 OpenClaw 各模块的交互关系</h2><h3 id="1-Agent-执行层-src-agents-pi-embedded-runner"><a href="#1-Agent-执行层-src-agents-pi-embedded-runner" class="headerlink" title="1. Agent 执行层 (src/agents/pi-embedded-runner/)"></a>1. Agent 执行层 (<code>src/agents/pi-embedded-runner/</code>)</h3><p>这是与 SDK 交互最紧密的模块：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// run/attempt.ts - 核心调用点</span></span><br><span class="line"><span class="keyword">import</span> &#123; createAgentSession, <span class="title class_">SessionManager</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@mariozechner/pi-coding-agent&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; streamSimple &#125; <span class="keyword">from</span> <span class="string">&quot;@mariozechner/pi-ai&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">AgentMessage</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@mariozechner/pi-agent-core&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 Agent 会话</span></span><br><span class="line"><span class="keyword">const</span> &#123; session &#125; = <span class="keyword">await</span> <span class="title function_">createAgentSession</span>(&#123;</span><br><span class="line">  <span class="attr">cwd</span>: resolvedWorkspace,</span><br><span class="line">  agentDir,</span><br><span class="line">  <span class="attr">authStorage</span>: params.<span class="property">authStorage</span>,</span><br><span class="line">  <span class="attr">thinkingLevel</span>: <span class="title function_">mapThinkingLevel</span>(params.<span class="property">thinkLevel</span>),</span><br><span class="line">  <span class="attr">tools</span>: builtInTools,           <span class="comment">// OpenClaw 提供的工具</span></span><br><span class="line">  <span class="attr">customTools</span>: allCustomTools,   <span class="comment">// 插件扩展的工具</span></span><br><span class="line">  sessionManager,               <span class="comment">// OpenClaw 封装的 SessionManager</span></span><br><span class="line">  settingsManager,</span><br><span class="line">  resourceLoader,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>交互模式</strong>：</p>
+<ul>
+<li>OpenClaw 准备 <code>tools</code>（工具定义）和 <code>sessionManager</code>（会话状态）</li>
+<li>SDK 负责与模型通信、管理工具调用循环</li>
+<li>SDK 回调 OpenClaw 提供的工具函数执行实际操作</li>
+</ul>
+<h3 id="2-工具系统-src-agents-pi-tools-ts"><a href="#2-工具系统-src-agents-pi-tools-ts" class="headerlink" title="2. 工具系统 (src/agents/pi-tools.ts)"></a>2. 工具系统 (<code>src/agents/pi-tools.ts</code>)</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; codingTools, createReadTool, readTool &#125; <span class="keyword">from</span> <span class="string">&quot;@mariozechner/pi-coding-agent&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// OpenClaw 基于 SDK 的基础工具构建自己的工具集</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">createOpenClawCodingTools</span>(<span class="params">...</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> builtInTools = [</span><br><span class="line">    ...codingTools,  <span class="comment">// SDK 提供的标准工具（bash、read、write等）</span></span><br><span class="line">    <span class="comment">// OpenClaw 扩展的工具</span></span><br><span class="line">    <span class="title function_">createOpenClawReadTool</span>(...),</span><br><span class="line">    <span class="title function_">createSandboxedReadTool</span>(...),</span><br><span class="line">    <span class="title function_">createSandboxedWriteTool</span>(...),</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>关系</strong>：SDK 提供基础工具实现，OpenClaw 在此基础上封装：</p>
+<ul>
+<li>沙箱隔离（Sandboxed tools）</li>
+<li>权限策略（Tool Policy Pipeline）</li>
+<li>渠道特定工具（Channel tools）</li>
+</ul>
+<h3 id="3-Session-管理-src-agents-pi-embedded-runner-session-manager-init-ts"><a href="#3-Session-管理-src-agents-pi-embedded-runner-session-manager-init-ts" class="headerlink" title="3. Session 管理 (src/agents/pi-embedded-runner/session-manager-init.ts)"></a>3. Session 管理 (<code>src/agents/pi-embedded-runner/session-manager-init.ts</code>)</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// OpenClaw 封装 SDK 的 SessionManager</span></span><br><span class="line">sessionManager = <span class="title function_">guardSessionManager</span>(<span class="title class_">SessionManager</span>.<span class="title function_">open</span>(params.<span class="property">sessionFile</span>), &#123;</span><br><span class="line">  <span class="attr">agentId</span>: sessionAgentId,</span><br><span class="line">  <span class="attr">sessionKey</span>: params.<span class="property">sessionKey</span>,</span><br><span class="line">  allowedToolNames,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>关系</strong>：</p>
+<ul>
+<li>SDK 的 <code>SessionManager</code> 负责消息历史的底层存储和检索</li>
+<li>OpenClaw 通过 <code>guardSessionManager</code> 包装，添加：<ul>
+<li>工具结果守卫（防止过大工具结果）</li>
+<li>会话写入锁（并发控制）</li>
+<li>工具名白名单检查</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-Channel-插件层-src-channels-plugins"><a href="#4-Channel-插件层-src-channels-plugins" class="headerlink" title="4. Channel 插件层 (src/channels/plugins/)"></a>4. Channel 插件层 (<code>src/channels/plugins/</code>)</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// types.core.ts</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">AgentTool</span>, <span class="title class_">AgentToolResult</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@mariozechner/pi-agent-core&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> <span class="title class_">ChannelAgentTool</span> = <span class="title class_">AgentTool</span>&lt;<span class="title class_">TSchema</span>, <span class="built_in">unknown</span>&gt; &amp; &#123;</span><br><span class="line">  <span class="attr">ownerOnly</span>?: <span class="built_in">boolean</span>;  <span class="comment">// OpenClaw 扩展的属性</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Channel 插件可以注册自己的 <code>AgentTool</code>，这些工具最终会通过 SDK 暴露给 AI 模型。</p>
+<h3 id="5-消息调度层-src-auto-reply"><a href="#5-消息调度层-src-auto-reply" class="headerlink" title="5. 消息调度层 (src/auto-reply/)"></a>5. 消息调度层 (<code>src/auto-reply/</code>)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">用户消息 → Channel Plugin → MsgContext → dispatchInboundMessage()</span><br><span class="line">                                              │</span><br><span class="line">                                              ▼</span><br><span class="line">                                    getReplyFromConfig()</span><br><span class="line">                                              │</span><br><span class="line">                                              ▼</span><br><span class="line">                                    agentCommand() ─────┐</span><br><span class="line">                                                        │</span><br><span class="line">                              ┌─────────────────────────┘</span><br><span class="line">                              ▼</span><br><span class="line">                    runEmbeddedPiAgent()  [OpenClaw 封装]</span><br><span class="line">                              │</span><br><span class="line">                              ▼</span><br><span class="line">                    createAgentSession()  [SDK API]</span><br><span class="line">                              │</span><br><span class="line">                              ▼</span><br><span class="line">                    SDK 内部工具循环与模型交互</span><br><span class="line">                              │</span><br><span class="line">                              ▼</span><br><span class="line">                    工具执行结果 → OpenClaw 回调</span><br><span class="line">                              │</span><br><span class="line">                              ▼</span><br><span class="line">                    ReplyDispatcher → 原渠道回复</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="四、为什么要拆分成独立的-SDK"><a href="#四、为什么要拆分成独立的-SDK" class="headerlink" title="四、为什么要拆分成独立的 SDK"></a>四、为什么要拆分成独立的 SDK</h2><ol>
+<li><p><strong>职责分离</strong></p>
+<ul>
+<li><code>pi-coding-agent</code>：专注 AI Agent 核心能力（与模型对话、工具循环）</li>
+<li><code>openclaw</code>：专注多渠道网关和用户交互</li>
+</ul>
+</li>
+<li><p><strong>复用性</strong></p>
+<ul>
+<li>SDK 可以被其他项目使用，不仅限于 OpenClaw</li>
+<li>类似 Anthropic 的 <code>claude-code</code> 也是一个独立可复用的 Agent 内核</li>
+</ul>
+</li>
+<li><p><strong>版本管理</strong></p>
+<ul>
+<li>SDK 独立发版（当前 0.63.0）</li>
+<li>OpenClaw 按需升级依赖</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="五、OpenClaw-对-SDK-的扩展"><a href="#五、OpenClaw-对-SDK-的扩展" class="headerlink" title="五、OpenClaw 对 SDK 的扩展"></a>五、OpenClaw 对 SDK 的扩展</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>SDK 能力</th>
+<th>OpenClaw 扩展</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基础工具执行</td>
+<td>工具策略管道（审批、权限、沙箱）</td>
+</tr>
+<tr>
+<td>简单 Session 存储</td>
+<td>多 Agent 隔离、会话锁、历史修剪</td>
+</tr>
+<tr>
+<td>单模型调用</td>
+<td>多模型 Failover、Auth Profile 轮转</td>
+</tr>
+<tr>
+<td>本地运行</td>
+<td>30+ 消息渠道集成、Webhook Hooks</td>
+</tr>
+<tr>
+<td>标准系统提示</td>
+<td>Skills 系统（ClawHub + 本地技能）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p><strong>AI SDK (<code>@mariozechner/pi-coding-agent</code>)</strong> 是 OpenClaw 的 <strong>底层 AI 引擎</strong>，负责：</p>
+<ol>
+<li>与各种 LLM Provider 的通信抽象</li>
+<li>工具调用循环（Tool Use Loop）的实现</li>
+<li>消息历史的存储和上下文构建</li>
+</ol>
+<p><strong>OpenClaw</strong> 在 SDK 之上构建了 <strong>完整的 AI 网关层</strong>：</p>
+<ol>
+<li><strong>多渠道接入</strong>（WhatsApp、Telegram、Slack 等）</li>
+<li><strong>企业级管控</strong>（工具策略、审批流程、权限隔离）</li>
+<li><strong>高可用设计</strong>（模型 Failover、Auth 轮转、并发控制）</li>
+<li><strong>扩展生态</strong>（Plugin 系统、Skills 系统、Hooks 系统）</li>
+</ol>
+<p>简单来说：<strong>SDK 让 AI 能”思考”和”使用工具”，OpenClaw 让 AI 能”服务多用户、多渠道、多场景”</strong>。</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>OpenClaw 源码: <a target="_blank" rel="noopener" href="https://github.com/openclaw/openclaw">https://github.com/openclaw/openclaw</a></li>
+<li>SDK 包: <code>@mariozechner/pi-coding-agent@0.63.0</code></li>
+<li>相关文章: <a href="/clawbackup/agent-frameworks/openclaw-architecture">OpenClaw 核心运行机制与流程分析</a></li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2026/03/27/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/ai-agent-concepts-2026/" id="article-nav-newer" class="article-nav-link-wrap"
+            onclick="onclickRoute(event, '/2026/03/27/Agent核心概念/ai-agent-concepts-2026/')">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    AI Agent 核心概念调研报告
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2026/03/27/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/openclaw-architecture/" id="article-nav-older" class="article-nav-link-wrap"
+                onclick="onclickRoute(event, '/2026/03/27/Agent框架解读/openclaw-architecture/')">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">OpenClaw 核心运行机制与流程分析</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>
