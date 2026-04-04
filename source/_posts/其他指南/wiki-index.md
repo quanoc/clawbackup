@@ -9,6 +9,7 @@ tags:
   - 其他指南
   - Wiki
 categories:
+  - 其他指南
 ---
 
 # 📚 OpenClaw Wiki 索引

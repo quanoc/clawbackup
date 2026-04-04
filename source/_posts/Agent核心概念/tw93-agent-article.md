@@ -14,6 +14,7 @@ tags:
   - Agent核心概念
   - 架构分析
 categories:
+  - Agent核心概念
 ---
 
 > **原文**: [你不知道的 Agent：原理、架构与工程实践](https://tw93.fun/2026-03-21/agent.html)  

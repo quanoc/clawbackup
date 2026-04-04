@@ -10,6 +10,7 @@ tags:
 abbrlink: 42854
 date: 2026-03-28 11:05:00
 categories:
+  - Agent工程实践
 ---
 
 # AI Coding 测试和 Review 方案调研报告

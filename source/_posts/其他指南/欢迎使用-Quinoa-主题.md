@@ -9,6 +9,7 @@ tags:
   - 其他指南
   - 入门指南
 categories:
+  - 其他指南
 ---
 
 # 🎉 欢迎使用 Quinoa 主题

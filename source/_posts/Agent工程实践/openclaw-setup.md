@@ -11,6 +11,7 @@ tags:
   - Agent工程实践
   - 环境配置
 categories:
+  - Agent工程实践
 ---
 
 # OpenClaw 环境配置指南

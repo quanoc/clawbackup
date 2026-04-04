@@ -10,6 +10,7 @@ tags:
   - Agent框架分析
   - 技术架构
 categories:
+  - Agent框架解读
 ---
 
 # Anthropic 长任务应用开发架构设计解读

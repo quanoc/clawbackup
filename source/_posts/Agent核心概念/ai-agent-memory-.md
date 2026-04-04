@@ -10,6 +10,7 @@ tags:
   - Agent核心概念
   - 技术架构
 categories:
+  - Agent核心概念
 ---
 
 # AI Agent Memory 系统先进方案调研报告

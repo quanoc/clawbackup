@@ -6,6 +6,7 @@ tags:
 abbrlink: 12059
 date: 2026-03-26 17:22:53
 categories:
+  - Agent核心概念
 ---
 
 # 2026 年 AI Agent 圈最火的四个概念：Superpowers、GStack、Critic 模式与 YOLO 模式

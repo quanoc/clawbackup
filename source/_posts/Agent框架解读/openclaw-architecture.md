@@ -13,6 +13,7 @@ tags:
   - 消息处理
   - Agent 框架
 categories:
+  - Agent框架解读
 ---
 
 > **源码路径**: `/Users/zhangquanquan/WorkBuddy/20260327195403/openclaw`  

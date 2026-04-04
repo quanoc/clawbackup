@@ -10,6 +10,7 @@ tags:
   - Agent框架分析
   - 技术架构
 categories:
+  - Agent框架解读
 ---
 
 # OpenClaw 上下文内容构成详解

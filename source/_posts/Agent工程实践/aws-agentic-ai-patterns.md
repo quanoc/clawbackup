@@ -13,6 +13,7 @@ tags:
   - Agent工程实践
   - 架构分析
 categories:
+  - Agent工程实践
 ---
 
 > **原文**: [Agentic AI patterns and workflows on AWS](https://docs.aws.amazon.com/prescriptive-guidance/latest/agentic-ai-patterns/introduction.html)  

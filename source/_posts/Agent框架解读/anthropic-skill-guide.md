@@ -15,6 +15,7 @@ tags:
   - 技术架构
   - AI-Agent
 categories:
+  - Agent框架解读
 ---
 
 > 原文：The Complete Guide to Building Skills for Claude

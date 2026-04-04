@@ -14,6 +14,7 @@ tags:
   - A2A
   - Ping-Pong
 categories:
+  - Agent框架解读
 ---
 
 # Agent 协作解析：spawn、send、ACP、subagent 与 Ping-Pong 的关系与限制

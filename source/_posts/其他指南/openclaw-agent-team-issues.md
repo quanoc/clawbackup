@@ -7,6 +7,7 @@ tags:
 abbrlink: 23793
 date: 2026-03-28 22:10:00
 categories:
+  - 其他指南
 ---
 
 # OpenClaw Agent 团队协作问题记录

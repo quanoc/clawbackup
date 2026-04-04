@@ -14,6 +14,7 @@ tags:
   - ACP
   - 协作机制
 categories:
+  - Agent框架解读
 ---
 
 > **源码路径**: `~/WorkBuddy/20260327195403/openclaw`  

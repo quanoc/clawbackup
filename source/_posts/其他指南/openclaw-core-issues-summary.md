@@ -9,6 +9,7 @@ tags:
   - 技术问题
 abbrlink: 23794
 categories:
+  - 其他指南
 ---
 
 # OpenClaw 核心问题汇总

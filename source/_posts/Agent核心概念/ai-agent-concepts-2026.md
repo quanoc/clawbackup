@@ -15,6 +15,7 @@ tags:
   - Agent核心概念
   - 技术调研
 categories:
+  - Agent核心概念
 ---
 
 > 调研日期：2026-03-27
