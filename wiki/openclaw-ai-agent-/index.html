@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
-    <meta name="keywords" content="Wiki,技术架构,Agent框架分析" />
+    <meta name="keywords" content="Wiki,技术架构,Agent框架分析,Agent框架解读" />
 
     <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:type" content="article">
@@ -22,6 +22,7 @@
 <meta property="article:modified_time" content="2026-03-26T14:16:16.000Z">
 <meta property="article:author" content="Novus">
 <meta property="article:tag" content="Agent框架分析">
+<meta property="article:tag" content="Agent框架解读">
 <meta property="article:tag" content="Wiki">
 <meta property="article:tag" content="技术架构">
 <meta name="twitter:card" content="summary">
@@ -94,7 +95,7 @@
         }
     },
     "image": "https://claw.waisec.cn/logo.png",
-    "keywords": "Wiki,技术架构,Agent框架分析"
+    "keywords": "Wiki,技术架构,Agent框架分析,Agent框架解读"
     
 }
 </script>
@@ -112,7 +113,7 @@
                 <strong class="toc-title" id="toc-title" style="cursor: pointer;">文章目录<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
                 <div id="toc-content" class="toc-content">
                     
-                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OpenClaw-%E6%9E%B6%E6%9E%84%E6%B7%B1%E5%BA%A6%E8%A7%A3%E8%AF%BB%EF%BC%9A%E4%B8%8B%E4%B8%80%E4%BB%A3-AI-Agent-%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AE%BE%E8%AE%A1"><span class="toc-text">OpenClaw 架构深度解读：下一代 AI Agent 平台的工程化设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88"><span class="toc-text">一、架构概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%90%84%E5%B1%82%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90"><span class="toc-text">二、各层深度解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Channels-Layer-%E2%80%94-%E6%B8%A0%E9%81%93%E6%8E%A5%E5%85%A5%E5%B1%82"><span class="toc-text">2.1 Channels Layer — 渠道接入层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Gateway-Layer-%E2%80%94-%E7%BD%91%E5%85%B3%E5%B1%82"><span class="toc-text">2.2 Gateway Layer — 网关层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Multi-Agents-Layer-%E2%80%94-%E5%A4%9A-Agent-%E5%B1%82"><span class="toc-text">2.3 Multi-Agents Layer — 多 Agent 层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Models-Skills-Sessions-Layer-%E2%80%94-%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B%E5%B1%82"><span class="toc-text">2.4 Models &#x2F; Skills &#x2F; Sessions Layer — 核心能力层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-1-Models-%E2%80%94-%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86"><span class="toc-text">2.4.1 Models — 模型管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-Skills-%E2%80%94-%E6%8A%80%E8%83%BD%E7%B3%BB%E7%BB%9F"><span class="toc-text">2.4.2 Skills — 技能系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-Sessions-%E2%80%94-%E4%BC%9A%E8%AF%9D%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">2.4.3 Sessions — 会话持久化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Nodes-Plugins-Layer-%E2%80%94-%E8%8A%82%E7%82%B9%E4%B8%8E%E6%8F%92%E4%BB%B6%E5%B1%82"><span class="toc-text">2.5 Nodes &#x2F; Plugins Layer — 节点与插件层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-Nodes-%E2%80%94-%E8%AE%A1%E7%AE%97%E8%8A%82%E7%82%B9"><span class="toc-text">2.5.1 Nodes — 计算节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-2-Plugins-%E2%80%94-%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6"><span class="toc-text">2.5.2 Plugins — 扩展插件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E4%BA%AE%E7%82%B9"><span class="toc-text">三、核心设计亮点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%95%BF%E4%BB%BB%E5%8A%A1%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-text">3.1 长任务异步执行机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%A8%A1%E5%9D%97%E5%8C%96%E6%8A%80%E8%83%BD%E7%B3%BB%E7%BB%9F"><span class="toc-text">3.2 模块化技能系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%BB%9F%E4%B8%80%E7%9A%84-MCP-%E5%8D%8F%E8%AE%AE"><span class="toc-text">3.3 统一的 MCP 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%96%87%E4%BB%B6%E7%BA%A7%E7%8A%B6%E6%80%81%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">3.4 文件级状态持久化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">四、总结</span></a></li></ol></li></ol>
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#title-OpenClaw%E6%9E%B6%E6%9E%84%E6%B7%B1%E5%BA%A6%E8%A7%A3%E8%AF%BB%EF%BC%9A%E4%B8%8B%E4%B8%80%E4%BB%A3-AI-Agent-%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AE%BE%E8%AE%A1toc-trueabbrlink-openclaw-ai-agent-date-2026-03-26-00-00-00updated-2026-03-26-20-53-30author-OpenClaw-Teamtags-Wiki-Agent%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84"><span class="toc-text">title: OpenClaw架构深度解读：下一代 AI Agent 平台的工程化设计toc: trueabbrlink: openclaw-ai-agent-date: 2026-03-26 00:00:00updated: 2026-03-26 20:53:30author: OpenClaw Teamtags:  - Wiki  - Agent框架分析  - 技术架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OpenClaw-%E6%9E%B6%E6%9E%84%E6%B7%B1%E5%BA%A6%E8%A7%A3%E8%AF%BB%EF%BC%9A%E4%B8%8B%E4%B8%80%E4%BB%A3-AI-Agent-%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E8%AE%BE%E8%AE%A1"><span class="toc-text">OpenClaw 架构深度解读：下一代 AI Agent 平台的工程化设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88"><span class="toc-text">一、架构概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%90%84%E5%B1%82%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90"><span class="toc-text">二、各层深度解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Channels-Layer-%E2%80%94-%E6%B8%A0%E9%81%93%E6%8E%A5%E5%85%A5%E5%B1%82"><span class="toc-text">2.1 Channels Layer — 渠道接入层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Gateway-Layer-%E2%80%94-%E7%BD%91%E5%85%B3%E5%B1%82"><span class="toc-text">2.2 Gateway Layer — 网关层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Multi-Agents-Layer-%E2%80%94-%E5%A4%9A-Agent-%E5%B1%82"><span class="toc-text">2.3 Multi-Agents Layer — 多 Agent 层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Models-Skills-Sessions-Layer-%E2%80%94-%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B%E5%B1%82"><span class="toc-text">2.4 Models &#x2F; Skills &#x2F; Sessions Layer — 核心能力层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-1-Models-%E2%80%94-%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86"><span class="toc-text">2.4.1 Models — 模型管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-Skills-%E2%80%94-%E6%8A%80%E8%83%BD%E7%B3%BB%E7%BB%9F"><span class="toc-text">2.4.2 Skills — 技能系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-Sessions-%E2%80%94-%E4%BC%9A%E8%AF%9D%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">2.4.3 Sessions — 会话持久化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Nodes-Plugins-Layer-%E2%80%94-%E8%8A%82%E7%82%B9%E4%B8%8E%E6%8F%92%E4%BB%B6%E5%B1%82"><span class="toc-text">2.5 Nodes &#x2F; Plugins Layer — 节点与插件层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-Nodes-%E2%80%94-%E8%AE%A1%E7%AE%97%E8%8A%82%E7%82%B9"><span class="toc-text">2.5.1 Nodes — 计算节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-2-Plugins-%E2%80%94-%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6"><span class="toc-text">2.5.2 Plugins — 扩展插件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E4%BA%AE%E7%82%B9"><span class="toc-text">三、核心设计亮点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%95%BF%E4%BB%BB%E5%8A%A1%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-text">3.1 长任务异步执行机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%A8%A1%E5%9D%97%E5%8C%96%E6%8A%80%E8%83%BD%E7%B3%BB%E7%BB%9F"><span class="toc-text">3.2 模块化技能系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%BB%9F%E4%B8%80%E7%9A%84-MCP-%E5%8D%8F%E8%AE%AE"><span class="toc-text">3.3 统一的 MCP 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%96%87%E4%BB%B6%E7%BA%A7%E7%8A%B6%E6%80%81%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">3.4 文件级状态持久化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">四、总结</span></a></li></ol></li></ol>
                     
                 </div>
             </div>
@@ -127,13 +128,13 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+        <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6%E8%AF%84%E6%B5%8B/">框架评测</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" rel="tag">Agent框架分析</a>, <a class="tag-link-link" href="/tags/Wiki/" rel="tag">Wiki</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/" rel="tag">技术架构</a>
+        <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" rel="tag">Agent框架分析</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/" rel="tag">Agent框架解读</a>, <a class="tag-link-link" href="/tags/Wiki/" rel="tag">Wiki</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/" rel="tag">技术架构</a>
     </div>
 
                         
@@ -147,7 +148,7 @@
 
 
 
-                        <meta name="keywords" content="Wiki,技术架构,Agent框架分析">
+                        <meta name="keywords" content="Wiki,技术架构,Agent框架分析,Agent框架解读">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -195,14 +196,7 @@
         
         
             <hr>
-<p>title: OpenClaw架构深度解读：下一代 AI Agent 平台的工程化设计<br>toc: true<br>abbrlink: openclaw-ai-agent-<br>date: 2026-03-26 00:00:00<br>updated: 2026-03-26 20:53:30<br>author: OpenClaw Team<br>tags:</p>
-<ul>
-<li>Wiki</li>
-<li>Agent框架分析</li>
-<li>技术架构</li>
-</ul>
-<hr>
-<h1 id="OpenClaw-架构深度解读：下一代-AI-Agent-平台的工程化设计"><a href="#OpenClaw-架构深度解读：下一代-AI-Agent-平台的工程化设计" class="headerlink" title="OpenClaw 架构深度解读：下一代 AI Agent 平台的工程化设计"></a>OpenClaw 架构深度解读：下一代 AI Agent 平台的工程化设计</h1><blockquote>
+<h2 id="title-OpenClaw架构深度解读：下一代-AI-Agent-平台的工程化设计toc-trueabbrlink-openclaw-ai-agent-date-2026-03-26-00-00-00updated-2026-03-26-20-53-30author-OpenClaw-Teamtags-Wiki-Agent框架分析-技术架构"><a href="#title-OpenClaw架构深度解读：下一代-AI-Agent-平台的工程化设计toc-trueabbrlink-openclaw-ai-agent-date-2026-03-26-00-00-00updated-2026-03-26-20-53-30author-OpenClaw-Teamtags-Wiki-Agent框架分析-技术架构" class="headerlink" title="title: OpenClaw架构深度解读：下一代 AI Agent 平台的工程化设计toc: trueabbrlink: openclaw-ai-agent-date: 2026-03-26 00:00:00updated: 2026-03-26 20:53:30author: OpenClaw Teamtags:  - Wiki  - Agent框架分析  - 技术架构"></a>title: OpenClaw架构深度解读：下一代 AI Agent 平台的工程化设计<br>toc: true<br>abbrlink: openclaw-ai-agent-<br>date: 2026-03-26 00:00:00<br>updated: 2026-03-26 20:53:30<br>author: OpenClaw Team<br>tags:<br>  - Wiki<br>  - Agent框架分析<br>  - 技术架构</h2><h1 id="OpenClaw-架构深度解读：下一代-AI-Agent-平台的工程化设计"><a href="#OpenClaw-架构深度解读：下一代-AI-Agent-平台的工程化设计" class="headerlink" title="OpenClaw 架构深度解读：下一代 AI Agent 平台的工程化设计"></a>OpenClaw 架构深度解读：下一代 AI Agent 平台的工程化设计</h1><blockquote>
 <p>本文基于 OpenClaw 2026.3.11 版本架构设计，深入剖析其分层架构、核心模块与设计思想。</p>
 </blockquote>
 <hr>
@@ -211,6 +205,7 @@
 <hr>
 <h2 id="一、架构概览"><a href="#一、架构概览" class="headerlink" title="一、架构概览"></a>一、架构概览</h2><p>OpenClaw 采用<strong>分层架构设计</strong>，自上而下分为五大核心层级：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│                     Channels Layer                          │</span><br><span class="line">│        (QQ Bot / WeChat / Telegram / Discord...)           │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│                     Gateway Layer                           │</span><br><span class="line">│              (路由、认证、协议转换)                          │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│                   Multi-Agents Layer                        │</span><br><span class="line">│         (主Agent / 子Agent / Worker Agent)                 │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│              Models / Skills / Sessions                    │</span><br><span class="line">│      (模型接入、技能管理、会话状态持久化)                     │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│                  Nodes / Plugins Layer                      │</span><br><span class="line">│           (MCP Server、工具扩展、第三方集成)                 │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
 <p><strong>核心设计原则</strong>：</p>
 <ul>
 <li><strong>关注点分离</strong>：每层只负责特定职责，层间通过标准化接口通信</li>
@@ -219,7 +214,36 @@
 </ul>
 <hr>
 <h2 id="二、各层深度解析"><a href="#二、各层深度解析" class="headerlink" title="二、各层深度解析"></a>二、各层深度解析</h2><h3 id="2-1-Channels-Layer-—-渠道接入层"><a href="#2-1-Channels-Layer-—-渠道接入层" class="headerlink" title="2.1 Channels Layer — 渠道接入层"></a>2.1 Channels Layer — 渠道接入层</h3><p><strong>职责</strong>：负责与各类即时通讯平台（IM）对接，实现消息的收发。</p>
-<p><strong>支持的渠道</strong>：<br>| 渠道 | 特性 | 适用场景 |<br>|———|———|—————|<br>| QQ Bot | 群聊/私聊、富媒体支持 | 中文社群运营 |<br>| 企业微信 | 组织架构同步、审批集成 | 企业办公 |<br>| Telegram | 全球化、Bot API成熟 | 海外用户 |<br>| Discord | 社区氛围、角色权限 | 开发者社区 |</p>
+<p><strong>支持的渠道</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th>特性</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QQ Bot</td>
+<td>群聊&#x2F;私聊、富媒体支持</td>
+<td>中文社群运营</td>
+</tr>
+<tr>
+<td>企业微信</td>
+<td>组织架构同步、审批集成</td>
+<td>企业办公</td>
+</tr>
+<tr>
+<td>Telegram</td>
+<td>全球化、Bot API成熟</td>
+<td>海外用户</td>
+</tr>
+<tr>
+<td>Discord</td>
+<td>社区氛围、角色权限</td>
+<td>开发者社区</td>
+</tr>
+</tbody></table>
 <p><strong>设计亮点</strong>：</p>
 <ul>
 <li><strong>统一消息格式</strong>：不同渠道的消息在 Gateway 层被转换为内部标准格式</li>
@@ -261,7 +285,6 @@
 <hr>
 <h3 id="2-3-Multi-Agents-Layer-—-多-Agent-层"><a href="#2-3-Multi-Agents-Layer-—-多-Agent-层" class="headerlink" title="2.3 Multi-Agents Layer — 多 Agent 层"></a>2.3 Multi-Agents Layer — 多 Agent 层</h3><p><strong>职责</strong>：执行具体任务，支持主从架构和任务分发。</p>
 <p><strong>Agent 类型</strong>：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -270,8 +293,7 @@
 <th>生命周期</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>Main Agent</strong></td>
 <td>接收用户请求、判断任务类型、调度执行</td>
 <td>长期运行</td>
@@ -286,11 +308,10 @@
 <td>处理特定领域任务（如代码生成、数据分析）</td>
 <td>可常驻或按需</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>长任务执行流程</strong>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">用户请求 → Main Agent 判断 → 长任务?</span><br><span class="line">    ↓ 是</span><br><span class="line">    → 立即返回&quot;已受理&quot;</span><br><span class="line">    → 创建任务文件 (memory/tasks/&#123;taskId&#125;.md)</span><br><span class="line">    → spawn Sub Agent (注入环境变量)</span><br><span class="line">    → Sub Agent 后台执行</span><br><span class="line">    → 定时同步进度到任务文件</span><br><span class="line">    → 完成后归档到 completed/</span><br><span class="line">    ↓ 否</span><br><span class="line">    → Main Agent 直接执行并回复</span><br></pre></td></tr></table></figure>
+
 <p><strong>设计优势</strong>：</p>
 <ul>
 <li><strong>非阻塞执行</strong>：长任务不占用 Main Agent 会话</li>
@@ -299,7 +320,7 @@
 <li><strong>可控可取消</strong>：支持用户主动取消任务</li>
 </ul>
 <hr>
-<h3 id="2-4-Models-Skills-Sessions-Layer-—-核心能力层"><a href="#2-4-Models-Skills-Sessions-Layer-—-核心能力层" class="headerlink" title="2.4 Models / Skills / Sessions Layer — 核心能力层"></a>2.4 Models / Skills / Sessions Layer — 核心能力层</h3><h4 id="2-4-1-Models-—-模型管理"><a href="#2-4-1-Models-—-模型管理" class="headerlink" title="2.4.1 Models — 模型管理"></a>2.4.1 Models — 模型管理</h4><p><strong>职责</strong>：统一管理大模型接入，支持多模型切换和 fallback。</p>
+<h3 id="2-4-Models-Skills-Sessions-Layer-—-核心能力层"><a href="#2-4-Models-Skills-Sessions-Layer-—-核心能力层" class="headerlink" title="2.4 Models &#x2F; Skills &#x2F; Sessions Layer — 核心能力层"></a>2.4 Models &#x2F; Skills &#x2F; Sessions Layer — 核心能力层</h3><h4 id="2-4-1-Models-—-模型管理"><a href="#2-4-1-Models-—-模型管理" class="headerlink" title="2.4.1 Models — 模型管理"></a>2.4.1 Models — 模型管理</h4><p><strong>职责</strong>：统一管理大模型接入，支持多模型切换和 fallback。</p>
 <p><strong>支持的模型供应商</strong>：</p>
 <ul>
 <li>OpenAI (GPT-4, GPT-3.5)</li>
@@ -315,7 +336,6 @@
 </ul>
 <h4 id="2-4-2-Skills-—-技能系统"><a href="#2-4-2-Skills-—-技能系统" class="headerlink" title="2.4.2 Skills — 技能系统"></a>2.4.2 Skills — 技能系统</h4><p><strong>职责</strong>：封装可复用的业务能力，以插件形式提供。</p>
 <p><strong>技能分类</strong>：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -324,8 +344,7 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>工具类</strong></td>
 <td>file_read, exec, web_search</td>
 <td>基础工具封装</td>
@@ -345,9 +364,7 @@
 <td>weather, agent-browser</td>
 <td>特定领域能力</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>技能管理机制</strong>：</p>
 <ul>
 <li><strong>Skill Hub</strong>：技能发现、安装、更新</li>
@@ -355,7 +372,9 @@
 <li><strong>权限控制</strong>：细粒度控制技能可用范围</li>
 </ul>
 <h4 id="2-4-3-Sessions-—-会话持久化"><a href="#2-4-3-Sessions-—-会话持久化" class="headerlink" title="2.4.3 Sessions — 会话持久化"></a>2.4.3 Sessions — 会话持久化</h4><p><strong>职责</strong>：持久化会话状态，实现跨会话记忆。</p>
-<p><strong>存储结构</strong>：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">memory/</span><br><span class="line">├── YYYY-MM-DD.md          # 每日原始日志</span><br><span class="line">├── tasks/</span><br><span class="line">│   ├── task_xxx.md        # 进行中任务</span><br><span class="line">│   └── completed/         # 已完成任务归档</span><br><span class="line">└── HEARTBEAT.md           # 心跳状态</span><br></pre></td></tr></table></figure></p>
+<p><strong>存储结构</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">memory/</span><br><span class="line">├── YYYY-MM-DD.md          # 每日原始日志</span><br><span class="line">├── tasks/</span><br><span class="line">│   ├── task_xxx.md        # 进行中任务</span><br><span class="line">│   └── completed/         # 已完成任务归档</span><br><span class="line">└── HEARTBEAT.md           # 心跳状态</span><br></pre></td></tr></table></figure>
+
 <p><strong>记忆层级</strong>：</p>
 <ul>
 <li><strong>短期记忆</strong>：当前会话上下文</li>
@@ -363,9 +382,8 @@
 <li><strong>长期记忆</strong>：历史任务文件、项目文档</li>
 </ul>
 <hr>
-<h3 id="2-5-Nodes-Plugins-Layer-—-节点与插件层"><a href="#2-5-Nodes-Plugins-Layer-—-节点与插件层" class="headerlink" title="2.5 Nodes / Plugins Layer — 节点与插件层"></a>2.5 Nodes / Plugins Layer — 节点与插件层</h3><p><strong>职责</strong>：连接外部计算资源和工具生态。</p>
+<h3 id="2-5-Nodes-Plugins-Layer-—-节点与插件层"><a href="#2-5-Nodes-Plugins-Layer-—-节点与插件层" class="headerlink" title="2.5 Nodes &#x2F; Plugins Layer — 节点与插件层"></a>2.5 Nodes &#x2F; Plugins Layer — 节点与插件层</h3><p><strong>职责</strong>：连接外部计算资源和工具生态。</p>
 <h4 id="2-5-1-Nodes-—-计算节点"><a href="#2-5-1-Nodes-—-计算节点" class="headerlink" title="2.5.1 Nodes — 计算节点"></a>2.5.1 Nodes — 计算节点</h4><p><strong>概念</strong>：Node 是实际执行工具调用的计算实体，支持多种类型：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -374,8 +392,7 @@
 <th>典型部署</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>Gateway Node</strong></td>
 <td>主节点，运行核心服务</td>
 <td>云服务器</td>
@@ -383,20 +400,18 @@
 <tr>
 <td><strong>Worker Node</strong></td>
 <td>工作节点，执行计算密集型任务</td>
-<td>本地/云端</td>
+<td>本地&#x2F;云端</td>
 </tr>
 <tr>
 <td><strong>Browser Node</strong></td>
 <td>浏览器节点，执行网页自动化</td>
 <td>容器化 Chrome</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>节点通信</strong>：</p>
 <ul>
 <li>MCP (Model Context Protocol)：标准化节点间通信协议</li>
-<li>支持本地 (stdio) 和远程 (HTTP/SSE) 两种模式</li>
+<li>支持本地 (stdio) 和远程 (HTTP&#x2F;SSE) 两种模式</li>
 </ul>
 <h4 id="2-5-2-Plugins-—-扩展插件"><a href="#2-5-2-Plugins-—-扩展插件" class="headerlink" title="2.5.2 Plugins — 扩展插件"></a>2.5.2 Plugins — 扩展插件</h4><p><strong>职责</strong>：扩展系统功能，支持第三方集成。</p>
 <p><strong>插件类型</strong>：</p>
@@ -436,10 +451,12 @@
 <li>支持任务持久化和故障恢复</li>
 </ul>
 <h3 id="3-2-模块化技能系统"><a href="#3-2-模块化技能系统" class="headerlink" title="3.2 模块化技能系统"></a>3.2 模块化技能系统</h3><p><strong>设计理念</strong>：将业务能力封装为可复用的 Skill，降低系统复杂度。</p>
-<p><strong>技能生命周期</strong>：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">发现 (Skill Hub) → 安装 → 配置 → 调用 → 更新 → 卸载</span><br></pre></td></tr></table></figure></p>
+<p><strong>技能生命周期</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">发现 (Skill Hub) → 安装 → 配置 → 调用 → 更新 → 卸载</span><br></pre></td></tr></table></figure>
+
 <p><strong>技术优势</strong>：</p>
 <ul>
-<li><strong>热插拔</strong>：无需重启即可安装/更新技能</li>
+<li><strong>热插拔</strong>：无需重启即可安装&#x2F;更新技能</li>
 <li><strong>版本隔离</strong>：不同项目可使用不同技能版本</li>
 <li><strong>生态共建</strong>：社区可贡献和分享技能</li>
 </ul>
@@ -482,9 +499,9 @@
 <p><em>本文基于 OpenClaw 2026.3.11 版本撰写，架构设计可能随版本迭代而更新。</em></p>
 <p><strong>相关资源</strong>：</p>
 <ul>
-<li>OpenClaw 官方文档：<a target="_blank" rel="noopener" href="https://docs.openclaw.ai">https://docs.openclaw.ai</a></li>
-<li>Skill Hub：<a target="_blank" rel="noopener" href="https://clawhub.com">https://clawhub.com</a></li>
-<li>MCP 协议规范：<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io">https://modelcontextprotocol.io</a></li>
+<li>OpenClaw 官方文档：<a target="_blank" rel="noopener" href="https://docs.openclaw.ai/">https://docs.openclaw.ai</a></li>
+<li>Skill Hub：<a target="_blank" rel="noopener" href="https://clawhub.com/">https://clawhub.com</a></li>
+<li>MCP 协议规范：<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/">https://modelcontextprotocol.io</a></li>
 </ul>
 
             </div>

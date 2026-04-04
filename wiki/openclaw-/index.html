@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
-    <meta name="keywords" content="Wiki,技术架构,Agent框架分析" />
+    <meta name="keywords" content="Wiki,技术架构,Agent框架分析,Agent框架解读" />
 
     <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:type" content="article">
@@ -22,6 +22,7 @@
 <meta property="article:modified_time" content="2026-03-26T14:21:43.000Z">
 <meta property="article:author" content="Novus">
 <meta property="article:tag" content="Agent框架分析">
+<meta property="article:tag" content="Agent框架解读">
 <meta property="article:tag" content="Wiki">
 <meta property="article:tag" content="技术架构">
 <meta name="twitter:card" content="summary">
@@ -94,7 +95,7 @@
         }
     },
     "image": "https://claw.waisec.cn/logo.png",
-    "keywords": "Wiki,技术架构,Agent框架分析"
+    "keywords": "Wiki,技术架构,Agent框架分析,Agent框架解读"
     
 }
 </script>
@@ -127,13 +128,13 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+        <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6%E8%AF%84%E6%B5%8B/">框架评测</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" rel="tag">Agent框架分析</a>, <a class="tag-link-link" href="/tags/Wiki/" rel="tag">Wiki</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/" rel="tag">技术架构</a>
+        <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" rel="tag">Agent框架分析</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/" rel="tag">Agent框架解读</a>, <a class="tag-link-link" href="/tags/Wiki/" rel="tag">Wiki</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/" rel="tag">技术架构</a>
     </div>
 
                         
@@ -147,7 +148,7 @@
 
 
 
-                        <meta name="keywords" content="Wiki,技术架构,Agent框架分析">
+                        <meta name="keywords" content="Wiki,技术架构,Agent框架分析,Agent框架解读">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -198,13 +199,16 @@
 <hr>
 <h2 id="一、上下文层级结构"><a href="#一、上下文层级结构" class="headerlink" title="一、上下文层级结构"></a>一、上下文层级结构</h2><p>OpenClaw 的上下文分为四个层级，从固定到动态依次是：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────┐</span><br><span class="line">│  Layer 1: System Prompt (系统提示)                       │</span><br><span class="line">│  - 固定模板                                               │</span><br><span class="line">│  - Runtime 信息（模型、时间、通道等）                       │</span><br><span class="line">└─────────────────────────────────────────────────────────┘</span><br><span class="line">                           ↓</span><br><span class="line">┌─────────────────────────────────────────────────────────┐</span><br><span class="line">│  Layer 2: Project Context (项目上下文)                   │</span><br><span class="line">│  - AGENTS.md, SOUL.md, USER.md, TOOLS.md 等              │</span><br><span class="line">│  - 每轮对话自动加载                                        │</span><br><span class="line">└─────────────────────────────────────────────────────────┘</span><br><span class="line">                           ↓</span><br><span class="line">┌─────────────────────────────────────────────────────────┐</span><br><span class="line">│  Layer 3: Memory (长期记忆)                              │</span><br><span class="line">│  - MEMORY.md, memory/YYYY-MM-DD.md                       │</span><br><span class="line">│  - 需显式读取，不会自动加载                                │</span><br><span class="line">└─────────────────────────────────────────────────────────┘</span><br><span class="line">                           ↓</span><br><span class="line">┌─────────────────────────────────────────────────────────┐</span><br><span class="line">│  Layer 4: Session Context (会话上下文)                   │</span><br><span class="line">│  - 当前对话历史                                            │</span><br><span class="line">│  - 用户当前消息                                            │</span><br><span class="line">└─────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="二、各层级详解"><a href="#二、各层级详解" class="headerlink" title="二、各层级详解"></a>二、各层级详解</h2><h3 id="2-1-System-Prompt-系统提示"><a href="#2-1-System-Prompt-系统提示" class="headerlink" title="2.1 System Prompt (系统提示)"></a>2.1 System Prompt (系统提示)</h3><p><strong>内容来源：</strong></p>
 <ul>
 <li>OpenClaw 内置模板</li>
 <li>Runtime 注入信息</li>
 </ul>
-<p><strong>包含内容：</strong><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Runtime:</span> <span class="string">agent=main</span> <span class="string">|</span> <span class="string">host=VM-0-10-ubuntu</span> <span class="string">|</span> <span class="string">model=kimicode/kimi-k2.5</span></span><br><span class="line"><span class="attr">capabilities:</span> <span class="string">可用工具列表</span></span><br><span class="line"><span class="attr">channel:</span> <span class="string">openclaw-weixin</span>  <span class="comment"># 当前通道</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>包含内容：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Runtime:</span> <span class="string">agent=main</span> <span class="string">|</span> <span class="string">host=VM-0-10-ubuntu</span> <span class="string">|</span> <span class="string">model=kimicode/kimi-k2.5</span></span><br><span class="line"><span class="attr">capabilities:</span> <span class="string">可用工具列表</span></span><br><span class="line"><span class="attr">channel:</span> <span class="string">openclaw-weixin</span>  <span class="comment"># 当前通道</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>特点：</strong></p>
 <ul>
 <li>每轮对话都存在</li>
@@ -213,7 +217,6 @@
 </ul>
 <hr>
 <h3 id="2-2-Project-Context-项目上下文"><a href="#2-2-Project-Context-项目上下文" class="headerlink" title="2.2 Project Context (项目上下文)"></a>2.2 Project Context (项目上下文)</h3><p><strong>包含文件：</strong></p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -222,8 +225,7 @@
 <th>加载方式</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>AGENTS.md</code></td>
 <td>工作区指南、子 Agent 规范</td>
 <td>自动加载</td>
@@ -253,9 +255,7 @@
 <td>AI 身份定义（名称、emoji等）</td>
 <td>自动加载</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>特点：</strong></p>
 <ul>
 <li>位于 <code>/root/.openclaw/workspace/</code> 目录</li>
@@ -264,17 +264,15 @@
 </ul>
 <hr>
 <h3 id="2-3-Memory-长期记忆"><a href="#2-3-Memory-长期记忆" class="headerlink" title="2.3 Memory (长期记忆)"></a>2.3 Memory (长期记忆)</h3><p><strong>包含文件：</strong></p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th>文件/目录</th>
+<th>文件&#x2F;目录</th>
 <th>作用</th>
 <th>加载方式</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>MEMORY.md</code></td>
 <td>长期记忆汇总</td>
 <td><strong>需显式 <code>read</code></strong></td>
@@ -289,12 +287,13 @@
 <td>定时任务清单</td>
 <td><strong>需显式 <code>read</code></strong></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>关键机制：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">❌ 错误理解：MEMORY.md 自动加载到每轮上下文</span><br><span class="line">✅ 正确理解：我在代码里显式调用 read 工具读取</span><br></pre></td></tr></table></figure>
-<p><strong>示例流程：</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 会话启动时</span></span><br><span class="line">read(<span class="string">&quot;SOUL.md&quot;</span>)      <span class="comment"># ✅ 自动加载（在 Project Context 中）</span></span><br><span class="line">read(<span class="string">&quot;MEMORY.md&quot;</span>)    <span class="comment"># ✅ 我显式读取（不在自动加载列表）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 记忆写入</span></span><br><span class="line">write(<span class="string">&quot;memory/2026-03-26.md&quot;</span>, <span class="string">&quot;今天学了...&quot;</span>)  <span class="comment"># 持久化到磁盘</span></span><br></pre></td></tr></table></figure></p>
+
+<p><strong>示例流程：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 会话启动时</span></span><br><span class="line">read(<span class="string">&quot;SOUL.md&quot;</span>)      <span class="comment"># ✅ 自动加载（在 Project Context 中）</span></span><br><span class="line">read(<span class="string">&quot;MEMORY.md&quot;</span>)    <span class="comment"># ✅ 我显式读取（不在自动加载列表）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 记忆写入</span></span><br><span class="line">write(<span class="string">&quot;memory/2026-03-26.md&quot;</span>, <span class="string">&quot;今天学了...&quot;</span>)  <span class="comment"># 持久化到磁盘</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>重要区别：</strong></p>
 <ul>
 <li>Project Context 文件 → <strong>系统自动读，每轮都带</strong></li>
@@ -314,16 +313,14 @@
 <li>会话结束后清零</li>
 </ul>
 <hr>
-<h2 id="三、记忆持久化机制"><a href="#三、记忆持久化机制" class="headerlink" title="三、记忆持久化机制"></a>三、记忆持久化机制</h2><h3 id="3-1-为什么需要显式-Memory-管理"><a href="#3-1-为什么需要显式-Memory-管理" class="headerlink" title="3.1 为什么需要显式 Memory 管理"></a>3.1 为什么需要显式 Memory 管理</h3><div class="table-container">
-<table>
+<h2 id="三、记忆持久化机制"><a href="#三、记忆持久化机制" class="headerlink" title="三、记忆持久化机制"></a>三、记忆持久化机制</h2><h3 id="3-1-为什么需要显式-Memory-管理"><a href="#3-1-为什么需要显式-Memory-管理" class="headerlink" title="3.1 为什么需要显式 Memory 管理"></a>3.1 为什么需要显式 Memory 管理</h3><table>
 <thead>
 <tr>
 <th>问题</th>
 <th>解决方案</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>上下文窗口有限</td>
 <td>只加载必要的记忆</td>
 </tr>
@@ -335,22 +332,32 @@
 <td>隐私安全</td>
 <td>MEMORY.md 只在主会话加载</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h3 id="3-2-记忆写入流程"><a href="#3-2-记忆写入流程" class="headerlink" title="3.2 记忆写入流程"></a>3.2 记忆写入流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">学到重要信息</span><br><span class="line">    ↓</span><br><span class="line">判断是否值得长期记忆</span><br><span class="line">    ↓</span><br><span class="line">写入 MEMORY.md（长期）或 memory/YYYY-MM-DD.md（日志）</span><br><span class="line">    ↓</span><br><span class="line">下次会话显式读取</span><br></pre></td></tr></table></figure>
-<h3 id="3-3-记忆读取策略"><a href="#3-3-记忆读取策略" class="headerlink" title="3.3 记忆读取策略"></a>3.3 记忆读取策略</h3><p><strong>主会话（直接聊天）：</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">read(<span class="string">&quot;SOUL.md&quot;</span>)</span><br><span class="line">read(<span class="string">&quot;USER.md&quot;</span>)</span><br><span class="line">read(<span class="string">&quot;MEMORY.md&quot;</span>)  <span class="comment"># ✅ 加载</span></span><br><span class="line">read(<span class="string">f&quot;memory/<span class="subst">&#123;today&#125;</span>.md&quot;</span>)  <span class="comment"># ✅ 加载今日日志</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>群聊/共享会话：</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">read(<span class="string">&quot;SOUL.md&quot;</span>)</span><br><span class="line">read(<span class="string">&quot;USER.md&quot;</span>)</span><br><span class="line"><span class="comment"># ❌ 不加载 MEMORY.md（隐私保护）</span></span><br></pre></td></tr></table></figure></p>
+
+<h3 id="3-3-记忆读取策略"><a href="#3-3-记忆读取策略" class="headerlink" title="3.3 记忆读取策略"></a>3.3 记忆读取策略</h3><p><strong>主会话（直接聊天）：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">read(<span class="string">&quot;SOUL.md&quot;</span>)</span><br><span class="line">read(<span class="string">&quot;USER.md&quot;</span>)</span><br><span class="line">read(<span class="string">&quot;MEMORY.md&quot;</span>)  <span class="comment"># ✅ 加载</span></span><br><span class="line">read(<span class="string">f&quot;memory/<span class="subst">&#123;today&#125;</span>.md&quot;</span>)  <span class="comment"># ✅ 加载今日日志</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>群聊&#x2F;共享会话：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">read(<span class="string">&quot;SOUL.md&quot;</span>)</span><br><span class="line">read(<span class="string">&quot;USER.md&quot;</span>)</span><br><span class="line"><span class="comment"># ❌ 不加载 MEMORY.md（隐私保护）</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="四、实际示例"><a href="#四、实际示例" class="headerlink" title="四、实际示例"></a>四、实际示例</h2><h3 id="示例-1：用户偏好记忆"><a href="#示例-1：用户偏好记忆" class="headerlink" title="示例 1：用户偏好记忆"></a>示例 1：用户偏好记忆</h3><p><strong>用户说：</strong> “我喜欢直来直去的沟通风格”</p>
-<p><strong>AI 处理：</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 写入 USER.md</span></span><br><span class="line">edit(<span class="string">&quot;USER.md&quot;</span>, add=<span class="string">&quot;沟通风格：直来直去&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 同时写入 MEMORY.md 备份</span></span><br><span class="line">edit(<span class="string">&quot;MEMORY.md&quot;</span>, add=<span class="string">&quot;## 沟通偏好\n- 直来直去，不废话&quot;</span>)</span><br></pre></td></tr></table></figure></p>
-<p><strong>下次会话：</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">read(<span class="string">&quot;USER.md&quot;</span>)  <span class="comment"># 自动加载，看到偏好</span></span><br><span class="line">read(<span class="string">&quot;MEMORY.md&quot;</span>)  <span class="comment"># 我显式读取，确认记忆</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>AI 处理：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 写入 USER.md</span></span><br><span class="line">edit(<span class="string">&quot;USER.md&quot;</span>, add=<span class="string">&quot;沟通风格：直来直去&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 同时写入 MEMORY.md 备份</span></span><br><span class="line">edit(<span class="string">&quot;MEMORY.md&quot;</span>, add=<span class="string">&quot;## 沟通偏好\n- 直来直去，不废话&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>下次会话：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">read(<span class="string">&quot;USER.md&quot;</span>)  <span class="comment"># 自动加载，看到偏好</span></span><br><span class="line">read(<span class="string">&quot;MEMORY.md&quot;</span>)  <span class="comment"># 我显式读取，确认记忆</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="示例-2：技能发现"><a href="#示例-2：技能发现" class="headerlink" title="示例 2：技能发现"></a>示例 2：技能发现</h3><p><strong>用户说：</strong> “我的 wiki 是指 clawbackup 的 GitHub Pages”</p>
-<p><strong>AI 处理：</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 写入 MEMORY.md</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">append_to_memory</span>(<span class="params">content</span>):</span><br><span class="line">    edit(<span class="string">&quot;MEMORY.md&quot;</span>, old=<span class="string">&quot;## 长任务执行&quot;</span>, new=<span class="string">f&quot;## 关于 Wiki\n<span class="subst">&#123;content&#125;</span>\n\n## 长任务执行&quot;</span>)</span><br><span class="line"></span><br><span class="line">append_to_memory(<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">- 老板的 Wiki = clawbackup 项目的 GitHub Pages (page 分支)</span></span><br><span class="line"><span class="string">- 不是腾讯文档，不是其他平台</span></span><br><span class="line"><span class="string">- 使用 wiki-publisher skill 或 hexo deploy 发布</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>)</span><br></pre></td></tr></table></figure></p>
-<p><strong>下次新会话：</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">read(<span class="string">&quot;MEMORY.md&quot;</span>)  <span class="comment"># 显式读取，看到 wiki 定义</span></span><br><span class="line"><span class="comment"># 用户说&quot;发布到 wiki&quot; → 立即知道指 clawbackup</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>AI 处理：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 写入 MEMORY.md</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">append_to_memory</span>(<span class="params">content</span>):</span><br><span class="line">    edit(<span class="string">&quot;MEMORY.md&quot;</span>, old=<span class="string">&quot;## 长任务执行&quot;</span>, new=<span class="string">f&quot;## 关于 Wiki\n<span class="subst">&#123;content&#125;</span>\n\n## 长任务执行&quot;</span>)</span><br><span class="line"></span><br><span class="line">append_to_memory(<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">- 老板的 Wiki = clawbackup 项目的 GitHub Pages (page 分支)</span></span><br><span class="line"><span class="string">- 不是腾讯文档，不是其他平台</span></span><br><span class="line"><span class="string">- 使用 wiki-publisher skill 或 hexo deploy 发布</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>下次新会话：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">read(<span class="string">&quot;MEMORY.md&quot;</span>)  <span class="comment"># 显式读取，看到 wiki 定义</span></span><br><span class="line"><span class="comment"># 用户说&quot;发布到 wiki&quot; → 立即知道指 clawbackup</span></span><br></pre></td></tr></table></figure>
+
 <hr>
-<h2 id="五、总结对比表"><a href="#五、总结对比表" class="headerlink" title="五、总结对比表"></a>五、总结对比表</h2><div class="table-container">
-<table>
+<h2 id="五、总结对比表"><a href="#五、总结对比表" class="headerlink" title="五、总结对比表"></a>五、总结对比表</h2><table>
 <thead>
 <tr>
 <th>层级</th>
@@ -360,8 +367,7 @@
 <th>持久化</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>System Prompt</td>
 <td>内置模板</td>
 <td>✅</td>
@@ -389,16 +395,14 @@
 <td>-</td>
 <td>❌ 会话结束清零</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h2 id="六、最佳实践"><a href="#六、最佳实践" class="headerlink" title="六、最佳实践"></a>六、最佳实践</h2><ol>
 <li><strong>重要信息写 MEMORY.md</strong> - 跨会话持久</li>
-<li><strong>日常日志写 memory/YYYY-MM-DD.md</strong> - 可追溯</li>
+<li><strong>日常日志写 memory&#x2F;YYYY-MM-DD.md</strong> - 可追溯</li>
 <li><strong>人设写 SOUL.md</strong> - 每轮自动加载</li>
 <li><strong>用户偏好写 USER.md</strong> - 每轮自动加载</li>
-<li><strong>技能/工具配置写 TOOLS.md</strong> - 环境特定</li>
+<li><strong>技能&#x2F;工具配置写 TOOLS.md</strong> - 环境特定</li>
 </ol>
 <hr>
 <p><em>文档生成时间：2026-03-26</em><br><em>作者：藜诺 (Quinoa)</em></p>

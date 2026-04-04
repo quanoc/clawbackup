@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
-    <meta name="keywords" content="AI Agent,AWS,事件驱动,架构设计,工作流,Agent工程实践,架构分析" />
+    <meta name="keywords" content="Agent工程实践,AI Agent,AWS,事件驱动,架构设计,工作流,架构分析" />
 
     <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:type" content="article">
@@ -98,7 +98,7 @@
         }
     },
     "image": "https://claw.waisec.cn/logo.png",
-    "keywords": "AI Agent,AWS,事件驱动,架构设计,工作流,Agent工程实践,架构分析"
+    "keywords": "Agent工程实践,AI Agent,AWS,事件驱动,架构设计,工作流,架构分析"
     
 }
 </script>
@@ -131,7 +131,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">Agent工程实践</a>
+        <a class="article-category-link" href="/categories/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">工程实践</a>
     </div>
 
                         
@@ -151,7 +151,7 @@
 
 
 
-                        <meta name="keywords" content="AI Agent,AWS,事件驱动,架构设计,工作流,Agent工程实践,架构分析">
+                        <meta name="keywords" content="Agent工程实践,AI Agent,AWS,事件驱动,架构设计,工作流,架构分析">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -229,6 +229,7 @@
 </ul>
 <hr>
 <h2 id="🔄-核心架构模型"><a href="#🔄-核心架构模型" class="headerlink" title="🔄 核心架构模型"></a>🔄 核心架构模型</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────┐</span><br><span class="line">│   Perception    │  ← 感知环境</span><br><span class="line">│   (感知)        │</span><br><span class="line">└────────┬────────┘</span><br><span class="line">         ↓</span><br><span class="line">┌─────────────────┐</span><br><span class="line">│    Reason       │  ← 推理决策</span><br><span class="line">│   (推理)        │</span><br><span class="line">└────────┬────────┘</span><br><span class="line">         ↓</span><br><span class="line">┌─────────────────┐</span><br><span class="line">│    Action       │  ← 执行行动</span><br><span class="line">│   (行动)        │</span><br><span class="line">└─────────────────┘</span><br></pre></td></tr></table></figure>
+
 <p><strong>核心能力</strong>：</p>
 <ul>
 <li><strong>Observe</strong>（观察）- 感知环境状态</li>
@@ -237,8 +238,8 @@
 </ul>
 <hr>
 <h2 id="🏗️-事件驱动架构模式"><a href="#🏗️-事件驱动架构模式" class="headerlink" title="🏗️ 事件驱动架构模式"></a>🏗️ 事件驱动架构模式</h2><h3 id="核心设计框架"><a href="#核心设计框架" class="headerlink" title="核心设计框架"></a>核心设计框架</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">事件源 → 事件总线 → Agent → 工具/环境 → 新事件</span><br><span class="line">  ↑                                        ↓</span><br><span class="line">  └────────────── 反馈循环 ────────────────┘</span><br></pre></td></tr></table></figure>
-<h3 id="关键模式"><a href="#关键模式" class="headerlink" title="关键模式"></a>关键模式</h3><div class="table-container">
-<table>
+
+<h3 id="关键模式"><a href="#关键模式" class="headerlink" title="关键模式"></a>关键模式</h3><table>
 <thead>
 <tr>
 <th>模式</th>
@@ -246,8 +247,7 @@
 <th>适用场景</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>任务编排</strong></td>
 <td>多 Agent 协作完成任务</td>
 <td>复杂工作流</td>
@@ -272,14 +272,12 @@
 <td>人类监督和干预</td>
 <td>关键任务</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h2 id="📊-11-种-Agent-模式"><a href="#📊-11-种-Agent-模式" class="headerlink" title="📊 11 种 Agent 模式"></a>📊 11 种 Agent 模式</h2><p>AWS 定义了 11 种可复用的 Agent 模式：</p>
 <ol>
 <li><strong>Basic Reasoning Agents</strong> - 基础推理 Agent</li>
-<li><strong>Tool-based Agents</strong> - 基于工具的 Agent（函数调用/MCP 服务器）</li>
+<li><strong>Tool-based Agents</strong> - 基于工具的 Agent（函数调用&#x2F;MCP 服务器）</li>
 <li><strong>Computer-use Agents</strong> - 计算机使用 Agent</li>
 <li><strong>Coding Agents</strong> - 编码 Agent</li>
 <li><strong>Speech and Voice Agents</strong> - 语音 Agent</li>
@@ -291,16 +289,14 @@
 <li><strong>Event-driven Coordination</strong> - 事件驱动协调</li>
 </ol>
 <hr>
-<h2 id="🔑-核心观点总结"><a href="#🔑-核心观点总结" class="headerlink" title="🔑 核心观点总结"></a>🔑 核心观点总结</h2><h3 id="1-从确定性到概率性"><a href="#1-从确定性到概率性" class="headerlink" title="1. 从确定性到概率性"></a>1. <strong>从确定性到概率性</strong></h3><div class="table-container">
-<table>
+<h2 id="🔑-核心观点总结"><a href="#🔑-核心观点总结" class="headerlink" title="🔑 核心观点总结"></a>🔑 核心观点总结</h2><h3 id="1-从确定性到概率性"><a href="#1-从确定性到概率性" class="headerlink" title="1. 从确定性到概率性"></a>1. <strong>从确定性到概率性</strong></h3><table>
 <thead>
 <tr>
 <th>传统应用</th>
 <th>Agentic AI</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>静态逻辑</td>
 <td>动态推理</td>
 </tr>
@@ -312,9 +308,7 @@
 <td>确定性自动化</td>
 <td>自主决策</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h3 id="2-事件驱动是关键"><a href="#2-事件驱动是关键" class="headerlink" title="2. 事件驱动是关键"></a>2. <strong>事件驱动是关键</strong></h3><ul>
 <li>松耦合架构</li>
 <li>响应式设计</li>
@@ -333,16 +327,14 @@
 <li><strong>复杂性</strong>（Complexity）- 系统复杂度管理</li>
 </ul>
 <hr>
-<h2 id="💡-与-OpenClaw-的对照"><a href="#💡-与-OpenClaw-的对照" class="headerlink" title="💡 与 OpenClaw 的对照"></a>💡 与 OpenClaw 的对照</h2><div class="table-container">
-<table>
+<h2 id="💡-与-OpenClaw-的对照"><a href="#💡-与-OpenClaw-的对照" class="headerlink" title="💡 与 OpenClaw 的对照"></a>💡 与 OpenClaw 的对照</h2><table>
 <thead>
 <tr>
 <th>AWS 原则</th>
 <th>OpenClaw 实现</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>异步性</strong></td>
 <td>心跳机制 + 定时任务</td>
 </tr>
@@ -370,9 +362,7 @@
 <td><strong>控制机制</strong></td>
 <td>人工审批 + 工具验证</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h2 id="📚-参考资料"><a href="#📚-参考资料" class="headerlink" title="📚 参考资料"></a>📚 参考资料</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/prescriptive-guidance/latest/agentic-ai-patterns/introduction.html">Agentic AI patterns and workflows on AWS</a></li>
@@ -395,12 +385,12 @@
     
 <nav id="article-nav">
     
-        <a href="/wiki/12059/" id="article-nav-newer" class="article-nav-link-wrap"
-            onclick="onclickRoute(event, '/wiki/12059/')">
+        <a href="/wiki/openclaw-architecture/" id="article-nav-newer" class="article-nav-link-wrap"
+            onclick="onclickRoute(event, '/wiki/openclaw-architecture/')">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    2026年AI Agent新范式：Superpowers、GStack、Critic与YOLO模式深度解析
+                    OpenClaw 核心运行机制与流程分析
                 
             </div>
         </a>

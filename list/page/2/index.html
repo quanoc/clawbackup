@@ -69,6 +69,146 @@
 <body>
     <section id="post-main">
         
+<article id="post-框架评测/openclaw-multi-agent-channel" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6%E8%AF%84%E6%B5%8B/">框架评测</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/ACP/" rel="tag">ACP</a>, <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI Agent</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/" rel="tag">Agent框架解读</a>, <a class="tag-link-link" href="/tags/Channel/" rel="tag">Channel</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/%E5%8D%8F%E4%BD%9C%E6%9C%BA%E5%88%B6/" rel="tag">协作机制</a>, <a class="tag-link-link" href="/tags/%E5%A4%9A-Agent/" rel="tag">多 Agent</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-28T14:16:00.000Z" itemprop="datePublished">2026-03-28</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="OpenClaw,AI Agent,Agent框架解读,源码解读,多 Agent,ACP,Channel,协作机制">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/openclaw-multi-agent-channel/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/openclaw-multi-agent-channel/"
+                onclick="onclickRoute(event, '/wiki/openclaw-multi-agent-channel/')">OpenClaw 多 Agent 持久化交互与 Channel-Agent 协作机制深度解读</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                <p><blockquote>
+<p><strong>源码路径</strong>: <code>~/WorkBuddy/20260327195403/openclaw</code><br><strong>版本</strong>: latest（2026年初）<br><strong>关键文件</strong>: <code>src/agents/acp-spawn.ts</code>、<code>src/agents/subagent-control.ts</code>、<code>src/agents/subagent-announce.ts</code>、<code>src/config/types.agents.ts</code>、<code>src/channels/plugins/binding-types.ts</code></p>
+</blockquote></p>
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/wiki/openclaw-multi-agent-channel/#more"
+                    onclick="onclickRoute(event, '/wiki/openclaw-multi-agent-channel/#more')">查看更多</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
 <article id="post-AI日报/2026-03/ai-daily-2026-03-28-v2" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
@@ -170,7 +310,7 @@
                 
                 
                     
-                    <p><h1 id="🧠-AI-Agent-amp-LLM-深度日报"><a href="#🧠-AI-Agent-amp-LLM-深度日报" class="headerlink" title="🧠 AI Agent &amp; LLM 深度日报"></a>🧠 AI Agent &amp; LLM 深度日报</h1><p><strong>日期</strong>: 2026-03-28<br><strong>生成时间</strong>: 2026-03-28 09:59:34</p>
+                    <p><h1 id="🧠-AI-Agent-LLM-深度日报"><a href="#🧠-AI-Agent-LLM-深度日报" class="headerlink" title="🧠 AI Agent &amp; LLM 深度日报"></a>🧠 AI Agent &amp; LLM 深度日报</h1><p><strong>日期</strong>: 2026-03-28<br><strong>生成时间</strong>: 2026-03-28 09:59:34</p>
 <hr>
 <h2 id="🏗️-架构设计-8"><a href="#🏗️-架构设计-8" class="headerlink" title="🏗️ 架构设计 (8)"></a>🏗️ 架构设计 (8)</h2><p>🔥 <strong>LangChain 101: What It Is, Why It Matters, and How to Start</strong></p>
 <blockquote>
@@ -332,7 +472,7 @@
                 
                 
                     
-                    <p><h1 id="🧠-AI-Agent-amp-LLM-深度日报"><a href="#🧠-AI-Agent-amp-LLM-深度日报" class="headerlink" title="🧠 AI Agent &amp; LLM 深度日报"></a>🧠 AI Agent &amp; LLM 深度日报</h1><p><strong>日期</strong>：2026-03-28<br><strong>生成时间</strong>: 2026-03-28 09:52:52</p>
+                    <p><h1 id="🧠-AI-Agent-LLM-深度日报"><a href="#🧠-AI-Agent-LLM-深度日报" class="headerlink" title="🧠 AI Agent &amp; LLM 深度日报"></a>🧠 AI Agent &amp; LLM 深度日报</h1><p><strong>日期</strong>：2026-03-28<br><strong>生成时间</strong>: 2026-03-28 09:52:52</p>
 <hr>
 <h2 id="🏗️架构设计-8"><a href="#🏗️架构设计-8" class="headerlink" title="🏗️架构设计 (8)"></a>🏗️架构设计 (8)</h2><p>🔥 <strong>LangChain 101：它是什么、为什么重要以及如何开始</strong></p>
 <blockquote>
@@ -407,7 +547,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+        <a class="article-category-link" href="/categories/%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">核心概念</a>
     </div>
 
                         
@@ -569,13 +709,13 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+        <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6%E8%AF%84%E6%B5%8B/">框架评测</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/AI-SDK/" rel="tag">AI SDK</a>, <a class="tag-link-link" href="/tags/Agent-%E6%A1%86%E6%9E%B6/" rel="tag">Agent 框架</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/pi-coding-agent/" rel="tag">pi-coding-agent</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
+        <a class="tag-link-link" href="/tags/AI-SDK/" rel="tag">AI SDK</a>, <a class="tag-link-link" href="/tags/Agent-%E6%A1%86%E6%9E%B6/" rel="tag">Agent 框架</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/" rel="tag">Agent框架解读</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/pi-coding-agent/" rel="tag">pi-coding-agent</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
     </div>
 
                         
@@ -589,7 +729,7 @@
 
 
 
-                        <meta name="keywords" content="架构分析,OpenClaw,源码解读,AI SDK,pi-coding-agent,Agent 框架">
+                        <meta name="keywords" content="OpenClaw,架构分析,Agent框架解读,源码解读,AI SDK,pi-coding-agent,Agent 框架">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -731,13 +871,13 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+        <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6%E8%AF%84%E6%B5%8B/">框架评测</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI Agent</a>, <a class="tag-link-link" href="/tags/Agent-%E6%A1%86%E6%9E%B6/" rel="tag">Agent 框架</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/" rel="tag">消息处理</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
+        <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI Agent</a>, <a class="tag-link-link" href="/tags/Agent-%E6%A1%86%E6%9E%B6/" rel="tag">Agent 框架</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/" rel="tag">Agent框架解读</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86/" rel="tag">消息处理</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
     </div>
 
                         
@@ -751,7 +891,7 @@
 
 
 
-                        <meta name="keywords" content="AI Agent,架构分析,OpenClaw,源码解读,Agent 框架,消息处理">
+                        <meta name="keywords" content="OpenClaw,AI Agent,架构分析,Agent框架解读,源码解读,Agent 框架,消息处理">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -879,168 +1019,6 @@
 
     
         
-<article id="post-核心概念/Harness/2026-03-26-2026ai-agentsuperpowersgstackcriticyolo" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
-            <time datetime="2026-03-26T09:22:53.000Z" itemprop="datePublished">2026-03-26</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="AI,Agent">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/12059/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/12059/"
-                onclick="onclickRoute(event, '/wiki/12059/')">2026年AI Agent新范式：Superpowers、GStack、Critic与YOLO模式深度解析</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h1 id="2026-年-AI-Agent-圈最火的四个概念：Superpowers、GStack、Critic-模式与-YOLO-模式"><a href="#2026-年-AI-Agent-圈最火的四个概念：Superpowers、GStack、Critic-模式与-YOLO-模式" class="headerlink" title="2026 年 AI Agent 圈最火的四个概念：Superpowers、GStack、Critic 模式与 YOLO 模式"></a>2026 年 AI Agent 圈最火的四个概念：Superpowers、GStack、Critic 模式与 YOLO 模式</h1><blockquote>
-<p>如果你最近刷到这些词却一头雾水，这篇文章帮你一次搞清楚。</p>
-</blockquote>
-<hr>
-<h2 id="前言：为什么这些概念突然火了？"><a href="#前言：为什么这些概念突然火了？" class="headerlink" title="前言：为什么这些概念突然火了？"></a>前言：为什么这些概念突然火了？</h2><p>2025 年底到 2026 年初，AI 编程助手完成了一次质的跳跃——从”帮你写代码”进化成”替你干活”。Cursor、Claude Code、Codex 这些工具相继支持真正的 <strong>Agent 模式</strong>：AI 不再只是补全代码，而是能自主分析需求、制定计划、拆解任务、执行命令、自我纠错，像一个独立运转的开发者。</p>
-<p>
-                
-            
-        
-        
-            </div> 
-            <div class="article-more-link">
-                <a href="/wiki/12059/#more"
-                    onclick="onclickRoute(event, '/wiki/12059/#more')">查看更多</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
-        
 <article id="post-工程实践/aws-agentic-ai-patterns" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
@@ -1055,7 +1033,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">Agent工程实践</a>
+        <a class="article-category-link" href="/categories/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">工程实践</a>
     </div>
 
                         
@@ -1075,7 +1053,7 @@
 
 
 
-                        <meta name="keywords" content="AI Agent,AWS,事件驱动,架构设计,工作流,Agent工程实践,架构分析">
+                        <meta name="keywords" content="Agent工程实践,AI Agent,AWS,事件驱动,架构设计,工作流,架构分析">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -1304,7 +1282,7 @@
                 
                 
                     
-                    <p><h1 id="🧠-AI-Agent-amp-LLM-深度日报"><a href="#🧠-AI-Agent-amp-LLM-深度日报" class="headerlink" title="🧠 AI Agent &amp; LLM 深度日报"></a>🧠 AI Agent &amp; LLM 深度日报</h1><p><strong>日期</strong>: 2026-03-26<br><strong>生成时间</strong>: 2026-03-26 14:40:00</p>
+                    <p><h1 id="🧠-AI-Agent-LLM-深度日报"><a href="#🧠-AI-Agent-LLM-深度日报" class="headerlink" title="🧠 AI Agent &amp; LLM 深度日报"></a>🧠 AI Agent &amp; LLM 深度日报</h1><p><strong>日期</strong>: 2026-03-26<br><strong>生成时间</strong>: 2026-03-26 14:40:00</p>
 <hr>
 <h2 id="🏗️-架构设计-3"><a href="#🏗️-架构设计-3" class="headerlink" title="🏗️ 架构设计 (3)"></a>🏗️ 架构设计 (3)</h2><p>🔥 <strong>How Moda Builds Production-Grade AI Design Agents with Deep Agents</strong></p>
 <blockquote>
@@ -1379,7 +1357,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+        <a class="article-category-link" href="/categories/%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">核心概念</a>
     </div>
 
                         
@@ -1541,7 +1519,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+        <a class="article-category-link" href="/categories/%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">核心概念</a>
     </div>
 
                         

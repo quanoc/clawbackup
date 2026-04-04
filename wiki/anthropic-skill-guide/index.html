@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
-    <meta name="keywords" content="AI,Claude,Agent,技术架构,Agent框架分析,Skill,MCP,AI-Agent" />
+    <meta name="keywords" content="AI,Claude,Agent,技术架构,Agent框架分析,Agent框架解读,Skill,MCP,AI-Agent" />
 
     <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:type" content="article">
@@ -25,6 +25,7 @@
 <meta property="article:tag" content="AI-Agent">
 <meta property="article:tag" content="Agent">
 <meta property="article:tag" content="Agent框架分析">
+<meta property="article:tag" content="Agent框架解读">
 <meta property="article:tag" content="Claude">
 <meta property="article:tag" content="MCP">
 <meta property="article:tag" content="Skill">
@@ -99,7 +100,7 @@
         }
     },
     "image": "https://claw.waisec.cn/logo.png",
-    "keywords": "AI,Claude,Agent,技术架构,Agent框架分析,Skill,MCP,AI-Agent"
+    "keywords": "AI,Claude,Agent,技术架构,Agent框架分析,Agent框架解读,Skill,MCP,AI-Agent"
     
 }
 </script>
@@ -132,13 +133,13 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+        <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6%E8%AF%84%E6%B5%8B/">框架评测</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI-Agent</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" rel="tag">Agent框架分析</a>, <a class="tag-link-link" href="/tags/Claude/" rel="tag">Claude</a>, <a class="tag-link-link" href="/tags/MCP/" rel="tag">MCP</a>, <a class="tag-link-link" href="/tags/Skill/" rel="tag">Skill</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/" rel="tag">技术架构</a>
+        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI-Agent</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" rel="tag">Agent框架分析</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/" rel="tag">Agent框架解读</a>, <a class="tag-link-link" href="/tags/Claude/" rel="tag">Claude</a>, <a class="tag-link-link" href="/tags/MCP/" rel="tag">MCP</a>, <a class="tag-link-link" href="/tags/Skill/" rel="tag">Skill</a>, <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/" rel="tag">技术架构</a>
     </div>
 
                         
@@ -152,7 +153,7 @@
 
 
 
-                        <meta name="keywords" content="AI,Claude,Agent,技术架构,Agent框架分析,Skill,MCP,AI-Agent">
+                        <meta name="keywords" content="AI,Claude,Agent,技术架构,Agent框架分析,Agent框架解读,Skill,MCP,AI-Agent">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -214,11 +215,10 @@
 <hr>
 <h2 id="Skill-与-MCP-的关系"><a href="#Skill-与-MCP-的关系" class="headerlink" title="Skill 与 MCP 的关系"></a>Skill 与 MCP 的关系</h2><p><strong>厨房类比</strong>：</p>
 <ul>
-<li><strong>MCP</strong> = 专业厨房：提供工具、食材、设备（连接性）</li>
-<li><strong>Skill</strong> = 食谱：逐步指导如何创造有价值的东西（知识层）</li>
+<li><strong>MCP</strong> &#x3D; 专业厨房：提供工具、食材、设备（连接性）</li>
+<li><strong>Skill</strong> &#x3D; 食谱：逐步指导如何创造有价值的东西（知识层）</li>
 </ul>
 <p><strong>协作方式</strong>：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -227,8 +227,7 @@
 <th>Skill</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>功能</td>
 <td>连接 Claude 到你的服务</td>
 <td>教会 Claude 高效使用服务</td>
@@ -243,9 +242,7 @@
 <td>Claude 能做什么</td>
 <td>Claude 应该怎么做</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>为什么重要</strong>：</p>
 <ul>
 <li>❌ 没有 Skill：用户连接 MCP 后不知道下一步该做什么</li>
@@ -262,9 +259,11 @@
 <h3 id="可移植性"><a href="#可移植性" class="headerlink" title="可移植性"></a>可移植性</h3><p>Skill 在 Claude.ai、Claude Code 和 API 中工作方式相同。创建一次，跨平台使用。</p>
 <hr>
 <h2 id="Skill-的文件结构"><a href="#Skill-的文件结构" class="headerlink" title="Skill 的文件结构"></a>Skill 的文件结构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">your-skill-name/</span><br><span class="line">├── SKILL.md              # 必需 - 主 Skill 文件</span><br><span class="line">├── scripts/              # 可选 - 可执行代码</span><br><span class="line">│   ├── process_data.py</span><br><span class="line">│   └── validate.sh</span><br><span class="line">├── references/           # 可选 - 按需加载的文档</span><br><span class="line">│   ├── api-guide.md</span><br><span class="line">│   └── examples/</span><br><span class="line">└── assets/               # 可选 - 模板、字体、图标等</span><br><span class="line">    └── report-template.md</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="YAML-Frontmatter-规范"><a href="#YAML-Frontmatter-规范" class="headerlink" title="YAML Frontmatter 规范"></a>YAML Frontmatter 规范</h2><p><strong>最关键的部分</strong> - 决定 Claude 是否加载你的 Skill。</p>
 <h3 id="必需字段"><a href="#必需字段" class="headerlink" title="必需字段"></a>必需字段</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">your-skill-name</span>           <span class="comment"># kebab-case，无空格，无大写</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">What</span> <span class="string">it</span> <span class="string">does</span> <span class="string">and</span> <span class="string">when</span> <span class="string">to</span> <span class="string">use</span> <span class="string">it.</span> <span class="string">Include</span> <span class="string">specific</span> <span class="string">trigger</span> <span class="string">phrases.</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="name-字段规则"><a href="#name-字段规则" class="headerlink" title="name 字段规则"></a>name 字段规则</h3><ul>
 <li>✅ <code>kebab-case</code>：<code>notion-project-setup</code></li>
 <li>❌ 有空格：<code>Notion Project Setup</code></li>
@@ -276,8 +275,12 @@
 <li><strong>WHAT</strong> - Skill 做什么</li>
 <li><strong>WHEN</strong> - 何时使用（触发条件）</li>
 </ol>
-<p><strong>好例子</strong>：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 好的描述 - 具体可操作</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Analyzes</span> <span class="string">Figma</span> <span class="string">design</span> <span class="string">files</span> <span class="string">and</span> <span class="string">generates</span> <span class="string">developer</span> <span class="string">handoff</span> <span class="string">documentation.</span> <span class="string">Use</span> <span class="string">when</span> <span class="string">user</span> <span class="string">uploads</span> <span class="string">.fig</span> <span class="string">files,</span> <span class="string">asks</span> <span class="string">for</span> <span class="string">&quot;design specs&quot;</span><span class="string">,</span> <span class="string">&quot;component documentation&quot;</span><span class="string">,</span> <span class="string">or</span> <span class="string">&quot;design-to-code handoff&quot;</span><span class="string">.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 好的描述 - 包含触发短语</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Manages</span> <span class="string">Linear</span> <span class="string">project</span> <span class="string">workflows</span> <span class="string">including</span> <span class="string">sprint</span> <span class="string">planning,</span> <span class="string">task</span> <span class="string">creation,</span> <span class="string">and</span> <span class="string">status</span> <span class="string">tracking.</span> <span class="string">Use</span> <span class="string">when</span> <span class="string">user</span> <span class="string">mentions</span> <span class="string">&quot;sprint&quot;</span><span class="string">,</span> <span class="string">&quot;Linear tasks&quot;</span><span class="string">,</span> <span class="string">&quot;project planning&quot;</span><span class="string">,</span> <span class="string">or</span> <span class="string">asks</span> <span class="string">to</span> <span class="string">&quot;create tickets&quot;</span><span class="string">.</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>坏例子</strong>：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 太模糊</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Helps</span> <span class="string">with</span> <span class="string">projects.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 缺少触发条件</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Creates</span> <span class="string">sophisticated</span> <span class="string">multi-page</span> <span class="string">documentation</span> <span class="string">systems.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 太技术化，没有用户触发词</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Implements</span> <span class="string">the</span> <span class="string">Project</span> <span class="string">entity</span> <span class="string">model</span> <span class="string">with</span> <span class="string">hierarchical</span> <span class="string">relationships.</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>好例子</strong>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 好的描述 - 具体可操作</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Analyzes</span> <span class="string">Figma</span> <span class="string">design</span> <span class="string">files</span> <span class="string">and</span> <span class="string">generates</span> <span class="string">developer</span> <span class="string">handoff</span> <span class="string">documentation.</span> <span class="string">Use</span> <span class="string">when</span> <span class="string">user</span> <span class="string">uploads</span> <span class="string">.fig</span> <span class="string">files,</span> <span class="string">asks</span> <span class="string">for</span> <span class="string">&quot;design specs&quot;</span><span class="string">,</span> <span class="string">&quot;component documentation&quot;</span><span class="string">,</span> <span class="string">or</span> <span class="string">&quot;design-to-code handoff&quot;</span><span class="string">.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 好的描述 - 包含触发短语</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Manages</span> <span class="string">Linear</span> <span class="string">project</span> <span class="string">workflows</span> <span class="string">including</span> <span class="string">sprint</span> <span class="string">planning,</span> <span class="string">task</span> <span class="string">creation,</span> <span class="string">and</span> <span class="string">status</span> <span class="string">tracking.</span> <span class="string">Use</span> <span class="string">when</span> <span class="string">user</span> <span class="string">mentions</span> <span class="string">&quot;sprint&quot;</span><span class="string">,</span> <span class="string">&quot;Linear tasks&quot;</span><span class="string">,</span> <span class="string">&quot;project planning&quot;</span><span class="string">,</span> <span class="string">or</span> <span class="string">asks</span> <span class="string">to</span> <span class="string">&quot;create tickets&quot;</span><span class="string">.</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>坏例子</strong>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 太模糊</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Helps</span> <span class="string">with</span> <span class="string">projects.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 缺少触发条件</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Creates</span> <span class="string">sophisticated</span> <span class="string">multi-page</span> <span class="string">documentation</span> <span class="string">systems.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 太技术化，没有用户触发词</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Implements</span> <span class="string">the</span> <span class="string">Project</span> <span class="string">entity</span> <span class="string">model</span> <span class="string">with</span> <span class="string">hierarchical</span> <span class="string">relationships.</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="安全限制"><a href="#安全限制" class="headerlink" title="安全限制"></a>安全限制</h3><ul>
 <li><strong>禁止</strong>：XML 尖括号 <code>&lt; &gt;</code></li>
 <li><strong>禁止</strong>：Skill 名称包含 “claude” 或 “anthropic”（保留）</li>
@@ -308,15 +311,21 @@
 <li>常见 MCP 问题的错误处理</li>
 </ul>
 <hr>
-<h2 id="编写有效-Skill-的最佳实践"><a href="#编写有效-Skill-的最佳实践" class="headerlink" title="编写有效 Skill 的最佳实践"></a>编写有效 Skill 的最佳实践</h2><h3 id="指令编写建议"><a href="#指令编写建议" class="headerlink" title="指令编写建议"></a>指令编写建议</h3><p><strong>✅ 好</strong>：具体可操作<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Run <span class="code">`python scripts/validate.py --input &#123;filename&#125;`</span> to check data format.</span><br><span class="line">If validation fails, common issues include:</span><br><span class="line"><span class="bullet">-</span> Missing required fields (add them to the CSV)</span><br><span class="line"><span class="bullet">-</span> Invalid date formats (use YYYY-MM-DD)</span><br></pre></td></tr></table></figure></p>
-<p><strong>❌ 坏</strong>：太模糊<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Validate the data before proceeding.</span><br></pre></td></tr></table></figure></p>
+<h2 id="编写有效-Skill-的最佳实践"><a href="#编写有效-Skill-的最佳实践" class="headerlink" title="编写有效 Skill 的最佳实践"></a>编写有效 Skill 的最佳实践</h2><h3 id="指令编写建议"><a href="#指令编写建议" class="headerlink" title="指令编写建议"></a>指令编写建议</h3><p><strong>✅ 好</strong>：具体可操作</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Run <span class="code">`python scripts/validate.py --input &#123;filename&#125;`</span> to check data format.</span><br><span class="line">If validation fails, common issues include:</span><br><span class="line"><span class="bullet">-</span> Missing required fields (add them to the CSV)</span><br><span class="line"><span class="bullet">-</span> Invalid date formats (use YYYY-MM-DD)</span><br></pre></td></tr></table></figure>
+
+<p><strong>❌ 坏</strong>：太模糊</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Validate the data before proceeding.</span><br></pre></td></tr></table></figure>
+
 <h3 id="使用渐进式披露"><a href="#使用渐进式披露" class="headerlink" title="使用渐进式披露"></a>使用渐进式披露</h3><ul>
 <li>保持 SKILL.md 专注于核心指令</li>
 <li>将详细文档移到 <code>references/</code> 并链接到它</li>
 <li>保持 SKILL.md 在 5000 词以内</li>
 </ul>
 <h3 id="包含错误处理"><a href="#包含错误处理" class="headerlink" title="包含错误处理"></a>包含错误处理</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## Common Issues</span></span><br><span class="line"><span class="section">### MCP Connection Failed</span></span><br><span class="line">If you see &quot;Connection refused&quot;:</span><br><span class="line"><span class="bullet">1.</span> Verify MCP server is running: Check Settings &gt; Extensions</span><br><span class="line"><span class="bullet">2.</span> Confirm API key is valid</span><br><span class="line"><span class="bullet">3.</span> Try reconnecting: Settings &gt; Extensions &gt; [Your Service] &gt; Reconnect</span><br></pre></td></tr></table></figure>
+
 <h3 id="引用资源"><a href="#引用资源" class="headerlink" title="引用资源"></a>引用资源</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Before writing queries, consult <span class="code">`references/api-patterns.md`</span> for:</span><br><span class="line"><span class="bullet">-</span> Rate limiting guidance</span><br><span class="line"><span class="bullet">-</span> Pagination patterns</span><br><span class="line"><span class="bullet">-</span> Error codes and handling</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="测试与迭代"><a href="#测试与迭代" class="headerlink" title="测试与迭代"></a>测试与迭代</h2><h3 id="推荐测试方法"><a href="#推荐测试方法" class="headerlink" title="推荐测试方法"></a>推荐测试方法</h3><ol>
 <li><p><strong>触发测试</strong></p>
@@ -356,6 +365,7 @@
 <hr>
 <h2 id="五种实用模式"><a href="#五种实用模式" class="headerlink" title="五种实用模式"></a>五种实用模式</h2><h3 id="模式-1：顺序工作流编排"><a href="#模式-1：顺序工作流编排" class="headerlink" title="模式 1：顺序工作流编排"></a>模式 1：顺序工作流编排</h3><p><strong>适用</strong>：用户需要按特定顺序执行多步骤流程。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## Workflow: Onboard New Customer</span></span><br><span class="line"><span class="section">### Step 1: Create Account</span></span><br><span class="line">Call MCP tool: <span class="code">`create_customer`</span></span><br><span class="line">Parameters: name, email, company</span><br><span class="line"></span><br><span class="line"><span class="section">### Step 2: Setup Payment</span></span><br><span class="line">Call MCP tool: <span class="code">`setup_payment_method`</span></span><br><span class="line">Wait for: payment method verification</span><br><span class="line"></span><br><span class="line"><span class="section">### Step 3: Create Subscription</span></span><br><span class="line">Call MCP tool: <span class="code">`create_subscription`</span></span><br><span class="line">Parameters: plan<span class="emphasis">_id, customer_</span>id (from Step 1)</span><br></pre></td></tr></table></figure>
+
 <h3 id="模式-2：多-MCP-协调"><a href="#模式-2：多-MCP-协调" class="headerlink" title="模式 2：多 MCP 协调"></a>模式 2：多 MCP 协调</h3><p><strong>适用</strong>：工作流跨越多个服务。</p>
 <p>示例：设计到开发交接</p>
 <ul>
@@ -366,10 +376,13 @@
 </ul>
 <h3 id="模式-3：迭代优化"><a href="#模式-3：迭代优化" class="headerlink" title="模式 3：迭代优化"></a>模式 3：迭代优化</h3><p><strong>适用</strong>：输出质量随迭代提升。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## Iterative Report Creation</span></span><br><span class="line"><span class="section">### Initial Draft</span></span><br><span class="line"><span class="bullet">1.</span> Fetch data via MCP</span><br><span class="line"><span class="bullet">2.</span> Generate first draft report</span><br><span class="line"><span class="bullet">3.</span> Save to temporary file</span><br><span class="line"></span><br><span class="line"><span class="section">### Quality Check</span></span><br><span class="line"><span class="bullet">1.</span> Run validation script: <span class="code">`scripts/check_report.py`</span></span><br><span class="line"><span class="bullet">2.</span> Identify issues</span><br><span class="line"><span class="bullet">3.</span> Regenerate affected sections</span><br><span class="line"><span class="bullet">4.</span> Re-validate</span><br><span class="line"><span class="bullet">5.</span> Repeat until quality threshold met</span><br></pre></td></tr></table></figure>
+
 <h3 id="模式-4：上下文感知工具选择"><a href="#模式-4：上下文感知工具选择" class="headerlink" title="模式 4：上下文感知工具选择"></a>模式 4：上下文感知工具选择</h3><p><strong>适用</strong>：相同结果，根据上下文使用不同工具。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## Smart File Storage</span></span><br><span class="line"><span class="section">### Decision Tree</span></span><br><span class="line"><span class="bullet">1.</span> Check file type and size</span><br><span class="line"><span class="bullet">2.</span> Determine best storage location:</span><br><span class="line"><span class="bullet">   -</span> Large files (&gt;10MB): Use cloud storage MCP</span><br><span class="line"><span class="bullet">   -</span> Collaborative docs: Use Notion/Docs MCP</span><br><span class="line"><span class="bullet">   -</span> Code files: Use GitHub MCP</span><br><span class="line"><span class="bullet">   -</span> Temporary files: Use local storage</span><br></pre></td></tr></table></figure>
+
 <h3 id="模式-5：领域特定智能"><a href="#模式-5：领域特定智能" class="headerlink" title="模式 5：领域特定智能"></a>模式 5：领域特定智能</h3><p><strong>适用</strong>：Skill 添加超越工具访问的专业知识。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## Payment Processing with Compliance</span></span><br><span class="line"><span class="section">### Before Processing (Compliance Check)</span></span><br><span class="line"><span class="bullet">1.</span> Fetch transaction details via MCP</span><br><span class="line"><span class="bullet">2.</span> Apply compliance rules:</span><br><span class="line"><span class="bullet">   -</span> Check sanctions lists</span><br><span class="line"><span class="bullet">   -</span> Verify jurisdiction allowances</span><br><span class="line"><span class="bullet">   -</span> Assess risk level</span><br><span class="line"><span class="bullet">3.</span> Document compliance decision</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="故障排除指南"><a href="#故障排除指南" class="headerlink" title="故障排除指南"></a>故障排除指南</h2><h3 id="Skill-无法上传"><a href="#Skill-无法上传" class="headerlink" title="Skill 无法上传"></a>Skill 无法上传</h3><p><strong>错误</strong>：”Could not find SKILL.md in uploaded folder”</p>
 <ul>
@@ -424,35 +437,34 @@
 </ul>
 </li>
 <li><p><strong>创建安装指南</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## Installing the [Your Service] Skill</span></span><br><span class="line"><span class="bullet">1.</span> Download the skill:</span><br><span class="line"><span class="bullet">   -</span> Clone repo: <span class="code">`git clone https://github.com/yourcompany/skills`</span></span><br><span class="line"><span class="bullet">2.</span> Install in Claude:</span><br><span class="line"><span class="bullet">   -</span> Open Claude.ai &gt; Settings &gt; Skills</span><br><span class="line"><span class="bullet">   -</span> Click &quot;Upload skill&quot;</span><br><span class="line"><span class="bullet">   -</span> Select the skill folder (zipped)</span><br><span class="line"><span class="bullet">3.</span> Enable the skill</span><br><span class="line"><span class="bullet">4.</span> Test: Ask Claude to perform a task</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## Installing the [Your Service] Skill</span></span><br><span class="line"><span class="bullet">1.</span> Download the skill:</span><br><span class="line"><span class="bullet">   -</span> Clone repo: <span class="code">`git clone https://github.com/yourcompany/skills`</span></span><br><span class="line"><span class="bullet">2.</span> Install in Claude:</span><br><span class="line"><span class="bullet">   -</span> Open Claude.ai &gt; Settings &gt; Skills</span><br><span class="line"><span class="bullet">   -</span> Click &quot;Upload skill&quot;</span><br><span class="line"><span class="bullet">   -</span> Select the skill folder (zipped)</span><br><span class="line"><span class="bullet">3.</span> Enable the skill</span><br><span class="line"><span class="bullet">4.</span> Test: Ask Claude to perform a task</span><br></pre></td></tr></table></figure></li>
 </ol>
 <hr>
 <h2 id="快速检查清单"><a href="#快速检查清单" class="headerlink" title="快速检查清单"></a>快速检查清单</h2><h3 id="开发前"><a href="#开发前" class="headerlink" title="开发前"></a>开发前</h3><ul>
-<li>[ ] 确定 2-3 个具体用例</li>
-<li>[ ] 确定工具（内置或 MCP）</li>
-<li>[ ] 审阅指南和示例 Skill</li>
-<li>[ ] 规划文件夹结构</li>
+<li><input disabled="" type="checkbox"> 确定 2-3 个具体用例</li>
+<li><input disabled="" type="checkbox"> 确定工具（内置或 MCP）</li>
+<li><input disabled="" type="checkbox"> 审阅指南和示例 Skill</li>
+<li><input disabled="" type="checkbox"> 规划文件夹结构</li>
 </ul>
 <h3 id="开发中"><a href="#开发中" class="headerlink" title="开发中"></a>开发中</h3><ul>
-<li>[ ] 文件夹名 kebab-case</li>
-<li>[ ] SKILL.md 存在（精确拼写）</li>
-<li>[ ] YAML frontmatter 有 <code>---</code> 分隔符</li>
-<li>[ ] name 字段：kebab-case，无空格，无大写</li>
-<li>[ ] description 包含 WHAT 和 WHEN</li>
-<li>[ ] 无 XML 标签 <code>&lt; &gt;</code></li>
-<li>[ ] 指令清晰可操作</li>
-<li>[ ] 包含错误处理</li>
-<li>[ ] 提供示例</li>
-<li>[ ] 引用文件清晰链接</li>
+<li><input disabled="" type="checkbox"> 文件夹名 kebab-case</li>
+<li><input disabled="" type="checkbox"> SKILL.md 存在（精确拼写）</li>
+<li><input disabled="" type="checkbox"> YAML frontmatter 有 <code>---</code> 分隔符</li>
+<li><input disabled="" type="checkbox"> name 字段：kebab-case，无空格，无大写</li>
+<li><input disabled="" type="checkbox"> description 包含 WHAT 和 WHEN</li>
+<li><input disabled="" type="checkbox"> 无 XML 标签 <code>&lt; &gt;</code></li>
+<li><input disabled="" type="checkbox"> 指令清晰可操作</li>
+<li><input disabled="" type="checkbox"> 包含错误处理</li>
+<li><input disabled="" type="checkbox"> 提供示例</li>
+<li><input disabled="" type="checkbox"> 引用文件清晰链接</li>
 </ul>
 <h3 id="上传后"><a href="#上传后" class="headerlink" title="上传后"></a>上传后</h3><ul>
-<li>[ ] 在明显任务上测试触发</li>
-<li>[ ] 在同义请求上测试触发</li>
-<li>[ ] 验证不在不相关主题上触发</li>
-<li>[ ] 功能测试通过</li>
-<li>[ ] 监控欠触发/过触发</li>
-<li>[ ] 收集用户反馈</li>
+<li><input disabled="" type="checkbox"> 在明显任务上测试触发</li>
+<li><input disabled="" type="checkbox"> 在同义请求上测试触发</li>
+<li><input disabled="" type="checkbox"> 验证不在不相关主题上触发</li>
+<li><input disabled="" type="checkbox"> 功能测试通过</li>
+<li><input disabled="" type="checkbox"> 监控欠触发&#x2F;过触发</li>
+<li><input disabled="" type="checkbox"> 收集用户反馈</li>
 </ul>
 <hr>
 <h2 id="资源与参考"><a href="#资源与参考" class="headerlink" title="资源与参考"></a>资源与参考</h2><h3 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h3><ul>

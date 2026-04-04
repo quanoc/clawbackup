@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
-    <meta name="keywords" content="架构分析,OpenClaw,源码解读,AI SDK,pi-coding-agent,Agent 框架" />
+    <meta name="keywords" content="OpenClaw,架构分析,Agent框架解读,源码解读,AI SDK,pi-coding-agent,Agent 框架" />
 
     <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:type" content="article">
@@ -23,6 +23,7 @@
 <meta property="article:author" content="Novus">
 <meta property="article:tag" content="AI SDK">
 <meta property="article:tag" content="Agent 框架">
+<meta property="article:tag" content="Agent框架解读">
 <meta property="article:tag" content="OpenClaw">
 <meta property="article:tag" content="pi-coding-agent">
 <meta property="article:tag" content="架构分析">
@@ -97,7 +98,7 @@
         }
     },
     "image": "https://claw.waisec.cn/logo.png",
-    "keywords": "架构分析,OpenClaw,源码解读,AI SDK,pi-coding-agent,Agent 框架"
+    "keywords": "OpenClaw,架构分析,Agent框架解读,源码解读,AI SDK,pi-coding-agent,Agent 框架"
     
 }
 </script>
@@ -130,13 +131,13 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+        <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6%E8%AF%84%E6%B5%8B/">框架评测</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/AI-SDK/" rel="tag">AI SDK</a>, <a class="tag-link-link" href="/tags/Agent-%E6%A1%86%E6%9E%B6/" rel="tag">Agent 框架</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/pi-coding-agent/" rel="tag">pi-coding-agent</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
+        <a class="tag-link-link" href="/tags/AI-SDK/" rel="tag">AI SDK</a>, <a class="tag-link-link" href="/tags/Agent-%E6%A1%86%E6%9E%B6/" rel="tag">Agent 框架</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/" rel="tag">Agent框架解读</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/pi-coding-agent/" rel="tag">pi-coding-agent</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
     </div>
 
                         
@@ -150,7 +151,7 @@
 
 
 
-                        <meta name="keywords" content="架构分析,OpenClaw,源码解读,AI SDK,pi-coding-agent,Agent 框架">
+                        <meta name="keywords" content="OpenClaw,架构分析,Agent框架解读,源码解读,AI SDK,pi-coding-agent,Agent 框架">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -202,7 +203,6 @@
 </blockquote>
 <hr>
 <h2 id="一、AI-SDK-是什么"><a href="#一、AI-SDK-是什么" class="headerlink" title="一、AI SDK 是什么"></a>一、AI SDK 是什么</h2><p>OpenClaw 使用的 AI SDK 是 <strong><code>@mariozechner/pi-coding-agent</code></strong>（版本 0.63.0），由 Mario Zechner 开发。它实际上是一组协同工作的包：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -210,8 +210,7 @@
 <th>职责</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>@mariozechner/pi-coding-agent</code></td>
 <td>核心 Agent 运行时，提供 <code>createAgentSession</code>、<code>SessionManager</code> 等</td>
 </tr>
@@ -227,9 +226,7 @@
 <td><code>@mariozechner/pi-tui</code></td>
 <td>终端 UI 组件（用于本地调试）</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>重要说明</strong>：这不是第三方 SDK，而是由 OpenClaw 核心开发者维护的<strong>底层引擎库</strong>，与 OpenClaw 是同一生态下的分层设计。</p>
 <hr>
 <h2 id="二、SDK-在项目中的定位"><a href="#二、SDK-在项目中的定位" class="headerlink" title="二、SDK 在项目中的定位"></a>二、SDK 在项目中的定位</h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" style="background:#1a1a2e" width="80%">
@@ -259,23 +256,23 @@
   <!-- ========== Layer 1: User & Channels ========== -->
   <rect x="50" y="50" width="800" height="80" rx="8" fill="#2d2d44" stroke="#4a4a6a" stroke-width="2"/>
   <text x="450" y="75" text-anchor="middle" fill="#aaa" font-size="12" font-family="system-ui, -apple-system, sans-serif">用户接入层</text>
-
+  
   <!-- Channel icons -->
   <rect x="80" y="85" width="100" height="35" rx="5" fill="#25d366"/>
   <text x="130" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">WhatsApp</text>
-
+  
   <rect x="200" y="85" width="100" height="35" rx="5" fill="#0088cc"/>
   <text x="250" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Telegram</text>
-
+  
   <rect x="320" y="85" width="100" height="35" rx="5" fill="#4a154b"/>
   <text x="370" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Slack</text>
-
+  
   <rect x="440" y="85" width="100" height="35" rx="5" fill="#5865f2"/>
   <text x="490" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Discord</text>
-
+  
   <rect x="560" y="85" width="100" height="35" rx="5" fill="#0084ff"/>
   <text x="610" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Messenger</text>
-
+  
   <rect x="680" y="85" width="100" height="35" rx="5" fill="#ea4335"/>
   <text x="730" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="system-ui, -apple-system, sans-serif">Gmail</text>
 
@@ -419,9 +416,11 @@
 
 <p><strong>架构分层说明</strong>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│                    OpenClaw 项目整体                          │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  上层应用 (OpenClaw Gateway)                                  │</span><br><span class="line">│  ├── 多渠道接入 (WhatsApp/Telegram/Slack/...)                │</span><br><span class="line">│  ├── 消息调度与路由                                           │</span><br><span class="line">│  ├── Session 管理与持久化                                     │</span><br><span class="line">│  ├── 工具策略与权限控制                                       │</span><br><span class="line">│  ├── 多 Agent 编排 (ACP 协议)                                 │</span><br><span class="line">│  └── 插件/技能生态系统                                        │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  底层引擎 (pi-coding-agent SDK)                               │</span><br><span class="line">│  ├── Agent 生命周期管理                                       │</span><br><span class="line">│  ├── LLM 通信抽象层                                           │</span><br><span class="line">│  ├── Tool Use Loop 实现                                       │</span><br><span class="line">│  └── 消息历史与上下文管理                                      │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br><span class="line">              │</span><br><span class="line">              ▼</span><br><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│  外部模型服务 (Anthropic/OpenAI/Google/...)                   │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="三、SDK-与-OpenClaw-各模块的交互关系"><a href="#三、SDK-与-OpenClaw-各模块的交互关系" class="headerlink" title="三、SDK 与 OpenClaw 各模块的交互关系"></a>三、SDK 与 OpenClaw 各模块的交互关系</h2><h3 id="1-Agent-执行层-src-agents-pi-embedded-runner"><a href="#1-Agent-执行层-src-agents-pi-embedded-runner" class="headerlink" title="1. Agent 执行层 (src/agents/pi-embedded-runner/)"></a>1. Agent 执行层 (<code>src/agents/pi-embedded-runner/</code>)</h3><p>这是与 SDK 交互最紧密的模块：</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// run/attempt.ts - 核心调用点</span></span><br><span class="line"><span class="keyword">import</span> &#123; createAgentSession, <span class="title class_">SessionManager</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@mariozechner/pi-coding-agent&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; streamSimple &#125; <span class="keyword">from</span> <span class="string">&quot;@mariozechner/pi-ai&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">AgentMessage</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@mariozechner/pi-agent-core&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 Agent 会话</span></span><br><span class="line"><span class="keyword">const</span> &#123; session &#125; = <span class="keyword">await</span> <span class="title function_">createAgentSession</span>(&#123;</span><br><span class="line">  <span class="attr">cwd</span>: resolvedWorkspace,</span><br><span class="line">  agentDir,</span><br><span class="line">  <span class="attr">authStorage</span>: params.<span class="property">authStorage</span>,</span><br><span class="line">  <span class="attr">thinkingLevel</span>: <span class="title function_">mapThinkingLevel</span>(params.<span class="property">thinkLevel</span>),</span><br><span class="line">  <span class="attr">tools</span>: builtInTools,           <span class="comment">// OpenClaw 提供的工具</span></span><br><span class="line">  <span class="attr">customTools</span>: allCustomTools,   <span class="comment">// 插件扩展的工具</span></span><br><span class="line">  sessionManager,               <span class="comment">// OpenClaw 封装的 SessionManager</span></span><br><span class="line">  settingsManager,</span><br><span class="line">  resourceLoader,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <p><strong>交互模式</strong>：</p>
 <ul>
 <li>OpenClaw 准备 <code>tools</code>（工具定义）和 <code>sessionManager</code>（会话状态）</li>
@@ -429,6 +428,7 @@
 <li>SDK 回调 OpenClaw 提供的工具函数执行实际操作</li>
 </ul>
 <h3 id="2-工具系统-src-agents-pi-tools-ts"><a href="#2-工具系统-src-agents-pi-tools-ts" class="headerlink" title="2. 工具系统 (src/agents/pi-tools.ts)"></a>2. 工具系统 (<code>src/agents/pi-tools.ts</code>)</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; codingTools, createReadTool, readTool &#125; <span class="keyword">from</span> <span class="string">&quot;@mariozechner/pi-coding-agent&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// OpenClaw 基于 SDK 的基础工具构建自己的工具集</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">createOpenClawCodingTools</span>(<span class="params">...</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> builtInTools = [</span><br><span class="line">    ...codingTools,  <span class="comment">// SDK 提供的标准工具（bash、read、write等）</span></span><br><span class="line">    <span class="comment">// OpenClaw 扩展的工具</span></span><br><span class="line">    <span class="title function_">createOpenClawReadTool</span>(...),</span><br><span class="line">    <span class="title function_">createSandboxedReadTool</span>(...),</span><br><span class="line">    <span class="title function_">createSandboxedWriteTool</span>(...),</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>关系</strong>：SDK 提供基础工具实现，OpenClaw 在此基础上封装：</p>
 <ul>
 <li>沙箱隔离（Sandboxed tools）</li>
@@ -436,6 +436,7 @@
 <li>渠道特定工具（Channel tools）</li>
 </ul>
 <h3 id="3-Session-管理-src-agents-pi-embedded-runner-session-manager-init-ts"><a href="#3-Session-管理-src-agents-pi-embedded-runner-session-manager-init-ts" class="headerlink" title="3. Session 管理 (src/agents/pi-embedded-runner/session-manager-init.ts)"></a>3. Session 管理 (<code>src/agents/pi-embedded-runner/session-manager-init.ts</code>)</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// OpenClaw 封装 SDK 的 SessionManager</span></span><br><span class="line">sessionManager = <span class="title function_">guardSessionManager</span>(<span class="title class_">SessionManager</span>.<span class="title function_">open</span>(params.<span class="property">sessionFile</span>), &#123;</span><br><span class="line">  <span class="attr">agentId</span>: sessionAgentId,</span><br><span class="line">  <span class="attr">sessionKey</span>: params.<span class="property">sessionKey</span>,</span><br><span class="line">  allowedToolNames,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <p><strong>关系</strong>：</p>
 <ul>
 <li>SDK 的 <code>SessionManager</code> 负责消息历史的底层存储和检索</li>
@@ -447,8 +448,10 @@
 </li>
 </ul>
 <h3 id="4-Channel-插件层-src-channels-plugins"><a href="#4-Channel-插件层-src-channels-plugins" class="headerlink" title="4. Channel 插件层 (src/channels/plugins/)"></a>4. Channel 插件层 (<code>src/channels/plugins/</code>)</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// types.core.ts</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; <span class="title class_">AgentTool</span>, <span class="title class_">AgentToolResult</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@mariozechner/pi-agent-core&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> <span class="title class_">ChannelAgentTool</span> = <span class="title class_">AgentTool</span>&lt;<span class="title class_">TSchema</span>, <span class="built_in">unknown</span>&gt; &amp; &#123;</span><br><span class="line">  <span class="attr">ownerOnly</span>?: <span class="built_in">boolean</span>;  <span class="comment">// OpenClaw 扩展的属性</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>Channel 插件可以注册自己的 <code>AgentTool</code>，这些工具最终会通过 SDK 暴露给 AI 模型。</p>
 <h3 id="5-消息调度层-src-auto-reply"><a href="#5-消息调度层-src-auto-reply" class="headerlink" title="5. 消息调度层 (src/auto-reply/)"></a>5. 消息调度层 (<code>src/auto-reply/</code>)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">用户消息 → Channel Plugin → MsgContext → dispatchInboundMessage()</span><br><span class="line">                                              │</span><br><span class="line">                                              ▼</span><br><span class="line">                                    getReplyFromConfig()</span><br><span class="line">                                              │</span><br><span class="line">                                              ▼</span><br><span class="line">                                    agentCommand() ─────┐</span><br><span class="line">                                                        │</span><br><span class="line">                              ┌─────────────────────────┘</span><br><span class="line">                              ▼</span><br><span class="line">                    runEmbeddedPiAgent()  [OpenClaw 封装]</span><br><span class="line">                              │</span><br><span class="line">                              ▼</span><br><span class="line">                    createAgentSession()  [SDK API]</span><br><span class="line">                              │</span><br><span class="line">                              ▼</span><br><span class="line">                    SDK 内部工具循环与模型交互</span><br><span class="line">                              │</span><br><span class="line">                              ▼</span><br><span class="line">                    工具执行结果 → OpenClaw 回调</span><br><span class="line">                              │</span><br><span class="line">                              ▼</span><br><span class="line">                    ReplyDispatcher → 原渠道回复</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="四、为什么要拆分成独立的-SDK"><a href="#四、为什么要拆分成独立的-SDK" class="headerlink" title="四、为什么要拆分成独立的 SDK"></a>四、为什么要拆分成独立的 SDK</h2><ol>
 <li><p><strong>职责分离</strong></p>
@@ -471,16 +474,14 @@
 </li>
 </ol>
 <hr>
-<h2 id="五、OpenClaw-对-SDK-的扩展"><a href="#五、OpenClaw-对-SDK-的扩展" class="headerlink" title="五、OpenClaw 对 SDK 的扩展"></a>五、OpenClaw 对 SDK 的扩展</h2><div class="table-container">
-<table>
+<h2 id="五、OpenClaw-对-SDK-的扩展"><a href="#五、OpenClaw-对-SDK-的扩展" class="headerlink" title="五、OpenClaw 对 SDK 的扩展"></a>五、OpenClaw 对 SDK 的扩展</h2><table>
 <thead>
 <tr>
 <th>SDK 能力</th>
 <th>OpenClaw 扩展</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>基础工具执行</td>
 <td>工具策略管道（审批、权限、沙箱）</td>
 </tr>
@@ -500,9 +501,7 @@
 <td>标准系统提示</td>
 <td>Skills 系统（ClawHub + 本地技能）</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p><strong>AI SDK (<code>@mariozechner/pi-coding-agent</code>)</strong> 是 OpenClaw 的 <strong>底层 AI 引擎</strong>，负责：</p>
 <ol>

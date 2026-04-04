@@ -132,7 +132,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+        <a class="article-category-link" href="/categories/%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">核心概念</a>
     </div>
 
                         
@@ -238,6 +238,7 @@
 </table>
 
 <h4 id="1-5-TDD-循环的伪代码"><a href="#1-5-TDD-循环的伪代码" class="headerlink" title="1.5 TDD 循环的伪代码"></a>1.5 TDD 循环的伪代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">tdd_cycle</span>(<span class="params">user_requirement</span>):</span><br><span class="line">    <span class="comment"># Step 1: RED - 编写失败测试</span></span><br><span class="line">    failing_test = write_failing_test(user_requirement)</span><br><span class="line">    run_test(failing_test)  <span class="comment"># 必须失败</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Step 2: GREEN - 编写最小代码通过测试</span></span><br><span class="line">    minimal_code = write_minimal_code(failing_test)</span><br><span class="line">    run_test(failing_test)  <span class="comment"># 必须通过</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Step 3: REFACTOR - 重构优化</span></span><br><span class="line">    refactored_code = refactor(minimal_code)</span><br><span class="line">    run_all_tests()  <span class="comment"># 确保不破坏已有功能</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> refactored_code</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="二、gstack-GStack"><a href="#二、gstack-GStack" class="headerlink" title="二、gstack (GStack)"></a>二、gstack (GStack)</h3><h4 id="2-1-定义与定位"><a href="#2-1-定义与定位" class="headerlink" title="2.1 定义与定位"></a>2.1 定义与定位</h4><p><strong>gstack</strong> 是 Y Combinator 总裁兼 CEO Garry Tan 开源的 Claude Code 工作流工具，目标是<strong>将单个开发者转变为”虚拟工程团队”</strong>。</p>
 <blockquote>
@@ -278,6 +279,7 @@
 
 <h4 id="3-3-Ultrawork-模式"><a href="#3-3-Ultrawork-模式" class="headerlink" title="3.3 Ultrawork 模式"></a>3.3 Ultrawork 模式</h4><p>触发方式：用户消息包含 “ultrawork” 或 “ulw” 关键词</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ultrawork 用法</span></span><br><span class="line">opencode</span><br><span class="line">ultrawork 重构整个用户认证系统</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="四、Critic-模式（审查者模式）"><a href="#四、Critic-模式（审查者模式）" class="headerlink" title="四、Critic 模式（审查者模式）"></a>四、Critic 模式（审查者模式）</h3><h4 id="4-1-定义与起源"><a href="#4-1-定义与起源" class="headerlink" title="4.1 定义与起源"></a>4.1 定义与起源</h4><p><strong>Critic 模式</strong> 源自强化学习中的 Actor-Critic 架构，在 AI Agent 领域指<strong>通过独立 Agent 评估其他 Agent 输出质量的机制</strong>。</p>
 <blockquote>
@@ -312,9 +314,10 @@
 <hr>
 <h3 id="五、YOLO-模式"><a href="#五、YOLO-模式" class="headerlink" title="五、YOLO 模式"></a>五、YOLO 模式</h3><h4 id="5-1-定义与命名来源"><a href="#5-1-定义与命名来源" class="headerlink" title="5.1 定义与命名来源"></a>5.1 定义与命名来源</h4><p><strong>YOLO</strong> 源自 “You Only Live Once”，在 Claude Code 语境下指<strong>自动接受模式（Auto-Accept）</strong>，跳过所有权限确认。</p>
 <blockquote>
-<p><strong>官方名称</strong>：<code>—dangerously-skip-permissions</code>（危险地跳过权限）</p>
+<p><strong>官方名称</strong>：<code>--dangerously-skip-permissions</code>（危险地跳过权限）</p>
 </blockquote>
 <h4 id="5-2-使用方法"><a href="#5-2-使用方法" class="headerlink" title="5.2 使用方法"></a>5.2 使用方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启 YOLO 模式</span></span><br><span class="line">claude --dangerously-skip-permissions</span><br><span class="line"></span><br><span class="line"><span class="comment"># 带权限限制的 YOLO 模式</span></span><br><span class="line">claude --dangerously-skip-permissions --allowedTools <span class="string">&quot;Read,Write,Edit,Glob,Grep&quot;</span></span><br></pre></td></tr></table></figure>
+
 <h4 id="5-3-安全注意事项"><a href="#5-3-安全注意事项" class="headerlink" title="5.3 安全注意事项"></a>5.3 安全注意事项</h4><p style="background: #fff3cd; padding: 12px; border-left: 4px solid #ffc107; margin: 16px 0;">
 <strong>⚠️ YOLO 模式具有极高风险，必须遵循以下安全措施：</strong>
 </p>
@@ -387,8 +390,8 @@
 </table>
 
 <hr>
-<h2 id="第四部分：精华整合"><a href="#第四部分：精华整合" class="headerlink" title="第四部分：精华整合"></a>第四部分：精华整合</h2><h3 id="The-One-公式"><a href="#The-One-公式" class="headerlink" title="The One 公式"></a>The One 公式</h3><script type="math/tex; mode=display">
-\text{AI编程质量} = \underbrace{\text{结构化流程}}_{\text{Superpowers/gstack}} + \underbrace{\text{多Agent协作}}_{\text{OMO}} + \underbrace{\text{审查反馈}}_{\text{Critic}} - \underbrace{\text{过度自动化风险}}_{\text{YOLO}}</script><h3 id="一句话解释"><a href="#一句话解释" class="headerlink" title="一句话解释"></a>一句话解释</h3><p><strong>Superpowers、gstack、OMO</strong> 是三种不同的 AI 编程工作流框架，分别通过技能系统、角色分工、多 Agent 编排来提升 AI 编程质量；<strong>Critic 模式</strong> 是审查反馈机制，确保 AI 输出符合规范；<strong>YOLO 模式</strong> 是无确认自动执行，追求效率但需注意安全。</p>
+<h2 id="第四部分：精华整合"><a href="#第四部分：精华整合" class="headerlink" title="第四部分：精华整合"></a>第四部分：精华整合</h2><h3 id="The-One-公式"><a href="#The-One-公式" class="headerlink" title="The One 公式"></a>The One 公式</h3><p>$$<br>\text{AI编程质量} &#x3D; \underbrace{\text{结构化流程}}<em>{\text{Superpowers&#x2F;gstack}} + \underbrace{\text{多Agent协作}}</em>{\text{OMO}} + \underbrace{\text{审查反馈}}<em>{\text{Critic}} - \underbrace{\text{过度自动化风险}}</em>{\text{YOLO}}<br>$$</p>
+<h3 id="一句话解释"><a href="#一句话解释" class="headerlink" title="一句话解释"></a>一句话解释</h3><p><strong>Superpowers、gstack、OMO</strong> 是三种不同的 AI 编程工作流框架，分别通过技能系统、角色分工、多 Agent 编排来提升 AI 编程质量；<strong>Critic 模式</strong> 是审查反馈机制，确保 AI 输出符合规范；<strong>YOLO 模式</strong> 是无确认自动执行，追求效率但需注意安全。</p>
 <h3 id="核心架构图"><a href="#核心架构图" class="headerlink" title="核心架构图"></a>核心架构图</h3><pre>
 ┌─────────────────────────────────────────────────────────────┐
 │                    AI Agent 工作流架构                        │
@@ -435,7 +438,7 @@
 <hr>
 <h2 id="理解确认问题"><a href="#理解确认问题" class="headerlink" title="理解确认问题"></a>理解确认问题</h2><p><strong>问题</strong>：如果要开发一个复杂的企业级应用，应该选择哪个框架？</p>
 
-<p><p><strong>参考答案</strong>：</p></p>
+<p><strong>参考答案</strong>：</p>
 <ol>
 <li><strong>首选 Superpowers</strong>：强制 TDD + 两级审查确保代码质量</li>
 <li><strong>搭配 OMO</strong>：多 Agent 编排处理复杂任务</li>

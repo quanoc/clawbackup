@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
-    <meta name="keywords" content="AI Agent,Agent工程实践,OpenClaw,环境配置,部署指南" />
+    <meta name="keywords" content="OpenClaw,Agent工程实践,环境配置,AI Agent,部署指南" />
 
     <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:type" content="article">
@@ -19,7 +19,7 @@
 <meta property="og:description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-03-13T18:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-04T15:34:20.615Z">
+<meta property="article:modified_time" content="2026-04-04T16:05:38.235Z">
 <meta property="article:author" content="Novus">
 <meta property="article:tag" content="AI Agent">
 <meta property="article:tag" content="Agent工程实践">
@@ -82,7 +82,7 @@
     "headline": "OpenClaw 环境配置指南",
     "url": "https://claw.waisec.cn/wiki/openclaw-setup/",
     "datePublished": "2026-03-13T18:00:00.000Z",
-    "dateModified": "2026-04-04T15:34:20.615Z",
+    "dateModified": "2026-04-04T16:05:38.235Z",
     "author": {
         "@type": "Person",
         "name": "Novus"
@@ -96,7 +96,7 @@
         }
     },
     "image": "https://claw.waisec.cn/logo.png",
-    "keywords": "AI Agent,Agent工程实践,OpenClaw,环境配置,部署指南"
+    "keywords": "OpenClaw,Agent工程实践,环境配置,AI Agent,部署指南"
     
 }
 </script>
@@ -129,7 +129,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">Agent工程实践</a>
+        <a class="article-category-link" href="/categories/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">工程实践</a>
     </div>
 
                         
@@ -149,7 +149,7 @@
 
 
 
-                        <meta name="keywords" content="AI Agent,Agent工程实践,OpenClaw,环境配置,部署指南">
+                        <meta name="keywords" content="OpenClaw,Agent工程实践,环境配置,AI Agent,部署指南">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -201,17 +201,16 @@
 </blockquote>
 <hr>
 <h2 id="📋-目录"><a href="#📋-目录" class="headerlink" title="📋 目录"></a>📋 目录</h2><ol>
-<li><a href="#系统要求">系统要求</a></li>
-<li><a href="#安装步骤">安装步骤</a></li>
-<li><a href="#配置说明">配置说明</a></li>
-<li><a href="#插件配置">插件配置</a></li>
-<li><a href="#模型配置">模型配置</a></li>
-<li><a href="#常用命令">常用命令</a></li>
-<li><a href="#故障排查">故障排查</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82">系统要求</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4">安装步骤</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E">配置说明</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE">插件配置</a></li>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE">模型配置</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a></li>
+<li><a href="#%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5">故障排查</a></li>
 </ol>
 <hr>
-<h2 id="一、系统要求-系统要求"><a href="#一、系统要求-系统要求" class="headerlink" title="一、系统要求 {#系统要求}"></a>一、系统要求 {#系统要求}</h2><h3 id="1-1-硬件要求"><a href="#1-1-硬件要求" class="headerlink" title="1.1 硬件要求"></a>1.1 硬件要求</h3><div class="table-container">
-<table>
+<h2 id="一、系统要求-系统要求"><a href="#一、系统要求-系统要求" class="headerlink" title="一、系统要求 {#系统要求}"></a>一、系统要求 {#系统要求}</h2><h3 id="1-1-硬件要求"><a href="#1-1-硬件要求" class="headerlink" title="1.1 硬件要求"></a>1.1 硬件要求</h3><table>
 <thead>
 <tr>
 <th>组件</th>
@@ -219,8 +218,7 @@
 <th>推荐配置</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>CPU</strong></td>
 <td>2 核</td>
 <td>4 核 +</td>
@@ -240,11 +238,8 @@
 <td>宽带连接</td>
 <td>稳定宽带</td>
 </tr>
-</tbody>
-</table>
-</div>
-<h3 id="1-2-软件要求"><a href="#1-2-软件要求" class="headerlink" title="1.2 软件要求"></a>1.2 软件要求</h3><div class="table-container">
-<table>
+</tbody></table>
+<h3 id="1-2-软件要求"><a href="#1-2-软件要求" class="headerlink" title="1.2 软件要求"></a>1.2 软件要求</h3><table>
 <thead>
 <tr>
 <th>软件</th>
@@ -252,8 +247,7 @@
 <th>用途</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>Node.js</strong></td>
 <td>v18+</td>
 <td>运行时环境</td>
@@ -273,18 +267,20 @@
 <td>Latest</td>
 <td>版本控制</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h2 id="二、安装步骤-安装步骤"><a href="#二、安装步骤-安装步骤" class="headerlink" title="二、安装步骤 {#安装步骤}"></a>二、安装步骤 {#安装步骤}</h2><h3 id="2-1-安装-Node-js-和-pnpm"><a href="#2-1-安装-Node-js-和-pnpm" class="headerlink" title="2.1 安装 Node.js 和 pnpm"></a>2.1 安装 Node.js 和 pnpm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 nvm 安装 Node.js</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash</span><br><span class="line">nvm install 24</span><br><span class="line">nvm use 24</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 pnpm</span></span><br><span class="line">curl -fsSL https://get.pnpm.io/install.sh | sh -</span><br></pre></td></tr></table></figure>
+
 <h3 id="2-2-安装-OpenClaw"><a href="#2-2-安装-OpenClaw" class="headerlink" title="2.2 安装 OpenClaw"></a>2.2 安装 OpenClaw</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法 1: 使用官方安装脚本（推荐）</span></span><br><span class="line">curl -fsSL https://openclaw.ai/install.sh | bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法 2: 使用 npm/pnpm</span></span><br><span class="line">pnpm add -g openclaw@latest</span><br></pre></td></tr></table></figure>
+
 <h3 id="2-3-启动-Gateway"><a href="#2-3-启动-Gateway" class="headerlink" title="2.3 启动 Gateway"></a>2.3 启动 Gateway</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">openclaw gateway start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line">openclaw gateway status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看日志</span></span><br><span class="line">openclaw logs --follow</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="三、配置说明-配置说明"><a href="#三、配置说明-配置说明" class="headerlink" title="三、配置说明 {#配置说明}"></a>三、配置说明 {#配置说明}</h2><h3 id="3-1-配置文件位置"><a href="#3-1-配置文件位置" class="headerlink" title="3.1 配置文件位置"></a>3.1 配置文件位置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">~/.openclaw/</span><br><span class="line">├── openclaw.json          # 主配置文件</span><br><span class="line">├── credentials/           # 凭证目录（敏感）</span><br><span class="line">├── workspace/             # 工作目录</span><br><span class="line">└── extensions/            # 插件目录</span><br></pre></td></tr></table></figure>
+
 <h3 id="3-2-基础配置"><a href="#3-2-基础配置" class="headerlink" title="3.2 基础配置"></a>3.2 基础配置</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;gateway&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;port&quot;</span><span class="punctuation">:</span> <span class="number">18027</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;local&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;bind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;lan&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;auth&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;token&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;token&quot;</span><span class="punctuation">:</span> <span class="string">&quot;[你的 Token]&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;agents&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;defaults&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;primary&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dashscope-coding/qwen3.5-plus&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;workspace&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/home/admin/.openclaw/workspace&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cron&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="3-3-敏感信息脱敏"><a href="#3-3-敏感信息脱敏" class="headerlink" title="3.3 敏感信息脱敏"></a>3.3 敏感信息脱敏</h3><p>⚠️ <strong>以下内容需要脱敏处理</strong>:</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -293,8 +289,7 @@
 <th>脱敏方式</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>models.providers.*.apiKey</code></td>
 <td>API 密钥</td>
 <td><code>[REDACTED]</code></td>
@@ -314,12 +309,9 @@
 <td>客户端 ID</td>
 <td><code>[REDACTED]</code></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
-<h2 id="四、插件配置-插件配置"><a href="#四、插件配置-插件配置" class="headerlink" title="四、插件配置 {#插件配置}"></a>四、插件配置 {#插件配置}</h2><h3 id="4-1-已安装插件"><a href="#4-1-已安装插件" class="headerlink" title="4.1 已安装插件"></a>4.1 已安装插件</h3><div class="table-container">
-<table>
+<h2 id="四、插件配置-插件配置"><a href="#四、插件配置-插件配置" class="headerlink" title="四、插件配置 {#插件配置}"></a>四、插件配置 {#插件配置}</h2><h3 id="4-1-已安装插件"><a href="#4-1-已安装插件" class="headerlink" title="4.1 已安装插件"></a>4.1 已安装插件</h3><table>
 <thead>
 <tr>
 <th>插件</th>
@@ -327,8 +319,7 @@
 <th>用途</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>qqbot</strong></td>
 <td>1.5.0</td>
 <td>QQ 机器人</td>
@@ -348,26 +339,36 @@
 <td>2026.2.25</td>
 <td>通义千问配置</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h3 id="4-2-插件配置示例"><a href="#4-2-插件配置示例" class="headerlink" title="4.2 插件配置示例"></a>4.2 插件配置示例</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;allow&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;dingtalk&quot;</span><span class="punctuation">,</span> <span class="string">&quot;qqbot&quot;</span><span class="punctuation">,</span> <span class="string">&quot;dashscope-cfg&quot;</span><span class="punctuation">,</span> <span class="string">&quot;wecom&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;entries&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;qqbot&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dingtalk&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span> <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;channels&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;dingtalk&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;clientId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;[REDACTED]&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;clientSecret&quot;</span><span class="punctuation">:</span> <span class="string">&quot;[REDACTED]&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dmPolicy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;open&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;groupPolicy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;open&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="五、模型配置-模型配置"><a href="#五、模型配置-模型配置" class="headerlink" title="五、模型配置 {#模型配置}"></a>五、模型配置 {#模型配置}</h2><h3 id="5-1-通义千问配置"><a href="#5-1-通义千问配置" class="headerlink" title="5.1 通义千问配置"></a>5.1 通义千问配置</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;models&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;providers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;dashscope&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;baseUrl&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;apiKey&quot;</span><span class="punctuation">:</span> <span class="string">&quot;[REDACTED]&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;api&quot;</span><span class="punctuation">:</span> <span class="string">&quot;openai-completions&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;models&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">          <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qwen3.5-plus&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Qwen3.5-Plus&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;contextWindow&quot;</span><span class="punctuation">:</span> <span class="number">1000000</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;maxTokens&quot;</span><span class="punctuation">:</span> <span class="number">65536</span></span><br><span class="line">          <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dashscope-coding&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;baseUrl&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://coding.dashscope.aliyuncs.com/v1&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;apiKey&quot;</span><span class="punctuation">:</span> <span class="string">&quot;[REDACTED]&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;api&quot;</span><span class="punctuation">:</span> <span class="string">&quot;openai-completions&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="5-2-模型别名"><a href="#5-2-模型别名" class="headerlink" title="5.2 模型别名"></a>5.2 模型别名</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;agents&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;defaults&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;models&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;dashscope/qwen3.5-plus&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;alias&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qwen3.5-plus&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;dashscope-us/qwen3-max-2025-09-23&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;alias&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qwen3-max-2025-09-23&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;dashscope-coding/qwen3.5-plus&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;alias&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qwen3.5-plus&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="六、常用命令-常用命令"><a href="#六、常用命令-常用命令" class="headerlink" title="六、常用命令 {#常用命令}"></a>六、常用命令 {#常用命令}</h2><h3 id="6-1-服务管理"><a href="#6-1-服务管理" class="headerlink" title="6.1 服务管理"></a>6.1 服务管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动/停止/重启</span></span><br><span class="line">openclaw gateway start</span><br><span class="line">openclaw gateway stop</span><br><span class="line">openclaw gateway restart</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line">openclaw gateway status</span><br><span class="line">openclaw status</span><br></pre></td></tr></table></figure>
+
 <h3 id="6-2-日志查看"><a href="#6-2-日志查看" class="headerlink" title="6.2 日志查看"></a>6.2 日志查看</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实时日志</span></span><br><span class="line">openclaw logs --follow</span><br><span class="line"></span><br><span class="line"><span class="comment"># 最近 100 行</span></span><br><span class="line">openclaw logs --<span class="built_in">limit</span> 100</span><br></pre></td></tr></table></figure>
+
 <h3 id="6-3-配置管理"><a href="#6-3-配置管理" class="headerlink" title="6.3 配置管理"></a>6.3 配置管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 运行健康检查</span></span><br><span class="line">openclaw doctor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新配置</span></span><br><span class="line">openclaw config <span class="built_in">set</span> gateway.port 18027</span><br></pre></td></tr></table></figure>
+
 <h3 id="6-4-更新维护"><a href="#6-4-更新维护" class="headerlink" title="6.4 更新维护"></a>6.4 更新维护</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新 OpenClaw</span></span><br><span class="line">openclaw update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看更新状态</span></span><br><span class="line">openclaw update status</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="七、故障排查-故障排查"><a href="#七、故障排查-故障排查" class="headerlink" title="七、故障排查 {#故障排查}"></a>七、故障排查 {#故障排查}</h2><h3 id="7-1-常见问题"><a href="#7-1-常见问题" class="headerlink" title="7.1 常见问题"></a>7.1 常见问题</h3><h4 id="Gateway-无法启动"><a href="#Gateway-无法启动" class="headerlink" title="Gateway 无法启动"></a>Gateway 无法启动</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查端口占用</span></span><br><span class="line">netstat -tlnp | grep 18027</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看详细错误</span></span><br><span class="line">openclaw logs --follow</span><br></pre></td></tr></table></figure>
+
 <h4 id="插件加载失败"><a href="#插件加载失败" class="headerlink" title="插件加载失败"></a>插件加载失败</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新安装插件</span></span><br><span class="line"><span class="built_in">cd</span> ~/.openclaw/extensions/qqbot</span><br><span class="line">pnpm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查插件状态</span></span><br><span class="line">openclaw plugins list</span><br></pre></td></tr></table></figure>
+
 <h4 id="API-调用失败"><a href="#API-调用失败" class="headerlink" title="API 调用失败"></a>API 调用失败</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查 API Key 配置</span></span><br><span class="line"><span class="built_in">cat</span> ~/.openclaw/openclaw.json | grep apiKey</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试 API 连接</span></span><br><span class="line">curl -H <span class="string">&quot;Authorization: Bearer [REDACTED]&quot;</span> \</span><br><span class="line">  https://dashscope.aliyuncs.com/compatible-mode/v1/models</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="7-2-调试模式"><a href="#7-2-调试模式" class="headerlink" title="7.2 调试模式"></a>7.2 调试模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启用详细日志</span></span><br><span class="line"><span class="built_in">export</span> DEBUG=openclaw:*</span><br><span class="line">openclaw gateway start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 浏览器调试</span></span><br><span class="line">openclaw browser debug</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="7-3-备份与恢复"><a href="#7-3-备份与恢复" class="headerlink" title="7.3 备份与恢复"></a>7.3 备份与恢复</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份配置</span></span><br><span class="line"><span class="built_in">cp</span> ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份工作目录</span></span><br><span class="line">tar -czf workspace-backup.tar.gz ~/.openclaw/workspace/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复配置</span></span><br><span class="line"><span class="built_in">cp</span> ~/.openclaw/openclaw.json.bak ~/.openclaw/openclaw.json</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="八、安全建议-安全建议"><a href="#八、安全建议-安全建议" class="headerlink" title="八、安全建议 {#安全建议}"></a>八、安全建议 {#安全建议}</h2><h3 id="8-1-敏感信息管理"><a href="#8-1-敏感信息管理" class="headerlink" title="8.1 敏感信息管理"></a>8.1 敏感信息管理</h3><ol>
 <li><strong>不要提交 API Keys 到 Git</strong></li>
@@ -376,14 +377,18 @@
 <li><strong>限制 Gateway 访问权限</strong></li>
 </ol>
 <h3 id="8-2-网络安全"><a href="#8-2-网络安全" class="headerlink" title="8.2 网络安全"></a>8.2 网络安全</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;gateway&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;bind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;lan&quot;</span><span class="punctuation">,</span>  <span class="comment">// 仅监听内网</span></span><br><span class="line">    <span class="attr">&quot;auth&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;token&quot;</span>  <span class="comment">// 启用 Token 认证</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="8-3-权限控制"><a href="#8-3-权限控制" class="headerlink" title="8.3 权限控制"></a>8.3 权限控制</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;gateway&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;nodes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;denyCommands&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;camera.snap&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;screen.record&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;calendar.add&quot;</span></span><br><span class="line">      <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="九、性能优化-性能优化"><a href="#九、性能优化-性能优化" class="headerlink" title="九、性能优化 {#性能优化}"></a>九、性能优化 {#性能优化}</h2><h3 id="9-1-内存优化"><a href="#9-1-内存优化" class="headerlink" title="9.1 内存优化"></a>9.1 内存优化</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;agents&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;defaults&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;compaction&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;safeguard&quot;</span>  <span class="comment">// 自动压缩长对话</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="9-2-缓存配置"><a href="#9-2-缓存配置" class="headerlink" title="9.2 缓存配置"></a>9.2 缓存配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启用浏览器缓存</span></span><br><span class="line">openclaw config <span class="built_in">set</span> browser.cache.enabled <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <p><strong>参考资料</strong>:</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://docs.openclaw.ai">OpenClaw 官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.openclaw.ai/">OpenClaw 官方文档</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/openclaw/openclaw">GitHub 仓库</a></li>
 <li><a target="_blank" rel="noopener" href="https://discord.gg/clawd">Discord 社区</a></li>
 </ul>

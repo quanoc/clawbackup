@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
-    <meta name="keywords" content="AI Agent,OpenClaw,源码解读,多 Agent,ACP,A2A,Ping-Pong" />
+    <meta name="keywords" content="OpenClaw,AI Agent,Agent框架解读,源码解读,多 Agent,ACP,A2A,Ping-Pong" />
 
     <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:type" content="article">
@@ -24,6 +24,7 @@
 <meta property="article:tag" content="A2A">
 <meta property="article:tag" content="ACP">
 <meta property="article:tag" content="AI Agent">
+<meta property="article:tag" content="Agent框架解读">
 <meta property="article:tag" content="OpenClaw">
 <meta property="article:tag" content="Ping-Pong">
 <meta property="article:tag" content="多 Agent">
@@ -98,7 +99,7 @@
         }
     },
     "image": "https://claw.waisec.cn/logo.png",
-    "keywords": "AI Agent,OpenClaw,源码解读,多 Agent,ACP,A2A,Ping-Pong"
+    "keywords": "OpenClaw,AI Agent,Agent框架解读,源码解读,多 Agent,ACP,A2A,Ping-Pong"
     
 }
 </script>
@@ -131,13 +132,13 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+        <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6%E8%AF%84%E6%B5%8B/">框架评测</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/A2A/" rel="tag">A2A</a>, <a class="tag-link-link" href="/tags/ACP/" rel="tag">ACP</a>, <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI Agent</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/Ping-Pong/" rel="tag">Ping-Pong</a>, <a class="tag-link-link" href="/tags/%E5%A4%9A-Agent/" rel="tag">多 Agent</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
+        <a class="tag-link-link" href="/tags/A2A/" rel="tag">A2A</a>, <a class="tag-link-link" href="/tags/ACP/" rel="tag">ACP</a>, <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI Agent</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/" rel="tag">Agent框架解读</a>, <a class="tag-link-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="tag-link-link" href="/tags/Ping-Pong/" rel="tag">Ping-Pong</a>, <a class="tag-link-link" href="/tags/%E5%A4%9A-Agent/" rel="tag">多 Agent</a>, <a class="tag-link-link" href="/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" rel="tag">源码解读</a>
     </div>
 
                         
@@ -151,7 +152,7 @@
 
 
 
-                        <meta name="keywords" content="AI Agent,OpenClaw,源码解读,多 Agent,ACP,A2A,Ping-Pong">
+                        <meta name="keywords" content="OpenClaw,AI Agent,Agent框架解读,源码解读,多 Agent,ACP,A2A,Ping-Pong">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -202,6 +203,7 @@
 <p><strong>源码路径</strong>: <code>~/WorkBuddy/20260327195403/openclaw</code><br><strong>关键文件</strong>: <code>src/agents/acp-spawn.ts</code>、<code>src/agents/tools/sessions-send-tool.ts</code>、<code>src/agents/tools/sessions-send-tool.a2a.ts</code>、<code>src/agents/tools/sessions-send-helpers.ts</code>、<code>src/agents/tools/sessions-spawn-tool.ts</code>、<code>src/agents/tools/sessions-helpers.ts</code>、<code>src/acp/policy.ts</code>、<code>src/plugins/config-state.ts</code></p>
 </blockquote>
 <span id="more"></span>
+
 <h2 id="一、背景与问题"><a href="#一、背景与问题" class="headerlink" title="一、背景与问题"></a>一、背景与问题</h2><p>在多 Agent 系统中，Agent 之间的协作方式决定了整个系统的灵活性、可靠性和可维护性。OpenClaw 作为一个支持多 Channel（Discord、Telegram、飞书、微信等）的 Agent 网关框架，提供了一套完整的 Agent 协作机制。然而，这套机制涉及多个容易混淆的概念：</p>
 <ul>
 <li><code>sessions_spawn</code> 和 <code>sessions_send</code> 是什么关系？</li>
@@ -230,12 +232,14 @@
 <li>拆分 spawn + Ping-Pong 是最佳”防走偏 + 汇报”方案</li>
 </ul>
 <p>注意⚠️：每次 spawn（run 模式）是一个全新 Session，子agent 没有上一步的记忆。<br>可以用 mode: “session” 保持 Session（微信上用 subagent + session + thread: false）</p>
-<p>注意⚠️⚠️⚠️⚠️⚠️：mode=”session” 必须搭配 thread=true 【上一条是错的， 大模型真离谱！！！】<br>所以只能是 mode=”run” 的spawn  + Ping-Pong 协商， 实现子Agent的进度上报，以实现可控、防止走偏无感知。</p>
+<p>注意⚠️⚠️⚠️⚠️⚠️：mode&#x3D;”session” 必须搭配 thread&#x3D;true 【上一条是错的， 大模型真离谱！！！】<br>所以只能是 mode&#x3D;”run” 的spawn  + Ping-Pong 协商， 实现子Agent的进度上报，以实现可控、防止走偏无感知。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spawn(&#123; mode: &quot;session&quot;, task: &quot;设计 Schema&quot; &#125;)  → 创建常驻 Session</span><br><span class="line">send(&#123; message: &quot;根据刚才的 Schema 写代码&quot; &#125;)     → 有上下文</span><br><span class="line">send(&#123; message: &quot;补充单元测试&quot; &#125;)                 → 有完整上下文</span><br></pre></td></tr></table></figure>
+
             </div>
         </div>
       </div>
     
+
 <h2 id="二、架构全景图"><a href="#二、架构全景图" class="headerlink" title="二、架构全景图"></a>二、架构全景图</h2>
       <div class="tip-container tip-warning" style="
         background-color: #fffaf0;
@@ -251,18 +255,19 @@
             <div class="tip-content">
                 <p>了解协作机制是为了让我们更好懂OpenClaw，更好的调教OpenClaw</p>
 <ol>
-<li>人到Agent、Agent之间协作 通常涉及有两个核心阶段：创建 Session（spawn）、Session 间通信（send/A2A）</li>
+<li>人到Agent、Agent之间协作 通常涉及有两个核心阶段：创建 Session（spawn）、Session 间通信（send&#x2F;A2A）</li>
 <li>创建 Session（spawn）支持两种方式：subagent、ACP</li>
 <li>sessions_spawn 有两种模式：mode: “run”、mode: “session”</li>
-<li>Thread 是把一个子 Session 绑定到一个聊天线程的机制。适用于每个 Agent 独立 Thread，用户直接对话。
+<li>Thread 是把一个子 Session 绑定到一个聊天线程的机制。适用于每个 Agent 独立 Thread，用户直接对话。</li>
+</ol>
             </div>
         </div>
       </div>
     
-</li>
-</ol>
+
 <!-- <details>
 <summary>点击展开 SVG 架构图</summary> -->
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="'SF Pro Display', -apple-system, 'Segoe UI', sans-serif">
   <defs>
     <marker id="arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-reverse">
@@ -546,7 +551,8 @@
 
 
 <!-- </details> -->
-<p>这张图展示了一个核心认知：OpenClaw 的 Agent 协作分为三个独立阶段——<strong>创建 Session</strong>（spawn）、<strong>Session 间通信</strong>（send/A2A）、<strong>通信后协商</strong>（Ping-Pong）——它们各自解决不同的问题，彼此正交，可以自由组合。</p>
+
+<p>这张图展示了一个核心认知：OpenClaw 的 Agent 协作分为三个独立阶段——<strong>创建 Session</strong>（spawn）、<strong>Session 间通信</strong>（send&#x2F;A2A）、<strong>通信后协商</strong>（Ping-Pong）——它们各自解决不同的问题，彼此正交，可以自由组合。</p>
 <h2 id="三、核心概念定义"><a href="#三、核心概念定义" class="headerlink" title="三、核心概念定义"></a>三、核心概念定义</h2><h3 id="3-1-sessions-spawn：创建子-Session"><a href="#3-1-sessions-spawn：创建子-Session" class="headerlink" title="3.1 sessions_spawn：创建子 Session"></a>3.1 sessions_spawn：创建子 Session</h3><p><code>sessions_spawn</code> 是一个 Tool，允许一个 Agent 在其 Tool Loop 中创建新的子 Session。它有两个关键参数决定子任务的运行方式：</p>
 <ul>
 <li><strong>runtime</strong>: 决定子 Agent 怎么跑。可选 <code>subagent</code>（默认，嵌入式）或 <code>acp</code>（独立进程）。</li>
@@ -558,13 +564,12 @@
 <p>源码定义在 <code>sessions-send-tool.ts</code> 中。当消息发送成功后，会自动触发后台的 A2A 流程（Ping-Pong + Announce）。</p>
 <p>A2A 需要配置权限，通过 <code>tools.agentToAgent.enabled = true</code> 和 <code>tools.agentToAgent.allow</code> 白名单控制。</p>
 <h3 id="3-3-subagent：嵌入式运行时"><a href="#3-3-subagent：嵌入式运行时" class="headerlink" title="3.3 subagent：嵌入式运行时"></a>3.3 subagent：嵌入式运行时</h3><p>subagent 是 <code>sessions_spawn</code> 的默认运行时。子 Agent 运行在 OpenClaw 进程内部，作为父 Agent 的一个函数调用执行。它自动继承父 Agent 的 workspace，支持 attachments 和 model 覆盖，轻量无独立进程开销。</p>
-<h3 id="3-4-ACP（Agent-Communication-Protocol）：独立进程运行时"><a href="#3-4-ACP（Agent-Communication-Protocol）：独立进程运行时" class="headerlink" title="3.4 ACP（Agent Communication Protocol）：独立进程运行时"></a>3.4 ACP（Agent Communication Protocol）：独立进程运行时</h3><p>ACP 是另一种运行时选择。子 Agent 作为一个独立的 CLI 进程（如 claude、codex）被 spawn 出来，通过标准输入/输出与 OpenClaw Gateway 通信。它需要 <code>acpx</code> 插件提供运行时 backend，支持 session resume 和 stream 输出，但需要额外配置且占用独立进程资源。</p>
+<h3 id="3-4-ACP（Agent-Communication-Protocol）：独立进程运行时"><a href="#3-4-ACP（Agent-Communication-Protocol）：独立进程运行时" class="headerlink" title="3.4 ACP（Agent Communication Protocol）：独立进程运行时"></a>3.4 ACP（Agent Communication Protocol）：独立进程运行时</h3><p>ACP 是另一种运行时选择。子 Agent 作为一个独立的 CLI 进程（如 claude、codex）被 spawn 出来，通过标准输入&#x2F;输出与 OpenClaw Gateway 通信。它需要 <code>acpx</code> 插件提供运行时 backend，支持 session resume 和 stream 输出，但需要额外配置且占用独立进程资源。</p>
 <h3 id="3-5-Ping-Pong：A2A-的自动协商机制"><a href="#3-5-Ping-Pong：A2A-的自动协商机制" class="headerlink" title="3.5 Ping-Pong：A2A 的自动协商机制"></a>3.5 Ping-Pong：A2A 的自动协商机制</h3><p>Ping-Pong 是 <code>sessions_send</code> 完成后的后台异步流程。当 Agent A 向 Agent B 发送消息并收到回复后，OpenClaw 会自动在 A 和 B 之间来回传递消息，让双方有机会补充和确认，直到某方回复 <code>REPLY_SKIP</code> 或达到最大轮数（默认 5 轮）。</p>
 <p>从源码 <code>sessions-send-tool.a2a.ts</code> 可以看到，Ping-Pong 的触发条件只依赖三个因素：<code>maxPingPongTurns &gt; 0</code>、有发起方 Session、目标不是自己。它<strong>不关心</strong> Session 是 subagent 还是 ACP 创建的，也<strong>不依赖</strong> Thread Binding。</p>
 <h3 id="3-6-Thread-Binding：聊天线程绑定"><a href="#3-6-Thread-Binding：聊天线程绑定" class="headerlink" title="3.6 Thread Binding：聊天线程绑定"></a>3.6 Thread Binding：聊天线程绑定</h3><p>Thread Binding 是一种将子 Session 绑定到特定聊天线程（如 Discord 帖子、Telegram 话题）的机制。绑定后，子 Agent 的回复会直接投递到该线程，而非发起方的 Channel。只有 Discord、Telegram、飞书、Matrix 四个 Channel 实现了 Thread Binding adapter，微信（openclaw-weixin）不支持。</p>
 <h3 id="3-7-mode-“run”-vs-mode-“session”"><a href="#3-7-mode-“run”-vs-mode-“session”" class="headerlink" title="3.7 mode: “run” vs mode: “session”"></a>3.7 mode: “run” vs mode: “session”</h3><p><code>mode</code> 控制子 Session 的生命周期。<code>run</code> 模式下子 Session 处理完一个任务后立即结束，资源释放，不能再用 <code>sessions_send</code> 往里面发消息。<code>session</code> 模式下子 Session 保持活跃，可以反复通过 <code>sessions_send</code> 继续交互，子 Agent 保留完整的历史上下文。</p>
-<h2 id="四、多维度对比"><a href="#四、多维度对比" class="headerlink" title="四、多维度对比"></a>四、多维度对比</h2><h3 id="4-1-sessions-spawn-vs-sessions-send"><a href="#4-1-sessions-spawn-vs-sessions-send" class="headerlink" title="4.1 sessions_spawn vs sessions_send"></a>4.1 sessions_spawn vs sessions_send</h3><div class="table-container">
-<table>
+<h2 id="四、多维度对比"><a href="#四、多维度对比" class="headerlink" title="四、多维度对比"></a>四、多维度对比</h2><h3 id="4-1-sessions-spawn-vs-sessions-send"><a href="#4-1-sessions-spawn-vs-sessions-send" class="headerlink" title="4.1 sessions_spawn vs sessions_send"></a>4.1 sessions_spawn vs sessions_send</h3><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -572,8 +577,7 @@
 <th>sessions_send</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>本质</td>
 <td>创建新的子 Session</td>
 <td>向已有 Session 发消息</td>
@@ -590,12 +594,12 @@
 </tr>
 <tr>
 <td>runtime 参数</td>
-<td><code>subagent</code> / <code>acp</code></td>
+<td><code>subagent</code> &#x2F; <code>acp</code></td>
 <td>不涉及（Session 已确定）</td>
 </tr>
 <tr>
 <td>mode 参数</td>
-<td><code>run</code> / <code>session</code></td>
+<td><code>run</code> &#x2F; <code>session</code></td>
 <td>不涉及</td>
 </tr>
 <tr>
@@ -608,12 +612,9 @@
 <td>初始化子任务</td>
 <td>后续交互、补充需求</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>两者是”建房间”和”进房间说话”的关系。必须先 spawn 创建 Session，然后才能 send 向其发消息。</p>
-<h3 id="4-2-subagent-vs-ACP"><a href="#4-2-subagent-vs-ACP" class="headerlink" title="4.2 subagent vs ACP"></a>4.2 subagent vs ACP</h3><div class="table-container">
-<table>
+<h3 id="4-2-subagent-vs-ACP"><a href="#4-2-subagent-vs-ACP" class="headerlink" title="4.2 subagent vs ACP"></a>4.2 subagent vs ACP</h3><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -621,8 +622,7 @@
 <th>ACP</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>本质</td>
 <td>嵌入式运行时</td>
 <td>独立进程运行时</td>
@@ -667,12 +667,9 @@
 <td>轻量</td>
 <td>重量级（独立进程）</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>两者是 <code>sessions_spawn</code> 的两种互斥运行时选择，解决”子任务怎么跑”的问题，与通信方式（A2A）无关。</p>
-<h3 id="4-3-mode-“run”-vs-mode-“session”"><a href="#4-3-mode-“run”-vs-mode-“session”" class="headerlink" title="4.3 mode: “run” vs mode: “session”"></a>4.3 mode: “run” vs mode: “session”</h3><div class="table-container">
-<table>
+<h3 id="4-3-mode-“run”-vs-mode-“session”"><a href="#4-3-mode-“run”-vs-mode-“session”" class="headerlink" title="4.3 mode: “run” vs mode: “session”"></a>4.3 mode: “run” vs mode: “session”</h3><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -680,8 +677,7 @@
 <th>mode: “session”</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>生命周期</td>
 <td>处理完即退出</td>
 <td>保持活跃</td>
@@ -706,11 +702,8 @@
 <td>允许</td>
 <td><strong>硬性禁止</strong>（源码强制约束）</td>
 </tr>
-</tbody>
-</table>
-</div>
-<h3 id="4-4-Thread-Binding-限制矩阵"><a href="#4-4-Thread-Binding-限制矩阵" class="headerlink" title="4.4 Thread Binding 限制矩阵"></a>4.4 Thread Binding 限制矩阵</h3><div class="table-container">
-<table>
+</tbody></table>
+<h3 id="4-4-Thread-Binding-限制矩阵"><a href="#4-4-Thread-Binding-限制矩阵" class="headerlink" title="4.4 Thread Binding 限制矩阵"></a>4.4 Thread Binding 限制矩阵</h3><table>
 <thead>
 <tr>
 <th>组合</th>
@@ -718,62 +711,57 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td>subagent + run + thread=false</td>
+<tbody><tr>
+<td>subagent + run + thread&#x3D;false</td>
 <td>可用</td>
 <td>所有 Channel</td>
 </tr>
 <tr>
-<td>subagent + run + thread=true</td>
+<td>subagent + run + thread&#x3D;true</td>
 <td>需 Channel 支持</td>
-<td>Discord/Telegram/飞书/Matrix</td>
+<td>Discord&#x2F;Telegram&#x2F;飞书&#x2F;Matrix</td>
 </tr>
 <tr>
-<td><strong>subagent + session + thread=false</strong></td>
+<td><strong>subagent + session + thread&#x3D;false</strong></td>
 <td><strong>禁止</strong></td>
 <td><strong>源码硬约束，直接报错</strong></td>
 </tr>
 <tr>
-<td>subagent + session + thread=true</td>
+<td>subagent + session + thread&#x3D;true</td>
 <td>需 Channel 支持</td>
-<td>Discord/Telegram/飞书/Matrix</td>
+<td>Discord&#x2F;Telegram&#x2F;飞书&#x2F;Matrix</td>
 </tr>
 <tr>
-<td>ACP + run + thread=false</td>
+<td>ACP + run + thread&#x3D;false</td>
 <td>可用</td>
 <td>所有 Channel（需 acpx）</td>
 </tr>
 <tr>
-<td>ACP + run + thread=true</td>
+<td>ACP + run + thread&#x3D;true</td>
 <td>需 Channel 支持</td>
-<td>Discord/Telegram/飞书/Matrix</td>
+<td>Discord&#x2F;Telegram&#x2F;飞书&#x2F;Matrix</td>
 </tr>
 <tr>
-<td><strong>ACP + session + thread=false</strong></td>
+<td><strong>ACP + session + thread&#x3D;false</strong></td>
 <td><strong>禁止</strong></td>
 <td>源码硬约束，直接报错</td>
 </tr>
 <tr>
-<td>ACP + session + thread=true</td>
+<td>ACP + session + thread&#x3D;true</td>
 <td>需 Channel 支持</td>
 <td>必须绑定 Thread</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>关键约束来自 <code>acp-spawn.ts</code> 第 733-737 行：当 <code>mode=&quot;session&quot;</code> 且 <code>thread</code> 不为 true 时，直接返回错误。这是因为常驻 ACP 进程需要一个 Thread 来持续投递回复，没有 Thread 绑定则回复无处可去。</p>
-<h3 id="4-5-Ping-Pong-与其他概念的关系"><a href="#4-5-Ping-Pong-与其他概念的关系" class="headerlink" title="4.5 Ping-Pong 与其他概念的关系"></a>4.5 Ping-Pong 与其他概念的关系</h3><div class="table-container">
-<table>
+<h3 id="4-5-Ping-Pong-与其他概念的关系"><a href="#4-5-Ping-Pong-与其他概念的关系" class="headerlink" title="4.5 Ping-Pong 与其他概念的关系"></a>4.5 Ping-Pong 与其他概念的关系</h3><table>
 <thead>
 <tr>
 <th>维度</th>
 <th>关系</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td>与 subagent/ACP</td>
+<tbody><tr>
+<td>与 subagent&#x2F;ACP</td>
 <td>完全无关，不关心 Session 的运行时类型</td>
 </tr>
 <tr>
@@ -800,22 +788,20 @@
 <td>配置位置</td>
 <td><code>session.agentToAgent.maxPingPongTurns</code>（默认 5，设为 0 关闭）</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h2 id="五、完整生命周期"><a href="#五、完整生命周期" class="headerlink" title="五、完整生命周期"></a>五、完整生命周期</h2><p>一次典型的多 Agent 协作包含四个阶段：</p>
 <p><strong>阶段一：创建 Session（sessions_spawn）</strong></p>
 <p>Agent A 在 Tool Loop 中调用 <code>sessions_spawn</code>，根据任务性质选择 runtime（subagent 或 ACP）和 mode（run 或 session）。子 Agent 在新的 Session 中处理初始任务，返回结果给 Agent A。</p>
-<p><strong>阶段二：发送消息（sessions_send / A2A）</strong></p>
+<p><strong>阶段二：发送消息（sessions_send &#x2F; A2A）</strong></p>
 <p>Agent A 调用 <code>sessions_send</code> 向已创建的 Session 发送消息。Gateway 通过 <code>sessions.resolve</code> 找到目标 Session，检查 A2A 权限后触发 <code>agent.run</code>，目标 Agent 处理消息并回复。</p>
 <p><strong>阶段三：自动协商（Ping-Pong）</strong></p>
 <p><code>sessions_send</code> 返回后，后台自动启动 Ping-Pong 流程。Gateway 把目标 Agent 的回复发给发起方 Agent，让发起方判断是否满意；如果需要补充，再把补充内容发回目标 Agent。如此来回最多 5 轮，直到某方回复 <code>REPLY_SKIP</code> 或达到上限。整个过程对用户透明。</p>
 <p><strong>阶段四：投递结果（Announce）</strong></p>
 <p>Ping-Pong 结束后，Gateway 把最终结果发给目标 Agent 做最后确认（可通过 <code>ANNOUNCE_SKIP</code> 保持沉默），然后根据 Thread 绑定状态投递到对应位置——有 Thread 则投递到 Thread，没有则投递到发起方的 Channel。</p>
 <h2 id="六、常见错误与排查"><a href="#六、常见错误与排查" class="headerlink" title="六、常见错误与排查"></a>六、常见错误与排查</h2><h3 id="6-1-“No-session-found-with-label-xxx”"><a href="#6-1-“No-session-found-with-label-xxx”" class="headerlink" title="6.1 “No session found with label: xxx”"></a>6.1 “No session found with label: xxx”</h3><p><code>sessions_send</code> 找不到目标 Session。<code>sessions_send</code> 不会自动创建 Session，必须先通过 <code>sessions_spawn</code> 或 bindings 路由创建。检查目标 Agent 的 label 是否正确，Session 是否已经被关闭。</p>
-<h3 id="6-2-“Thread-bindings-are-unavailable-for-openclaw-weixin”"><a href="#6-2-“Thread-bindings-are-unavailable-for-openclaw-weixin”" class="headerlink" title="6.2 “Thread bindings are unavailable for openclaw-weixin”"></a>6.2 “Thread bindings are unavailable for openclaw-weixin”</h3><p>微信 Channel 不支持 Thread Binding。解决方案：使用 <code>thread: false</code> 参数，或改用支持 Thread Binding 的 Channel（Discord/Telegram/飞书/Matrix）。微信上推荐 <code>runtime: &quot;subagent&quot;</code> + <code>thread: false</code>。</p>
+<h3 id="6-2-“Thread-bindings-are-unavailable-for-openclaw-weixin”"><a href="#6-2-“Thread-bindings-are-unavailable-for-openclaw-weixin”" class="headerlink" title="6.2 “Thread bindings are unavailable for openclaw-weixin”"></a>6.2 “Thread bindings are unavailable for openclaw-weixin”</h3><p>微信 Channel 不支持 Thread Binding。解决方案：使用 <code>thread: false</code> 参数，或改用支持 Thread Binding 的 Channel（Discord&#x2F;Telegram&#x2F;飞书&#x2F;Matrix）。微信上推荐 <code>runtime: &quot;subagent&quot;</code> + <code>thread: false</code>。</p>
 <h3 id="6-3-“ACP-runtime-backend-is-not-configured”"><a href="#6-3-“ACP-runtime-backend-is-not-configured”" class="headerlink" title="6.3 “ACP runtime backend is not configured”"></a>6.3 “ACP runtime backend is not configured”</h3><p>ACP 运行时需要 <code>acpx</code> 插件，且该插件默认不在启用列表中。解决方案：在 <code>openclaw.json</code> 中添加 <code>&quot;plugins&quot;: &#123; &quot;entries&quot;: &#123; &quot;acpx&quot;: &#123; &quot;enabled&quot;: true &#125; &#125; &#125;</code> 并配置 <code>&quot;acp&quot;: &#123; &quot;backend&quot;: &quot;acpx&quot; &#125;</code>。</p>
-<h3 id="6-4-ACP-session-thread-false-报错"><a href="#6-4-ACP-session-thread-false-报错" class="headerlink" title="6.4 ACP + session + thread=false 报错"></a>6.4 ACP + session + thread=false 报错</h3><p>这是源码硬约束。ACP 的 <code>mode: &quot;session&quot;</code>（常驻模式）必须配合 <code>thread: true</code>，因为常驻进程需要 Thread 来持续投递回复。如果 Channel 不支持 Thread Binding，则无法使用 ACP 的常驻模式，只能用 <code>mode: &quot;run&quot;</code> 或改用 subagent。</p>
+<h3 id="6-4-ACP-session-thread-false-报错"><a href="#6-4-ACP-session-thread-false-报错" class="headerlink" title="6.4 ACP + session + thread&#x3D;false 报错"></a>6.4 ACP + session + thread&#x3D;false 报错</h3><p>这是源码硬约束。ACP 的 <code>mode: &quot;session&quot;</code>（常驻模式）必须配合 <code>thread: true</code>，因为常驻进程需要 Thread 来持续投递回复。如果 Channel 不支持 Thread Binding，则无法使用 ACP 的常驻模式，只能用 <code>mode: &quot;run&quot;</code> 或改用 subagent。</p>
 <h2 id="七、实践决策指南"><a href="#七、实践决策指南" class="headerlink" title="七、实践决策指南"></a>七、实践决策指南</h2><h3 id="7-1-选择-runtime：subagent-还是-ACP？"><a href="#7-1-选择-runtime：subagent-还是-ACP？" class="headerlink" title="7.1 选择 runtime：subagent 还是 ACP？"></a>7.1 选择 runtime：subagent 还是 ACP？</h3><p>默认选 subagent。它轻量、无额外依赖、自动继承 workspace，覆盖绝大多数场景。只有在以下情况才考虑 ACP：</p>
 <ul>
 <li>需要独立开发环境（文件系统隔离）</li>
@@ -823,9 +809,10 @@
 <li>需要流式输出到父 Agent</li>
 </ul>
 <h3 id="7-2-选择-mode：run-还是-session？"><a href="#7-2-选择-mode：run-还是-session？" class="headerlink" title="7.2 选择 mode：run 还是 session？"></a>7.2 选择 mode：run 还是 session？</h3><p>一次性任务选 <code>run</code>，多轮交互选 <code>session</code>。判断标准是：后续是否需要通过 <code>sessions_send</code> 继续往这个 Session 发消息、是否需要子 Agent 保持历史上下文。</p>
-<h3 id="7-3-是否开启-Thread？"><a href="#7-3-是否开启-Thread？" class="headerlink" title="7.3 是否开启 Thread？"></a>7.3 是否开启 Thread？</h3><p>如果 Channel 支持（Discord/Telegram/飞书/Matrix），且希望子 Agent 的回复直接投递到特定线程（而非发起方 Channel），则开启。否则不需要。</p>
+<h3 id="7-3-是否开启-Thread？"><a href="#7-3-是否开启-Thread？" class="headerlink" title="7.3 是否开启 Thread？"></a>7.3 是否开启 Thread？</h3><p>如果 Channel 支持（Discord&#x2F;Telegram&#x2F;飞书&#x2F;Matrix），且希望子 Agent 的回复直接投递到特定线程（而非发起方 Channel），则开启。否则不需要。</p>
 <h3 id="7-4-微信-Channel-的推荐配置"><a href="#7-4-微信-Channel-的推荐配置" class="headerlink" title="7.4 微信 Channel 的推荐配置"></a>7.4 微信 Channel 的推荐配置</h3><p>由于微信不支持 Thread Binding，推荐以下组合：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 一次性任务</span><br><span class="line">sessions_spawn(&#123;</span><br><span class="line">  agentId: &quot;magerd&quot;,</span><br><span class="line">  label: &quot;magerd&quot;,</span><br><span class="line">  task: &quot;用户的请求&quot;,</span><br><span class="line">  runtime: &quot;subagent&quot;,</span><br><span class="line">  mode: &quot;run&quot;,</span><br><span class="line">  thread: false</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 需要多轮交互</span><br><span class="line">sessions_spawn(&#123;</span><br><span class="line">  agentId: &quot;magerd&quot;,</span><br><span class="line">  label: &quot;magerd&quot;,</span><br><span class="line">  task: &quot;初始任务&quot;,</span><br><span class="line">  runtime: &quot;subagent&quot;,</span><br><span class="line">  mode: &quot;session&quot;,</span><br><span class="line">  thread: false</span><br><span class="line">&#125;)</span><br><span class="line">// 后续通过 sessions_send(&#123; label: &quot;magerd&quot;, message: &quot;...&quot; &#125;) 继续交互</span><br></pre></td></tr></table></figure>
+
 <h3 id="7-5-ACP-配置检查清单"><a href="#7-5-ACP-配置检查清单" class="headerlink" title="7.5 ACP 配置检查清单"></a>7.5 ACP 配置检查清单</h3><p>如果需要使用 ACP 模式，确保以下配置到位：</p>
 <ol>
 <li><code>plugins.entries.acpx.enabled = true</code>（启用 acpx 插件）</li>
@@ -853,19 +840,19 @@
     
 <nav id="article-nav">
     
-        <a href="/wiki/ai-daily--03-23/" id="article-nav-newer" class="article-nav-link-wrap"
-            onclick="onclickRoute(event, '/wiki/ai-daily--03-23/')">
+        <a href="/wiki/blog-overview/" id="article-nav-newer" class="article-nav-link-wrap"
+            onclick="onclickRoute(event, '/wiki/blog-overview/')">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    AI Agent 深度日报 -03-23
+                    博客内容总览
                 
             </div>
         </a>
     
     
-        <a href="/wiki/23794/" id="article-nav-older" class="article-nav-link-wrap"
-                onclick="onclickRoute(event, '/wiki/23794/')">
+        <a href="/wiki/23794%20-%20%E5%85%B6%E4%BB%96%E6%8C%87%E5%8D%97/" id="article-nav-older" class="article-nav-link-wrap"
+                onclick="onclickRoute(event, '/wiki/23794 - 其他指南/')">
             <strong class="article-nav-caption">下一篇</strong>
             <div class="article-nav-title">OpenClaw 核心问题汇总</div>
         </a>

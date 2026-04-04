@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
-    <meta name="keywords" content="AI Agent,架构分析,Agent框架分析,VS Code,TypeScript,自主编码" />
+    <meta name="keywords" content="AI Agent,架构分析,Agent框架分析,Agent框架解读,VS Code,TypeScript,自主编码" />
 
     <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:type" content="article">
@@ -19,10 +19,11 @@
 <meta property="og:description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-03-13T08:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-04T15:34:20.616Z">
+<meta property="article:modified_time" content="2026-04-04T16:05:38.218Z">
 <meta property="article:author" content="Novus">
 <meta property="article:tag" content="AI Agent">
 <meta property="article:tag" content="Agent框架分析">
+<meta property="article:tag" content="Agent框架解读">
 <meta property="article:tag" content="TypeScript">
 <meta property="article:tag" content="VS Code">
 <meta property="article:tag" content="架构分析">
@@ -83,7 +84,7 @@
     "headline": "Cline 项目架构深度分析",
     "url": "https://claw.waisec.cn/wiki/cline-architecture/",
     "datePublished": "2026-03-13T08:00:00.000Z",
-    "dateModified": "2026-04-04T15:34:20.616Z",
+    "dateModified": "2026-04-04T16:05:38.218Z",
     "author": {
         "@type": "Person",
         "name": "Novus"
@@ -97,7 +98,7 @@
         }
     },
     "image": "https://claw.waisec.cn/logo.png",
-    "keywords": "AI Agent,架构分析,Agent框架分析,VS Code,TypeScript,自主编码"
+    "keywords": "AI Agent,架构分析,Agent框架分析,Agent框架解读,VS Code,TypeScript,自主编码"
     
 }
 </script>
@@ -130,13 +131,13 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/">Agent框架解读</a>
+        <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6%E8%AF%84%E6%B5%8B/">框架评测</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI Agent</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" rel="tag">Agent框架分析</a>, <a class="tag-link-link" href="/tags/TypeScript/" rel="tag">TypeScript</a>, <a class="tag-link-link" href="/tags/VS-Code/" rel="tag">VS Code</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E8%87%AA%E4%B8%BB%E7%BC%96%E7%A0%81/" rel="tag">自主编码</a>
+        <a class="tag-link-link" href="/tags/AI-Agent/" rel="tag">AI Agent</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/" rel="tag">Agent框架分析</a>, <a class="tag-link-link" href="/tags/Agent%E6%A1%86%E6%9E%B6%E8%A7%A3%E8%AF%BB/" rel="tag">Agent框架解读</a>, <a class="tag-link-link" href="/tags/TypeScript/" rel="tag">TypeScript</a>, <a class="tag-link-link" href="/tags/VS-Code/" rel="tag">VS Code</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" rel="tag">架构分析</a>, <a class="tag-link-link" href="/tags/%E8%87%AA%E4%B8%BB%E7%BC%96%E7%A0%81/" rel="tag">自主编码</a>
     </div>
 
                         
@@ -150,7 +151,7 @@
 
 
 
-                        <meta name="keywords" content="AI Agent,架构分析,Agent框架分析,VS Code,TypeScript,自主编码">
+                        <meta name="keywords" content="AI Agent,架构分析,Agent框架分析,Agent框架解读,VS Code,TypeScript,自主编码">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -202,13 +203,13 @@
 </blockquote>
 <hr>
 <h2 id="📋-目录"><a href="#📋-目录" class="headerlink" title="📋 目录"></a>📋 目录</h2><ol>
-<li><a href="#项目概述">项目概述</a></li>
-<li><a href="#技术栈">技术栈</a></li>
-<li><a href="#整体架构">整体架构</a></li>
-<li><a href="#核心模块">核心模块详解</a></li>
-<li><a href="#工作流程">工作流程</a></li>
-<li><a href="#亮点设计">亮点设计</a></li>
-<li><a href="#总结">总结</a></li>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0">项目概述</a></li>
+<li><a href="#%E6%8A%80%E6%9C%AF%E6%A0%88">技术栈</a></li>
+<li><a href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84">整体架构</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97">核心模块详解</a></li>
+<li><a href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B">工作流程</a></li>
+<li><a href="#%E4%BA%AE%E7%82%B9%E8%AE%BE%E8%AE%A1">亮点设计</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
 </ol>
 <hr>
 <h2 id="一、项目概述-项目概述"><a href="#一、项目概述-项目概述" class="headerlink" title="一、项目概述 {#项目概述}"></a>一、项目概述 {#项目概述}</h2><h3 id="1-1-项目定位"><a href="#1-1-项目定位" class="headerlink" title="1.1 项目定位"></a>1.1 项目定位</h3><p><strong>Cline</strong>（原名 Claude Dev）是一个基于 VS Code 的 AI 编程助手扩展，是<strong>自主编码 Agent</strong>在 IDE 中的典型实现。</p>
@@ -226,16 +227,14 @@
 <li>✅ 人工审批每个步骤（安全机制）</li>
 </ul>
 <hr>
-<h3 id="1-2-项目规模"><a href="#1-2-项目规模" class="headerlink" title="1.2 项目规模"></a>1.2 项目规模</h3><div class="table-container">
-<table>
+<h3 id="1-2-项目规模"><a href="#1-2-项目规模" class="headerlink" title="1.2 项目规模"></a>1.2 项目规模</h3><table>
 <thead>
 <tr>
 <th>指标</th>
 <th>数据</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>代码行数</strong></td>
 <td>~5 万行 TypeScript</td>
 </tr>
@@ -255,20 +254,16 @@
 <td><strong>集成模块</strong></td>
 <td>10 个集成</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
-<h3 id="1-3-市场表现"><a href="#1-3-市场表现" class="headerlink" title="1.3 市场表现"></a>1.3 市场表现</h3><div class="table-container">
-<table>
+<h3 id="1-3-市场表现"><a href="#1-3-市场表现" class="headerlink" title="1.3 市场表现"></a>1.3 市场表现</h3><table>
 <thead>
 <tr>
 <th>指标</th>
 <th>数据</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>VS Marketplace</strong></td>
 <td>官方上架</td>
 </tr>
@@ -284,12 +279,9 @@
 <td><strong>许可证</strong></td>
 <td>Apache-2.0</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
-<h2 id="二、技术栈-技术栈"><a href="#二、技术栈-技术栈" class="headerlink" title="二、技术栈 {#技术栈}"></a>二、技术栈 {#技术栈}</h2><h3 id="2-1-核心技术"><a href="#2-1-核心技术" class="headerlink" title="2.1 核心技术"></a>2.1 核心技术</h3><div class="table-container">
-<table>
+<h2 id="二、技术栈-技术栈"><a href="#二、技术栈-技术栈" class="headerlink" title="二、技术栈 {#技术栈}"></a>二、技术栈 {#技术栈}</h2><h3 id="2-1-核心技术"><a href="#2-1-核心技术" class="headerlink" title="2.1 核心技术"></a>2.1 核心技术</h3><table>
 <thead>
 <tr>
 <th>技术</th>
@@ -297,8 +289,7 @@
 <th>版本</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>TypeScript</strong></td>
 <td>主要编程语言</td>
 <td>5.4.5</td>
@@ -323,12 +314,9 @@
 <td>接口定义语言</td>
 <td>-</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
-<h3 id="2-2-AI-LLM-集成"><a href="#2-2-AI-LLM-集成" class="headerlink" title="2.2 AI/LLM 集成"></a>2.2 AI/LLM 集成</h3><div class="table-container">
-<table>
+<h3 id="2-2-AI-LLM-集成"><a href="#2-2-AI-LLM-集成" class="headerlink" title="2.2 AI&#x2F;LLM 集成"></a>2.2 AI&#x2F;LLM 集成</h3><table>
 <thead>
 <tr>
 <th>提供商</th>
@@ -336,35 +324,34 @@
 <th>用途</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>Anthropic</strong></td>
-<td>@anthropic-ai/sdk</td>
-<td>Claude Sonnet/Opus</td>
+<td>@anthropic-ai&#x2F;sdk</td>
+<td>Claude Sonnet&#x2F;Opus</td>
 </tr>
 <tr>
 <td><strong>OpenAI</strong></td>
 <td>openai</td>
-<td>GPT-4/4o</td>
+<td>GPT-4&#x2F;4o</td>
 </tr>
 <tr>
 <td><strong>Google</strong></td>
-<td>@google/genai</td>
+<td>@google&#x2F;genai</td>
 <td>Gemini</td>
 </tr>
 <tr>
 <td><strong>AWS</strong></td>
-<td>@aws-sdk/client-bedrock</td>
+<td>@aws-sdk&#x2F;client-bedrock</td>
 <td>Bedrock 模型</td>
 </tr>
 <tr>
 <td><strong>Azure</strong></td>
-<td>@azure/identity</td>
+<td>@azure&#x2F;identity</td>
 <td>Azure OpenAI</td>
 </tr>
 <tr>
 <td><strong>Mistral</strong></td>
-<td>@mistralai/mistralai</td>
+<td>@mistralai&#x2F;mistralai</td>
 <td>Mistral 模型</td>
 </tr>
 <tr>
@@ -372,26 +359,22 @@
 <td>ollama</td>
 <td>本地模型</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
-<h3 id="2-3-关键依赖"><a href="#2-3-关键依赖" class="headerlink" title="2.3 关键依赖"></a>2.3 关键依赖</h3><div class="table-container">
-<table>
+<h3 id="2-3-关键依赖"><a href="#2-3-关键依赖" class="headerlink" title="2.3 关键依赖"></a>2.3 关键依赖</h3><table>
 <thead>
 <tr>
 <th>依赖</th>
 <th>用途</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td><strong>@modelcontextprotocol/sdk</strong></td>
+<tbody><tr>
+<td><strong>@modelcontextprotocol&#x2F;sdk</strong></td>
 <td>MCP 协议支持</td>
 </tr>
 <tr>
-<td><strong>@opentelemetry/</strong></td>
-<td>可观测性/追踪</td>
+<td><strong>@opentelemetry&#x2F;</strong></td>
+<td>可观测性&#x2F;追踪</td>
 </tr>
 <tr>
 <td><strong>better-sqlite3</strong></td>
@@ -413,13 +396,13 @@
 <td><strong>globby</strong></td>
 <td>文件搜索</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h2 id="三、整体架构-整体架构"><a href="#三、整体架构-整体架构" class="headerlink" title="三、整体架构 {#整体架构}"></a>三、整体架构 {#整体架构}</h2><h3 id="3-1-架构分层"><a href="#3-1-架构分层" class="headerlink" title="3.1 架构分层"></a>3.1 架构分层</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────┐</span><br><span class="line">│                    VS Code Extension Host                │</span><br><span class="line">├─────────────────────────────────────────────────────────┤</span><br><span class="line">│  ┌───────────────────────────────────────────────────┐  │</span><br><span class="line">│  │              Webview UI (React)                    │  │</span><br><span class="line">│  │  - 聊天界面  - 任务历史  - 设置面板  - MCP 管理    │  │</span><br><span class="line">│  └───────────────────────────────────────────────────┘  │</span><br><span class="line">│                         ↕ (Message Passing)              │</span><br><span class="line">│  ┌───────────────────────────────────────────────────┐  │</span><br><span class="line">│  │              Controller Layer                      │  │</span><br><span class="line">│  │  - 消息处理  - 任务管理  - 状态管理                │  │</span><br><span class="line">│  └───────────────────────────────────────────────────┘  │</span><br><span class="line">│                         ↕                                │</span><br><span class="line">│  ┌───────────────────────────────────────────────────┐  │</span><br><span class="line">│  │               Core Layer                           │  │</span><br><span class="line">│  │  - Task(API 调用、工具执行) - Tool 管理            │  │</span><br><span class="line">│  └───────────────────────────────────────────────────┘  │</span><br><span class="line">│                         ↕                                │</span><br><span class="line">│  ┌───────────────────────────────────────────────────┐  │</span><br><span class="line">│  │              Service Layer                         │  │</span><br><span class="line">│  │  - LLM 服务 - 浏览器服务 - 终端服务 - 文件服务     │  │</span><br><span class="line">│  └───────────────────────────────────────────────────┘  │</span><br><span class="line">└─────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="3-2-模块结构"><a href="#3-2-模块结构" class="headerlink" title="3.2 模块结构"></a>3.2 模块结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line">├── core/           # 核心业务逻辑</span><br><span class="line">│   ├── Cline.ts    # 主控制器</span><br><span class="line">│   ├── Task.ts     # 任务管理</span><br><span class="line">│   └── tools/      # 工具实现</span><br><span class="line">├── services/       # 外部服务集成</span><br><span class="line">│   ├── llm/        # LLM 服务</span><br><span class="line">│   ├── browser/    # 浏览器服务</span><br><span class="line">│   └── terminal/   # 终端服务</span><br><span class="line">├── integrations/   # 第三方集成</span><br><span class="line">│   └── mcp/        # MCP 协议</span><br><span class="line">├── webview/        # React UI</span><br><span class="line">│   ├── components/ # UI 组件</span><br><span class="line">│   └── pages/      # 页面</span><br><span class="line">└── utils/          # 工具函数</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="四、核心模块详解-核心模块"><a href="#四、核心模块详解-核心模块" class="headerlink" title="四、核心模块详解 {#核心模块}"></a>四、核心模块详解 {#核心模块}</h2><h3 id="4-1-Cline-ts-主控制器"><a href="#4-1-Cline-ts-主控制器" class="headerlink" title="4.1 Cline.ts - 主控制器"></a>4.1 Cline.ts - 主控制器</h3><p><strong>职责</strong>:</p>
 <ul>
@@ -428,10 +411,11 @@
 <li>处理用户输入</li>
 <li>维护对话历史</li>
 </ul>
-<p><strong>关键方法</strong>:<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Cline</span> &#123;</span><br><span class="line">  <span class="comment">// 初始化任务</span></span><br><span class="line">  <span class="title function_">initTask</span>(<span class="attr">prompt</span>: <span class="built_in">string</span>): <span class="title class_">Promise</span>&lt;<span class="built_in">void</span>&gt;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 执行工具调用</span></span><br><span class="line">  <span class="title function_">executeTool</span>(<span class="attr">tool</span>: <span class="title class_">ToolCall</span>): <span class="title class_">Promise</span>&lt;<span class="title class_">ToolResult</span>&gt;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 与 LLM 通信</span></span><br><span class="line">  <span class="title function_">callLLM</span>(<span class="attr">messages</span>: <span class="title class_">Message</span>[]): <span class="title class_">Promise</span>&lt;<span class="title class_">LLMResponse</span>&gt;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 保存任务历史</span></span><br><span class="line">  <span class="title function_">saveHistory</span>(): <span class="title class_">Promise</span>&lt;<span class="built_in">void</span>&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>关键方法</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Cline</span> &#123;</span><br><span class="line">  <span class="comment">// 初始化任务</span></span><br><span class="line">  <span class="title function_">initTask</span>(<span class="attr">prompt</span>: <span class="built_in">string</span>): <span class="title class_">Promise</span>&lt;<span class="built_in">void</span>&gt;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 执行工具调用</span></span><br><span class="line">  <span class="title function_">executeTool</span>(<span class="attr">tool</span>: <span class="title class_">ToolCall</span>): <span class="title class_">Promise</span>&lt;<span class="title class_">ToolResult</span>&gt;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 与 LLM 通信</span></span><br><span class="line">  <span class="title function_">callLLM</span>(<span class="attr">messages</span>: <span class="title class_">Message</span>[]): <span class="title class_">Promise</span>&lt;<span class="title class_">LLMResponse</span>&gt;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 保存任务历史</span></span><br><span class="line">  <span class="title function_">saveHistory</span>(): <span class="title class_">Promise</span>&lt;<span class="built_in">void</span>&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="4-2-Tool-系统"><a href="#4-2-Tool-系统" class="headerlink" title="4.2 Tool 系统"></a>4.2 Tool 系统</h3><p><strong>内置工具</strong>:</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -440,8 +424,7 @@
 <th>审批要求</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>execute_command</code></td>
 <td>运行终端命令</td>
 <td>✅ 必须</td>
@@ -471,10 +454,10 @@
 <td>MCP 工具调用</td>
 <td>⚠️ 可配置</td>
 </tr>
-</tbody>
-</table>
-</div>
-<p><strong>工具执行流程</strong>:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户请求 → Cline 解析 → 生成 ToolCall → 请求审批 → 执行 → 返回结果</span><br></pre></td></tr></table></figure></p>
+</tbody></table>
+<p><strong>工具执行流程</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户请求 → Cline 解析 → 生成 ToolCall → 请求审批 → 执行 → 返回结果</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="4-3-LLM-服务"><a href="#4-3-LLM-服务" class="headerlink" title="4.3 LLM 服务"></a>4.3 LLM 服务</h3><p><strong>支持的提供商</strong>:</p>
 <ul>
@@ -485,11 +468,16 @@
 <li>Azure OpenAI</li>
 <li>Ollama (本地)</li>
 </ul>
-<p><strong>统一接口</strong>:<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">LLMProvider</span> &#123;</span><br><span class="line">  <span class="title function_">complete</span>(<span class="attr">prompt</span>: <span class="built_in">string</span>, <span class="attr">options</span>: <span class="title class_">LLMOptions</span>): <span class="title class_">Promise</span>&lt;<span class="built_in">string</span>&gt;</span><br><span class="line">  <span class="title function_">stream</span>(<span class="attr">prompt</span>: <span class="built_in">string</span>, <span class="attr">options</span>: <span class="title class_">LLMOptions</span>): <span class="title class_">AsyncIterable</span>&lt;<span class="built_in">string</span>&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>统一接口</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">LLMProvider</span> &#123;</span><br><span class="line">  <span class="title function_">complete</span>(<span class="attr">prompt</span>: <span class="built_in">string</span>, <span class="attr">options</span>: <span class="title class_">LLMOptions</span>): <span class="title class_">Promise</span>&lt;<span class="built_in">string</span>&gt;</span><br><span class="line">  <span class="title function_">stream</span>(<span class="attr">prompt</span>: <span class="built_in">string</span>, <span class="attr">options</span>: <span class="title class_">LLMOptions</span>): <span class="title class_">AsyncIterable</span>&lt;<span class="built_in">string</span>&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="五、工作流程-工作流程"><a href="#五、工作流程-工作流程" class="headerlink" title="五、工作流程 {#工作流程}"></a>五、工作流程 {#工作流程}</h2><h3 id="5-1-任务执行流程"><a href="#5-1-任务执行流程" class="headerlink" title="5.1 任务执行流程"></a>5.1 任务执行流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1. 用户输入任务描述</span><br><span class="line">        ↓</span><br><span class="line">2. Cline 调用 LLM 分析任务</span><br><span class="line">        ↓</span><br><span class="line">3. LLM 返回行动计划（可能包含工具调用）</span><br><span class="line">        ↓</span><br><span class="line">4. Cline 请求用户审批（如需）</span><br><span class="line">        ↓</span><br><span class="line">5. 执行工具调用</span><br><span class="line">        ↓</span><br><span class="line">6. 将结果反馈给 LLM</span><br><span class="line">        ↓</span><br><span class="line">7. 重复 3-6 直到任务完成</span><br><span class="line">        ↓</span><br><span class="line">8. 保存任务历史</span><br></pre></td></tr></table></figure>
+
 <hr>
-<h3 id="5-2-对话管理"><a href="#5-2-对话管理" class="headerlink" title="5.2 对话管理"></a>5.2 对话管理</h3><p><strong>消息格式</strong>:<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Message</span> &#123;</span><br><span class="line">  <span class="attr">role</span>: <span class="string">&#x27;user&#x27;</span> | <span class="string">&#x27;assistant&#x27;</span> | <span class="string">&#x27;system&#x27;</span></span><br><span class="line">  <span class="attr">content</span>: <span class="built_in">string</span></span><br><span class="line">  <span class="attr">toolCalls</span>?: <span class="title class_">ToolCall</span>[]</span><br><span class="line">  <span class="attr">toolResults</span>?: <span class="title class_">ToolResult</span>[]</span><br><span class="line">  <span class="attr">timestamp</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-2-对话管理"><a href="#5-2-对话管理" class="headerlink" title="5.2 对话管理"></a>5.2 对话管理</h3><p><strong>消息格式</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Message</span> &#123;</span><br><span class="line">  <span class="attr">role</span>: <span class="string">&#x27;user&#x27;</span> | <span class="string">&#x27;assistant&#x27;</span> | <span class="string">&#x27;system&#x27;</span></span><br><span class="line">  <span class="attr">content</span>: <span class="built_in">string</span></span><br><span class="line">  <span class="attr">toolCalls</span>?: <span class="title class_">ToolCall</span>[]</span><br><span class="line">  <span class="attr">toolResults</span>?: <span class="title class_">ToolResult</span>[]</span><br><span class="line">  <span class="attr">timestamp</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>上下文管理</strong>:</p>
 <ul>
 <li>使用滑动窗口保留最近 N 轮对话</li>
@@ -506,6 +494,7 @@
 <hr>
 <h3 id="6-2-MCP-协议支持"><a href="#6-2-MCP-协议支持" class="headerlink" title="6.2 MCP 协议支持"></a>6.2 MCP 协议支持</h3><p><strong>Model Context Protocol (MCP)</strong> 允许扩展 Cline 的能力：</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MCP 服务器示例</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">MCPServer</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">  <span class="attr">tools</span>: <span class="title class_">MCPTool</span>[]</span><br><span class="line">  <span class="attr">resources</span>: <span class="title class_">MCPResource</span>[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 动态加载 MCP 工具</span></span><br><span class="line"><span class="keyword">await</span> cline.<span class="title function_">loadMCPTool</span>(<span class="string">&#x27;github&#x27;</span>, <span class="string">&#x27;create_issue&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="string">&#x27;Bug Report&#x27;</span>,</span><br><span class="line">  <span class="attr">body</span>: <span class="string">&#x27;...&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="6-3-可观测性"><a href="#6-3-可观测性" class="headerlink" title="6.3 可观测性"></a>6.3 可观测性</h3><ul>
 <li><strong>OpenTelemetry 集成</strong>: 追踪所有 LLM 调用和工具执行</li>
@@ -513,16 +502,14 @@
 <li><strong>错误追踪</strong>: 完整的错误堆栈和上下文</li>
 </ul>
 <hr>
-<h2 id="七、总结-总结"><a href="#七、总结-总结" class="headerlink" title="七、总结 {#总结}"></a>七、总结 {#总结}</h2><h3 id="7-1-架构优势"><a href="#7-1-架构优势" class="headerlink" title="7.1 架构优势"></a>7.1 架构优势</h3><div class="table-container">
-<table>
+<h2 id="七、总结-总结"><a href="#七、总结-总结" class="headerlink" title="七、总结 {#总结}"></a>七、总结 {#总结}</h2><h3 id="7-1-架构优势"><a href="#7-1-架构优势" class="headerlink" title="7.1 架构优势"></a>7.1 架构优势</h3><table>
 <thead>
 <tr>
 <th>优势</th>
 <th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>模块化</strong></td>
 <td>清晰的层次分离，易于扩展</td>
 </tr>
@@ -542,9 +529,7 @@
 <td><strong>可观测</strong></td>
 <td>完整的追踪和指标系统</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h3 id="7-2-设计启示"><a href="#7-2-设计启示" class="headerlink" title="7.2 设计启示"></a>7.2 设计启示</h3><ol>
 <li><strong>人机协作</strong>: AI 不是替代，而是增强——保留人类审批权</li>

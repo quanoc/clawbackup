@@ -18,8 +18,8 @@
 <meta property="og:site_name" content="Claw Wiki">
 <meta property="og:description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-03-28T03:30:00.000Z">
-<meta property="article:modified_time" content="2026-04-04T15:34:20.615Z">
+<meta property="article:published_time" content="2026-04-04T16:05:38.241Z">
+<meta property="article:modified_time" content="2026-04-04T16:05:38.241Z">
 <meta property="article:author" content="Novus">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Agent">
@@ -82,8 +82,8 @@
     "@type": "BlogPosting",
     "headline": "Everything Claude Code：AI编码Agent的性能优化系统",
     "url": "https://claw.waisec.cn/wiki/34742/",
-    "datePublished": "2026-03-28T03:30:00.000Z",
-    "dateModified": "2026-04-04T15:34:20.615Z",
+    "datePublished": "2026-04-04T16:05:38.241Z",
+    "dateModified": "2026-04-04T16:05:38.241Z",
     "author": {
         "@type": "Person",
         "name": "Novus"
@@ -116,7 +116,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">Agent工程实践</a>
+        <a class="article-category-link" href="/categories/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">工程实践</a>
     </div>
 
                         
@@ -129,8 +129,8 @@
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         
-        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
-            <time datetime="2026-03-28T03:30:00.000Z" itemprop="datePublished">2026-03-28</time>
+        <a href="/archives/2026/04/" onclick="onclickRoute(event, '/archives/2026/04/')">
+            <time datetime="2026-04-04T16:05:38.241Z" itemprop="datePublished">2026-04-05</time>
         </a>
     </div>
 
@@ -196,7 +196,6 @@
 <hr>
 <h2 id="核心功能和特性"><a href="#核心功能和特性" class="headerlink" title="核心功能和特性"></a>核心功能和特性</h2><p>ECC 不仅仅是一组配置文件，而是一个完整的系统，包含以下核心组件：</p>
 <h3 id="1-28-个专业化的-Agents（子代理）"><a href="#1-28-个专业化的-Agents（子代理）" class="headerlink" title="1. 28 个专业化的 Agents（子代理）"></a>1. 28 个专业化的 Agents（子代理）</h3><p>项目提供了覆盖多种编程语言和场景的专用代理：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -204,8 +203,7 @@
 <th>用途</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>planner</code></td>
 <td>功能实现规划</td>
 </tr>
@@ -238,30 +236,28 @@
 <td>Python 代码审查</td>
 </tr>
 <tr>
-<td><code>go-reviewer</code> / <code>go-build-resolver</code></td>
+<td><code>go-reviewer</code> &#x2F; <code>go-build-resolver</code></td>
 <td>Go 语言支持</td>
 </tr>
 <tr>
-<td><code>java-reviewer</code> / <code>java-build-resolver</code></td>
-<td>Java/Spring Boot 支持</td>
+<td><code>java-reviewer</code> &#x2F; <code>java-build-resolver</code></td>
+<td>Java&#x2F;Spring Boot 支持</td>
 </tr>
 <tr>
-<td><code>rust-reviewer</code> / <code>rust-build-resolver</code></td>
+<td><code>rust-reviewer</code> &#x2F; <code>rust-build-resolver</code></td>
 <td>Rust 语言支持</td>
 </tr>
 <tr>
-<td><code>kotlin-reviewer</code> / <code>kotlin-build-resolver</code></td>
-<td>Kotlin/Android 支持</td>
+<td><code>kotlin-reviewer</code> &#x2F; <code>kotlin-build-resolver</code></td>
+<td>Kotlin&#x2F;Android 支持</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h3 id="2-125-个-Skills（技能）"><a href="#2-125-个-Skills（技能）" class="headerlink" title="2. 125+ 个 Skills（技能）"></a>2. 125+ 个 Skills（技能）</h3><p>Skills 是工作流程定义和领域知识，包括：</p>
 <ul>
 <li><strong>开发流程</strong>: TDD 工作流、安全审查、E2E 测试、持续学习</li>
 <li><strong>后端模式</strong>: API 设计、数据库模式、部署模式、Docker 模式</li>
-<li><strong>前端模式</strong>: React/Next.js 模式、前端幻灯片、Liquid Glass 设计</li>
-<li><strong>语言特定</strong>: Python/Django、Go、Java/Spring Boot、Rust、Swift、PHP 等</li>
+<li><strong>前端模式</strong>: React&#x2F;Next.js 模式、前端幻灯片、Liquid Glass 设计</li>
+<li><strong>语言特定</strong>: Python&#x2F;Django、Go、Java&#x2F;Spring Boot、Rust、Swift、PHP 等</li>
 <li><strong>高级技能</strong>: 成本感知 LLM 管道、内容哈希缓存、自主循环</li>
 </ul>
 <h3 id="3-60-个-Commands（命令）"><a href="#3-60-个-Commands（命令）" class="headerlink" title="3. 60 个 Commands（命令）"></a>3. 60 个 Commands（命令）</h3><p>提供快速执行的斜杠命令：</p>
@@ -283,7 +279,6 @@
 <li><strong>SessionStart</strong>: 新会话开始时（加载上下文）</li>
 </ul>
 <h3 id="5-跨平台支持"><a href="#5-跨平台支持" class="headerlink" title="5. 跨平台支持"></a>5. 跨平台支持</h3><p>ECC 是目前唯一最大化支持所有主流 AI 编码工具的项目：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -292,8 +287,7 @@
 <th>特点</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>Claude Code</strong></td>
 <td>✅ 原生支持</td>
 <td>主要目标平台</td>
@@ -318,15 +312,17 @@
 <td>✅ 支持</td>
 <td>集成工作流程</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h2 id="使用场景和案例"><a href="#使用场景和案例" class="headerlink" title="使用场景和案例"></a>使用场景和案例</h2><h3 id="场景-1-新功能开发"><a href="#场景-1-新功能开发" class="headerlink" title="场景 1: 新功能开发"></a>场景 1: 新功能开发</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/everything-claude-code:plan &quot;添加用户 OAuth 认证&quot;</span><br><span class="line">→ planner 创建实现蓝图</span><br><span class="line"></span><br><span class="line">/tdd</span><br><span class="line">→ tdd-guide 强制执行测试优先</span><br><span class="line"></span><br><span class="line">/code-review</span><br><span class="line">→ code-reviewer 检查工作成果</span><br></pre></td></tr></table></figure>
+
 <h3 id="场景-2-Bug-修复"><a href="#场景-2-Bug-修复" class="headerlink" title="场景 2: Bug 修复"></a>场景 2: Bug 修复</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/tdd</span><br><span class="line">→ 编写重现 bug 的失败测试</span><br><span class="line">→ 实现修复，验证测试通过</span><br><span class="line"></span><br><span class="line">/code-review</span><br><span class="line">→ 检查回归问题</span><br></pre></td></tr></table></figure>
+
 <h3 id="场景-3-生产环境准备"><a href="#场景-3-生产环境准备" class="headerlink" title="场景 3: 生产环境准备"></a>场景 3: 生产环境准备</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/security-scan</span><br><span class="line">→ security-reviewer 进行 OWASP Top 10 审计</span><br><span class="line"></span><br><span class="line">/e2e</span><br><span class="line">→ e2e-runner 测试关键用户流程</span><br><span class="line"></span><br><span class="line">/test-coverage</span><br><span class="line">→ 验证 80%+ 覆盖率</span><br></pre></td></tr></table></figure>
+
 <h3 id="场景-4-Token-优化"><a href="#场景-4-Token-优化" class="headerlink" title="场景 4: Token 优化"></a>场景 4: Token 优化</h3><p>ECC 提供了详细的 Token 优化指南：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sonnet&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;env&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;MAX_THINKING_TOKENS&quot;</span><span class="punctuation">:</span> <span class="string">&quot;10000&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;CLAUDE_AUTOCOMPACT_PCT_OVERRIDE&quot;</span><span class="punctuation">:</span> <span class="string">&quot;50&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>使用 Sonnet 替代 Opus：约 60% 成本降低</li>
 <li>限制思考 Token：约 70% 隐藏成本降低</li>
@@ -334,21 +330,27 @@
 </ul>
 <hr>
 <h2 id="安装和使用方式"><a href="#安装和使用方式" class="headerlink" title="安装和使用方式"></a>安装和使用方式</h2><h3 id="方式-1-作为插件安装（推荐）"><a href="#方式-1-作为插件安装（推荐）" class="headerlink" title="方式 1: 作为插件安装（推荐）"></a>方式 1: 作为插件安装（推荐）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加 marketplace</span></span><br><span class="line">/plugin marketplace add affaan-m/everything-claude-code</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装插件</span></span><br><span class="line">/plugin install everything-claude-code@everything-claude-code</span><br></pre></td></tr></table></figure>
+
 <h3 id="方式-2-手动安装"><a href="#方式-2-手动安装" class="headerlink" title="方式 2: 手动安装"></a>方式 2: 手动安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/affaan-m/everything-claude-code.git</span><br><span class="line"><span class="built_in">cd</span> everything-claude-code</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装规则（选择你需要的语言）</span></span><br><span class="line">./install.sh typescript    <span class="comment"># 或 python、golang、swift、php</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="方式-3-npm-包安装"><a href="#方式-3-npm-包安装" class="headerlink" title="方式 3: npm 包安装"></a>方式 3: npm 包安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g ecc-universal</span><br><span class="line">npx ecc-install typescript</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="生态系统工具"><a href="#生态系统工具" class="headerlink" title="生态系统工具"></a>生态系统工具</h2><h3 id="1-Skill-Creator（技能创建器）"><a href="#1-Skill-Creator（技能创建器）" class="headerlink" title="1. Skill Creator（技能创建器）"></a>1. Skill Creator（技能创建器）</h3><p>分析 Git 历史自动生成 Skills：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/skill-create                    <span class="comment"># 分析当前仓库</span></span><br><span class="line">/skill-create --instincts        <span class="comment"># 同时生成 instincts</span></span><br></pre></td></tr></table></figure>
+
 <p>GitHub App 版本: <a target="_blank" rel="noopener" href="https://github.com/apps/ecc-tools">https://github.com/apps/ecc-tools</a></p>
 <h3 id="2-AgentShield（安全审计）"><a href="#2-AgentShield（安全审计）" class="headerlink" title="2. AgentShield（安全审计）"></a>2. AgentShield（安全审计）</h3><p>在 Claude Code Hackathon 中构建的安全审计工具：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npx ecc-agentshield scan</span><br><span class="line">npx ecc-agentshield scan --fix   <span class="comment"># 自动修复安全问题</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>1282 个测试，98% 覆盖率</li>
 <li>102 个静态分析规则</li>
-<li>支持红队/蓝队/审计员三代理管道</li>
+<li>支持红队&#x2F;蓝队&#x2F;审计员三代理管道</li>
 </ul>
 <h3 id="3-Continuous-Learning-v2（持续学习）"><a href="#3-Continuous-Learning-v2（持续学习）" class="headerlink" title="3. Continuous Learning v2（持续学习）"></a>3. Continuous Learning v2（持续学习）</h3><p>基于 instinct 的学习系统自动学习你的模式：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/instinct-status        <span class="comment"># 查看学习的 instincts</span></span><br><span class="line">/instinct-export        <span class="comment"># 导出 instincts 分享</span></span><br><span class="line">/evolve                 <span class="comment"># 将 instincts 聚合成 skills</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="亮点和个人评价"><a href="#亮点和个人评价" class="headerlink" title="亮点和个人评价"></a>亮点和个人评价</h2><h3 id="🌟-项目亮点"><a href="#🌟-项目亮点" class="headerlink" title="🌟 项目亮点"></a>🌟 项目亮点</h3><ol>
 <li><strong>实战验证</strong>: 作者经过 10+ 个月的日常使用打磨，构建实际产品的经验总结</li>
@@ -360,7 +362,7 @@
 <h3 id="💡-核心价值"><a href="#💡-核心价值" class="headerlink" title="💡 核心价值"></a>💡 核心价值</h3><ul>
 <li><strong>不是配置包，而是性能优化系统</strong>: 超越简单的配置集合，提供完整的 Agent Harness 性能优化方案</li>
 <li><strong>Token 经济学</strong>: 提供详细的 Token 优化策略，显著降低使用成本</li>
-<li><strong>Memory 持久化</strong>: Hooks 自动保存/加载跨会话上下文</li>
+<li><strong>Memory 持久化</strong>: Hooks 自动保存&#x2F;加载跨会话上下文</li>
 <li><strong>持续学习</strong>: 自动从会话中提取模式转化为可重用技能</li>
 <li><strong>安全第一</strong>: 内置完整的安全审查和扫描机制</li>
 </ul>
@@ -368,7 +370,7 @@
 <li><strong>新手</strong>: 从 Shorthand Guide 开始，快速上手核心概念</li>
 <li><strong>进阶</strong>: 阅读 Longform Guide，掌握 Token 优化、并行化、验证循环</li>
 <li><strong>团队</strong>: 使用 Skill Creator 分析团队代码风格，生成统一规范</li>
-<li><strong>企业</strong>: 集成 AgentShield 到 CI/CD 流程，确保代码安全</li>
+<li><strong>企业</strong>: 集成 AgentShield 到 CI&#x2F;CD 流程，确保代码安全</li>
 </ol>
 <hr>
 <h2 id="相关资源"><a href="#相关资源" class="headerlink" title="相关资源"></a>相关资源</h2><ul>
@@ -377,7 +379,7 @@
 <li><strong>详细指南</strong>: <a target="_blank" rel="noopener" href="https://github.com/affaan-m/everything-claude-code/blob/main/the-longform-guide.md">https://github.com/affaan-m/everything-claude-code/blob/main/the-longform-guide.md</a></li>
 <li><strong>安全指南</strong>: <a target="_blank" rel="noopener" href="https://github.com/affaan-m/everything-claude-code/blob/main/the-security-guide.md">https://github.com/affaan-m/everything-claude-code/blob/main/the-security-guide.md</a></li>
 <li><strong>作者 Twitter</strong>: @affaanmustafa</li>
-<li><strong>ECC Tools</strong>: <a target="_blank" rel="noopener" href="https://ecc.tools">https://ecc.tools</a></li>
+<li><strong>ECC Tools</strong>: <a target="_blank" rel="noopener" href="https://ecc.tools/">https://ecc.tools</a></li>
 </ul>
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Everything Claude Code 是目前最全面、最成熟的 Claude Code 配置系统。它不仅提供了丰富的 Agents、Skills 和 Commands，更重要的是建立了一套完整的 AI 编码工作流方法论。对于希望提升 AI 编码效率的开发者和团队来说，这是一个值得深入研究和使用的项目。</p>
@@ -405,10 +407,10 @@
         </a>
     
     
-        <a href="/wiki/8082/" id="article-nav-older" class="article-nav-link-wrap"
-                onclick="onclickRoute(event, '/wiki/8082/')">
+        <a href="/wiki/42854/" id="article-nav-older" class="article-nav-link-wrap"
+                onclick="onclickRoute(event, '/wiki/42854/')">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">OpenClaw 子 Agent run/session 模式源码分析</div>
+            <div class="article-nav-title">AI Coding 测试和 Review 方案调研</div>
         </a>
     
 </nav>

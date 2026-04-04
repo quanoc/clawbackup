@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
-    <meta name="keywords" content="架构设计,架构分析,AI,Agent,Agent核心概念,工程实践,上下文工程" />
+    <meta name="keywords" content="AI,Agent,架构设计,架构分析,Agent核心概念,工程实践,上下文工程" />
 
     <meta name="description" content="AI Agent 架构、工程实践与研究洞察">
 <meta property="og:type" content="article">
@@ -98,7 +98,7 @@
         }
     },
     "image": "https://claw.waisec.cn/logo.png",
-    "keywords": "架构设计,架构分析,AI,Agent,Agent核心概念,工程实践,上下文工程"
+    "keywords": "AI,Agent,架构设计,架构分析,Agent核心概念,工程实践,上下文工程"
     
 }
 </script>
@@ -131,7 +131,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Agent%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Agent核心概念</a>
+        <a class="article-category-link" href="/categories/%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">核心概念</a>
     </div>
 
                         
@@ -151,7 +151,7 @@
 
 
 
-                        <meta name="keywords" content="架构设计,架构分析,AI,Agent,Agent核心概念,工程实践,上下文工程">
+                        <meta name="keywords" content="AI,Agent,架构设计,架构分析,Agent核心概念,工程实践,上下文工程">
                         
                         
                             <i class="fa fa-bar-chart"></i>
@@ -214,6 +214,7 @@
 <hr>
 <h2 id="1-Agent-Loop-的基本运转方式"><a href="#1-Agent-Loop-的基本运转方式" class="headerlink" title="1. Agent Loop 的基本运转方式"></a>1. Agent Loop 的基本运转方式</h2><p>Agent Loop 的核心实现逻辑抽象后其实<strong>不到 20 行代码</strong>：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">messages</span>: <span class="title class_">MessageParam</span>[] = [&#123; <span class="attr">role</span>: <span class="string">&quot;user&quot;</span>, <span class="attr">content</span>: userInput &#125;];</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> client.<span class="property">messages</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">    <span class="attr">model</span>: <span class="string">&quot;claude-opus-4-6&quot;</span>,</span><br><span class="line">    <span class="attr">max_tokens</span>: <span class="number">8096</span>,</span><br><span class="line">    <span class="attr">tools</span>: toolDefinitions,</span><br><span class="line">    messages,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (response.<span class="property">stop_reason</span> === <span class="string">&quot;tool_use&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> toolResults = <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(</span><br><span class="line">      response.<span class="property">content</span></span><br><span class="line">        .<span class="title function_">filter</span>(<span class="function">(<span class="params">b</span>) =&gt;</span> b.<span class="property">type</span> === <span class="string">&quot;tool_use&quot;</span>)</span><br><span class="line">        .<span class="title function_">map</span>(<span class="title function_">async</span> (b) =&gt; (&#123;</span><br><span class="line">          <span class="attr">type</span>: <span class="string">&quot;tool_result&quot;</span> <span class="keyword">as</span> <span class="keyword">const</span>,</span><br><span class="line">          <span class="attr">tool_use_id</span>: b.<span class="property">id</span>,</span><br><span class="line">          <span class="attr">content</span>: <span class="keyword">await</span> <span class="title function_">executeTool</span>(b.<span class="property">name</span>, b.<span class="property">input</span>),</span><br><span class="line">        &#125;))</span><br><span class="line">    );</span><br><span class="line">    messages.<span class="title function_">push</span>(&#123; <span class="attr">role</span>: <span class="string">&quot;assistant&quot;</span>, <span class="attr">content</span>: response.<span class="property">content</span> &#125;);</span><br><span class="line">    messages.<span class="title function_">push</span>(&#123; <span class="attr">role</span>: <span class="string">&quot;user&quot;</span>, <span class="attr">content</span>: toolResults &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> response.<span class="property">content</span>.<span class="title function_">find</span>(<span class="function">(<span class="params">b</span>) =&gt;</span> b.<span class="property">type</span> === <span class="string">&quot;text&quot;</span>)?.<span class="property">text</span> ?? <span class="string">&quot;&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>控制流</strong>：感知 → 决策 → 行动 → 反馈四个阶段不断循环，直到模型返回纯文本为止。</p>
 <h3 id="核心设计原则"><a href="#核心设计原则" class="headerlink" title="核心设计原则"></a>核心设计原则</h3><p>看过不少 Agent 实现和官方 SDK，结构都差不多，循环本身相当稳定，从最小实现一路扩展到支持子 Agent、上下文压缩和 Skills 加载，<strong>主循环基本没有变化</strong>。</p>
 <p>新增能力通常都是叠加在循环外部，而不是改动循环内部：</p>
@@ -229,7 +230,6 @@
 <p><strong>Workflow</strong>：执行路径由代码预先写死<br><strong>Agent</strong>：由 LLM 动态决定下一步</p>
 </blockquote>
 <p><strong>核心区别在于控制权掌握在谁手里</strong>。现实中很多标着 Agent 的产品，深入看其实更接近 Workflow，不过两者本身并无高下之分，真正重要的是给任务找到更适合的解决方案。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -238,8 +238,7 @@
 <th>Agent</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>控制权</strong></td>
 <td>代码预定义，同输入必走同一路径</td>
 <td>LLM 动态决策，可能需要评测验证</td>
@@ -274,18 +273,18 @@
 <td>流程固定、输入边界清晰</td>
 <td>需要中间推理与灵活判断</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h2 id="3-五种常见控制模式"><a href="#3-五种常见控制模式" class="headerlink" title="3. 五种常见控制模式"></a>3. 五种常见控制模式</h2><p>大多数 AI 系统拆开看，其实都是这五种模式的组合，很多场景并不需要完整的 Agent 自主权，把其中几种模式搭起来就够了，关键还是看任务本身适合哪一种设计。</p>
 <h3 id="3-1-提示链-Prompt-Chaining"><a href="#3-1-提示链-Prompt-Chaining" class="headerlink" title="3.1 提示链 (Prompt Chaining)"></a>3.1 提示链 (Prompt Chaining)</h3><p>任务拆成顺序步骤，每步 LLM 处理上一步的输出，中间可加代码检查点。</p>
 <p><strong>适用场景</strong>：生成后翻译、先写大纲再写正文这类线性流程。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户输入 → Prompt 1 → 输出 1 → Prompt 2 → 输出 2 → ... → 最终输出</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="3-2-路由-Routing"><a href="#3-2-路由-Routing" class="headerlink" title="3.2 路由 (Routing)"></a>3.2 路由 (Routing)</h3><p>对输入分类，定向到对应的专用处理流程。</p>
 <p><strong>适用场景</strong>：简单问题走轻量模型，复杂问题走强模型；技术咨询和账单查询走不同逻辑。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入 → 分类器 → 路由到专用流程 A/B/C</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="3-3-并行-Parallelization"><a href="#3-3-并行-Parallelization" class="headerlink" title="3.3 并行 (Parallelization)"></a>3.3 并行 (Parallelization)</h3><p>两种变体：</p>
 <ul>
@@ -297,10 +296,12 @@
 <h3 id="3-4-编排器-工作者-Orchestrator-Workers"><a href="#3-4-编排器-工作者-Orchestrator-Workers" class="headerlink" title="3.4 编排器 - 工作者 (Orchestrator-Workers)"></a>3.4 编排器 - 工作者 (Orchestrator-Workers)</h3><p>中央 LLM 动态分解任务，委派给工作者 LLM，综合结果。</p>
 <p><strong>典型案例</strong>：nanobot 的 spawn 工具和 learn-claude-code 的子 Agent 模式都是这个原型。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">中央 LLM → 分解任务 → 工作者 LLM 1/2/3 → 综合结果</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="3-5-评估器-优化器-Evaluator-Optimizer"><a href="#3-5-评估器-优化器-Evaluator-Optimizer" class="headerlink" title="3.5 评估器 - 优化器 (Evaluator-Optimizer)"></a>3.5 评估器 - 优化器 (Evaluator-Optimizer)</h3><p>生成器产出，评估器给反馈，循环直到达标。</p>
 <p><strong>适用场景</strong>：翻译、创意写作这类质量标准难以用代码精确定义的任务。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">生成器 → 评估器 → 反馈 → 优化 → 循环直到达标</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="4-为什么-Harness-比模型更关键-🔥"><a href="#4-为什么-Harness-比模型更关键-🔥" class="headerlink" title="4. 为什么 Harness 比模型更关键 🔥"></a>4. 为什么 Harness 比模型更关键 🔥</h2><p><strong>Harness</strong> 是指围绕 Agent 构建的测试、验证与约束基础设施，至少包括四个部分：</p>
 <ul>
@@ -319,6 +320,7 @@
 <hr>
 <h3 id="4-2-Harness-的关键结论"><a href="#4-2-Harness-的关键结论" class="headerlink" title="4.2 Harness 的关键结论"></a>4.2 Harness 的关键结论</h3><p>用<strong>任务清晰度</strong>和<strong>验证自动化程度</strong>把任务分成四种状态：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">             验证自动化程度</span><br><span class="line">             低          高</span><br><span class="line">       ┌───────────┬───────────┐</span><br><span class="line">    高 │  人在盯   │  🎯 目标区 │</span><br><span class="line">任     │ (左上角)  │ (右上角)  │</span><br><span class="line">务     ├───────────┼───────────┤</span><br><span class="line">清     │  无效区   │  危险区   │</span><br><span class="line">晰     │ (左下角)  │ (右下角)  │</span><br><span class="line">度     └───────────┴───────────┘</span><br></pre></td></tr></table></figure>
+
 <p><strong>右上角</strong>（目标明确 + 可自动验证）是最适合 Agent 发挥的区域。</p>
 <p><strong>Harness 要做的</strong>：就是把任务推进右上角，让对错有机器可以执行的判断标准，而不是靠人盯。</p>
 <hr>
@@ -331,7 +333,6 @@
 <li>模型能看到的内容越来越多，但真正有用的部分越来越难被注意到</li>
 </ul>
 <p><strong>解决方式</strong>：按信息的使用频率和稳定性分层管理，每层只放自己该放的东西。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -340,8 +341,7 @@
 <th>加载方式</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>常驻层</strong></td>
 <td>身份定义、项目约定、绝对禁止项</td>
 <td>每次都加载</td>
@@ -366,13 +366,10 @@
 <td>Hooks 或代码规则</td>
 <td>不进上下文</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>关键原则</strong>：别把确定性逻辑放进上下文，凡是可以通过 Hooks、代码规则或工具约束表达的内容，都应交给外部系统处理，而不是让模型反复读取。</p>
 <hr>
-<h3 id="5-2-三种常见压缩策略"><a href="#5-2-三种常见压缩策略" class="headerlink" title="5.2 三种常见压缩策略"></a>5.2 三种常见压缩策略</h3><div class="table-container">
-<table>
+<h3 id="5-2-三种常见压缩策略"><a href="#5-2-三种常见压缩策略" class="headerlink" title="5.2 三种常见压缩策略"></a>5.2 三种常见压缩策略</h3><table>
 <thead>
 <tr>
 <th>策略</th>
@@ -381,8 +378,7 @@
 <th>适用场景</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>滑动窗口</strong></td>
 <td>极低</td>
 <td>早期上下文</td>
@@ -400,9 +396,7 @@
 <td>工具原始输出</td>
 <td>工具调用密集型</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>滑动窗口</strong>实现最简单，但会丢掉早期决策背景。</p>
 <p><strong>LLM 摘要</strong>的进阶做法是 branch summarization，摘要时明确保留架构决策、未完成任务和关键约束。</p>
 <p><strong>工具结果替换</strong>里，micro_compact 每轮替换旧工具输出，auto_compact 在上下文超阈值时自动触发。</p>
@@ -418,12 +412,32 @@
 <hr>
 <h3 id="5-4-为什么-Skills-要按需加载"><a href="#5-4-为什么-Skills-要按需加载" class="headerlink" title="5.4 为什么 Skills 要按需加载"></a>5.4 为什么 Skills 要按需加载</h3><p>Skills 是上下文工程里非常有效的一种模式，核心思路是：<strong>系统提示只保留索引，完整知识按需加载</strong>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> systemPrompt = <span class="string">`</span></span><br><span class="line"><span class="string">可用 Skills：</span></span><br><span class="line"><span class="string">- deploy: 部署到生产环境的完整流程</span></span><br><span class="line"><span class="string">- code-review: 代码审查检查清单</span></span><br><span class="line"><span class="string">- git-workflow: 分支策略和 PR 规范</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">executeLoadSkill</span>(<span class="params">name: string</span>): <span class="title class_">Promise</span>&lt;string&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> fs.<span class="title function_">readFile</span>(<span class="string">`./skills/<span class="subst">$&#123;name&#125;</span>.md`</span>, <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>Skill 描述最佳实践</strong>：</p>
 <ul>
 <li>✅ 高效（约 9 tokens）：<code>Use when deploying to production or rolling back.</code></li>
 <li>❌ 低效（约 45 tokens）：冗长的功能介绍</li>
 </ul>
-<p><strong>关键数据</strong>：<br>| 条件 | 准确率 | 响应时间 |<br>|———|————|————-|<br>| 没有反例 | 53% ↓ | 基准 |<br>| 加上反例 | 85% ↑ | -18.1% ↓ |</p>
+<p><strong>关键数据</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>准确率</th>
+<th>响应时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>没有反例</td>
+<td>53% ↓</td>
+<td>基准</td>
+</tr>
+<tr>
+<td>加上反例</td>
+<td>85% ↑</td>
+<td>-18.1% ↓</td>
+</tr>
+</tbody></table>
 <p><strong>反例不是可选项，是 Skill 描述能不能起作用的关键</strong>。</p>
 <p><strong>Skill 描述符的两个陷阱</strong>：</p>
 <ol>
@@ -436,6 +450,7 @@
 <p>LLM 通常会优先删除那些看起来还可以重新获取的信息，早期的 tool output 通常最先被移除，但与之相关的架构决策、约束理由和失败路径也很容易一并丢失。</p>
 <p><strong>保留优先级</strong>（建议在 CLAUDE.md 或等价文档里明确写出）：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">### Compact Instructions</span></span><br><span class="line"></span><br><span class="line">保留优先级：</span><br><span class="line"><span class="bullet">1.</span> 架构决策，不得摘要</span><br><span class="line"><span class="bullet">2.</span> 已修改文件和关键变更</span><br><span class="line"><span class="bullet">3.</span> 验证状态，pass/fail</span><br><span class="line"><span class="bullet">4.</span> 未解决的 TODO 和回滚笔记</span><br><span class="line"><span class="bullet">5.</span> 工具输出，可删，只保留 pass/fail 结论</span><br><span class="line"></span><br><span class="line">⚠️ 不要改动标识符：</span><br><span class="line"><span class="bullet">-</span> UUID、hash、IP、端口、URL、文件名必须原样保留</span><br><span class="line"><span class="bullet">-</span> 一旦把 PR 编号或 commit hash 改错一位，后续工具调用就会直接失效</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="5-6-文件系统为什么适合做上下文接口"><a href="#5-6-文件系统为什么适合做上下文接口" class="headerlink" title="5.6 文件系统为什么适合做上下文接口"></a>5.6 文件系统为什么适合做上下文接口</h3><p>Cursor 把这种方式叫 <strong>Dynamic Context Discovery</strong>，默认少给，只在需要时读取。</p>
 <p>文件系统天然适合做这个接口：</p>
@@ -446,7 +461,6 @@
 </ul>
 <hr>
 <h2 id="6-与-OpenClaw-的对照"><a href="#6-与-OpenClaw-的对照" class="headerlink" title="6. 与 OpenClaw 的对照"></a>6. 与 OpenClaw 的对照</h2><p>这篇文章提到的很多设计原则，在 OpenClaw 中都有对应实现：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -454,8 +468,7 @@
 <th>OpenClaw 实现</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>本地记忆系统</strong></td>
 <td><code>~/.openclaw/workspace/memory/</code> 目录</td>
 </tr>
@@ -479,9 +492,7 @@
 <td><strong>Prompt Caching</strong></td>
 <td>稳定的系统提示 + 动态信息后置</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h2><h3 id="核心结论"><a href="#核心结论" class="headerlink" title="核心结论"></a>核心结论</h3><ol>
 <li><strong>Agent 循环本身很简单</strong>，稳定性来自外部工程而非模型</li>
@@ -495,7 +506,7 @@
 <li>✅ 把任务推进”右上角”（目标明确 + 可自动验证）</li>
 <li>✅ 常驻层短而稳定，保护 Prompt Caching 命中</li>
 <li>✅ Skill 描述写”何时该用我”，不是”我能做什么”</li>
-<li>✅ 压缩时保留架构决策和标识符，不改动 UUID/hash</li>
+<li>✅ 压缩时保留架构决策和标识符，不改动 UUID&#x2F;hash</li>
 </ul>
 <hr>
 <h2 id="📚-参考资料"><a href="#📚-参考资料" class="headerlink" title="📚 参考资料"></a>📚 参考资料</h2><ul>
